@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rapport extends Model
 {
+    protected $table = 'rapport';
+
     use HasFactory;
     protected $fillable = [
     ];

@@ -12,7 +12,8 @@ class UtilisateurController extends Controller
      */
     public function index()
     {
-        //
+        $utilisateur = Utilisateur::all();
+        return response()->json($utilisateur);
     }
 
     /**
@@ -34,15 +35,16 @@ class UtilisateurController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Utilisateur $utilisateur)
+    public function show($id)
     {
-        //
+        $utilisateur = Utilisateur::find($id) ;
+        return response()->json($utilisateur) ;
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Utilisateur $utilisateur)
+    public function edit($id)
     {
         //
     }
@@ -50,16 +52,20 @@ class UtilisateurController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Utilisateur $utilisateur)
+    public function update(Request $request, $id)
     {
-        //
+        $utilisateur = Utilisateur::find($id);
+        $utilisateur->update($request->all());
+        return response()->json('');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Utilisateur $utilisateur)
+    public function destroy($id)
     {
-        //
+        $utilisateur = Utilisateur::find($id);
+        $utilisateur->delete();
+        return response()->json('');
     }
 }

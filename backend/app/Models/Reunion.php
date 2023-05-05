@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reunion extends Model
 {
+    protected $table = 'reunion';
+
     use HasFactory;
     protected $fillable = [
         'date',

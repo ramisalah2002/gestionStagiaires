@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Stage extends Model
 {
+    protected $table = 'stage';
+
     use HasFactory;
     protected $fillable = [
         'date_debut',

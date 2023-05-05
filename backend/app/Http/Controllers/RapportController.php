@@ -12,7 +12,8 @@ class RapportController extends Controller
      */
     public function index()
     {
-        //
+        $rapport = Rapport::all();
+        return response()->json($rapport);
     }
 
     /**
@@ -34,15 +35,16 @@ class RapportController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Rapport $rapport)
+    public function show($id)
     {
-        //
+        $rapport = Rapport::find($id) ;
+        return response()->json($rapport);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Rapport $rapport)
+    public function edit($id)
     {
         //
     }
@@ -50,16 +52,20 @@ class RapportController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Rapport $rapport)
+    public function update(Request $request, $id)
     {
-        //
+        $rapport = Rapport::find($id);
+        $rapport->update($request->all());
+        return response()->json('');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Rapport $rapport)
+    public function destroy($id)
     {
-        //
+        $rapport = Rapport::find($id);
+        $rapport->delete();
+        return response()->json('');
     }
 }

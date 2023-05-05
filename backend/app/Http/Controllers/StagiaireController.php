@@ -12,7 +12,8 @@ class StagiaireController extends Controller
      */
     public function index()
     {
-        //
+        $stagiaire = Stagiaire::all();
+        return response()->json($stagiaire);
     }
 
     /**
@@ -34,15 +35,16 @@ class StagiaireController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Stagiaire $stagiaire)
+    public function show($id)
     {
-        //
+        $stagiaire = Stagiaire::find($id) ;
+        return response()->json($stagiaire) ;
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Stagiaire $stagiaire)
+    public function edit($id)
     {
         //
     }
@@ -50,16 +52,20 @@ class StagiaireController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Stagiaire $stagiaire)
+    public function update(Request $request, $id)
     {
-        //
+        $stagiaire = Stagiaire::find($id);
+        $stagiaire->update($request->all());
+        return response()->json('');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Stagiaire $stagiaire)
+    public function destroy($id)
     {
-        //
+        $stagiaire = Stagiaire::find($id);
+        $stagiaire->delete();
+        return response()->json('');
     }
 }

@@ -12,7 +12,8 @@ class PresentationController extends Controller
      */
     public function index()
     {
-        //
+        $presentation = Presentation::all();
+        return response()->json($presentation);
     }
 
     /**
@@ -34,15 +35,16 @@ class PresentationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Presentation $presentation)
+    public function show($id)
     {
-        //
+        $presentation = Presentation::find($id) ;
+        return response()->json($presentation) ;
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Presentation $presentation)
+    public function edit($id)
     {
         //
     }
@@ -50,16 +52,20 @@ class PresentationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Presentation $presentation)
+    public function update(Request $request, $id)
     {
-        //
+        $presentation = Presentation::find($id);
+        $presentation->update($request->all());
+        return response()->json('');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Presentation $presentation)
+    public function destroy($id)
     {
-        //
+        $presentation = Presentation::find($id);
+        $presentation->delete();
+        return response()->json('');
     }
 }

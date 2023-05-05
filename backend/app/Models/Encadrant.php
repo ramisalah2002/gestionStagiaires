@@ -4,10 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class Encadrant extends Model
 {
-    use HasFactory;
+    protected $table = 'encadrant';
+
+    use HasApiTokens, HasFactory, Notifiable;
+
     protected $fillable = [
         'nom',
         'prenom',

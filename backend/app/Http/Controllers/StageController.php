@@ -12,7 +12,8 @@ class StageController extends Controller
      */
     public function index()
     {
-        //
+        $stage = Stage::all();
+        return response()->json($stage);
     }
 
     /**
@@ -34,15 +35,16 @@ class StageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Stage $stage)
+    public function show($id)
     {
-        //
+        $stage = Stage::find($id) ;
+        return response()->json($stage) ;
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Stage $stage)
+    public function edit($id)
     {
         //
     }
@@ -50,16 +52,20 @@ class StageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Stage $stage)
+    public function update(Request $request, $id)
     {
-        //
+        $stage = Stage::find($id);
+        $stage->update($request->all());
+        return response()->json('');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Stage $stage)
+    public function destroy($id)
     {
-        //
+        $stage = Stage::find($id);
+        $stage->delete();
+        return response()->json('');
     }
 }

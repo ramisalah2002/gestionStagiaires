@@ -12,7 +12,8 @@ class DemandeStageController extends Controller
      */
     public function index()
     {
-        //
+        $demandeStage = DemandeStage::all();
+        return response()->json($demandeStage);
     }
 
     /**
@@ -34,15 +35,16 @@ class DemandeStageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(DemandeStage $demandeStage)
+    public function show($id)
     {
-        //
+        $demandeStage = DemandeStage::find($id);
+        return response()->json($demandeStage);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(DemandeStage $demandeStage)
+    public function edit($id)
     {
         //
     }
@@ -50,16 +52,20 @@ class DemandeStageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, DemandeStage $demandeStage)
+    public function update(Request $request, $id)
     {
-        //
+        $demandeStage = DemandeStage::find($id);
+        $demandeStage->update($request->all());
+        return response()->json('');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(DemandeStage $demandeStage)
+    public function destroy($id)
     {
-        //
+        $demandeStage = DemandeStage::find($id);
+        $demandeStage->delete();
+        return response()->json('');
     }
 }

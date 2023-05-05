@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Realisation extends Model
 {
+    protected $table = 'realisation';
+
     use HasFactory;
     protected $fillable = ['stagiaire_id', 'administrateur_id', 'dateDebut', 'duree'];
     public function projet()

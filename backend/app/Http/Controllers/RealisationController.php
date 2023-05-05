@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Realisation;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class RealisationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $user = User::all();
-        return response()->json($user);
+        $realisation = Realisation::all();
+        return response()->json($realisation);
     }
 
     /**
@@ -35,16 +35,16 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(string $id)
     {
-        $user = User::find($id) ;
-        return response()->json($user);
+        $realisation = Realisation::find($id) ;
+        return response()->json($realisation) ;
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(string $id)
     {
         //
     }
@@ -52,20 +52,20 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
-        $user = User::find($id);
-        $user->update($request->all());
+        $realisation = Realisation::find($id) ;
+        $realisation->update($request->all());
         return response()->json('');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(string $id)
     {
-        $user = User::find($id);
-        $user->delete();
+        $realisation = Realisation::find($id) ;
+        $realisation->delete();
         return response()->json('');
     }
 }

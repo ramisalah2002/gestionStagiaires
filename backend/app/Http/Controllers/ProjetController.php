@@ -12,7 +12,8 @@ class ProjetController extends Controller
      */
     public function index()
     {
-        //
+        $projet = Projet::all();
+        return response()->json($projet);
     }
 
     /**
@@ -34,15 +35,16 @@ class ProjetController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Projet $projet)
+    public function show($id)
     {
-        //
+        $projet = Projet::find($id) ;
+        return response()->json($projet);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Projet $projet)
+    public function edit($id)
     {
         //
     }
@@ -50,16 +52,20 @@ class ProjetController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Projet $projet)
+    public function update(Request $request, $id)
     {
-        //
+        $projet = Projet::find($id);
+        $projet->update($request->all());
+        return response()->json('');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Projet $projet)
+    public function destroy($id)
     {
-        //
+        $projet = Projet::find($id);
+        $projet->delete();
+        return response()->json('');
     }
 }

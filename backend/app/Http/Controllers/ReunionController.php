@@ -12,7 +12,8 @@ class ReunionController extends Controller
      */
     public function index()
     {
-        //
+        $reunion = Reunion::all();
+        return response()->json($reunion);
     }
 
     /**
@@ -34,15 +35,16 @@ class ReunionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Reunion $reunion)
+    public function show($id)
     {
-        //
+        $reunion = Reunion::find($id) ;
+        return response()->json($reunion) ;
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Reunion $reunion)
+    public function edit($id)
     {
         //
     }
@@ -50,16 +52,20 @@ class ReunionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Reunion $reunion)
+    public function update(Request $request, $id)
     {
-        //
+        $reunion = Reunion::find($id);
+        $reunion->update($request->all());
+        return response()->json('');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Reunion $reunion)
+    public function destroy($id)
     {
-        //
+        $reunion = Reunion::find($id);
+        $reunion->delete();
+        return response()->json('');
     }
 }

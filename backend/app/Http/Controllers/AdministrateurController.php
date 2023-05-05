@@ -12,7 +12,8 @@ class AdministrateurController extends Controller
      */
     public function index()
     {
-        //
+        $administrateur = Administrateur::all();
+        return response()->json($administrateur);
     }
 
     /**
@@ -43,7 +44,7 @@ class AdministrateurController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Administrateur $administrateur)
+    public function edit($id)
     {
         //
     }
@@ -51,16 +52,20 @@ class AdministrateurController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Administrateur $administrateur)
+    public function update(Request $request, $id)
     {
-        //
+        $administrateur = Administrateur::find($id);
+        $administrateur->update($request->all());
+        return response()->json('');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Administrateur $administrateur)
+    public function destroy($id)
     {
-        //
+        $administrateur = Administrateur::find($id);
+        $administrateur->delete();
+        return response()->json('');
     }
 }
