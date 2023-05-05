@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class realisation extends Model
+class Realisation extends Model
 {
     use HasFactory;
     protected $fillable = ['stagiaire_id', 'administrateur_id', 'dateDebut', 'duree'];
