@@ -29,7 +29,16 @@ class StagiaireController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $stagiaire = new Stagiaire;
+        $stagiaire->nom = $request->input('nom');
+        $stagiaire->prenom = $request->input('prenom');
+        $stagiaire->email = $request->input('email');
+        $stagiaire->password = $request->input('password');
+        $stagiaire->telephone = $request->input('telephone');
+        $stagiaire->dateNaissance = $request->input('dateNaissance');
+        $stagiaire->genre = $request->input('genre');
+        $stagiaire->CIN = $request->input('CIN');
+        $stagiaire->CNE = $request->input('CNE');
     }
 
     /**

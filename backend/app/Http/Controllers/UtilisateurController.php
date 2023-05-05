@@ -29,7 +29,18 @@ class UtilisateurController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $utilisateur = new Utilisateur;
+        $utilisateur->nom = $request->input('nom');
+        $utilisateur->prenom = $request->input('prenom');
+        $utilisateur->email = $request->input('email');
+        $utilisateur->password = $request->input('password');
+        $utilisateur->telephone = $request->input('telephone');
+        $utilisateur->dateNaissance = $request->input('dateNaissance');
+        $utilisateur->genre = $request->input('genre');
+        $utilisateur->CIN = $request->input('CIN');
+        $utilisateur->CNE = $request->input('CNE');
+
+        $utilisateur->save();
     }
 
     /**

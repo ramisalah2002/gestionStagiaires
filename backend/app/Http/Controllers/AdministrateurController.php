@@ -29,7 +29,17 @@ class AdministrateurController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $administrateur = new Administrateur;
+        $administrateur->nom = $request->input('nom');
+        $administrateur->prenom = $request->input('prenom');
+        $administrateur->email = $request->input('email');
+        $administrateur->password = $request->input('password');
+        $administrateur->telephone = $request->input('telephone');
+        $administrateur->dateNaissance = $request->input('dateNaissance');
+        $administrateur->genre = $request->input('genre');
+        $administrateur->CIN = $request->input('CIN');
+
+        $administrateur->save();
     }
 
     /**

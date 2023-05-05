@@ -29,7 +29,19 @@ class EncadrantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $encadrant = new Encadrant;
+        $encadrant->nom = $request->input('nom');
+        $encadrant->prenom = $request->input('prenom');
+        $encadrant->email = $request->input('email');
+        $encadrant->password = $request->input('password');
+        $encadrant->telephone = $request->input('telephone');
+        $encadrant->dateNaissance = $request->input('dateNaissance');
+        $encadrant->genre = $request->input('genre');
+        $encadrant->CIN = $request->input('CIN');
+
+        $encadrant->save();
+
+        return response()->json($encadrant);
     }
 
     /**
