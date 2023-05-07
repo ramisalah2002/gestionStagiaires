@@ -12,6 +12,9 @@ class Projet extends Model
     use HasFactory;
     protected $fillable = [
         'sujet',
+        'stage_id',
+        'presentation_id',
+        'rapport_id',
     ];
 
     public function stage()

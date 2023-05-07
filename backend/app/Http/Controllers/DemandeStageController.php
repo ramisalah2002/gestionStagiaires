@@ -32,7 +32,7 @@ class DemandeStageController extends Controller
         $demandeStage = new DemandeStage([
             'date_demande' => $request->input('date_demande'),
             'utilisateur_id' => $request->input('utilisateur_id'),
-            'administrateur_id' => $request->input('adminstrateur_id'),
+            'administrateur_id' => $request->input('administrateur_id'),
             'stage_id' => $request->input('stage_id'),
         ]);
         $demandeStage->save();

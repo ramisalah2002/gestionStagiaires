@@ -13,6 +13,10 @@ class Stage extends Model
     protected $fillable = [
         'date_debut',
         'duree',
+        'demandeStage_id',
+        'stagiaire_id',
+        'administrateur_id',
+        'encadrant_id',
     ];
     public function stagiaire()
     {

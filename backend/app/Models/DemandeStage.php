@@ -12,6 +12,9 @@ class DemandeStage extends Model
     use HasFactory;
     protected $fillable = [
         'date_demande',
+        'utilisateur_id',
+        'administrateur_id',
+        'stage_id',
     ];
     public function utilisateur()
     {

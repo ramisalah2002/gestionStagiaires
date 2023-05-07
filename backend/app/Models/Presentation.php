@@ -12,6 +12,7 @@ class Presentation extends Model
     use HasFactory;
     protected $fillable = [
         'date',
+        'projet_id',
     ];
     public function projet()
     {

@@ -10,7 +10,9 @@ class Rapport extends Model
     protected $table = 'rapport';
 
     use HasFactory;
+
     protected $fillable = [
+        'projet_id',
     ];
     public function projet()
     {

@@ -10,7 +10,12 @@ class Realisation extends Model
     protected $table = 'realisation';
 
     use HasFactory;
-    protected $fillable = ['stagiaire_id', 'administrateur_id', 'dateDebut', 'duree'];
+    protected $fillable = [
+        'dateDebut',
+        'duree',
+        'stagiaire_id',
+        'encadrant_id',
+    ];
     public function projet()
     {
         return $this->belongsToMany(Projet::class);
