@@ -29,7 +29,11 @@ class RapportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rapport = new Rapport([
+            'projet_id' => $request->input('projet_id'),
+        ]);
+        $rapport->save();
+        return response()->json('');
     }
 
     /**

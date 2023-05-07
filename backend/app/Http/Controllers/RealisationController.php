@@ -29,7 +29,14 @@ class RealisationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $realisation = new Realisation([
+            'dateDebut' => $request->input('dateDebut'),
+            'duree' => $request->input('duree'),
+            'stagiaire_id' => $request->input('stagiaire_id'),
+            'encadrant_id' => $request->input('encadrant_id'),
+        ]);
+        $realisation->save();
+        return response()->json('');
     }
 
     /**

@@ -29,7 +29,14 @@ class ProjetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $projet = new Projet([
+            'sujet' => $request->input('sujet'),
+            'stage_id' => $request->input('stage_id'),
+            'presentation_id' => $request->input('presentation_id'),
+            'rapport_id' => $request->input('rapport_id'),
+        ]);
+        $projet->save();
+        return response()->json('');
     }
 
     /**
