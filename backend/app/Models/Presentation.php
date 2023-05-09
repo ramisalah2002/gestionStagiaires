@@ -12,10 +12,10 @@ class Presentation extends Model
     use HasFactory;
     protected $fillable = [
         'date',
-        'projet_id',
+        'stage_id',
     ];
-    public function projet()
+    public function stage()
     {
-        return $this->belongsTo(Projet::class);
+        return $this->belongsTo(Stage::class);
     }
 }

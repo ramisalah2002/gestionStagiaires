@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('projet', function (Blueprint $table) {
             $table->id();
             $table->string('sujet');
+            $table->string('status');
             $table->foreignId('stage_id')->references('id')->on('stage')->onDelete('cascade');
             $table->foreignId('stagiaire_id')->references('id')->on('stagiaire')->onDelete('cascade');
             $table->timestamps();

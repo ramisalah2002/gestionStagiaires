@@ -12,9 +12,9 @@ class Projet extends Model
     use HasFactory;
     protected $fillable = [
         'sujet',
+        'status',
         'stage_id',
-        'presentation_id',
-        'rapport_id',
+        'stagiaire_id',
     ];
 
     public function stage()
@@ -23,14 +23,7 @@ class Projet extends Model
     }
     public function stagiaire()
     {
-        return $this->hasMany(Stagiaire::class);
+        return $this->belongsToMany(Stagiaire::class, 'realisation');
     }
-    public function rapport()
-    {
-        return $this->belongsTo(Rapport::class);
-    }
-    public function presentation()
-    {
-        return $this->belongsTo(Presentation::class);
-    }
+
 }

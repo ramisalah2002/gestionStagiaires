@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('participation', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('date');
-            $table->foreignId('stagiaire_id')->references('id')->on('stage')->onDelete('cascade');
-            $table->foreignId('encadrant_id')->references('id')->on('stage')->onDelete('cascade');
+            $table->foreignId('stagiaire_id')->references('id')->on('stagiaire')->onDelete('cascade');
+            $table->foreignId('reunion_id')->references('id')->on('reunion')->onDelete('cascade');
             $table->timestamps();
         });
     }

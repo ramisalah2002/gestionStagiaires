@@ -13,12 +13,13 @@ class Realisation extends Model
     protected $fillable = [
         'dateDebut',
         'duree',
+        'note',
         'stagiaire_id',
-        'encadrant_id',
+        'projet_id',
     ];
     public function projet()
     {
-        return $this->belongsToMany(Projet::class);
+        return $this->belongsToMany(Projet::class)->withPivot('note');
     }
     public function stagiaire()
     {

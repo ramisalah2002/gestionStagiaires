@@ -13,26 +13,29 @@ class Stage extends Model
     protected $fillable = [
         'date_debut',
         'duree',
-        'demandeStage_id',
         'stagiaire_id',
         'administrateur_id',
         'encadrant_id',
     ];
     public function stagiaire()
     {
-        return $this->belongsTo(Stagiaire::class);
-    }
-    public function demandeStage()
-    {
-        return $this->belongsTo(DemandeStage::class);
-    }
-    public function adminstrateur()
-    {
-        return $this->belongsTo(Administrateur::class);
+        return $this->hasMany(Stagiaire::class);
     }
     public function projet()
     {
         return $this->hasMany(Projet::class);
+    }
+    public function administrateur()
+    {
+        return $this->belongsTo(Administrateur::class);
+    }
+    public function presentation()
+    {
+        return $this->hasMany(Presentation::class);
+    }
+    public function rapportStage()
+    {
+        return $this->belongsTo(RapportStage::class);
     }
     public function encadrant()
     {
