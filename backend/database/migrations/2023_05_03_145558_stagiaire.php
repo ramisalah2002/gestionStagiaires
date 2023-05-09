@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('genre');
             $table->string('CIN');
             $table->string('CNE');
+            $table->string('formation');
             $table->timestamps();
         });
     }

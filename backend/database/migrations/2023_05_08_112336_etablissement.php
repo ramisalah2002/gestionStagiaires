@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('realisation', function (Blueprint $table) {
-            $table->date('dateDebut');
-            $table->dateTime('duree');
-            $table->foreignId('stagiaire_id')->references('id')->on('stagiaire')->onDelete('cascade');
-            $table->foreignId('projet_id')->references('id')->on('projet')->onDelete('cascade');
+        Schema::create('etablissemnent', function (Blueprint $table) {
+            $table->id();
+            $table->string('nom_etablissement') ;
+            $table->string('adresse') ;
             $table->timestamps();
         });
     }

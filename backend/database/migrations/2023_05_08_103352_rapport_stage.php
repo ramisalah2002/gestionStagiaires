@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('demandeStage', function (Blueprint $table) {
+        Schema::create('rapportStage', function (Blueprint $table) {
             $table->id();
-            $table->date('date_demande');
-            $table->foreignId('utilisateur_id')->references('id')->on('utilisateur')->onDelete('cascade');
-            $table->foreignId('administrateur_id')->references('id')->on('administrateur')->onDelete('cascade');
-            $table->foreignId('stage_id');
+            $table->foreignId('stage_id')->references('id')->on('stage')->onDelete('cascade');
             $table->timestamps();
         });
     }

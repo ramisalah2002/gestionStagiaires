@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('reunion', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
             $table->dateTime('duree');
             $table->string('objet');
             $table->foreignId('stagiaire_id')->references('id')->on('stagiaire')->onDelete('cascade');
