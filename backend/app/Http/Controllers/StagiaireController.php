@@ -39,6 +39,7 @@ class StagiaireController extends Controller
         $stagiaire->genre = $request->input('genre');
         $stagiaire->CIN = $request->input('CIN');
         $stagiaire->CNE = $request->input('CNE');
+        $stagiaire->formation = $request->input('formation');
     }
 
     /**

@@ -31,9 +31,9 @@ class ProjetController extends Controller
     {
         $projet = new Projet([
             'sujet' => $request->input('sujet'),
+            'status' => $request->input('status'),
             'stage_id' => $request->input('stage_id'),
-            'presentation_id' => $request->input('presentation_id'),
-            'rapport_id' => $request->input('rapport_id'),
+            'stagiaire_id' => $request->input('stagiaire_id'),
         ]);
         $projet->save();
         return response()->json('');

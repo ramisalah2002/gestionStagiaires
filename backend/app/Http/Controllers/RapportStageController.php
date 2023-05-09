@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rapport;
+use App\Models\RapportStage;
 use Illuminate\Http\Request;
 
-class RapportController extends Controller
+class RapportStageController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $rapport = Rapport::all();
-        return response()->json($rapport);
+        $rapportStage = RapportStage::all();
+        return response()->json($rapportStage);
     }
 
     /**
@@ -29,26 +29,24 @@ class RapportController extends Controller
      */
     public function store(Request $request)
     {
-        $rapport = new Rapport([
-            'projet_id' => $request->input('projet_id'),
-        ]);
-        $rapport->save();
-        return response()->json('');
+        $rapportStage = new RapportStage();
+        $rapportStage->stage_id = $request->input('stage_id');
+        $rapportStage->save();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(string $id)
     {
-        $rapport = Rapport::find($id) ;
-        return response()->json($rapport);
+        $rapportStage = RapportStage::find($id);
+        return response()->json($rapportStage);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(string $id)
     {
         //
     }
@@ -56,20 +54,20 @@ class RapportController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
-        $rapport = Rapport::find($id);
-        $rapport->update($request->all());
+        $rapportStage = RapportStage::find($id);
+        $rapportStage->update($request->all());
         return response()->json('');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(string $id)
     {
-        $rapport = Rapport::find($id);
-        $rapport->delete();
+        $rapportStage = RapportStage::find($id);
+        $rapportStage->delete();
         return response()->json('');
     }
 }
