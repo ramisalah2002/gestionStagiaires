@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import Sidebar from './Sidebar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch,faCircleUser, faCalendarDays } from '@fortawesome/free-solid-svg-icons';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="app">
+      <Sidebar />
+      <main className="main-content">
+          <div className='header'>
+            <div className='admin-container'>
+              <FontAwesomeIcon className='admin-icon' icon={faCircleUser} />
+              <div className='admin-info'>
+                <label className='admin-name'>Nom Administrateur</label>
+                <label className='admin-post'>Poste administrateur</label>
+              </div>
+              <div className='vertical-line'></div>
+              <div className='today-container'>
+                <FontAwesomeIcon className='calendar-icon' icon={faCalendarDays} />
+                <label className='today-label'>23 fév</label>
+              </div>
+            </div>
+            <div className='search-container'>
+              <FontAwesomeIcon className='search-icon' icon={faSearch} />
+              <input className='search-input' placeholder='Rechercher ...' type="text"/>
+            </div>
+          </div>
+          <div className='sections-container'>
+            <div className='stagiaires-container'>
+              
+            </div>
+            <div className='project-abscence-section'>
+              <div className='project-container'></div>
+              <div className='abscence-container'></div>
+            </div>
+          </div>
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;
