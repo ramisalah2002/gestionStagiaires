@@ -4,24 +4,11 @@ import Header from '../components/Header/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch,faCircleUser, faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
+import Homepage from '../pages/Homepage/Homepage';
 
 function App() {
   return (
-    <div className="app">
-      <Sidebar/>
-      <main className="main-content">
-          <Header/>
-          <div className='sections-container'>
-            <div className='stagiaires-container'>
-              
-            </div>
-            <div className='project-abscence-section'>
-              <div className='project-container'></div>
-              <div className='abscence-container'></div>
-            </div>
-          </div>
-      </main>
-    </div>
+    <Homepage/>
   );
 }
 
