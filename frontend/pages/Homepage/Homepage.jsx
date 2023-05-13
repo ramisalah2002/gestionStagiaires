@@ -6,17 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch,faCircleUser, faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 import { faUser, faRectangleList} from '@fortawesome/free-regular-svg-icons';
 import './Homepage.css';
+import ExamplePage from './ExamplePage';
 
 const other = () => <div>Hi</div>;
 
 function Homepage() {
   return (
-    <Router>
-
-    <div className="app">
-      <Sidebar/>
-      <main className="main-content">
-          <Header/>
           <div className='sections-container'>
             <div className='stagiaires-container'>
               <div className='stagiaires-header'>
@@ -144,7 +139,7 @@ function Homepage() {
                       <label className='today-abscence-day'>Aujourd'hui</label>
                     </div>
                   </div>
-                  <Link to="./Home" className='see-more-abscence'>
+                  <Link to="./example"  className='see-more-abscence'>
                     voir plus
                   </Link>
                 </div>
@@ -180,12 +175,8 @@ function Homepage() {
               </div>
             </div>
           </div>
-      <Routes>
-        <Route path="/other" element={<other />} />
-      </Routes>
-      </main>
-    </div>
-    </Router>
+          
+    
   );
 }
 

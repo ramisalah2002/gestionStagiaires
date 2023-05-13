@@ -1,0 +1,30 @@
+#root {
+    max-width: 1280px;
+    text-align: center;
+  }
+  
+  .app {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background: #F2F3F7;
+  }
+
+  .main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: calc(100%);
+    margin-top: 20px;
+    margin-right: 20px;
+    border-radius: 15px;
+    margin-left: 310px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    transition: ease .5s;
+    gap: 20px;
+    overflow: hidden;
+  }
+  
