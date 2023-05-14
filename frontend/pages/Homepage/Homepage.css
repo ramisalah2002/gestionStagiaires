@@ -1,32 +1,7 @@
-#root {
-    max-width: 1280px;
-    text-align: center;
-  }
-  
-  .app {
-    display: flex;
-    height: 100vh;
-    width: 100vw;
-    background: #F2F3F7;
-  }
-  
-  .main-content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: calc(100%);
-    margin: 20px;
-    gap: 20px;
-    border-radius: 15px;
-    margin-left: 310px;
-    box-sizing: border-box;
-    transition: ease .5s;
-  }
+
   
   .sidebar.hidden ~ .main-content {
-    width: calc(100% - 50px);
+    width: calc(100%);
     margin-left: 60px;
   }
   
@@ -35,23 +10,11 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    border-radius: 15px;
-    box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
     gap: 20px;
-  }
-  .stagiaires-container{
-    width: 50%;
-    padding: 10px 20px;
-    background: #fff;
     border-radius: 15px;
-    box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
   }
-  .project-abscence-section{
-    width: 50%;
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
-  }
+  
+  
   
   .logo {
     height: 6em;
@@ -62,11 +25,222 @@
   .logo:hover {
     filter: drop-shadow(0 0 2em #646cffaa);
   }
+  .stagiaires-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    overflow-y: scroll;
+    overflow: visible;
+    padding: 10px 20px;
+    gap: 20px;
+    height: calc(100%-40px);
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
+  }
   
   .stagiaires-header{
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
   
   .stagiaires-header .stagiaires-title{
     font-size: 30px;
+    font-weight: 600;
+    color: #000;
+  }
+  .stagiaires-header .stagiaires-count{
+    width: 70px;
+    color: #2354A1;
+    height: 30px;
+    background: #F2F3F7;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .stagiaires-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    height: 100%;
+    overflow-y: scroll;
+  }
+  .stagiaire{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    width: 100%;
+    background: #F0F5FF;
+    border-radius: 10px;
+    padding: 0px 0px;
+  }
+  .stagiaire-info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .stagiaire-img{
+    height: 50px;
+    width: 50px;
+    background-size: cover;
+    border-radius: 50px;
+    margin-left: 5px;
+  }
+  .stagiaire-nom-formation{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .stagiaire-nom{
+    color: #16234E;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .stagiaire-formation{
+    color: #888888;
+    font-size: 12px;
+    font-weight: medium;
+  }
+  .stagiaire-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    height: 22px;
+    width: 80px;
+    color: #2354A1;
+    font-size: 12px;
+    margin-right: 5px;
+  }
+  .stagiaire-btn:active{
+    border: none;
+    outline: none;
+  }
+  .project-abscence-section{
+    width: 50%;
+    height: calc(100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    
+  }
+  .project-container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 20px;
+    width: calc(100% - 40px) !important;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 15px;
+    box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
+  }
+  .abscence-container{
+    height: 100%;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px 20px;
+    padding-bottom: 0;
+    width: calc(100% - 40px);
+    border-radius: 15px;
+    box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
+  }
+  .today-abscence{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  .today-abscence-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: #C2D4FD;
+    height: 22px;
+    width: 90px;
+    border-radius: 5px;
+  }
+  .today-abscence-day{
+    color: #2354A1;
+    font-size: 12;
+    font-weight: medium;
+  }
+  .see-more-abscence{
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2354A1;
+    height: 22px;
+    width: 72px;
+    padding: 0;
+    background: #F2F3F7;
+    border-radius: 5px;
+  }
+  .project-info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-left: 20px;
+  }
+  .project-status-yellow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFF1EF;
+    border-radius: 5px;
+    height: 22px;
+    width: 65px;
+    color: #FEAB92;
+    font-size: 12px;
+    margin-right: 5px;
+  }
+  .project-status-green{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #E6F6F2;
+    border-radius: 5px;
+    height: 22px;
+    width: 65px;
+    color: #66BBAE;
+    font-size: 12px;
+    margin-right: 5px;
+  }
+  .red-line{
+    width: 6px;
+    height: 50px;
+    background: #EB3E64;
+    margin-left: 3px;
+    border-radius: 50px;
+  }
+  .abscence-info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
   }
