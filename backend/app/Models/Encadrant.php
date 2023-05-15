@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Encadrant extends Model
+class Encadrant extends Utilisateur
 {
     protected $table = 'encadrant';
 
@@ -22,6 +22,7 @@ class Encadrant extends Model
         'dateNaissance',
         'genre',
         'CIN',
+        'fonction',
     ];use HasFactory;
     protected $hidden = [
         'password',
@@ -31,7 +32,6 @@ class Encadrant extends Model
     {
         return $this->hasMany(Stage::class);
     }
-
     public function reunion()
     {
         return $this->hasMany(Reunion::class);

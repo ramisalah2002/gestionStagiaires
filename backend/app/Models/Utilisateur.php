@@ -21,15 +21,11 @@ class Utilisateur extends Model
         'dateNaissance',
         'genre',
         'CIN',
-        'CNE',
     ];
 
     protected $hidden = [
         'password',
         'remember_token',
     ];
-    public function demandeStage()
-    {
-        return $this->hasMany(DemandeStage::class);
-    }
+
 }

@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Realisation;
+use App\Models\Attestation;
 use Illuminate\Http\Request;
 
-class RealisationController extends Controller
+class AttestationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $realisation = Realisation::all();
-        return response()->json($realisation);
+        $attestation = Attestation::all();
+        return response()->json($attestation);
     }
 
     /**
@@ -29,15 +29,13 @@ class RealisationController extends Controller
      */
     public function store(Request $request)
     {
-        $realisation = new Realisation([
-            'dateDebut' => $request->input('dateDebut'),
-            'duree' => $request->input('duree'),
-            'note' => $request->input('note'),
-            'stagiaire_id' => $request->input('stagiaire_id'),
-            'encadrant_id' => $request->input('encadrant_id'),
-        ]);
-        $realisation->save();
-        return response()->json('');
+        $attestation = new Attestation;
+        $attestation->date = $request->input('date');
+        $attestation->duree_stage = $request->input('duree_stage');
+        $attestation->contenu = $request->input('contenu');
+        $attestation->administrateur_id = $request->input('administrateur_id');
+        $attestation->stagiaire_id = $request->input('stagiaire_id');
+        $attestation->save();
     }
 
     /**
@@ -45,8 +43,8 @@ class RealisationController extends Controller
      */
     public function show(string $id)
     {
-        $realisation = Realisation::find($id) ;
-        return response()->json($realisation) ;
+        $attestation = Attestation::find($id);
+        return response()->json($attestation);
     }
 
     /**
@@ -62,8 +60,8 @@ class RealisationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $realisation = Realisation::find($id) ;
-        $realisation->update($request->all());
+        $attestation = Attestation::find($id);
+        $attestation->update($request->all());
         return response()->json('');
     }
 
@@ -72,8 +70,8 @@ class RealisationController extends Controller
      */
     public function destroy(string $id)
     {
-        $realisation = Realisation::find($id) ;
-        $realisation->delete();
+        $attestation = Attestation::find($id);
+        $attestation->delete();
         return response()->json('');
     }
 }

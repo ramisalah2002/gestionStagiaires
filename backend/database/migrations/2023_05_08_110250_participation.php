@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rapport', function (Blueprint $table) {
+        Schema::create('participation', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('projet_id')->references('id')->on('projet')->onDelete('cascade');
+            $table->foreignId('stagiaire_id')->references('id')->on('stagiaire')->onDelete('cascade');
+            $table->foreignId('reunion_id')->references('id')->on('reunion')->onDelete('cascade');
             $table->timestamps();
         });
     }

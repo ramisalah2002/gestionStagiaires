@@ -217,9 +217,15 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     "to-fast-properties" "^2.0.0"
 
+<<<<<<< HEAD
+"@esbuild/darwin-arm64@0.17.18":
+  "integrity" "sha512-6tY+djEAdF48M1ONWnQb1C+6LiXrKjmqjzPNPWXhu/GzOHTHX2nh8Mo2ZAmBFg0kIodHhciEgUBtcYCAIjGbjQ=="
+  "resolved" "https://registry.npmjs.org/@esbuild/darwin-arm64/-/darwin-arm64-0.17.18.tgz"
+=======
 "@esbuild/darwin-x64@0.17.18":
   "integrity" "sha512-Qq84ykvLvya3dO49wVC9FFCNUfSrQJLbxhoQk/TE1r6MjHo3sFF2tlJCwMjhkBVq3/ahUisj7+EpRSz0/+8+9A=="
   "resolved" "https://registry.npmjs.org/@esbuild/darwin-x64/-/darwin-x64-0.17.18.tgz"
+>>>>>>> 1f1fa7cc223050f2dd25127034cc98815cefb967
   "version" "0.17.18"
 
 "@eslint-community/eslint-utils@^4.2.0":

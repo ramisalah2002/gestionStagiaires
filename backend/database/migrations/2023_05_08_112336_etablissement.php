@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reunion', function (Blueprint $table) {
+        Schema::create('etablissemnent', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
-            $table->dateTime('duree');
-            $table->string('objet');
-            $table->foreignId('encadrant_id')->references('id')->on('encadrant')->onDelete('cascade');
+            $table->string('nom_etablissement') ;
+            $table->string('adresse') ;
             $table->timestamps();
         });
     }

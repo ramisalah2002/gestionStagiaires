@@ -32,7 +32,6 @@ class StageController extends Controller
         $stage = new Stage([
             'date_Debut' => $request->input('date_Debut'),
             'duree' => $request->input('duree'),
-            'demandeStage_id' => $request->input('demandeStage_id'),
             'stagiaire_id' => $request->input('stagiaire_id'),
             'administrateur_id' => $request->input('administrateur_id'),
             'encadrant_id' => $request->input('encadrant_id'),

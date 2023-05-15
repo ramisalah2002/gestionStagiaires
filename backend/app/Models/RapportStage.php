@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Rapport extends Model
+class RapportStage extends Model
 {
-    protected $table = 'rapport';
+    protected $table = 'rapportStage';
 
     use HasFactory;
 
     protected $fillable = [
-        'projet_id',
+        'stage_id',
     ];
-    public function projet()
+    public function stage()
     {
-        return $this->belongsTo(Projet::class);
+        return $this->belongsTo(Stage::class);
     }
 }

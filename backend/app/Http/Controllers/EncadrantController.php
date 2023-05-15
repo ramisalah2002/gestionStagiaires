@@ -38,7 +38,7 @@ class EncadrantController extends Controller
         $encadrant->dateNaissance = $request->input('dateNaissance');
         $encadrant->genre = $request->input('genre');
         $encadrant->CIN = $request->input('CIN');
-
+        $encadrant->fonction = $request->input('fonction');
         $encadrant->save();
 
         return response()->json($encadrant);

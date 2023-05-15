@@ -22,23 +22,36 @@ class Stagiaire extends Utilisateur
         'genre',
         'CIN',
         'CNE',
+        'formation',
     ];
 
     protected $hidden = [
         'password',
         'remember_token',
     ];
+    public function attestaion()
+    {
+        return $this->belongsTo(Attestation::class);
+    }
+    public function administrateur()
+    {
+        return $this->belongsTo(Administrateur::class);
+    }
+    public function projet()
+    {
+        return $this->belongsToMany(Projet::class, 'realisation');
+    }
     public function stage()
     {
         return $this->belongsTo(Stage::class);
     }
     public function reunion()
     {
-        return $this->hasMany(Reunion::class);
+        return $this->belongsToMany(Reunion::class, 'participation');
     }
-    public function projet()
+    public function etablissement()
     {
-        return $this->hasMany(Projet::class);
+        return $this->belongsTo(Etablissement::class);
     }
 }
 

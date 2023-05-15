@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Realisation;
+use App\Models\Participation;
 use Illuminate\Http\Request;
 
-class RealisationController extends Controller
+class ParticipationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $realisation = Realisation::all();
-        return response()->json($realisation);
+        $participation = Participation::all();
+        return response()->json($participation);
     }
 
     /**
@@ -29,15 +29,10 @@ class RealisationController extends Controller
      */
     public function store(Request $request)
     {
-        $realisation = new Realisation([
-            'dateDebut' => $request->input('dateDebut'),
-            'duree' => $request->input('duree'),
-            'note' => $request->input('note'),
-            'stagiaire_id' => $request->input('stagiaire_id'),
-            'encadrant_id' => $request->input('encadrant_id'),
-        ]);
-        $realisation->save();
-        return response()->json('');
+        $participation = new Participation();
+        $participation->stagiaire_id = $request->input('stagiaire_id');
+        $participation->reunion_id = $request->input('reunion_id');
+        $participation->save();
     }
 
     /**
@@ -45,8 +40,8 @@ class RealisationController extends Controller
      */
     public function show(string $id)
     {
-        $realisation = Realisation::find($id) ;
-        return response()->json($realisation) ;
+        $participation = Participation::find($id);
+        return response()->json($participation);
     }
 
     /**
@@ -62,8 +57,8 @@ class RealisationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $realisation = Realisation::find($id) ;
-        $realisation->update($request->all());
+        $participation = Participation::find($id);
+        $participation->update($request->all());
         return response()->json('');
     }
 
@@ -72,8 +67,8 @@ class RealisationController extends Controller
      */
     public function destroy(string $id)
     {
-        $realisation = Realisation::find($id) ;
-        $realisation->delete();
+        $participation = Participation::find($id);
+        $participation->delete();
         return response()->json('');
     }
 }

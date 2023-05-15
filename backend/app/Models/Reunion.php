@@ -14,12 +14,11 @@ class Reunion extends Model
         'date',
         'duree',
         'objet',
-        'stagiaire_id',
         'encadrant_id',
     ];
     public function stagiaire()
     {
-        return $this->belongsTo(Stagiaire::class);
+        return $this->belongsToMany(Stagiaire::class, 'participation');
     }
     public function encadrant()
     {

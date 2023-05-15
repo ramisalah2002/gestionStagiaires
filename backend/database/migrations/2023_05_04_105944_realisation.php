@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('realisation', function (Blueprint $table) {
             $table->date('dateDebut');
             $table->dateTime('duree');
+            $table->integer('note');
             $table->foreignId('stagiaire_id')->references('id')->on('stagiaire')->onDelete('cascade');
-            $table->foreignId('encadrant_id')->references('id')->on('encadrant')->onDelete('cascade');
+            $table->foreignId('projet_id')->references('id')->on('projet')->onDelete('cascade');
             $table->timestamps();
         });
     }

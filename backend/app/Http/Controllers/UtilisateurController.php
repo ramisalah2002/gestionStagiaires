@@ -38,8 +38,6 @@ class UtilisateurController extends Controller
         $utilisateur->dateNaissance = $request->input('dateNaissance');
         $utilisateur->genre = $request->input('genre');
         $utilisateur->CIN = $request->input('CIN');
-        $utilisateur->CNE = $request->input('CNE');
-
         $utilisateur->save();
     }
 

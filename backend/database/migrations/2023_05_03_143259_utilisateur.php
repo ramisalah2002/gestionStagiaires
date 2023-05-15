@@ -21,7 +21,6 @@ return new class extends Migration
             $table->Date('dateNaissance');
             $table->string('genre');
             $table->string('CIN');
-            $table->string('CNE');
             $table->timestamps();
         });
     }

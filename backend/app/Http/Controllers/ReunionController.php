@@ -33,7 +33,6 @@ class ReunionController extends Controller
             'date' => $request->input('date'),
             'duree' => $request->input('duree'),
             'objet' => $request->input('objet'),
-            'stagiaire_id' => $request->input('stagiaire_id'),
             'encadrant_id' => $request->input('encadrant_id'),
         ]);
         $reunion->save();

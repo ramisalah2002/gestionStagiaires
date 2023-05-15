@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reunion', function (Blueprint $table) {
+        Schema::create('attestation', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
-            $table->dateTime('duree');
-            $table->string('objet');
-            $table->foreignId('encadrant_id')->references('id')->on('encadrant')->onDelete('cascade');
+            $table->date('date') ;
+            $table->dateTime('duree_stage') ;
+            $table->string('contenu') ;
+            $table->foreignId('administrateur_id')->references('id')->on('administrateur')->onDelete('cascade');
+            $table->foreignId('stagiaire_id')->references('id')->on('stagiaire')->onDelete('cascade');
             $table->timestamps();
         });
     }

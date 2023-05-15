@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Administrateur extends Model
+class Administrateur extends Utilisateur
 
 {
     protected $table = 'administrateur';
@@ -28,11 +28,15 @@ class Administrateur extends Model
         'password',
         'remember_token',
     ];
-    public function demandeStage()
-    {
-        return $this->hasMany(DemandeStage::class);
-    }
 
+    public function attestation()
+    {
+        return $this->hasMany(Attestation::class);
+    }
+    public function stagiaire()
+    {
+        return $this->hasMany(Stagiaire::class);
+    }
     public function stage()
     {
         return $this->hasMany(Stage::class);
