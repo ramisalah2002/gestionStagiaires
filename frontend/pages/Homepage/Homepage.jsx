@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch,faCircleUser, faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 import { faUser, faRectangleList} from '@fortawesome/free-regular-svg-icons';
 import './Homepage.css';
-import ExamplePage from './ExamplePage';
 
 const other = () => <div>Hi</div>;
 
@@ -143,8 +142,8 @@ function Homepage() {
                     voir plus
                   </Link>
                 </div>
-                <div className='stagiaires-content'>
-                  <div className='stagiaire'>
+                <div className='abscence-content'>
+                  <div className='abscence'>
                     <div className='abscence-info'>
                       <div className='red-line'></div>
                       <div className='stagiaire-nom-formation'>
@@ -153,7 +152,7 @@ function Homepage() {
                       </div>
                     </div>
                   </div>
-                  <div className='stagiaire'>
+                  <div className='abscence'>
                     <div className='abscence-info'>
                       <div className='red-line'></div>
                       <div className='stagiaire-nom-formation'>
@@ -162,7 +161,7 @@ function Homepage() {
                       </div>
                     </div>
                   </div>
-                  <div className='stagiaire'>
+                  <div className='abscence'>
                     <div className='abscence-info'>
                       <div className='red-line'></div>
                       <div className='stagiaire-nom-formation'>
