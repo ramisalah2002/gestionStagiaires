@@ -13,6 +13,7 @@ import Loginpage from "../pages/LoginPage/LoginPage";
 import Stagiaire from "../pages/Stagiaire/Stagiaire";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import LoginPage from "../pages/LoginPage/LoginPage";
 
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
         <main className="main-content">
           <Header />
           <Routes>
-            <Route path="/" element={<Homepage />} />
+            <Route path="/" element={<LoginPage />} />
             <Route path="/stagiaires" element={<Stagiaire/>} />
           </Routes>
         </main>
