@@ -19,13 +19,13 @@ function App() {
     <Router>
       <div className="app">
         <Sidebar />
-        <main className="main-content">
+        {/* <main className="main-content">
           <Header />
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/stagiaires" element={<Stagiaire />} />
           </Routes>
-        </main>
+        </main> */}
       </div>
     </Router>
   );
