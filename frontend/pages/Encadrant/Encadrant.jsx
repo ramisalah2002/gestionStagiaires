@@ -1,7 +1,7 @@
 import React from "react";
-import Sidebar from "../../components/Sidebar/Sidebar";
+import Sidebar from "./Sidebar/Sidebar";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Header from "../../components/Header/Header";
+import Header from "./Header/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -13,10 +13,10 @@ import {
   faRectangleList,
   faPlusSquare,
 } from "@fortawesome/free-regular-svg-icons";
-import "./Stagiaire.css";
+import "./Encadrant.css";
 // import 'bootstrap/dist/css/bootstrap.css';
 
-function Stagiaire() {
+function Encadrant() {
   return (
     <div className="app">
       <Sidebar />
@@ -51,4 +51,4 @@ function Stagiaire() {
   );
 }
 
-export default Stagiaire;
+export default Encadrant;
