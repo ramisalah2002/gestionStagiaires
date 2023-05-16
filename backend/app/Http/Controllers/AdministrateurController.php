@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Administrateur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 
 class AdministrateurController extends Controller
 {
@@ -33,7 +35,8 @@ class AdministrateurController extends Controller
         $administrateur->nom = $request->input('nom');
         $administrateur->prenom = $request->input('prenom');
         $administrateur->email = $request->input('email');
-        $administrateur->password = $request->input('password');
+        // Encrypt the password before storing it
+        $administrateur->password = \Hash::make($request->input('password'));
         $administrateur->telephone = $request->input('telephone');
         $administrateur->dateNaissance = $request->input('dateNaissance');
         $administrateur->genre = $request->input('genre');

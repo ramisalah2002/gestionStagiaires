@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Stagiaire;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
 class StagiaireController extends Controller
 {
     /**
@@ -33,7 +33,7 @@ class StagiaireController extends Controller
         $stagiaire->nom = $request->input('nom');
         $stagiaire->prenom = $request->input('prenom');
         $stagiaire->email = $request->input('email');
-        $stagiaire->password = $request->input('password');
+        $stagiaire->password = \Hash::make($request->input('password'));
         $stagiaire->telephone = $request->input('telephone');
         $stagiaire->dateNaissance = $request->input('dateNaissance');
         $stagiaire->genre = $request->input('genre');

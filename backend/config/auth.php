@@ -13,6 +13,7 @@ return [
     |
     */
 
+
     'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',
@@ -40,6 +41,22 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'sanctum' => [
+            'driver' => 'sanctum',
+            'provider' => 'users',
+        ],
+        'administrateur' => [
+            'driver' => 'sanctum',
+            'provider' => 'administrateurs',
+        ],
+        'stagiaire' => [
+            'driver' => 'sanctum',
+            'provider' => 'stagiaires',
+        ],
+        'encadrant' => [
+            'driver' => 'sanctum',
+            'provider' => 'encadrants',
+        ],
     ],
 
     /*
@@ -64,12 +81,25 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        'administrateurs' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Administrateur::class,
+        ],
+        'stagiaires' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Stagiaire::class,
+        ],
+        'encadrants' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Encadrant::class,
+        ],
+    ],
 
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
-    ],
+    
 
     /*
     |--------------------------------------------------------------------------

@@ -18,11 +18,17 @@ import LoginPage from "../pages/LoginPage/LoginPage";
 function App() {
   return (
     <Router>
+      <div className="app">
+        <Sidebar />
+        <main className="main-content">
+          <Header />
           <Routes>
             <Route path="/Homepage" element={<Homepage />} />
             <Route path="/Login" element={<LoginPage />} />
             <Route path="/stagiaires" element={<Stagiaire />} />
           </Routes>
+        </main> */}
+      </div>
     </Router>
   );
 }

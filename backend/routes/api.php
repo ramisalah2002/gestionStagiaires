@@ -18,6 +18,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//Authentification
+Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
+Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])->middleware('auth:sanctum');
+
 //Administrateur
 Route::apiResource('administrateur',\App\Http\Controllers\AdministrateurController::class);
 

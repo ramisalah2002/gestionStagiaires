@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Encadrant;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
 class EncadrantController extends Controller
 {
     /**
@@ -33,7 +33,7 @@ class EncadrantController extends Controller
         $encadrant->nom = $request->input('nom');
         $encadrant->prenom = $request->input('prenom');
         $encadrant->email = $request->input('email');
-        $encadrant->password = $request->input('password');
+        $encadrant->password = \Hash::make($request->input('password'));
         $encadrant->telephone = $request->input('telephone');
         $encadrant->dateNaissance = $request->input('dateNaissance');
         $encadrant->genre = $request->input('genre');
