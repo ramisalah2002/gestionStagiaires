@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Header from "../components/Header/Header";
@@ -10,18 +9,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./App.css";
 import Homepage from "../pages/Homepage/Homepage";
-import Loginpage from "../pages/LoginPage/LoginPage.jsx";
-
-function App() {
-  return <Loginpage />;
-=======
-import React from 'react';
-import Sidebar from '../components/Sidebar/Sidebar';
-import Header from '../components/Header/Header';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css';
-import Homepage from '../pages/Homepage/Homepage';
-import ExamplePage from '../pages/Homepage/ExamplePage';
+import Loginpage from "../pages/LoginPage/LoginPage";
+import Stagiaire from "../pages/Stagiaire/Stagiaire";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
 
 function App() {
   return (
@@ -32,13 +23,12 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Homepage />} />
-            <Route path="/example" element={<ExamplePage />} />
+            <Route path="/stagiaires" element={<Stagiaire />} />
           </Routes>
         </main>
       </div>
     </Router>
   );
->>>>>>> 1f1fa7cc223050f2dd25127034cc98815cefb967
 }
 
 export default App;
