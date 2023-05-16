@@ -6,11 +6,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch,faCircleUser, faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 import { faUser, faRectangleList} from '@fortawesome/free-regular-svg-icons';
 import './Homepage.css';
+import '../../src/App.css';
 
-const other = () => <div>Hi</div>;
 
 function Homepage() {
   return (
+     <div className="app">
+        <Sidebar />
+        <main className="main-content">
+          <Header />
           <div className='sections-container'>
             <div className='stagiaires-container'>
               <div className='stagiaires-header'>
@@ -174,7 +178,8 @@ function Homepage() {
               </div>
             </div>
           </div>
-          
+        </main>
+    </div>
     
   );
 }

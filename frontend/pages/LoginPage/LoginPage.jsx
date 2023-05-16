@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
+
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import appLogo from "../../images/appLogo.png";
@@ -11,7 +14,7 @@ import "./LoginPage.css";
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const history = useHistory();
+  const navigateTo = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,7 +38,7 @@ function LoginPage() {
       localStorage.setItem("token", data.token);
 
       // Redirect to HomePage
-      history.push("/home");
+      navigateTo("/home");
     } else {
       // Handle error
       console.log(data.message);
