@@ -24,8 +24,8 @@ function App() {
         <main className="main-content">
           <Header />
           <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/stagiaires" element={<Stagiaire/>} />
+            <Route path="/" element={<Homepage />} />
+            <Route path="/stagiaires" element={<Stagiaire />} />
           </Routes>
         </main>
       </div>
