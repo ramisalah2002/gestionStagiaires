@@ -23,11 +23,10 @@ function App() {
         <main className="main-content">
           <Header />
           <Routes>
-            <Route path="/Homepage" element={<Homepage />} />
-            <Route path="/Login" element={<LoginPage />} />
-            <Route path="/stagiaires" element={<Stagiaire />} />
+            <Route path="/" element={<Homepage />} />
+            <Route path="/LoginPage" element={<LoginPage />} />
           </Routes>
-        </main> */}
+        </main>
       </div>
     </Router>
   );
