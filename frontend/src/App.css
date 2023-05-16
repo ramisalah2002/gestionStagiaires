@@ -10,95 +10,12 @@
   width: 100vw;
   background: #f2f3f7;
 }
-
-.main-content {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: calc(100%);
-  margin: 20px;
-  gap: 20px;
-  border-radius: 15px;
-  margin-left: 310px;
-  box-sizing: border-box;
-  transition: ease 0.5s;
-}
-
 .sidebar.hidden ~ .main-content {
   width: calc(100% - 50px);
   margin-left: 60px;
 }
 
-.sections-container {
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  border-radius: 15px;
-  box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
-  gap: 20px;
-}
-.stagiaires-container {
-  width: 50%;
-  background: #fff;
-  border-radius: 15px;
-  box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
-}
-.project-abscence-section {
-  width: 50%;
-  background: #fff;
-  border-radius: 15px;
-  box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
-}
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-#root {
-    max-width: 1280px;
-    text-align: center;
-  }
-  
-  .app {
-    display: flex;
-    height: 100vh;
-    width: 100vw;
-    background: #F2F3F7;
-  }
 
   .main-content {
     position: relative;
@@ -114,7 +31,7 @@
     box-sizing: border-box;
     transition: ease .5s;
     gap: 10px;
-    overflow: hidden !important;
+    overflow: hidden ;
     
   }
 

@@ -189,8 +189,15 @@
   @media (max-width: 1100px) {
     .sidebar {
       transform: translateX(-240px);
+
     }
     .sidebar .toggle-button {
       margin: 15px;
+    }
+    .links-container  {
+      transform: translateX(200px);
+    }
+    .links-container ul li label{
+      display: none;
     }
   }
