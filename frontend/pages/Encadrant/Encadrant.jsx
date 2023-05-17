@@ -1,7 +1,5 @@
 import React from "react";
-import Sidebar from "./Sidebar/Sidebar";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Header from "./Header/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -14,14 +12,59 @@ import {
   faPlusSquare,
 } from "@fortawesome/free-regular-svg-icons";
 import "./Encadrant.css";
+import Header from '../../components/Header/Header';
+import Sidebar from "../../components/Sidebar/Sidebar";
 // import 'bootstrap/dist/css/bootstrap.css';
 
 function Encadrant() {
+  const [user, setUser] = useState(null);
+  const navigateTo = useNavigate();
+
+
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (!userData) {
+      // User data not found, navigate to LoginPage
+      navigateTo("/LoginPage");
+      return;
+    }
+
+    setUser(JSON.parse(userData));
+  }, [navigateTo]);
+
+  const currentDate = new Date().toLocaleString("fr-FR", {
+    day: "numeric",
+    month: "short",
+  });
+  
   return (
     <div className="app">
       <Sidebar />
       <main className="main-content">
-        <Header />
+      <div className="header">
+            <div className="admin-container">
+              <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
+              <div className="admin-info">
+                {user && (
+                  <>
+                    <label className="admin-name">
+                      {user.nom} {user.prenom}
+                    </label>
+                    <label className="admin-post">poste</label>
+                  </>
+                )}
+              </div>
+              <div className="vertical-line"></div>
+              <div className="today-container">
+                <FontAwesomeIcon className="calendar-icon" icon={faCalendarDays} />
+                <label className="today-label">{currentDate}</label>
+              </div>
+            </div>
+            <div className="search-container">
+              <FontAwesomeIcon className="search-icon" icon={faSearch} />
+              <input className="search-input" placeholder="Rechercher ..." type="text" />
+            </div>
+          </div>        
         <div className="table-container">
           <table className="custom-table">
             <thead>
