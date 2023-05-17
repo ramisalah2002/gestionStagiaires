@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
-
-
-
+import { useNavigate } from "react-router-dom";
+import Homepage from "../Homepage/Homepage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import appLogo from "../../images/appLogo.png";
@@ -38,7 +36,7 @@ function LoginPage() {
       localStorage.setItem("token", data.token);
 
       // Redirect to HomePage
-      navigateTo("/home");
+      navigateTo("/Homepage");
     } else {
       // Handle error
       console.log(data.message);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Header from "../components/Header/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,26 +8,24 @@ import {
   faCalendarDays,
 } from "@fortawesome/free-solid-svg-icons";
 import "./App.css";
-import Stagiaire from "../pages/Stagiaire/Stagiaire";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css';
+import Encadrant from "../pages/Encadrant/Encadrant";
+import { useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
 import Homepage from "../pages/Homepage/Homepage";
 import LoginPage from "../pages/LoginPage/LoginPage";
-
+import UserContext from "../components/UserContext";
+import Stagiaire from "../pages/Stagiaire/Stagiaire";
 
 function App() {
   return (
     <Router>
-      <div className="app">
-        <Sidebar />
-        <main className="main-content">
-          <Header />
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/LoginPage" element={<LoginPage />} />
-          </Routes>
-        </main>
-      </div>
+      <Routes>
+        <Route path="/LoginPage" element={<LoginPage />} />
+        <Route path="/Homepage" element={<Homepage />} />
+        <Route path="/stagiaires" element={<Stagiaire />} />
+        <Route path="/ecadrants" element={<Encadrant />} />
+      </Routes>
     </Router>
   );
 }

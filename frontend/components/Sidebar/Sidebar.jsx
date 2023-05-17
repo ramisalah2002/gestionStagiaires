@@ -41,7 +41,7 @@ function Sidebar() {
           <li className={activeLink === 'link1' ? 'active-link' : 'link'}>
             <Link
               onClick={() => handleLinkClick('link1')}
-              to="/"
+              to="/Homepage"
             >
               <FontAwesomeIcon className='big-icons' icon={faHome} />
               <label>{showSidebar ? 'Accueil' : null}</label>
