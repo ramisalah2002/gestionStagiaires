@@ -78,7 +78,109 @@ function Homepage() {
               </Link>
             </div>
             <div className="stagiaires-content">
-              {/* Stagiaires content */}
+              
+            <div className="stagiaire">
+                <div className="stagiaire-info">
+                  <div
+                    className="stagiaire-img"
+                    style={{
+                      backgroundImage: "url(../../assets/images/user.jpg)",
+                    }}
+                  ></div>
+                  <div className="stagiaire-nom-formation">
+                    <label className="stagiaire-nom">Nom stagiaire</label>
+                    <label className="stagiaire-formation">
+                      Formation stagiaire
+                    </label>
+                  </div>
+                </div>
+                <button className="stagiaire-btn">Découvrir</button>
+              </div>
+              <div className="stagiaire">
+                <div className="stagiaire-info">
+                  <div
+                    className="stagiaire-img"
+                    style={{
+                      backgroundImage: "url(../../assets/images/user.jpg)",
+                    }}
+                  ></div>
+                  <div className="stagiaire-nom-formation">
+                    <label className="stagiaire-nom">Nom stagiaire</label>
+                    <label className="stagiaire-formation">
+                      Formation stagiaire
+                    </label>
+                  </div>
+                </div>
+                <button className="stagiaire-btn">Découvrir</button>
+              </div>
+              <div className="stagiaire">
+                <div className="stagiaire-info">
+                  <div
+                    className="stagiaire-img"
+                    style={{
+                      backgroundImage: "url(../../assets/images/user.jpg)",
+                    }}
+                  ></div>
+                  <div className="stagiaire-nom-formation">
+                    <label className="stagiaire-nom">Nom stagiaire</label>
+                    <label className="stagiaire-formation">
+                      Formation stagiaire
+                    </label>
+                  </div>
+                </div>
+                <button className="stagiaire-btn">Découvrir</button>
+              </div>
+              <div className="stagiaire">
+                <div className="stagiaire-info">
+                  <div
+                    className="stagiaire-img"
+                    style={{
+                      backgroundImage: "url(../../assets/images/user.jpg)",
+                    }}
+                  ></div>
+                  <div className="stagiaire-nom-formation">
+                    <label className="stagiaire-nom">Nom stagiaire</label>
+                    <label className="stagiaire-formation">
+                      Formation stagiaire
+                    </label>
+                  </div>
+                </div>
+                <button className="stagiaire-btn">Découvrir</button>
+              </div>
+              <div className="stagiaire">
+                <div className="stagiaire-info">
+                  <div
+                    className="stagiaire-img"
+                    style={{
+                      backgroundImage: "url(../../assets/images/user.jpg)",
+                    }}
+                  ></div>
+                  <div className="stagiaire-nom-formation">
+                    <label className="stagiaire-nom">Nom stagiaire</label>
+                    <label className="stagiaire-formation">
+                      Formation stagiaire
+                    </label>
+                  </div>
+                </div>
+                <button className="stagiaire-btn">Découvrir</button>
+              </div>
+              <div className="stagiaire">
+                <div className="stagiaire-info">
+                  <div
+                    className="stagiaire-img"
+                    style={{
+                      backgroundImage: "url(../../assets/images/user.jpg)",
+                    }}
+                  ></div>
+                  <div className="stagiaire-nom-formation">
+                    <label className="stagiaire-nom">Nom stagiaire</label>
+                    <label className="stagiaire-formation">
+                      Formation stagiaire
+                    </label>
+                  </div>
+                </div>
+                <button className="stagiaire-btn">Découvrir</button>
+              </div>
             </div>
           </div>
           <div className="project-abscence-section">
@@ -138,7 +240,39 @@ function Homepage() {
                 </Link>
               </div>
               <div className="abscence-content">
-                {/* Abscence content */}
+              <div className="abscence">
+                  <div className="abscence-info">
+                    <div className="red-line"></div>
+                    <div className="stagiaire-nom-formation">
+                      <label className="stagiaire-nom">RAMI Salah-eddine</label>
+                      <label className="stagiaire-formation">
+                        justification: certificat medical
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div className="abscence">
+                  <div className="abscence-info">
+                    <div className="red-line"></div>
+                    <div className="stagiaire-nom-formation">
+                      <label className="stagiaire-nom">BOULAAJOUL Anass</label>
+                      <label className="stagiaire-formation">
+                        justification: certificat medical
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div className="abscence">
+                  <div className="abscence-info">
+                    <div className="red-line"></div>
+                    <div className="stagiaire-nom-formation">
+                      <label className="stagiaire-nom">BOULAAJOUL Anass</label>
+                      <label className="stagiaire-formation">
+                        justification: certificat medical
+                      </label>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
