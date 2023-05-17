@@ -1,0 +1,180 @@
+.sidebar.hidden ~ .main-content {
+  width: calc(100%);
+  margin-left: 60px;
+}
+
+.sections-container {
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 10px;
+  transition: ease 0.5s;
+  overflow: auto; /* Enable vertical scrolling */
+  overflow: scroll !important;
+}
+
+.Parametres-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 20px;
+  gap: 12px;
+  height: calc(100%-40px);
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
+  transition: ease 0.5s;
+  height: fit-content;
+}
+
+.Parametres-header {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  justify-content: space-between;
+  padding-left: 2%;
+}
+.Parametres-title {
+  font-size: 30px;
+  font-weight: 600;
+  color: #000;
+}
+.Parametres-underTitle {
+  font-size: 15px;
+  font-weight: 500;
+  color: #8e9297;
+}
+.Parametres-content {
+  padding-left: 2%;
+  margin-top: 6%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  gap: 15px;
+  height: 100%;
+  width: 100%;
+}
+.parametres {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  width: 100%;
+  background: #f0f5ff;
+  border-radius: 10px;
+  padding: 0px 0px;
+}
+.Parametres-photoProfil {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.params-img-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.Parametres-imageTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 10%;
+}
+.Parametres-img {
+  margin-top: 1%;
+  height: 120px;
+  width: 120px;
+  background-size: cover;
+  border-radius: 120px;
+}
+.photoProfil-buttons {
+  margin-top: 6%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin-left: 3%;
+}
+.photoProfil-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px; /* adjust this value based on your design */
+  padding: 10px;
+  margin-bottom: 10px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s; /* This will make the hover effect smooth */
+}
+.change-photo {
+  background-color: #7151f2;
+  border: none;
+}
+.change-photo:hover {
+  background-color: #593dbd; /* Darker purple color when hovered */
+}
+.delete-photo {
+  background-color: white;
+  border: 1px solid #f2f3f4;
+  color: black;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+}
+.delete-photo:hover {
+  background-color: #f2f2f2; /* Light gray color when hovered */
+  border: 1px solid #d6d6d9;
+}
+.photoProfil-bottom {
+  width: 100%;
+  text-align: left;
+  /* margin-top: 20px; */
+}
+
+.photoProfil-bottom label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8e9297;
+}
+.parametres-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.form-input-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-input-group label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.form-input-group input,
+.form-input-group select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}

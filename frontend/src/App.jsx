@@ -15,11 +15,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Homepage from "../pages/Homepage/Homepage";
 import LoginPage from "../pages/LoginPage/LoginPage";
+import Parametres from "../pages/Parametres/Parametres";
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/Parametres" element={<Parametres />} />
         <Route path="/LoginPage" element={<LoginPage />} />
         <Route path="/Homepage" element={<Homepage />} />
         <Route path="/encadrants" element={<Encadrant />} />
