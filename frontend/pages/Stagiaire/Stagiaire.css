@@ -1,24 +1,27 @@
-.custom-table {
-  border-collapse: collapse;
-  width: 100%;
-  border: 1px solid #eff2f6;
+.table-container {
+  margin-top: 100px;
 }
+
+.table-wrapper {
+  width: 100%;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
 .custom-table th{
-  background: none;
+  background: #F2F3F7;
 }
 
 .custom-table th,
 .custom-table td {
   border-right: none;
   border-left: none;
+  border-color: #fff;
+  
   padding: 8px;
   text-align: left;
 }
 
-
-
-.custom-table thead th,
-.custom-table tfoot th,
-.custom-table tfoot td {
-  border-top: none;
-}

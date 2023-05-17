@@ -73,12 +73,14 @@ function Stagiaire() {
                   <th>Email</th>
                   <th>Status</th>
                   <th>En stage</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>Data 1</td>
                   <td>Data 2</td>
+                  <td>Data 3</td>
                   <td>Data 3</td>
                   <td>Data 3</td>
                 </tr>
