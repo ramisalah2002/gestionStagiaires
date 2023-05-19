@@ -51,7 +51,7 @@
   margin-top: 6%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   overflow: hidden;
   gap: 15px;
   height: 100%;
@@ -157,9 +157,10 @@
   gap: 10px;
 }
 .form-input-group {
-  width: 100%;
+  width: 400px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   margin-bottom: 20px;
 }
 
@@ -167,14 +168,48 @@
   font-size: 16px;
   font-weight: bold;
   color: #333;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .form-input-group input,
 .form-input-group select {
-  width: 100%;
+  width: 430px;
   padding: 10px;
   font-size: 16px;
-  border-radius: 5px;
   border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.form-input-group select {
+  width: 452px;
+}
+
+.form-input-group input:focus,
+.form-input-group select:focus {
+  border-color: #7151f2;
+}
+
+.form-input-group.password-input-group {
+  border: none;
+}
+.password-input-container {
+  width: 452px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.password-input-container input {
+  padding-right: 40px; /* Make room for the eye icon */
+  border: none;
+}
+
+.toggle-password-visibility {
+  margin: 0px 10px;
+  margin-top: 3px;
 }

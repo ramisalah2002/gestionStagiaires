@@ -1,8 +1,10 @@
 import React from "react";
+import { useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import { FaTrash } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -15,6 +17,7 @@ import "./Parametres.css";
 const other = () => <div>Hi</div>;
 
 function Parametres() {
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="app">
       <Sidebar />
@@ -78,13 +81,21 @@ function Parametres() {
                 />
               </div>
 
-              <div className="form-input-group">
-                <label>Mot de passe</label>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Entrez votre mot de passe"
-                />
+              <div className="form-input-group password-input-group">
+                <label htmlFor="password">Password</label>
+                <div className="password-input-container">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    placeholder="Votre mot de passe"
+                  />
+                  <span
+                    className="toggle-password-visibility"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </span>
+                </div>
               </div>
 
               <div className="form-input-group">
@@ -107,7 +118,6 @@ function Parametres() {
                   <option value="">Sélectionnez votre genre</option>
                   <option value="homme">Homme</option>
                   <option value="femme">Femme</option>
-                  <option value="autre">Autre</option>
                 </select>
               </div>
 
