@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React,{useState,useEffect} from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
-import Header from "../../components/Header/Header.jsx";
+import Header from "../../components/Header/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -17,6 +17,7 @@ function Homepage() {
   const navigateTo = useNavigate();
   const [poste, setPoste] = useState(null);
 
+
   useEffect(() => {
     const userData = localStorage.getItem("user");
     if (!userData) {
@@ -28,6 +29,11 @@ function Homepage() {
     setUser(JSON.parse(userData));
   }, [navigateTo]);
 
+  const currentDate = new Date().toLocaleString("fr-FR", {
+    day: "numeric",
+    month: "short",
+  });
+  
   useEffect(() => {
     if (user && user.genre === "Female") {
       setPoste(user.fonction + "e");
@@ -36,39 +42,34 @@ function Homepage() {
     }
   }, [user]);
 
-  const currentDate = new Date().toLocaleString("fr-FR", {
-    day: "numeric",
-    month: "short",
-  });
-
   return (
     <div className="app">
       <Sidebar />
       <main className="main-content">
-        <div className="header">
-          <div className="admin-container">
-            <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
-            <div className="admin-info">
-              {user && (
-                <>
-                  <label className="admin-name">
-                    {user.nom} {user.prenom}
-                  </label>
-                  <label className="admin-post">{poste}</label>
-                </>
-              )}
+          <div className="header">
+            <div className="admin-container">
+              <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
+              <div className="admin-info">
+                {user && (
+                  <>
+                    <label className="admin-name">
+                      {user.nom} {user.prenom}
+                    </label>
+                    <label className="admin-post">{poste}</label>
+                  </>
+                )}
+              </div>
+              <div className="vertical-line"></div>
+              <div className="today-container">
+                <FontAwesomeIcon className="calendar-icon" icon={faCalendarDays} />
+                <label className="today-label">{currentDate}</label>
+              </div>
             </div>
-            <div className="vertical-line"></div>
-            <div className="today-container">
-              <FontAwesomeIcon className="calendar-icon" icon={faCalendarDays} />
-              <label className="today-label">{currentDate}</label>
+            <div className="search-container">
+              <FontAwesomeIcon className="search-icon" icon={faSearch} />
+              <input className="search-input" placeholder="Rechercher ..." type="text" />
             </div>
           </div>
-          <div className="search-container">
-            <FontAwesomeIcon className="search-icon" icon={faSearch} />
-            <input className="search-input" placeholder="Rechercher ..." type="text" />
-          </div>
-        </div>
         <div className="sections-container">
           <div className="stagiaires-container">
             <div className="stagiaires-header">
@@ -78,8 +79,24 @@ function Homepage() {
               </Link>
             </div>
             <div className="stagiaires-content">
-              
-            <div className="stagiaire">
+              <div className="stagiaire">
+                <div className="stagiaire-info">
+                  <div
+                    className="stagiaire-img"
+                    style={{
+                      backgroundImage: "url(../../assets/images/user.jpg)",
+                    }}
+                  ></div>
+                  <div className="stagiaire-nom-formation">
+                    <label className="stagiaire-nom">Nom stagiaire</label>
+                    <label className="stagiaire-formation">
+                      Formation stagiaire
+                    </label>
+                  </div>
+                </div>
+                <button className="stagiaire-btn">Découvrir</button>
+              </div>
+              <div className="stagiaire">
                 <div className="stagiaire-info">
                   <div
                     className="stagiaire-img"
@@ -192,7 +209,7 @@ function Homepage() {
                 </Link>
               </div>
               <div className="stagiaires-content">
-              <div className="stagiaire">
+                <div className="stagiaire">
                   <div className="project-info">
                     <div className="stagiaire-nom-formation">
                       <label className="stagiaire-nom">Theme projet 1</label>
@@ -240,7 +257,7 @@ function Homepage() {
                 </Link>
               </div>
               <div className="abscence-content">
-              <div className="abscence">
+                <div className="abscence">
                   <div className="abscence-info">
                     <div className="red-line"></div>
                     <div className="stagiaire-nom-formation">

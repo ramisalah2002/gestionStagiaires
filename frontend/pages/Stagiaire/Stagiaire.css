@@ -1,5 +1,5 @@
 .table-container {
-  margin-top: 100px;
+  margin-top: 00px;
 }
 
 .table-wrapper {
@@ -9,19 +9,83 @@
 .custom-table {
   width: 100%;
   border-collapse: collapse;
+  background: #fefeff;
+  border-radius: 10px;
+  border: none;
 }
 
 .custom-table th{
-  background: #F2F3F7;
+  background: #f9fafc;
+  color: #787f88;
+  font-weight: 500;
+  font-size: 14px;
+  border: none;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .custom-table th,
 .custom-table td {
   border-right: none;
   border-left: none;
-  border-color: #fff;
-  
+  border-color: #f9fafc;
   padding: 8px;
+  border-width: .5px;
   text-align: left;
 }
-
+.custom-table tr:hover{
+  background: none !important;
+}
+.custom-table td{
+  color: #1d202f;
+  font-size: 14px;
+  font-weight: 600;
+}
+.custom-table .stagiaire-div{
+  display: flex;
+  align-items: center;
+  border-top: none;
+  gap: 10px;
+  margin-bottom: -.5px;
+}
+.custom-table td .circle{
+  width: 35px;
+  height: 35px;
+  background: url(../../assets/images/user.jpg);
+  background-size: cover;
+  border-radius: 50px;
+}
+.custom-table .status-actif{
+  background: #bae8d5;
+  color: #386d5a;
+  border-radius: 5px;
+  width: 65%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.custom-table .status-inactif{
+  background: #f8d4d4;
+  color: #888888;
+  border-radius: 5px;
+  width: 65%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.days-in-stage{
+  color: #505a66;
+}
+.action-modifier{
+  color: #fff;
+  background: #1790f9;
+  padding: 7px 15px;
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+}
+.action-modifier:hover{
+  background: #0586f6; /* Darker purple color when hovered */
+  color: #fff;
+}

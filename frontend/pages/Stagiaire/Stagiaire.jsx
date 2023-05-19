@@ -12,7 +12,6 @@ import {
   faPlusSquare,
 } from "@fortawesome/free-regular-svg-icons";
 import "./Stagiaire.css";
-import '../../components/Header/Header.css';
 import Sidebar from "../../components/Sidebar/Sidebar";
 // import 'bootstrap/dist/css/bootstrap.css';
 
@@ -78,11 +77,18 @@ function Stagiaire() {
               </thead>
               <tbody>
                 <tr>
-                  <td>Data 1</td>
-                  <td>Data 2</td>
-                  <td>Data 3</td>
-                  <td>Data 3</td>
-                  <td>Data 3</td>
+                  <td className="stagiaire-div"><div className="circle"></div> Rami salah-eddine</td>
+                  <td>ramisalah2002@gmail.com</td>
+                  <td><div className="status-actif">Actif</div></td>
+                  <td><label className="days-in-stage">4 jours</label></td>
+                  <td><Link className="action-modifier">Modifier</Link></td>
+                </tr>
+                <tr>
+                  <td className="stagiaire-div"><div className="circle"></div> Rami salah-eddine</td>
+                  <td>ramisalah2002@gmail.com</td>
+                  <td><div className="status-inactif">Terminé</div></td>
+                  <td><label className="days-in-stage">4 jours</label></td>
+                  <td><Link className="action-modifier">Modifier</Link></td>
                 </tr>
               </tbody>
             </table>

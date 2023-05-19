@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import LoginPage from '../../pages/LoginPage/LoginPage';
 import {
   faHome,
   faUserGroup,
@@ -17,6 +19,17 @@ import './Sidebar.css';
 
 function Sidebar() {
   const [showSidebar, setShowSidebar] = useState(true);
+
+
+  const navigateTo = useNavigate();
+
+  const handleLogout = () => {
+    // Remove user data from localStorage
+    localStorage.removeItem('user');
+  
+    // Navigate to LoginPage
+    window.location.href = '/LoginPage';
+  };
 
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
@@ -115,7 +128,7 @@ function Sidebar() {
             </Link>
           </li>
           <li>
-            <Link href="#">
+            <Link href="#" onClick={handleLogout}>
               <FontAwesomeIcon className='small-icons' icon={faArrowRightFromBracket} />
               <label>{showSidebar ? 'Se deconnecter' : null}</label>
             </Link>

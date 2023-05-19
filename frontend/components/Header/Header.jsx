@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch,faCircleUser, faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 import './Header.css';
 
-function App() {
+function Header() {
   return (
     <div className='header'>
       <div className='admin-container'>
@@ -27,4 +27,4 @@ function App() {
   );
 }
 
-export default App;
+export default Header;
