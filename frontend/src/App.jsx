@@ -17,11 +17,7 @@ import LoginPage from "../pages/LoginPage/LoginPage";
 import Parametres from "../pages/Parametres/Parametres";
 import UserContext from "../components/UserContext";
 import Stagiaire from "../pages/Stagiaire/Stagiaire";
-<<<<<<< HEAD
-import Equipes from "../pages/Equipes/Equipes";
-=======
 import Equipe from "../pages/Equipe/Equipes";
->>>>>>> 869c506235965a2788b17f7c6aa9cf34405f68d5
 
 function App() {
   return (
