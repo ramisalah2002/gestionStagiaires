@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Homepage from "../Homepage/Homepage";
@@ -13,6 +13,15 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigateTo = useNavigate();
+
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      // User data not found, navigate to LoginPage
+      navigateTo("/Homepage");
+      return;
+    }
+  }, [navigateTo]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
