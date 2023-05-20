@@ -77,7 +77,7 @@ function Homepage() {
                   <div
                     className="stagiaire-img"
                     style={{
-                      backgroundImage: "url(../../assets/images/user.jpg)",
+                      backgroundImage: "url(../../images/user.jpg)",
                     }}
                   ></div>
                   <div className="stagiaire-nom-formation">
@@ -94,7 +94,7 @@ function Homepage() {
                   <div
                     className="stagiaire-img"
                     style={{
-                      backgroundImage: "url(../../assets/images/user.jpg)",
+                      backgroundImage: "url(../../images/user.jpg)",
                     }}
                   ></div>
                   <div className="stagiaire-nom-formation">
@@ -111,7 +111,7 @@ function Homepage() {
                   <div
                     className="stagiaire-img"
                     style={{
-                      backgroundImage: "url(../../assets/images/user.jpg)",
+                      backgroundImage: "url(../../images/user.jpg)",
                     }}
                   ></div>
                   <div className="stagiaire-nom-formation">
@@ -128,7 +128,7 @@ function Homepage() {
                   <div
                     className="stagiaire-img"
                     style={{
-                      backgroundImage: "url(../../assets/images/user.jpg)",
+                      backgroundImage: "url(../../images/user.jpg)",
                     }}
                   ></div>
                   <div className="stagiaire-nom-formation">
@@ -145,7 +145,7 @@ function Homepage() {
                   <div
                     className="stagiaire-img"
                     style={{
-                      backgroundImage: "url(../../assets/images/user.jpg)",
+                      backgroundImage: "url(../../images/user.jpg)",
                     }}
                   ></div>
                   <div className="stagiaire-nom-formation">
@@ -162,7 +162,7 @@ function Homepage() {
                   <div
                     className="stagiaire-img"
                     style={{
-                      backgroundImage: "url(../../assets/images/user.jpg)",
+                      backgroundImage: "url(../../images/user.jpg)",
                     }}
                   ></div>
                   <div className="stagiaire-nom-formation">
@@ -179,7 +179,7 @@ function Homepage() {
                   <div
                     className="stagiaire-img"
                     style={{
-                      backgroundImage: "url(../../assets/images/user.jpg)",
+                      backgroundImage: "url(../../images/user.jpg)",
                     }}
                   ></div>
                   <div className="stagiaire-nom-formation">

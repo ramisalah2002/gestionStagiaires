@@ -12,6 +12,7 @@
   background: #fefeff;
   border-radius: 10px;
   border: none;
+  padding-right: 0;
 }
 
 .custom-table th{
@@ -23,6 +24,7 @@
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
+
 
 .custom-table th,
 .custom-table td {
@@ -51,7 +53,7 @@
 .custom-table td .circle{
   width: 35px;
   height: 35px;
-  background: url(../../assets/images/user.jpg);
+  background: url(../../images/user.jpg);
   background-size: cover;
   border-radius: 50px;
 }
@@ -78,14 +80,71 @@
 }
 .action-modifier{
   color: #fff;
-  background: #1790f9;
+  background: #5b7afa;
   padding: 7px 15px;
   font-weight: 700;
   font-size: 14px;
-  border: none;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid #5b7afa;
   border-radius: 5px;
+  margin: 0;
+  transition: ease 0.3s;
 }
 .action-modifier:hover{
-  background: #0586f6; /* Darker purple color when hovered */
+  background: none; /* Darker purple color when hovered */
+  color: #5b7afa;
+}
+.actions-td{
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  margin: 0;
+}
+.eye-link{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #dce1eb;
+  border: 1px solid #dce1eb;
+  padding: 7px 10px;
+  border-radius: 5px;
+  transition: ease 0.3s;
+}
+.eye-link:hover{
+  background: #eaebef;
+  border: 1px solid #a9aeb3;
+}
+.eye-icon{
+  color: #7c828d;
+  font-weight: 900;
+}
+.teams-header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.new-team-link{
+  background: #5a79f9;
+  border: 1px solid #5a79f9;
+  border-radius: 5px;
   color: #fff;
+  padding: 7px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: ease .3s;
+  font-size: 17px;
+  font-weight: 500;
+}
+.new-team-link:hover{
+  background: none;
+  color: #5a79f9;
+  border-color: #5a79f9;
 }

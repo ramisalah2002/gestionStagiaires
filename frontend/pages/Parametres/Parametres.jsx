@@ -30,6 +30,10 @@ function Parametres() {
     fileInputRef.current.click();
   };
 
+  const handleDeleteButtonClick = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <div className="app">
       <Sidebar />
@@ -54,7 +58,7 @@ function Parametres() {
                       <div
                         className="Parametres-img"
                         style={{
-                          backgroundImage: selectedImage ? `url(${selectedImage})` : "url(../../assets/images/user.jpg)",
+                          backgroundImage: selectedImage ? `url(${selectedImage})` : "url(../../images/user.jpg)",
                         }}
                       ></div>
                     </div>
@@ -68,7 +72,7 @@ function Parametres() {
                       <button className="photoProfil-button change-photo" onClick={handleButtonClick}>
                         Changer de Photo
                       </button>
-                      <button className="photoProfil-button delete-photo">
+                      <button className="photoProfil-button delete-photo" onClick={handleDeleteButtonClick}>
                         <FaTrash size={20} color="red" /> Supprimer
                       </button>
                     </div>

@@ -5,11 +5,14 @@ import {
   faSearch,
   faCircleUser,
   faCalendarDays,
+  faPen,
+  faPlus
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faUser,
   faRectangleList,
   faPlusSquare,
+  faEye,
 } from "@fortawesome/free-regular-svg-icons";
 import "./Stagiaire.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
@@ -49,7 +52,7 @@ function Stagiaire() {
                     <label className="admin-name">
                       {user.nom} {user.prenom}
                     </label>
-                    <label className="admin-post">poste</label>
+                    <label className="admin-post">{user.fonction}</label>
                   </>
                 )}
               </div>
@@ -65,6 +68,12 @@ function Stagiaire() {
             </div>
           </div>        
           <div className="table-container">
+          <div className="teams-header">
+                <h2>Équipes</h2>
+                <Link className="new-team-link">
+                    <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>Ajouter stagiaire
+                </Link>
+            </div>
             <table className="custom-table">
               <thead>
                 <tr>
@@ -81,14 +90,20 @@ function Stagiaire() {
                   <td>ramisalah2002@gmail.com</td>
                   <td><div className="status-actif">Actif</div></td>
                   <td><label className="days-in-stage">4 jours</label></td>
-                  <td><Link className="action-modifier">Modifier</Link></td>
+                  <td className="actions-td">
+                    <Link className="action-modifier"><FontAwesomeIcon icon={faPen} />Modifier</Link>
+                    <Link className="eye-link"><FontAwesomeIcon className="eye-icon" icon={faEye} /></Link>
+                  </td>
                 </tr>
                 <tr>
                   <td className="stagiaire-div"><div className="circle"></div> Rami salah-eddine</td>
                   <td>ramisalah2002@gmail.com</td>
                   <td><div className="status-inactif">Terminé</div></td>
                   <td><label className="days-in-stage">4 jours</label></td>
-                  <td><Link className="action-modifier">Modifier</Link></td>
+                  <td className="actions-td">
+                    <Link className="action-modifier"><FontAwesomeIcon icon={faPen} />Modifier</Link>
+                    <Link className="eye-link"><FontAwesomeIcon className="eye-icon" icon={faEye} /></Link>
+                  </td>
                 </tr>
               </tbody>
             </table>
