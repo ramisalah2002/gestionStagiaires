@@ -213,3 +213,11 @@
   margin: 0px 10px;
   margin-top: 3px;
 }
+.Parametres-tip {
+  position: relative; /* To make the image position absolute relative to this container */
+  padding: 20px;
+  background-color: #f0f5ff;
+  margin-top: 30px; /* Space it out from the above form elements */
+  border-radius: 10px;
+  width: 400px; /* Match width with form-input-group */
+}

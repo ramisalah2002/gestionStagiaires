@@ -15,9 +15,9 @@ import {
   faCalendarDays,
 } from "@fortawesome/free-solid-svg-icons";
 import { faUser, faRectangleList } from "@fortawesome/free-regular-svg-icons";
-import "./Homepage.css";
+import "./Equipes.css";
 
-function Homepage() {
+function Equipes() {
   const [user, setUser] = useState(null);
   const navigateTo = useNavigate();
   const [poste, setPoste] = useState(null);
@@ -293,4 +293,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default Equipes;

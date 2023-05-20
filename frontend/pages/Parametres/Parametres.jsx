@@ -13,6 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faUser, faRectangleList } from "@fortawesome/free-regular-svg-icons";
 import "./Parametres.css";
+import settingsImage from "./../../images/Settings.png";
 
 const other = () => <div>Hi</div>;
 

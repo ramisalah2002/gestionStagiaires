@@ -17,6 +17,7 @@ import LoginPage from "../pages/LoginPage/LoginPage";
 import Parametres from "../pages/Parametres/Parametres";
 import UserContext from "../components/UserContext";
 import Stagiaire from "../pages/Stagiaire/Stagiaire";
+import Equipes from "../pages/Equipes/Equipes";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/Homepage" element={<Homepage />} />
         <Route path="/stagiaires" element={<Stagiaire />} />
         <Route path="/ecadrants" element={<Encadrant />} />
+        <Route path="/equipes" element={<Equipes />} />
       </Routes>
     </Router>
   );
