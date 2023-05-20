@@ -69,7 +69,7 @@ function Stagiaire() {
           </div>        
           <div className="table-container">
           <div className="teams-header">
-                <h2>Équipes</h2>
+                <h2>Stagiaires</h2>
                 <Link className="new-team-link">
                     <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>Ajouter stagiaire
                 </Link>
