@@ -1,6 +1,6 @@
 import React from "react";
 import { useState,useRef } from "react";
-import Sidebar from "../../components/Sidebar/Sidebar";
+import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import { FaTrash } from "react-icons/fa";
