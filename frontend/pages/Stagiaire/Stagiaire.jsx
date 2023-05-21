@@ -6,13 +6,16 @@ import {
   faCircleUser,
   faCalendarDays,
   faPen,
-  faPlus
+  faPlus,
+  faStopwatch,
+  faChevronRight
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faUser,
   faRectangleList,
   faPlusSquare,
   faEye,
+  faTrashAlt,
 } from "@fortawesome/free-regular-svg-icons";
 import "./Stagiaire.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
@@ -66,10 +69,57 @@ function Stagiaire() {
               <FontAwesomeIcon className="search-icon" icon={faSearch} />
               <input className="search-input" placeholder="Rechercher ..." type="text" />
             </div>
-          </div>        
+          </div>
+          <div className="last-stagiaires-container">
+            <div className="new-stagiaires">
+                <h2>Les 4 derniers stagiaires</h2>
+            </div>
+            <div className="last-stagiaires-content">
+              <div className="last-stagiaire-card">
+                <div className="image-top"></div>
+                <label className="last-stagiaire-name">
+                    RAMI Salah-eddine
+                </label>
+                <label className="last-stagiaire-formation">
+                    2ème année génie logiciel
+                </label>
+                <Link className="voir-detail">Voir détail</Link>
+              </div>
+              <div className="last-stagiaire-card">
+                <div className="image-top"></div>
+                <label className="last-stagiaire-name">
+                    RAMI Salah-eddine
+                </label>
+                <label className="last-stagiaire-formation">
+                    2ème année génie logiciel
+                </label>
+                <Link className="voir-detail">Voir détail</Link>
+              </div>
+              <div className="last-stagiaire-card">
+                <div className="image-top"></div>
+                <label className="last-stagiaire-name">
+                    RAMI Salah-eddine
+                </label>
+                <label className="last-stagiaire-formation">
+                    2ème année génie logiciel
+                </label>
+                <Link className="voir-detail">Voir détail</Link>
+              </div>
+              <div className="last-stagiaire-card">
+                <div className="image-top"></div>
+                <label className="last-stagiaire-name">
+                    RAMI Salah-eddine
+                </label>
+                <label className="last-stagiaire-formation">
+                    2ème année génie logiciel
+                </label>
+                <Link className="voir-detail">Voir détail</Link>
+              </div>
+            </div>
+          </div>      
           <div className="table-container">
-          <div className="teams-header">
-                <h2>Stagiaires</h2>
+            <div className="teams-header">
+                <h2>Tous les stagiaires</h2>
                 <Link className="new-team-link">
                     <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>Ajouter stagiaire
                 </Link>
@@ -93,6 +143,7 @@ function Stagiaire() {
                   <td className="actions-td">
                     <Link className="action-modifier"><FontAwesomeIcon icon={faPen} />Modifier</Link>
                     <Link className="eye-link"><FontAwesomeIcon className="eye-icon" icon={faEye} /></Link>
+                    <Link className="eye-link"><FontAwesomeIcon className="eye-icon" icon={faTrashAlt} /></Link>
                   </td>
                 </tr>
                 <tr>
@@ -103,6 +154,7 @@ function Stagiaire() {
                   <td className="actions-td">
                     <Link className="action-modifier"><FontAwesomeIcon icon={faPen} />Modifier</Link>
                     <Link className="eye-link"><FontAwesomeIcon className="eye-icon" icon={faEye} /></Link>
+                    <Link className="eye-link"><FontAwesomeIcon className="eye-icon" icon={faTrashAlt} /></Link>
                   </td>
                 </tr>
               </tbody>

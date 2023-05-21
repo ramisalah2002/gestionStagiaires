@@ -1,7 +1,6 @@
-import React from "react";
-import { useState,useRef } from "react";
+import React,{useState,useEffect, useRef} from "react";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import { FaTrash } from "react-icons/fa";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -17,9 +16,27 @@ import "./Parametres.css";
 const other = () => <div>Hi</div>;
 
 function Parametres() {
+  const [user, setUser] = useState(null);
+  const navigateTo = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const fileInputRef = useRef(null);
   const [selectedImage, setSelectedImage] = useState(null);
+
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (!userData) {
+      // User data not found, navigate to LoginPage
+      navigateTo("/LoginPage");
+      return;
+    }
+
+    setUser(JSON.parse(userData));
+  }, [navigateTo]);
+
+  const currentDate = new Date().toLocaleString("fr-FR", {
+    day: "numeric",
+    month: "short",
+  });
 
   const handleFileInputChange = (event) => {
     const file = event.target.files[0];
@@ -38,7 +55,30 @@ function Parametres() {
     <div className="app">
       <Sidebar />
       <main className="main-content">
-        <Header />
+          <div className="header">
+            <div className="admin-container">
+              <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
+              <div className="admin-info">
+                {user && (
+                  <>
+                    <label className="admin-name">
+                      {user.nom} {user.prenom}
+                    </label>
+                    <label className="admin-post">{user.fonction}</label>
+                  </>
+                )}
+              </div>
+              <div className="vertical-line"></div>
+              <div className="today-container">
+                <FontAwesomeIcon className="calendar-icon" icon={faCalendarDays} />
+                <label className="today-label">{currentDate}</label>
+              </div>
+            </div>
+            <div className="search-container">
+              <FontAwesomeIcon className="search-icon" icon={faSearch} />
+              <input className="search-input" placeholder="Rechercher ..." type="text" />
+            </div>
+          </div>
         <div className="sections-container">
           <div className="parametres-container">
             <div className="parametres-top-container">
@@ -67,6 +107,7 @@ function Parametres() {
                       ref={fileInputRef}
                       type="file"
                       style={{ display: 'none' }}
+                      accept="image/*"
                       onChange={handleFileInputChange}
                     />
                       <button className="photoProfil-button change-photo" onClick={handleButtonClick}>

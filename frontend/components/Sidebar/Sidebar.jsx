@@ -254,6 +254,7 @@ function Sidebar() {
               <div className='prenom-container'>
                 <label>Établissement du stagiaire</label>
                 <select>
+                  <option>Choisir un établissement</option>
                   <option>ESTS - Université M5</option>
                   <option>ENSA Kénitra</option>
                 </select>
