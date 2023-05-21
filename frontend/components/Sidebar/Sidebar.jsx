@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link,useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import LoginPage from '../../pages/LoginPage/LoginPage';
+import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import LoginPage from "../../pages/LoginPage/LoginPage";
 import {
   faHome,
   faUserGroup,
@@ -13,36 +13,35 @@ import {
   faCircleInfo,
   faArrowRightFromBracket,
   faBars,
-  faPlus
-} from '@fortawesome/free-solid-svg-icons';
-import './Sidebar.css';
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
+import "./Sidebar.css";
 
 function Sidebar() {
   const [showSidebar, setShowSidebar] = useState(true);
-
 
   const navigateTo = useNavigate();
 
   const handleLogout = () => {
     // Remove user data from localStorage
-    localStorage.removeItem('user');
-  
+    localStorage.removeItem("user");
+
     // Navigate to LoginPage
-    window.location.href = '/LoginPage';
+    window.location.href = "/LoginPage";
   };
 
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
   };
 
-  const [activeLink, setActiveLink] = useState('');
+  const [activeLink, setActiveLink] = useState("");
 
   const handleLinkClick = (linkText) => {
     setActiveLink(linkText);
   };
 
   return (
-    <div className={`sidebar ${showSidebar ? '' : 'hidden'}`}>
+    <div className={`sidebar ${showSidebar ? "" : "hidden"}`}>
       <div className="toggle-button" onClick={toggleSidebar}>
         <FontAwesomeIcon icon={faBars} />
       </div>
@@ -50,87 +49,75 @@ function Sidebar() {
         <h2>LOGO</h2>
       </Link>
       <div className={`links-container`}>
-        <ul className='links-list'>
-          <li className={activeLink === 'link1' ? 'active-link' : 'link'}>
-            <Link
-              onClick={() => handleLinkClick('link1')}
-              to="/Homepage"
-            >
-              <FontAwesomeIcon className='big-icons' icon={faHome} />
-              <label>{showSidebar ? 'Accueil' : null}</label>
+        <ul className="links-list">
+          <li className={activeLink === "link1" ? "active-link" : "link"}>
+            <Link onClick={() => handleLinkClick("link1")} to="/Homepage">
+              <FontAwesomeIcon className="big-icons" icon={faHome} />
+              <label>{showSidebar ? "Accueil" : null}</label>
             </Link>
           </li>
-          <li className={activeLink === 'link2' ? 'active-link' : 'link'}>
-            <Link
-              onClick={() => handleLinkClick('link2')}
-              to="/stagiaires"
-            >
-              <FontAwesomeIcon className='big-icons' icon={faUserGroup} />
-              <label>{showSidebar ? 'Stagiaires' : null}</label>
+          <li className={activeLink === "link2" ? "active-link" : "link"}>
+            <Link onClick={() => handleLinkClick("link2")} to="/stagiaires">
+              <FontAwesomeIcon className="big-icons" icon={faUserGroup} />
+              <label>{showSidebar ? "Stagiaires" : null}</label>
             </Link>
-            <Link className='plus-container'>
-              <FontAwesomeIcon className='plus-icon' icon={faPlus} />
+            <Link className="plus-container">
+              <FontAwesomeIcon className="plus-icon" icon={faPlus} />
             </Link>
           </li>
-          <li className={activeLink === 'link3' ? 'active-link' : 'link'}>
-            <Link
-              onClick={() => handleLinkClick('link3')}
-              to="/equipes"
-            >
-              <FontAwesomeIcon className='big-icons' icon={faUsersRectangle} />
-              <label>{showSidebar ? 'Equipes' : null}</label>
+          <li className={activeLink === "link3" ? "active-link" : "link"}>
+            <Link onClick={() => handleLinkClick("link3")} to="/equipes">
+              <FontAwesomeIcon className="big-icons" icon={faUsersRectangle} />
+              <label>{showSidebar ? "Equipes" : null}</label>
             </Link>
-            <Link className='plus-container'>
-              <FontAwesomeIcon className='plus-icon' icon={faPlus} />
+            <Link className="plus-container">
+              <FontAwesomeIcon className="plus-icon" icon={faPlus} />
             </Link>
           </li>
-          <li className={activeLink === 'link4' ? 'active-link' : 'link'}>
-            <Link
-              onClick={() => handleLinkClick('link4')}
-              to="/encadrants"
-            >
-              <FontAwesomeIcon className='big-icons' icon={faChalkboardUser} />
-              <label>{showSidebar ? 'Encadrants' : null}</label>
+          <li className={activeLink === "link4" ? "active-link" : "link"}>
+            <Link onClick={() => handleLinkClick("link4")} to="/encadrants">
+              <FontAwesomeIcon className="big-icons" icon={faChalkboardUser} />
+              <label>{showSidebar ? "Encadrants" : null}</label>
             </Link>
-            <Link className='plus-container'>
-              <FontAwesomeIcon className='plus-icon' icon={faPlus} />
+            <Link className="plus-container">
+              <FontAwesomeIcon className="plus-icon" icon={faPlus} />
             </Link>
           </li>
-          <li className={activeLink === 'link5' ? 'active-link' : 'link'}>
-            <Link
-              onClick={() => handleLinkClick('link5')}
-              to="/abscence"
-            >
-              <FontAwesomeIcon className='small-icons' icon={faCalendarCheck} />
-              <label>{showSidebar ? 'Abscence' : null}</label>
+          <li className={activeLink === "link5" ? "active-link" : "link"}>
+            <Link onClick={() => handleLinkClick("link5")} to="/absence">
+              <FontAwesomeIcon className="small-icons" icon={faCalendarCheck} />
+              <label>{showSidebar ? "Abscence" : null}</label>
             </Link>
           </li>
-          <li className={activeLink === 'link6' ? 'active-link' : 'link'}>
+          <li className={activeLink === "link6" ? "active-link" : "link"}>
             <Link
-              onClick={() => handleLinkClick('link6')}
+              onClick={() => handleLinkClick("link6")}
               to="/parametres"
-              className={activeLink === 'link6' ? 'active-link' : 'link'}
+              className={activeLink === "link6" ? "active-link" : "link"}
             >
-              <FontAwesomeIcon className='small-icons' icon={faGear} />
-              <label>{showSidebar ? 'Paramètres' : null}</label>
+              <FontAwesomeIcon className="small-icons" icon={faGear} />
+              <label>{showSidebar ? "Paramètres" : null}</label>
             </Link>
           </li>
         </ul>
-        <ul className='links-list'>
-          <li className={activeLink === 'link7' ? 'active-link' : 'link'}>
+        <ul className="links-list">
+          <li className={activeLink === "link7" ? "active-link" : "link"}>
             <Link
-              onClick={() => handleLinkClick('link7')}
+              onClick={() => handleLinkClick("link7")}
               to="/aide"
-              className={activeLink === 'link7' ? 'active-link' : 'link'}
+              className={activeLink === "link7" ? "active-link" : "link"}
             >
-              <FontAwesomeIcon className='small-icons' icon={faCircleInfo} />
-              <label>{showSidebar ? 'Aide & information' : null}</label>
+              <FontAwesomeIcon className="small-icons" icon={faCircleInfo} />
+              <label>{showSidebar ? "Aide & information" : null}</label>
             </Link>
           </li>
           <li>
             <Link href="#" onClick={handleLogout}>
-              <FontAwesomeIcon className='small-icons' icon={faArrowRightFromBracket} />
-              <label>{showSidebar ? 'Se deconnecter' : null}</label>
+              <FontAwesomeIcon
+                className="small-icons"
+                icon={faArrowRightFromBracket}
+              />
+              <label>{showSidebar ? "Se deconnecter" : null}</label>
             </Link>
           </li>
         </ul>
