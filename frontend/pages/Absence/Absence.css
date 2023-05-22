@@ -34,7 +34,7 @@
   width: 210px;
   text-align: center;
   transition: transform 0.3s ease-in-out;
-  box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .stagiaire-box:hover {
@@ -128,4 +128,14 @@
 .status-value.not-indicated {
   color: rgb(238, 178, 77);
   background-color: rgb(249, 238, 221);
+}
+.box-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.action-select {
+  margin-bottom: 10px;
+  border: 1px solid #f2f2f2;
+  border-radius: 5px;
 }
