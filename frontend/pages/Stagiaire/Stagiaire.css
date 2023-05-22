@@ -1,5 +1,6 @@
 .table-container {
-  margin-top: 00px;
+  margin-top: 0px;
+  overflow: hidden;
 }
 
 .table-wrapper {
@@ -104,7 +105,7 @@
   display: flex;
   flex-direction: row;
   gap: 5px;
-  margin: 0;
+  margin-right: -60px;
 }
 .eye-link{
   display: flex;
@@ -120,8 +121,21 @@
   background: #eaebef;
   border: 1px solid #a9aeb3;
 }
-.eye-icon{
-  color: #7c828d;
+.delete-link{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffe5e3;
+  padding: 7px 20px;
+  border-radius: 5px;
+  transition: ease 0.3s;
+}
+.eye-link:hover{
+  background: #eaebef;
+}
+.delete-icon{
+  color: #e53127;
+  font-size: 18px;
   font-weight: 900;
 }
 .teams-header{

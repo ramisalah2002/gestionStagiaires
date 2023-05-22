@@ -141,9 +141,8 @@ function Stagiaire() {
                   <td><div className="status-actif">Actif</div></td>
                   <td><label className="days-in-stage">4 jours</label></td>
                   <td className="actions-td">
-                    <Link className="action-modifier"><FontAwesomeIcon icon={faPen} />Modifier</Link>
-                    <Link className="eye-link"><FontAwesomeIcon className="eye-icon" icon={faEye} /></Link>
-                    <Link className="eye-link"><FontAwesomeIcon className="eye-icon" icon={faTrashAlt} /></Link>
+                    <Link className="action-modifier"><FontAwesomeIcon icon={faEye} />Voir</Link>
+                    <Link className="delete-link"><FontAwesomeIcon className="delete-icon" icon={faTrashAlt} /></Link>
                   </td>
                 </tr>
                 <tr>
@@ -152,9 +151,8 @@ function Stagiaire() {
                   <td><div className="status-inactif">Terminé</div></td>
                   <td><label className="days-in-stage">4 jours</label></td>
                   <td className="actions-td">
-                    <Link className="action-modifier"><FontAwesomeIcon icon={faPen} />Modifier</Link>
-                    <Link className="eye-link"><FontAwesomeIcon className="eye-icon" icon={faEye} /></Link>
-                    <Link className="eye-link"><FontAwesomeIcon className="eye-icon" icon={faTrashAlt} /></Link>
+                    <Link className="action-modifier"><FontAwesomeIcon icon={faEye} />Voir</Link>
+                    <Link className="delete-link"><FontAwesomeIcon className="delete-icon" icon={faTrashAlt} /></Link>
                   </td>
                 </tr>
               </tbody>

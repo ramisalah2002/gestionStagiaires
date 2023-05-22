@@ -37,7 +37,7 @@ const StagiaireBox = ({ stagiaire }) => (
         {stagiaire.status}
       </span>
     </div>
-    <button className="profile-button">Voir profil d'absence</button>
+    <Link className="voir-detail">Voir profile d'abscence</Link>
   </div>
 );
 
