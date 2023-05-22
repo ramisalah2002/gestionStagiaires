@@ -1,4 +1,4 @@
-*::-webkit-scrollbar{
+*::-webkit-scrollbar {
   display: none;
 }
 .sidebar.hidden ~ .main-content {
@@ -33,18 +33,18 @@
   height: fit-content;
 }
 
-.parametres-top-container{
+.parametres-top-container {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.parametres-top-section{
+.parametres-top-section {
   width: 100%;
   height: 100%;
 }
-.parametres-top-section-img img{
+.parametres-top-section-img img {
   height: 100%;
   width: 100%;
 }
@@ -232,28 +232,28 @@
   margin: 0px 10px;
   margin-top: 3px;
 }
-.parametres-infos-container{
+.parametres-infos-container {
   display: flex;
   width: 100%;
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
 }
-.parametres-section{
-  border: .1px solid rgba(175, 175, 175, 0.482);
+.parametres-section {
+  border: 0.1px solid rgba(175, 175, 175, 0.482);
   padding: 10px 40px;
   border-radius: 10px;
 }
-.parametres-section-last{
+.parametres-section-last {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  border: .1px solid rgba(175, 175, 175, 0.482);
+  border: 0.1px solid rgba(175, 175, 175, 0.482);
   padding: 10px 40px;
   border-radius: 10px;
 }
-.save-div{
+.save-div {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -262,7 +262,7 @@
   padding-bottom: 20px;
   padding-top: 20px;
 }
-.save-link{
+.save-link {
   background: #5b7afa;
   border: 1px solid #5b7afa;
   color: #fff;
@@ -270,9 +270,9 @@
   padding: 12px 35px;
   font-size: 17px;
   font-weight: 700;
-  transition: ease .3s;
+  transition: ease 0.3s;
 }
-.save-link:hover{
+.save-link:hover {
   background: none;
   color: #5b7afa;
   border-radius: 5px;

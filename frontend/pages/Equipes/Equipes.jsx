@@ -7,7 +7,7 @@ import {
   Link,
   useNavigate,
 } from "react-router-dom";
-import Header from "../../components/Header/Header";
+import Header from "../../components/Header/Header.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -15,11 +15,12 @@ import {
   faCalendarDays,
 } from "@fortawesome/free-solid-svg-icons";
 import { faUser, faRectangleList } from "@fortawesome/free-regular-svg-icons";
-import "../Admin/Homepage.css";
+import "./Equipes.css";
 
-function Homepage() {
+function Equipes() {
   const [user, setUser] = useState(null);
   const navigateTo = useNavigate();
+  const [poste, setPoste] = useState(null);
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -31,6 +32,14 @@ function Homepage() {
 
     setUser(JSON.parse(userData));
   }, [navigateTo]);
+
+  useEffect(() => {
+    if (user && user.genre === "Female") {
+      setPoste(user.fonction + "e");
+    } else {
+      setPoste(user?.fonction);
+    }
+  }, [user]);
 
   const currentDate = new Date().toLocaleString("fr-FR", {
     day: "numeric",
@@ -50,7 +59,7 @@ function Homepage() {
                   <label className="admin-name">
                     {user.nom} {user.prenom}
                   </label>
-                  <label className="admin-post">{user.fonction}</label>
+                  <label className="admin-post">{poste}</label>
                 </>
               )}
             </div>
@@ -86,7 +95,7 @@ function Homepage() {
                   <div
                     className="stagiaire-img"
                     style={{
-                      backgroundImage: "url(../../images/user.jpg)",
+                      backgroundImage: "url(../../assets/images/user.jpg)",
                     }}
                   ></div>
                   <div className="stagiaire-nom-formation">
@@ -103,7 +112,7 @@ function Homepage() {
                   <div
                     className="stagiaire-img"
                     style={{
-                      backgroundImage: "url(../../images/user.jpg)",
+                      backgroundImage: "url(../../assets/images/user.jpg)",
                     }}
                   ></div>
                   <div className="stagiaire-nom-formation">
@@ -120,7 +129,7 @@ function Homepage() {
                   <div
                     className="stagiaire-img"
                     style={{
-                      backgroundImage: "url(../../images/user.jpg)",
+                      backgroundImage: "url(../../assets/images/user.jpg)",
                     }}
                   ></div>
                   <div className="stagiaire-nom-formation">
@@ -137,7 +146,7 @@ function Homepage() {
                   <div
                     className="stagiaire-img"
                     style={{
-                      backgroundImage: "url(../../images/user.jpg)",
+                      backgroundImage: "url(../../assets/images/user.jpg)",
                     }}
                   ></div>
                   <div className="stagiaire-nom-formation">
@@ -154,7 +163,7 @@ function Homepage() {
                   <div
                     className="stagiaire-img"
                     style={{
-                      backgroundImage: "url(../../images/user.jpg)",
+                      backgroundImage: "url(../../assets/images/user.jpg)",
                     }}
                   ></div>
                   <div className="stagiaire-nom-formation">
@@ -171,24 +180,7 @@ function Homepage() {
                   <div
                     className="stagiaire-img"
                     style={{
-                      backgroundImage: "url(../../images/user.jpg)",
-                    }}
-                  ></div>
-                  <div className="stagiaire-nom-formation">
-                    <label className="stagiaire-nom">Nom stagiaire</label>
-                    <label className="stagiaire-formation">
-                      Formation stagiaire
-                    </label>
-                  </div>
-                </div>
-                <button className="stagiaire-btn">Découvrir</button>
-              </div>
-              <div className="stagiaire">
-                <div className="stagiaire-info">
-                  <div
-                    className="stagiaire-img"
-                    style={{
-                      backgroundImage: "url(../../images/user.jpg)",
+                      backgroundImage: "url(../../assets/images/user.jpg)",
                     }}
                   ></div>
                   <div className="stagiaire-nom-formation">
@@ -254,7 +246,7 @@ function Homepage() {
                     <label className="today-abscence-day">Aujourd'hui</label>
                   </div>
                 </div>
-                <Link to="../absence" className="see-more-abscence">
+                <Link to="../example" className="see-more-abscence">
                   voir plus
                 </Link>
               </div>
@@ -301,4 +293,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default Equipes;

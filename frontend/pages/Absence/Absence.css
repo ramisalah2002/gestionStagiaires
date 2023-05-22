@@ -1,0 +1,131 @@
+*::-webkit-scrollbar {
+  display: none;
+}
+.sidebar.hidden ~ .main-content {
+  width: calc(100%);
+  margin-left: 60px;
+}
+.absence-management {
+  min-width: 840px; /* Minimum width to display 4 boxes */
+  display: grid;
+  grid-template-columns: repeat(4, minmax(180px, 1fr));
+  gap: 20px;
+}
+.sections-container {
+  justify-content: center;
+  width: auto;
+  padding: 10px 20px;
+  gap: 12px;
+  height: auto;
+  background-color: transparent;
+  border-radius: 15px;
+  box-shadow: none;
+  transition: ease 0.5s;
+  height: fit-content;
+  overflow: auto; /* Enable vertical scrolling */
+  overflow: scroll !important;
+}
+
+.stagiaire-box {
+  background-color: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 10px;
+  padding: 20px;
+  width: 210px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
+}
+
+.stagiaire-box:hover {
+  transform: scale(1.05);
+}
+
+.profile-picture-wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+  border: 2px solid rgb(237, 237, 237);
+  border-radius: 50%;
+}
+
+.profile-picture {
+  width: 94%;
+  height: 94%;
+  border-radius: 50%;
+  object-fit: cover;
+  position: relative;
+  top: 3.2%;
+}
+
+.stagiaire-name {
+  position: relative;
+  align-items: center;
+  margin-top: -10px;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.presence-days,
+.latest-absence,
+.status {
+  color: #979696;
+  margin-top: -15px;
+  font-weight: 600;
+  font-size: 12px;
+  position: relative;
+  align-items: flex-start;
+}
+
+.profile-button {
+  background-color: white;
+  border: 1px solid #f2f3f4;
+  font-size: 12px;
+  font-weight: 700;
+  color: black;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.profile-button:hover {
+  background-color: #ffffff;
+  border: 1px solid #eeeeee;
+}
+
+.detail {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd; /* This will create a horizontal line under each detail */
+  padding-bottom: 3px; /* Add some space under the line */
+  margin-bottom: 20px; /* Add some space below the line and the next detail */
+}
+.status-value {
+  margin-top: 1px;
+  font-size: 10px;
+  padding: 3px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border-radius: 5px;
+}
+
+.status-value.present {
+  color: rgb(50, 182, 143);
+  background-color: rgb(220, 242, 233);
+}
+
+.status-value.absent {
+  color: rgb(204, 59, 59);
+  background-color: rgb(254, 215, 215);
+}
+
+.status-value.not-indicated {
+  color: rgb(238, 178, 77);
+  background-color: rgb(249, 238, 221);
+}
