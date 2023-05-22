@@ -23,6 +23,7 @@
   border: none;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  padding-right: -20px;
 }
 
 
@@ -147,4 +148,83 @@
   background: none;
   color: #5a79f9;
   border-color: #5a79f9;
+}
+.image-top{
+  background: url('../../images/user.jpg');
+  height: 70px;
+  width: 70px;
+  border: 2px solid #c8c9cc;
+  border-radius: 50%;
+  background-size: cover;
+}
+.last-stagiaires-container{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.last-stagiaires-content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  gap: 10px;
+  row-gap: 40px;
+  transition: ease .5s;
+}
+.last-stagiaire-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add box-shadow */
+  transition: box-shadow 0.3s ease; /* Add transition for smooth effect */
+  padding: 10px;
+  gap: 5px;
+  transition: ease .5s;
+}
+.last-stagiaire-name{
+  font-size: 18px;
+  font-weight: bold;
+}
+.last-stagiaire-formation{
+  font-size: 16;
+  color: #888888;
+  text-transform: capitalize;
+  font-weight: 400;
+}
+.voir-detail{
+  background:#dce1eb;
+  border: 1px solid #dce1eb;
+  border-radius: 5px;
+  width: 80%;
+  color: #7c828d;
+  transition: ease .3s;
+}
+.voir-detail:hover{
+  background: #eaebef;
+  color: #7c828d;
+  border: 1px solid #a9aeb3;
+}
+@media (max-width: 1280px) {
+  .last-stagiaires-content {
+      grid-template-columns: repeat(3, 1fr);
+      transition: ease .5s;
+  }
+}
+@media (max-width: 800px) {
+  .last-stagiaires-content {
+      grid-template-columns: repeat(2, 1fr);
+      transition: ease .5s;
+  }
+}
+@media (max-width: 550px) {
+  .last-stagiaires-content {
+      grid-template-columns: repeat(1, 1fr);
+      transition: ease .5s;
+  }
 }

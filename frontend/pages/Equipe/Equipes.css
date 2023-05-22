@@ -5,6 +5,7 @@
     gap: 10px;
     row-gap: 40px;
     transition: ease .5s;
+    height: fit-content;
 }
   
 .team-card {
@@ -49,6 +50,10 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    margin-top: 5px;
+}
+.new-stagiaires{
+    margin-bottom: -5px;
 }
 .new-team-link{
     background: #5a79f9;
