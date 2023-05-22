@@ -1,7 +1,13 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 import Header from "../../components/Header/Header";
 import { FaTrash } from "react-icons/fa";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -15,64 +21,32 @@ import { faUser, faRectangleList } from "@fortawesome/free-regular-svg-icons";
 import "./Absence.css";
 import settingsImage from "./../../images/Settings.png";
 import stagiaireImage from "./../../images/user.jpg";
-import { FaExclamationTriangle, FaGavel } from "react-icons/fa";
-import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
 
-const StagiaireBox = ({ stagiaire }) => {
-  // const handleSelectChange = (event) => {
-  //   const action = event.target.value;
-  //   const actionText = action === "warn" ? "avertir" : "blâmer";
-
-  //   if (
-  //     action &&
-  //     window.confirm(
-  //       `Êtes-vous sûr de vouloir ${actionText} ${stagiaire.name} pour son absence ?`
-  //     )
-  //   ) {
-  //     // Effectuez l'action ici
-  //     // Par exemple, vous pouvez appeler une API pour avertir ou blâmer le stagiaire
-  //   } else {
-  //     // Si l'utilisateur a cliqué sur "Annuler" dans la boîte d'alerte, vous pouvez réinitialiser la valeur du select à sa valeur par défaut
-  //     event.target.value = "";
-  //   }
-  // };
-  return (
-    <div className="stagiaire-box">
-      {/* <div className="box-header">
-        <select className="action-select" onChange={handleSelectChange}>
-          <option value="">Actions</option>
-          <option value="warn">
-            <FaExclamationTriangle /> Avertir
-          </option>
-          <option value="blame">
-            <FaGavel /> Blamer
-          </option>
-        </select>
-      </div> */}
-      <div className="profile-picture-wrapper">
-        <img className="profile-picture" src={stagiaire.image} alt="Profile" />
-        {/* You could add your dynamic elements here */}
-      </div>
-      <h2 className="stagiaire-name">{stagiaire.name}</h2>
-      <div className="detail presence-days">
-        <span>Absence du mois </span>
-        <span>{stagiaire.presenceDays}</span>
-      </div>
-      <div className="detail latest-absence">
-        <span>Dernier absence </span>
-        <span>{stagiaire.latestAbsence}</span>
-      </div>
-      <div className="detail status">
-        <span>Status d'aujourd'hui </span>
-        <span className={`status-value ${stagiaire.status}`}>
-          {stagiaire.status}
-        </span>
-      </div>
-      <button className="profile-button">Voir le profil d'absence</button>
+const StagiaireBox = ({ stagiaire }) => (
+  <div className="stagiaire-box">
+    <div className="profile-picture-wrapper">
+      <img className="profile-picture" src={stagiaire.image} alt="Profile" />
+      {/* You could add your dynamic elements here */}
     </div>
-  );
-};
+    <h2 className="stagiaire-name">{stagiaire.name}</h2>
+    <div className="detail presence-days">
+      <span>Absence du mois </span>
+      <span>{stagiaire.presenceDays}</span>
+    </div>
+    <div className="detail latest-absence">
+      <span>Dernier absence </span>
+      <span>{stagiaire.latestAbsence}</span>
+    </div>
+    <div className="detail status">
+      <span>Status d'aujourd'hui </span>
+      <span className={`status-value ${stagiaire.status}`}>
+        {stagiaire.status}
+      </span>
+    </div>
+    <Link className="voir-detail">Voir profile d'abscence</Link>
+  </div>
+);
+
 function Absence() {
   const [showPassword, setShowPassword] = useState(false);
   const fileInputRef = useRef(null);
@@ -93,8 +67,6 @@ function Absence() {
 
   const [user, setUser] = useState(null);
   const navigateTo = useNavigate();
-
-
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -189,13 +161,20 @@ function Absence() {
             </div>
             <div className="vertical-line"></div>
             <div className="today-container">
-              <FontAwesomeIcon className="calendar-icon" icon={faCalendarDays} />
+              <FontAwesomeIcon
+                className="calendar-icon"
+                icon={faCalendarDays}
+              />
               <label className="today-label">{currentDate}</label>
             </div>
           </div>
           <div className="search-container">
             <FontAwesomeIcon className="search-icon" icon={faSearch} />
-            <input className="search-input" placeholder="Rechercher ..." type="text" />
+            <input
+              className="search-input"
+              placeholder="Rechercher ..."
+              type="text"
+            />
           </div>
         </div>
         <div className="abscence-container">

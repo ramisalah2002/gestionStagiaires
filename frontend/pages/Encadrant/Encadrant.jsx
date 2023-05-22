@@ -1,25 +1,35 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
   faCircleUser,
   faCalendarDays,
+  faPen,
+  faPlus,
+  faStopwatch,
+  faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faUser,
   faRectangleList,
   faPlusSquare,
+  faEye,
+  faTrashAlt,
 } from "@fortawesome/free-regular-svg-icons";
 import "./Encadrant.css";
-import Header from '../../components/Header/Header';
 import Sidebar from "../../components/Sidebar/Sidebar";
 // import 'bootstrap/dist/css/bootstrap.css';
 
 function Encadrant() {
   const [user, setUser] = useState(null);
   const navigateTo = useNavigate();
-
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -36,56 +46,147 @@ function Encadrant() {
     day: "numeric",
     month: "short",
   });
-  
+
   return (
     <div className="app">
       <Sidebar />
       <main className="main-content">
-      <div className="header">
-            <div className="admin-container">
-              <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
-              <div className="admin-info">
-                {user && (
-                  <>
-                    <label className="admin-name">
-                      {user.nom} {user.prenom}
-                    </label>
-                    <label className="admin-post">poste</label>
-                  </>
-                )}
-              </div>
-              <div className="vertical-line"></div>
-              <div className="today-container">
-                <FontAwesomeIcon className="calendar-icon" icon={faCalendarDays} />
-                <label className="today-label">{currentDate}</label>
-              </div>
+        <div className="header">
+          <div className="admin-container">
+            <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
+            <div className="admin-info">
+              {user && (
+                <>
+                  <label className="admin-name">
+                    {user.nom} {user.prenom}
+                  </label>
+                  <label className="admin-post">{user.fonction}</label>
+                </>
+              )}
             </div>
-            <div className="search-container">
-              <FontAwesomeIcon className="search-icon" icon={faSearch} />
-              <input className="search-input" placeholder="Rechercher ..." type="text" />
+            <div className="vertical-line"></div>
+            <div className="today-container">
+              <FontAwesomeIcon
+                className="calendar-icon"
+                icon={faCalendarDays}
+              />
+              <label className="today-label">{currentDate}</label>
             </div>
-          </div>        
+          </div>
+          <div className="search-container">
+            <FontAwesomeIcon className="search-icon" icon={faSearch} />
+            <input
+              className="search-input"
+              placeholder="Rechercher ..."
+              type="text"
+            />
+          </div>
+        </div>
+        <div className="last-stagiaires-container">
+          <div className="new-stagiaires">
+            <h2>Les 4 derniers stagiaires</h2>
+          </div>
+          <div className="last-stagiaires-content">
+            <div className="last-stagiaire-card">
+              <div className="image-top"></div>
+              <label className="last-stagiaire-name">RAMI Salah-eddine</label>
+              <label className="last-stagiaire-formation">
+                2ème année génie logiciel
+              </label>
+              <Link className="voir-detail">Voir détail</Link>
+            </div>
+            <div className="last-stagiaire-card">
+              <div className="image-top"></div>
+              <label className="last-stagiaire-name">RAMI Salah-eddine</label>
+              <label className="last-stagiaire-formation">
+                2ème année génie logiciel
+              </label>
+              <Link className="voir-detail">Voir détail</Link>
+            </div>
+            <div className="last-stagiaire-card">
+              <div className="image-top"></div>
+              <label className="last-stagiaire-name">RAMI Salah-eddine</label>
+              <label className="last-stagiaire-formation">
+                2ème année génie logiciel
+              </label>
+              <Link className="voir-detail">Voir détail</Link>
+            </div>
+            <div className="last-stagiaire-card">
+              <div className="image-top"></div>
+              <label className="last-stagiaire-name">RAMI Salah-eddine</label>
+              <label className="last-stagiaire-formation">
+                2ème année génie logiciel
+              </label>
+              <Link className="voir-detail">Voir détail</Link>
+            </div>
+          </div>
+        </div>
         <div className="table-container">
+          <div className="teams-header">
+            <h2>Tous les stagiaires</h2>
+            <Link className="new-team-link">
+              <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>Ajouter stagiaire
+            </Link>
+          </div>
           <table className="custom-table">
             <thead>
               <tr>
-                <th>Header 1</th>
-                <th>Header 2</th>
-                <th>Header 3</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>En stage</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Data 1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
+                <td className="stagiaire-div">
+                  <div className="circle"></div> Rami salah-eddine
+                </td>
+                <td>ramisalah2002@gmail.com</td>
+                <td>
+                  <div className="status-actif">Actif</div>
+                </td>
+                <td>
+                  <label className="days-in-stage">4 jours</label>
+                </td>
+                <td className="actions-td">
+                  <Link className="action-modifier">
+                    <FontAwesomeIcon icon={faEye} />
+                    Voir
+                  </Link>
+                  <Link className="delete-link">
+                    <FontAwesomeIcon
+                      className="delete-icon"
+                      icon={faTrashAlt}
+                    />
+                  </Link>
+                </td>
               </tr>
               <tr>
-                <td>Data 4</td>
-                <td>Data 5</td>
-                <td>Data 6</td>
+                <td className="stagiaire-div">
+                  <div className="circle"></div> Rami salah-eddine
+                </td>
+                <td>ramisalah2002@gmail.com</td>
+                <td>
+                  <div className="status-inactif">Terminé</div>
+                </td>
+                <td>
+                  <label className="days-in-stage">4 jours</label>
+                </td>
+                <td className="actions-td">
+                  <Link className="action-modifier">
+                    <FontAwesomeIcon icon={faEye} />
+                    Voir
+                  </Link>
+                  <Link className="delete-link">
+                    <FontAwesomeIcon
+                      className="delete-icon"
+                      icon={faTrashAlt}
+                    />
+                  </Link>
+                </td>
               </tr>
-              {/* Add more table rows as needed */}
             </tbody>
           </table>
         </div>

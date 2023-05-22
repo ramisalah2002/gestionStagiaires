@@ -49,12 +49,25 @@
   padding: 20px;
   width: calc(100% / 4 - 60px);
   text-align: center;
-  transition: transform 0.3s ease-in-out;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  transition: ease .5s;
 }
 
 .stagiaire-box:hover {
-  transform: scale(1.05);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); 
+}
+.stagiaire-box  .voir-detail{
+  background:#dce1eb;
+  border: 1px solid #dce1eb;
+  border-radius: 5px;
+  width: 200px;
+  color: #7c828d;
+  transition: ease .3s;
+}
+.stagiaire-box .voir-detail:hover{
+  background: #eaebef;
+  color: #7c828d;
+  border: 1px solid #a9aeb3;
 }
 
 .profile-picture-wrapper {
