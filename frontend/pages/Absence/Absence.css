@@ -27,6 +27,10 @@
   overflow: scroll;
   margin: 0;
 }
+.abscence-container label{
+  font-size: 1.5em;
+  font-weight: bold;
+}
 .absence-management {
   display: flex;
   flex-direction: row;

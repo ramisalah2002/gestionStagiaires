@@ -167,7 +167,7 @@ function Absence() {
           </div>
         </div>
         <div className="abscence-container">
-          <h2>Listes des abscence</h2>
+          <label>Listes des abscence</label>
           <div className="absence-management">
             {stagiaires.map((stagiaire, index) => (
               <StagiaireBox key={index} stagiaire={stagiaire} />
