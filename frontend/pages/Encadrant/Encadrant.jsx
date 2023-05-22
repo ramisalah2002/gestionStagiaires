@@ -1,40 +1,23 @@
 import React, { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  useNavigate,
-} from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
   faCircleUser,
   faCalendarDays,
-  faPen,
-  faPlus,
-  faStopwatch,
-  faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-import {
-  faUser,
-  faRectangleList,
-  faPlusSquare,
-  faEye,
-  faTrashAlt,
-} from "@fortawesome/free-regular-svg-icons";
 import "./Encadrant.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
-// import 'bootstrap/dist/css/bootstrap.css';
 
 function Encadrant() {
   const [user, setUser] = useState(null);
   const navigateTo = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
     if (!userData) {
-      // User data not found, navigate to LoginPage
       navigateTo("/LoginPage");
       return;
     }
@@ -47,6 +30,79 @@ function Encadrant() {
     month: "short",
   });
 
+  const encadrants = [
+    {
+      name: "RAMI Salah-eddine",
+      poste: "Chef RH",
+    },
+    {
+      name: "BOULAAJOUL Anass",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali",
+      poste: "Product Manager",
+    },
+    {
+      name: "FATIMA Zahra",
+      poste: "UI/UX Designer",
+    },
+    {
+      name: "HAMZA Alaoui",
+      poste: "Data Scientist",
+    },
+    {
+      name: "AMINA Chakir",
+      poste: "Backend Developer",
+    },
+    {
+      name: "KARIM Hassan",
+      poste: "Frontend Developer",
+    },
+    {
+      name: "NADIA Bousfiha",
+      poste: "Business Analyst",
+    },
+    {
+      name: "zdzezef Salah-eddine",
+      poste: "Chef RH",
+    },
+    {
+      name: "BOULAAJOUL Anass",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali",
+      poste: "Product Manager",
+    },
+    {
+      name: "FATIMA Zahra",
+      poste: "UI/UX Designer",
+    },
+    {
+      name: "HAMZA Alaoui",
+      poste: "Data Scientist",
+    },
+    {
+      name: "AMINA Chakir",
+      poste: "Backend Developer",
+    },
+    {
+      name: "KARIM Hassan",
+      poste: "Frontend Developer",
+    },
+    {
+      name: "NADIA Bousfiha",
+      poste: "Business Analyst",
+    },
+  ];
+
+  const pageCount = Math.ceil(encadrants.length / itemsPerPage);
+
+  const pageNumbers = [];
+  for (let i = 0; i < pageCount; i++) {
+    pageNumbers.push(i);
+  }
   return (
     <div className="app">
       <Sidebar />
@@ -82,113 +138,31 @@ function Encadrant() {
             />
           </div>
         </div>
-        <div className="last-stagiaires-container">
-          <div className="new-stagiaires">
-            <h2>Les 4 derniers stagiaires</h2>
-          </div>
-          <div className="last-stagiaires-content">
-            <div className="last-stagiaire-card">
-              <div className="image-top"></div>
-              <label className="last-stagiaire-name">RAMI Salah-eddine</label>
-              <label className="last-stagiaire-formation">
-                2ème année génie logiciel
-              </label>
-              <Link className="voir-detail">Voir détail</Link>
-            </div>
-            <div className="last-stagiaire-card">
-              <div className="image-top"></div>
-              <label className="last-stagiaire-name">RAMI Salah-eddine</label>
-              <label className="last-stagiaire-formation">
-                2ème année génie logiciel
-              </label>
-              <Link className="voir-detail">Voir détail</Link>
-            </div>
-            <div className="last-stagiaire-card">
-              <div className="image-top"></div>
-              <label className="last-stagiaire-name">RAMI Salah-eddine</label>
-              <label className="last-stagiaire-formation">
-                2ème année génie logiciel
-              </label>
-              <Link className="voir-detail">Voir détail</Link>
-            </div>
-            <div className="last-stagiaire-card">
-              <div className="image-top"></div>
-              <label className="last-stagiaire-name">RAMI Salah-eddine</label>
-              <label className="last-stagiaire-formation">
-                2ème année génie logiciel
-              </label>
-              <Link className="voir-detail">Voir détail</Link>
-            </div>
-          </div>
+        <div className="new-encadrants">
+          <h2>Liste des encadrants</h2>
         </div>
-        <div className="table-container">
-          <div className="teams-header">
-            <h2>Tous les stagiaires</h2>
-            <Link className="new-team-link">
-              <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>Ajouter stagiaire
-            </Link>
-          </div>
-          <table className="custom-table">
-            <thead>
-              <tr>
-                <th>Nom</th>
-                <th>Email</th>
-                <th>Status</th>
-                <th>En stage</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="stagiaire-div">
-                  <div className="circle"></div> Rami salah-eddine
-                </td>
-                <td>ramisalah2002@gmail.com</td>
-                <td>
-                  <div className="status-actif">Actif</div>
-                </td>
-                <td>
-                  <label className="days-in-stage">4 jours</label>
-                </td>
-                <td className="actions-td">
-                  <Link className="action-modifier">
-                    <FontAwesomeIcon icon={faEye} />
-                    Voir
-                  </Link>
-                  <Link className="delete-link">
-                    <FontAwesomeIcon
-                      className="delete-icon"
-                      icon={faTrashAlt}
-                    />
-                  </Link>
-                </td>
-              </tr>
-              <tr>
-                <td className="stagiaire-div">
-                  <div className="circle"></div> Rami salah-eddine
-                </td>
-                <td>ramisalah2002@gmail.com</td>
-                <td>
-                  <div className="status-inactif">Terminé</div>
-                </td>
-                <td>
-                  <label className="days-in-stage">4 jours</label>
-                </td>
-                <td className="actions-td">
-                  <Link className="action-modifier">
-                    <FontAwesomeIcon icon={faEye} />
-                    Voir
-                  </Link>
-                  <Link className="delete-link">
-                    <FontAwesomeIcon
-                      className="delete-icon"
-                      icon={faTrashAlt}
-                    />
-                  </Link>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div className="encadrant-content">
+          {encadrants
+            .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+            .map((encadrant, index) => (
+              <div key={index} className="encadrant-card">
+                <div className="image-top"></div>
+                <label className="encadrant-name">{encadrant.name}</label>
+                <label className="encadrant-poste">{encadrant.poste}</label>
+                <Link className="voir-detail">Voir détail</Link>
+              </div>
+            ))}
+        </div>
+        <div className="pagination">
+          {[...Array(pageCount).keys()].map((number) => (
+            <button
+              key={number}
+              onClick={() => setCurrentPage(number + 1)}
+              style={{ color: number + 1 === currentPage ? "#000" : "#888" }}
+            >
+              {number + 1}
+            </button>
+          ))}
         </div>
       </main>
     </div>
