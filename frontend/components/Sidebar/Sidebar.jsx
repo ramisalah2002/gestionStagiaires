@@ -29,7 +29,7 @@ function Sidebar() {
     localStorage.removeItem("user");
 
     // Navigate to LoginPage
-    window.location.href = "/LoginPage";
+    window.location.href = "/";
   };
 
   const toggleSidebar = () => {

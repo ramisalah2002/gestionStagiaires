@@ -20,12 +20,13 @@ import Stagiaire from "../pages/Stagiaire/Stagiaire";
 import Equipes from "../pages/Equipes/Equipes";
 import Absence from "../pages/Absence/Absence";
 import StagiaireProfile from "../pages/StagiaireProfile/StagiaireProfile";
+import ChoicePage from "../pages/ChoicePage/ChoicePage";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<ChoicePage />} />
         <Route path="/Parametres" element={<Parametres />} />
         <Route path="/LoginPage" element={<LoginPage />} />
         <Route path="/Homepage" element={<Homepage />} />
