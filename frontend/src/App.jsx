@@ -19,6 +19,7 @@ import UserContext from "../components/UserContext";
 import Stagiaire from "../pages/Stagiaire/Stagiaire";
 import Equipes from "../pages/Equipes/Equipes";
 import Absence from "../pages/Absence/Absence";
+import StagiaireProfile from "../pages/StagiaireProfile/StagiaireProfile";
 
 function App() {
   return (
@@ -31,8 +32,8 @@ function App() {
         <Route path="/stagiaires" element={<Stagiaire />} />
         <Route path="/equipes" element={<Equipes />} />
         <Route path="/encadrants" element={<Encadrant />} />
-        <Route path="/equipes" element={<Equipes />} />
         <Route path="/absence" element={<Absence />} />
+        <Route path="/profile-stagiaire" element={<StagiaireProfile />} />
       </Routes>
     </Router>
   );

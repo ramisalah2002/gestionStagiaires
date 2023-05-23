@@ -1,0 +1,79 @@
+.background-img-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    width: 100%;
+    background: #fff;
+}
+.background-img-container img{
+    width: 100%;
+    height: auto;
+}
+.user-container{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.user-content{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+}
+.user-img-div{
+    z-index: 999;
+    margin-top: -60px;
+    margin-left: 20px;
+    background: url('../../images/user.jpg');
+    background-size: cover;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    height: 160px;
+    width: 160px;
+}
+.user-name-formation{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.user-name{
+    font-size: 22px;
+    font-weight: bold;
+}
+.user-formation{
+    font-size: 16px;
+    font-weight: 400;
+    color: #888;
+}
+.message-link{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-self: center;
+    gap: 10px;
+    padding: 10px 40px;
+    background: rgb(12, 12, 12);
+    color: #FFF;
+    border-radius: 5px;
+}
+.message-icon{
+    margin-top: 4px;
+}
+.stagiaire-info-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+}
+.left-info-container, .right-info-container{
+    background: #edeff2;
+    width: 50%;
+    border-radius: 7px;
+    height: 400px;
+}

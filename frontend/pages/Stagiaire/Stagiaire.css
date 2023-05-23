@@ -1,6 +1,7 @@
 .table-container {
   margin-top: 0px;
   overflow: hidden;
+  width: 100%;
 }
 
 .table-wrapper {
@@ -79,6 +80,37 @@
 }
 .days-in-stage{
   color: #505a66;
+}
+.stagiaires-link-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.download-stagiaires-link{
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid #a9aeb385;
+  color: #888;
+  font-size: 17px;
+  padding: 10px 15px;
+  transition: ease .3s;
+}
+.import-stagiaires-link{
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid #a9aeb385;
+  color: #888;
+  font-size: 17px;
+  padding-left: 17px;
+  padding-right: 17px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  transition: ease .3s;
+}
+.download-stagiaires-link:hover{
+  color: #5b7afa;
 }
 .action-modifier{
   color: #fff;
@@ -241,4 +273,39 @@
       grid-template-columns: repeat(1, 1fr);
       transition: ease .5s;
   }
+}
+.download-links-wrapper {
+  position: relative;
+}
+
+.download-links-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  top: 0;
+  margin-top: -4px;
+  margin-left: 5px;
+  left: 0;
+  z-index: 999;
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  white-space: nowrap;
+}
+
+.download-link {
+  display: block;
+  color: #5b7afa;
+  text-decoration: none;
+  transition: ease .2s;
+  width: 90%;
+  border-radius: 5px;
+}
+.download-link:hover {
+  background: #d6d6d8;
+}
+.download-icon{
+  padding-top: -15px;
 }
