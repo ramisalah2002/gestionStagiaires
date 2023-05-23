@@ -1,30 +1,23 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
   faCircleUser,
   faCalendarDays,
 } from "@fortawesome/free-solid-svg-icons";
-import {
-  faUser,
-  faRectangleList,
-  faPlusSquare,
-} from "@fortawesome/free-regular-svg-icons";
 import "./Encadrant.css";
-import Header from '../../components/Header/Header';
 import Sidebar from "../../components/Sidebar/Sidebar";
-// import 'bootstrap/dist/css/bootstrap.css';
 
 function Encadrant() {
   const [user, setUser] = useState(null);
   const navigateTo = useNavigate();
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
     if (!userData) {
-      // User data not found, navigate to LoginPage
       navigateTo("/LoginPage");
       return;
     }
@@ -36,58 +29,487 @@ function Encadrant() {
     day: "numeric",
     month: "short",
   });
-  
+
+  const encadrants = [
+    {
+      name: "RAMI Salah-eddine",
+      poste: "Chef RH",
+    },
+    {
+      name: "BOULAAJOUL Anass",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali",
+      poste: "Product Manager",
+    },
+    {
+      name: "FATIMA Zahra",
+      poste: "UI/UX Designer",
+    },
+    {
+      name: "HAMZA Alaoui",
+      poste: "Data Scientist",
+    },
+    {
+      name: "AMINA Chakir",
+      poste: "Backend Developer",
+    },
+    {
+      name: "KARIM Hassan",
+      poste: "Frontend Developer",
+    },
+    {
+      name: "NADIA Bousfiha",
+      poste: "Business Analyst",
+    },
+    {
+      name: "Mohamed Salah",
+      poste: "Chef RH",
+    },
+    {
+      name: "Anass Sefriwi",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali Kmay",
+      poste: "Product Manager",
+    },
+    {
+      name: "Kechfi FATIMA Zahra",
+      poste: "UI/UX Designer",
+    },
+    {
+      name: "LBHIHI HAMZA ",
+      poste: "Data Scientist",
+    },
+    {
+      name: "Chakir Saad",
+      poste: "Backend Developer",
+    },
+    {
+      name: " SI KARIM L2a7madi",
+      poste: "Frontend Developer",
+    },
+    {
+      name: "NADIA Nadya",
+      poste: "Business Analyst",
+    },
+    {
+      name: "RAMI Salah-eddine",
+      poste: "Chef RH",
+    },
+    {
+      name: "BOULAAJOUL Anass",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali",
+      poste: "Product Manager",
+    },
+    {
+      name: "FATIMA Zahra",
+      poste: "UI/UX Designer",
+    },
+    {
+      name: "HAMZA Alaoui",
+      poste: "Data Scientist",
+    },
+    {
+      name: "AMINA Chakir",
+      poste: "Backend Developer",
+    },
+    {
+      name: "KARIM Hassan",
+      poste: "Frontend Developer",
+    },
+    {
+      name: "NADIA Bousfiha",
+      poste: "Business Analyst",
+    },
+    {
+      name: "Mohamed Salah",
+      poste: "Chef RH",
+    },
+    {
+      name: "Anass Sefriwi",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali Kmay",
+      poste: "Product Manager",
+    },
+    {
+      name: "Kechfi FATIMA Zahra",
+      poste: "UI/UX Designer",
+    },
+    {
+      name: "LBHIHI HAMZA ",
+      poste: "Data Scientist",
+    },
+    {
+      name: "Chakir Saad",
+      poste: "Backend Developer",
+    },
+    {
+      name: " SI KARIM L2a7madi",
+      poste: "Frontend Developer",
+    },
+    {
+      name: "NADIA Nadya",
+      poste: "Business Analyst",
+    },
+    {
+      name: "RAMI Salah-eddine",
+      poste: "Chef RH",
+    },
+    {
+      name: "BOULAAJOUL Anass",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali",
+      poste: "Product Manager",
+    },
+
+    {
+      name: "NADIA Bousfiha",
+      poste: "Business Analyst",
+    },
+    {
+      name: "Mohamed Salah",
+      poste: "Chef RH",
+    },
+    {
+      name: "Anass Sefriwi",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali Kmay",
+      poste: "Product Manager",
+    },
+    {
+      name: "Kechfi FATIMA Zahra",
+      poste: "UI/UX Designer",
+    },
+    {
+      name: "LBHIHI HAMZA ",
+      poste: "Data Scientist",
+    },
+    {
+      name: "Chakir Saad",
+      poste: "Backend Developer",
+    },
+    {
+      name: " SI KARIM L2a7madi",
+      poste: "Frontend Developer",
+    },
+    {
+      name: "NADIA Nadya",
+      poste: "Business Analyst",
+    },
+    {
+      name: "RAMI Salah-eddine",
+      poste: "Chef RH",
+    },
+    {
+      name: "BOULAAJOUL Anass",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali",
+      poste: "Product Manager",
+    },
+    {
+      name: "FATIMA Zahra",
+      poste: "UI/UX Designer",
+    },
+    {
+      name: "HAMZA Alaoui",
+      poste: "Data Scientist",
+    },
+    {
+      name: "AMINA Chakir",
+      poste: "Backend Developer",
+    },
+    {
+      name: "KARIM Hassan",
+      poste: "Frontend Developer",
+    },
+    {
+      name: "NADIA Bousfiha",
+      poste: "Business Analyst",
+    },
+    {
+      name: "Mohamed Salah",
+      poste: "Chef RH",
+    },
+    {
+      name: "Anass Sefriwi",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali Kmay",
+      poste: "Product Manager",
+    },
+    {
+      name: "Kechfi FATIMA Zahra",
+      poste: "UI/UX Designer",
+    },
+    {
+      name: "LBHIHI HAMZA ",
+      poste: "Data Scientist",
+    },
+    {
+      name: "Chakir Saad",
+      poste: "Backend Developer",
+    },
+    {
+      name: " SI KARIM L2a7madi",
+      poste: "Frontend Developer",
+    },
+    {
+      name: "NADIA Nadya",
+      poste: "Business Analyst",
+    },
+    {
+      name: "RAMI Salah-eddine",
+      poste: "Chef RH",
+    },
+    {
+      name: "BOULAAJOUL Anass",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali",
+      poste: "Product Manager",
+    },
+    {
+      name: "FATIMA Zahra",
+      poste: "UI/UX Designer",
+    },
+    {
+      name: "HAMZA Alaoui",
+      poste: "Data Scientist",
+    },
+    {
+      name: "AMINA Chakir",
+      poste: "Backend Developer",
+    },
+    {
+      name: "KARIM Hassan",
+      poste: "Frontend Developer",
+    },
+    {
+      name: "NADIA Bousfiha",
+      poste: "Business Analyst",
+    },
+    {
+      name: "Mohamed Salah",
+      poste: "Chef RH",
+    },
+    {
+      name: "Anass Sefriwi",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali Kmay",
+      poste: "Product Manager",
+    },
+    {
+      name: "Kechfi FATIMA Zahra",
+      poste: "UI/UX Designer",
+    },
+    {
+      name: "LBHIHI HAMZA ",
+      poste: "Data Scientist",
+    },
+    {
+      name: "Chakir Saad",
+      poste: "Backend Developer",
+    },
+    {
+      name: " SI KARIM L2a7madi",
+      poste: "Frontend Developer",
+    },
+    {
+      name: "NADIA Nadya",
+      poste: "Business Analyst",
+    },
+    {
+      name: "RAMI Salah-eddine",
+      poste: "Chef RH",
+    },
+    {
+      name: "BOULAAJOUL Anass",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali",
+      poste: "Product Manager",
+    },
+    {
+      name: "FATIMA Zahra",
+      poste: "UI/UX Designer",
+    },
+    {
+      name: "HAMZA Alaoui",
+      poste: "Data Scientist",
+    },
+    {
+      name: "AMINA Chakir",
+      poste: "Backend Developer",
+    },
+    {
+      name: "KARIM Hassan",
+      poste: "Frontend Developer",
+    },
+    {
+      name: "NADIA Bousfiha",
+      poste: "Business Analyst",
+    },
+    {
+      name: "Mohamed Salah",
+      poste: "Chef RH",
+    },
+    {
+      name: "Anass Sefriwi",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali Kmay",
+      poste: "Product Manager",
+    },
+    {
+      name: "Kechfi FATIMA Zahra",
+      poste: "UI/UX Designer",
+    },
+    {
+      name: "LBHIHI HAMZA ",
+      poste: "Data Scientist",
+    },
+    {
+      name: "Chakir Saad",
+      poste: "Backend Developer",
+    },
+    {
+      name: " SI KARIM L2a7madi",
+      poste: "Frontend Developer",
+    },
+    {
+      name: "NADIA Nadya",
+      poste: "Business Analyst",
+    },
+  ];
+
+  const pageCount = Math.ceil(encadrants.length / itemsPerPage);
+
+  const pageNumbers = [];
+  for (let i = 1; i <= pageCount; i++) {
+    pageNumbers.push(i);
+  }
+
+  let paginationItems = [];
+
+  if (pageCount <= 5) {
+    paginationItems = pageNumbers;
+  } else {
+    if (currentPage <= 3) {
+      paginationItems = [...pageNumbers.slice(0, 5), "...", pageCount];
+    } else if (currentPage >= pageCount - 2) {
+      paginationItems = [
+        1,
+        "...",
+        ...pageNumbers.slice(pageCount - 5, pageCount),
+      ];
+    } else {
+      paginationItems = [
+        1,
+        "...",
+        ...pageNumbers.slice(currentPage - 2, currentPage + 1),
+        "...",
+        pageCount,
+      ];
+    }
+  }
+
   return (
     <div className="app">
       <Sidebar />
       <main className="main-content">
-      <div className="header">
-            <div className="admin-container">
-              <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
-              <div className="admin-info">
-                {user && (
-                  <>
-                    <label className="admin-name">
-                      {user.nom} {user.prenom}
-                    </label>
-                    <label className="admin-post">poste</label>
-                  </>
-                )}
-              </div>
-              <div className="vertical-line"></div>
-              <div className="today-container">
-                <FontAwesomeIcon className="calendar-icon" icon={faCalendarDays} />
-                <label className="today-label">{currentDate}</label>
-              </div>
+        <div className="header">
+          <div className="admin-container">
+            <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
+            <div className="admin-info">
+              {user && (
+                <>
+                  <label className="admin-name">
+                    {user.nom} {user.prenom}
+                  </label>
+                  <label className="admin-post">{user.fonction}</label>
+                </>
+              )}
             </div>
-            <div className="search-container">
-              <FontAwesomeIcon className="search-icon" icon={faSearch} />
-              <input className="search-input" placeholder="Rechercher ..." type="text" />
+            <div className="vertical-line"></div>
+            <div className="today-container">
+              <FontAwesomeIcon
+                className="calendar-icon"
+                icon={faCalendarDays}
+              />
+              <label className="today-label">{currentDate}</label>
             </div>
-          </div>        
-        <div className="table-container">
-          <table className="custom-table">
-            <thead>
-              <tr>
-                <th>Header 1</th>
-                <th>Header 2</th>
-                <th>Header 3</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Data 1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-              </tr>
-              <tr>
-                <td>Data 4</td>
-                <td>Data 5</td>
-                <td>Data 6</td>
-              </tr>
-              {/* Add more table rows as needed */}
-            </tbody>
-          </table>
+          </div>
+          <div className="search-container">
+            <FontAwesomeIcon className="search-icon" icon={faSearch} />
+            <input
+              className="search-input"
+              placeholder="Rechercher ..."
+              type="text"
+            />
+          </div>
+        </div>
+        <div className="new-encadrants">
+          <label>Liste des encadrants</label>
+        </div>
+        <div className="encadrant-content">
+          {encadrants
+            .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+            .map((encadrant, index) => (
+              <div key={index} className="encadrant-card">
+                <div className="image-top"></div>
+                <label className="encadrant-name">{encadrant.name}</label>
+                <label className="encadrant-poste">{encadrant.poste}</label>
+                <Link className="voir-detail">Voir détail</Link>
+              </div>
+            ))}
+        </div>
+        <div className="pagination">
+          {paginationItems.map((item, index) => {
+            if (typeof item === "number") {
+              return (
+                <button
+                  key={index}
+                  className={`pagination-btn ${
+                    item === currentPage ? "active" : ""
+                  }`}
+                  onClick={() => setCurrentPage(item)}
+                >
+                  {item}
+                </button>
+              );
+            } else {
+              return (
+                <button
+                  key={index}
+                  className={`pagination-btn`}
+                  style={{ cursor: "default", color: "#ced4da" }}
+                  disabled
+                >
+                  {item}
+                </button>
+              );
+            }
+          })}
         </div>
       </main>
     </div>

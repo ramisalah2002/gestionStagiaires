@@ -17,7 +17,7 @@
   padding-right: 0;
 }
 
-.custom-table th{
+.custom-table th {
   background: #f9fafc;
   color: #787f88;
   font-weight: 500;
@@ -28,39 +28,38 @@
   padding-right: -20px;
 }
 
-
 .custom-table th,
 .custom-table td {
   border-right: none;
   border-left: none;
   border-color: #f9fafc;
   padding: 8px;
-  border-width: .5px;
+  border-width: 0.5px;
   text-align: left;
 }
-.custom-table tr:hover{
+.custom-table tr:hover {
   background: none !important;
 }
-.custom-table td{
+.custom-table td {
   color: #1d202f;
   font-size: 14px;
   font-weight: 600;
 }
-.custom-table .stagiaire-div{
+.custom-table .stagiaire-div {
   display: flex;
   align-items: center;
   border-top: none;
   gap: 10px;
-  margin-bottom: -.5px;
+  margin-bottom: -0.5px;
 }
-.custom-table td .circle{
+.custom-table td .circle {
   width: 35px;
   height: 35px;
   background: url(../../images/user.jpg);
   background-size: cover;
   border-radius: 50px;
 }
-.custom-table .status-actif{
+.custom-table .status-actif {
   background: #bae8d5;
   color: #386d5a;
   border-radius: 5px;
@@ -69,7 +68,7 @@
   align-items: center;
   justify-content: center;
 }
-.custom-table .status-inactif{
+.custom-table .status-inactif {
   background: #f8d4d4;
   color: #888888;
   border-radius: 5px;
@@ -78,7 +77,7 @@
   align-items: center;
   justify-content: center;
 }
-.days-in-stage{
+.days-in-stage {
   color: #505a66;
 }
 .stagiaires-link-container{
@@ -129,17 +128,17 @@
   margin: 0;
   transition: ease 0.3s;
 }
-.action-modifier:hover{
+.action-modifier:hover {
   background: none; /* Darker purple color when hovered */
   color: #5b7afa;
 }
-.actions-td{
+.actions-td {
   display: flex;
   flex-direction: row;
   gap: 5px;
   margin-right: -60px;
 }
-.eye-link{
+.eye-link {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -149,11 +148,11 @@
   border-radius: 5px;
   transition: ease 0.3s;
 }
-.eye-link:hover{
+.eye-link:hover {
   background: #eaebef;
   border: 1px solid #a9aeb3;
 }
-.delete-link{
+.delete-link {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -162,21 +161,21 @@
   border-radius: 5px;
   transition: ease 0.3s;
 }
-.eye-link:hover{
+.eye-link:hover {
   background: #eaebef;
 }
-.delete-icon{
+.delete-icon {
   color: #e53127;
   font-size: 18px;
   font-weight: 900;
 }
-.teams-header{
+.teams-header {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
-.new-team-link{
+.new-team-link {
   background: #5a79f9;
   border: 1px solid #5a79f9;
   border-radius: 5px;
@@ -186,24 +185,24 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  transition: ease .3s;
+  transition: ease 0.3s;
   font-size: 17px;
   font-weight: 500;
 }
-.new-team-link:hover{
+.new-team-link:hover {
   background: none;
   color: #5a79f9;
   border-color: #5a79f9;
 }
-.image-top{
-  background: url('../../images/user.jpg');
+.image-top {
+  background: url("../../images/user.jpg");
   height: 70px;
   width: 70px;
   border: 2px solid #c8c9cc;
   border-radius: 50%;
   background-size: cover;
 }
-.last-stagiaires-container{
+.last-stagiaires-container {
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -217,7 +216,7 @@
   width: 100%;
   gap: 10px;
   row-gap: 40px;
-  transition: ease .5s;
+  transition: ease 0.5s;
 }
 .last-stagiaire-card {
   display: flex;
@@ -231,47 +230,47 @@
   transition: box-shadow 0.3s ease; /* Add transition for smooth effect */
   padding: 10px;
   gap: 5px;
-  transition: ease .5s;
+  transition: ease 0.5s;
 }
-.last-stagiaire-name{
+.last-stagiaire-name {
   font-size: 18px;
   font-weight: bold;
 }
-.last-stagiaire-formation{
+.last-stagiaire-formation {
   font-size: 16;
   color: #888888;
   text-transform: capitalize;
   font-weight: 400;
 }
-.voir-detail{
-  background:#dce1eb;
+.voir-detail {
+  background: #dce1eb;
   border: 1px solid #dce1eb;
   border-radius: 5px;
   width: 80%;
   color: #7c828d;
-  transition: ease .3s;
+  transition: ease 0.3s;
 }
-.voir-detail:hover{
+.voir-detail:hover {
   background: #eaebef;
   color: #7c828d;
   border: 1px solid #a9aeb3;
 }
 @media (max-width: 1280px) {
   .last-stagiaires-content {
-      grid-template-columns: repeat(3, 1fr);
-      transition: ease .5s;
+    grid-template-columns: repeat(3, 1fr);
+    transition: ease 0.5s;
   }
 }
 @media (max-width: 800px) {
   .last-stagiaires-content {
-      grid-template-columns: repeat(2, 1fr);
-      transition: ease .5s;
+    grid-template-columns: repeat(2, 1fr);
+    transition: ease 0.5s;
   }
 }
 @media (max-width: 550px) {
   .last-stagiaires-content {
-      grid-template-columns: repeat(1, 1fr);
-      transition: ease .5s;
+    grid-template-columns: repeat(1, 1fr);
+    transition: ease 0.5s;
   }
 }
 .download-links-wrapper {
