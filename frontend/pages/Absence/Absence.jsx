@@ -51,6 +51,8 @@ function Absence() {
   const [showPassword, setShowPassword] = useState(false);
   const fileInputRef = useRef(null);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
 
   const handleFileInputChange = (event) => {
     const file = event.target.files[0];
@@ -141,48 +143,193 @@ function Absence() {
       latestAbsence: "2023-05-12",
       status: "not-indicated",
     },
+    {
+      name: "Rami Salah-eddine",
+      image: stagiaireImage,
+      presenceDays: 22,
+      latestAbsence: "N/A",
+      status: "present",
+    },
+    {
+      name: "Boulaajoul Anass",
+      image: stagiaireImage,
+      presenceDays: 18,
+      latestAbsence: "2023-05-01",
+      status: "absent",
+    },
+    {
+      name: "Mohammed Ali",
+      image: stagiaireImage,
+      presenceDays: 16,
+      latestAbsence: "2023-05-10",
+      status: "not-indicated",
+    },
+    {
+      name: "Fatima Zahra",
+      image: stagiaireImage,
+      presenceDays: 20,
+      latestAbsence: "2023-05-05",
+      status: "absent",
+    },
+    {
+      name: "Hamza Alaoui",
+      image: stagiaireImage,
+      presenceDays: 22,
+      latestAbsence: "2023-04-30",
+      status: "present",
+    },
+    {
+      name: "Amina Chakir",
+      image: stagiaireImage,
+      presenceDays: 18,
+      latestAbsence: "2023-05-07",
+      status: "absent",
+    },
+    {
+      name: "Karim Hassan",
+      image: stagiaireImage,
+      presenceDays: 23,
+      latestAbsence: "N/A",
+      status: "present",
+    },
+    {
+      name: "Nadia Bousfiha",
+      image: stagiaireImage,
+      presenceDays: 21,
+      latestAbsence: "2023-05-12",
+      status: "not-indicated",
+    },
+    {
+      name: "Rami Salah-eddine",
+      image: stagiaireImage,
+      presenceDays: 22,
+      latestAbsence: "N/A",
+      status: "present",
+    },
+    {
+      name: "Boulaajoul Anass",
+      image: stagiaireImage,
+      presenceDays: 18,
+      latestAbsence: "2023-05-01",
+      status: "absent",
+    },
+    {
+      name: "Mohammed Ali",
+      image: stagiaireImage,
+      presenceDays: 16,
+      latestAbsence: "2023-05-10",
+      status: "not-indicated",
+    },
+    {
+      name: "Fatima Zahra",
+      image: stagiaireImage,
+      presenceDays: 20,
+      latestAbsence: "2023-05-05",
+      status: "absent",
+    },
+    {
+      name: "Hamza Alaoui",
+      image: stagiaireImage,
+      presenceDays: 22,
+      latestAbsence: "2023-04-30",
+      status: "present",
+    },
+    {
+      name: "Amina Chakir",
+      image: stagiaireImage,
+      presenceDays: 18,
+      latestAbsence: "2023-05-07",
+      status: "absent",
+    },
+    {
+      name: "Karim Hassan",
+      image: stagiaireImage,
+      presenceDays: 23,
+      latestAbsence: "N/A",
+      status: "present",
+    },
+    {
+      name: "Nadia Bousfiha",
+      image: stagiaireImage,
+      presenceDays: 21,
+      latestAbsence: "2023-05-12",
+      status: "not-indicated",
+    },
   ];
+
+  const pageCount = Math.ceil(stagiaires.length / itemsPerPage);
+
+  const pageNumbers = [];
+  for (let i = 1; i <= pageCount; i++) {
+    pageNumbers.push(i);
+  }
+
+  let paginationItems = [];
+
+  if (pageCount <= 5) {
+    paginationItems = pageNumbers;
+  } else {
+    if (currentPage <= 3) {
+      paginationItems = [...pageNumbers.slice(0, 5), "...", pageCount];
+    } else if (currentPage >= pageCount - 2) {
+      paginationItems = [
+        1,
+        "...",
+        ...pageNumbers.slice(currentPage - 2, currentPage + 1),
+        "...",
+        pageCount,
+      ];
+    }
+  }
+
   return (
     <div className="app">
       <Sidebar />
       <main className="main-content">
-        <div className="header">
-          <div className="admin-container">
-            <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
-            <div className="admin-info">
-              {user && (
-                <>
-                  <label className="admin-name">
-                    {user.nom} {user.prenom}
-                  </label>
-                  <label className="admin-post">{user.fonction}</label>
-                </>
-              )}
-            </div>
-            <div className="vertical-line"></div>
-            <div className="today-container">
-              <FontAwesomeIcon
-                className="calendar-icon"
-                icon={faCalendarDays}
-              />
-              <label className="today-label">{currentDate}</label>
-            </div>
-          </div>
-          <div className="search-container">
-            <FontAwesomeIcon className="search-icon" icon={faSearch} />
-            <input
-              className="search-input"
-              placeholder="Rechercher ..."
-              type="text"
-            />
-          </div>
-        </div>
+        <Header
+          userName={user?.fullName}
+          avatar={settingsImage}
+          currentDate={currentDate}
+        />
         <div className="abscence-container">
           <label>Listes des abscence</label>
           <div className="absence-management">
-            {stagiaires.map((stagiaire, index) => (
-              <StagiaireBox key={index} stagiaire={stagiaire} />
-            ))}
+            {stagiaires
+              .slice(
+                (currentPage - 1) * itemsPerPage,
+                currentPage * itemsPerPage
+              )
+              .map((stagiaire, index) => (
+                <StagiaireBox key={index} stagiaire={stagiaire} />
+              ))}
+          </div>
+          <div className="pagination">
+            {paginationItems.map((item, index) => {
+              if (typeof item === "number") {
+                return (
+                  <button
+                    key={index}
+                    className={`pagination-btn ${
+                      item === currentPage ? "active" : ""
+                    }`}
+                    onClick={() => setCurrentPage(item)}
+                  >
+                    {item}
+                  </button>
+                );
+              } else {
+                return (
+                  <button
+                    key={index}
+                    className={`pagination-btn`}
+                    style={{ cursor: "default", color: "#ced4da" }}
+                    disabled
+                  >
+                    {item}
+                  </button>
+                );
+              }
+            })}
           </div>
         </div>
       </main>

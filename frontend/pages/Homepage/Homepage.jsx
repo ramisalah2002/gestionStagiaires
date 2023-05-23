@@ -1,6 +1,12 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 import Header from "../../components/Header/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,12 +17,9 @@ import {
 import { faUser, faRectangleList } from "@fortawesome/free-regular-svg-icons";
 import "../Homepage/Homepage.css";
 
-
 function Homepage() {
   const [user, setUser] = useState(null);
   const navigateTo = useNavigate();
-
-
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -33,36 +36,42 @@ function Homepage() {
     day: "numeric",
     month: "short",
   });
-  
 
   return (
     <div className="app">
       <Sidebar />
       <main className="main-content">
-          <div className="header">
-            <div className="admin-container">
-              <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
-              <div className="admin-info">
-                {user && (
-                  <>
-                    <label className="admin-name">
-                      {user.nom} {user.prenom}
-                    </label>
-                    <label className="admin-post">{user.fonction}</label>
-                  </>
-                )}
-              </div>
-              <div className="vertical-line"></div>
-              <div className="today-container">
-                <FontAwesomeIcon className="calendar-icon" icon={faCalendarDays} />
-                <label className="today-label">{currentDate}</label>
-              </div>
+        <div className="header">
+          <div className="admin-container">
+            <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
+            <div className="admin-info">
+              {user && (
+                <>
+                  <label className="admin-name">
+                    {user.nom} {user.prenom}
+                  </label>
+                  <label className="admin-post">{user.fonction}</label>
+                </>
+              )}
             </div>
-            <div className="search-container">
-              <FontAwesomeIcon className="search-icon" icon={faSearch} />
-              <input className="search-input" placeholder="Rechercher ..." type="text" />
+            <div className="vertical-line"></div>
+            <div className="today-container">
+              <FontAwesomeIcon
+                className="calendar-icon"
+                icon={faCalendarDays}
+              />
+              <label className="today-label">{currentDate}</label>
             </div>
           </div>
+          <div className="search-container">
+            <FontAwesomeIcon className="search-icon" icon={faSearch} />
+            <input
+              className="search-input"
+              placeholder="Rechercher ..."
+              type="text"
+            />
+          </div>
+        </div>
         <div className="sections-container">
           <div className="stagiaires-container">
             <div className="stagiaires-header">

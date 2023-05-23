@@ -1,6 +1,7 @@
 .table-container {
   margin-top: 0px;
   overflow: hidden;
+  width: 100%;
 }
 
 .table-wrapper {
@@ -170,7 +171,7 @@
   border-radius: 50%;
   background-size: cover;
 }
-.last-stagiaires-container {
+.encadrants-container {
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -178,7 +179,7 @@
   justify-content: center;
   margin-bottom: 10px;
 }
-.last-stagiaires-content {
+.encadrant-content {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   width: 100%;
@@ -186,7 +187,7 @@
   row-gap: 40px;
   transition: ease 0.5s;
 }
-.last-stagiaire-card {
+.encadrant-card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -200,11 +201,11 @@
   gap: 5px;
   transition: ease 0.5s;
 }
-.last-stagiaire-name {
+.encadrant-name {
   font-size: 18px;
   font-weight: bold;
 }
-.last-stagiaire-formation {
+.encadrant-formation {
   font-size: 16;
   color: #888888;
   text-transform: capitalize;
@@ -223,6 +224,19 @@
   color: #7c828d;
   border: 1px solid #a9aeb3;
 }
+.new-encadrants {
+  width: 100%;
+  background: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: scroll;
+  margin: 0;
+}
+.new-encadrants label {
+  font-size: 1.5em;
+  font-weight: bold;
+}
 @media (max-width: 1280px) {
   .last-stagiaires-content {
     grid-template-columns: repeat(3, 1fr);
@@ -240,4 +254,44 @@
     grid-template-columns: repeat(1, 1fr);
     transition: ease 0.5s;
   }
+}
+
+.pagination {
+  margin-top: 40px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  border: 1px solid rgb(206, 212, 218);
+  background-color: rgb(255, 255, 255);
+  color: rgb(116, 120, 141);
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination-btn:hover {
+  background-color: #ced4da;
+  color: #4458b8;
+}
+
+.pagination-btn.active {
+  background-color: #4458b8;
+  color: rgb(255, 255, 255);
+}
+
+.pagination-dots {
+  margin-right: 5px;
+  color: rgb(116, 120, 141);
 }

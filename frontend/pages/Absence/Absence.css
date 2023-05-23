@@ -49,22 +49,22 @@
   padding: 20px;
   width: calc(100% / 4 - 60px);
   text-align: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-  transition: ease .5s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: ease 0.5s;
 }
 
 .stagiaire-box:hover {
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); 
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
-.stagiaire-box  .voir-detail{
-  background:#dce1eb;
+.stagiaire-box .voir-detail {
+  background: #dce1eb;
   border: 1px solid #dce1eb;
   border-radius: 5px;
   width: 200px;
   color: #7c828d;
-  transition: ease .3s;
+  transition: ease 0.3s;
 }
-.stagiaire-box .voir-detail:hover{
+.stagiaire-box .voir-detail:hover {
   background: #eaebef;
   color: #7c828d;
   border: 1px solid #a9aeb3;
@@ -167,4 +167,45 @@
   margin-bottom: 10px;
   border: 1px solid #f2f2f2;
   border-radius: 5px;
+}
+.pagination {
+  margin-top: 40px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto; /* Center the .pagination div */
+  margin-right: auto; /* Center the .pagination div */
+}
+
+.pagination-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  border: 1px solid rgb(206, 212, 218);
+  background-color: rgb(255, 255, 255);
+  color: rgb(116, 120, 141);
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination-btn:hover {
+  background-color: #ced4da;
+  color: #4458b8;
+}
+
+.pagination-btn.active {
+  background-color: #4458b8;
+  color: rgb(255, 255, 255);
+}
+
+.pagination-dots {
+  margin-right: 5px;
+  color: rgb(116, 120, 141);
 }

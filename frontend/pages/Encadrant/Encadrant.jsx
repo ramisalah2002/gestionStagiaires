@@ -64,7 +64,39 @@ function Encadrant() {
       poste: "Business Analyst",
     },
     {
-      name: "zdzezef Salah-eddine",
+      name: "Mohamed Salah",
+      poste: "Chef RH",
+    },
+    {
+      name: "Anass Sefriwi",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali Kmay",
+      poste: "Product Manager",
+    },
+    {
+      name: "Kechfi FATIMA Zahra",
+      poste: "UI/UX Designer",
+    },
+    {
+      name: "LBHIHI HAMZA ",
+      poste: "Data Scientist",
+    },
+    {
+      name: "Chakir Saad",
+      poste: "Backend Developer",
+    },
+    {
+      name: " SI KARIM L2a7madi",
+      poste: "Frontend Developer",
+    },
+    {
+      name: "NADIA Nadya",
+      poste: "Business Analyst",
+    },
+    {
+      name: "RAMI Salah-eddine",
       poste: "Chef RH",
     },
     {
@@ -95,14 +127,312 @@ function Encadrant() {
       name: "NADIA Bousfiha",
       poste: "Business Analyst",
     },
+    {
+      name: "Mohamed Salah",
+      poste: "Chef RH",
+    },
+    {
+      name: "Anass Sefriwi",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali Kmay",
+      poste: "Product Manager",
+    },
+    {
+      name: "Kechfi FATIMA Zahra",
+      poste: "UI/UX Designer",
+    },
+    {
+      name: "LBHIHI HAMZA ",
+      poste: "Data Scientist",
+    },
+    {
+      name: "Chakir Saad",
+      poste: "Backend Developer",
+    },
+    {
+      name: " SI KARIM L2a7madi",
+      poste: "Frontend Developer",
+    },
+    {
+      name: "NADIA Nadya",
+      poste: "Business Analyst",
+    },
+    {
+      name: "RAMI Salah-eddine",
+      poste: "Chef RH",
+    },
+    {
+      name: "BOULAAJOUL Anass",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali",
+      poste: "Product Manager",
+    },
+
+    {
+      name: "NADIA Bousfiha",
+      poste: "Business Analyst",
+    },
+    {
+      name: "Mohamed Salah",
+      poste: "Chef RH",
+    },
+    {
+      name: "Anass Sefriwi",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali Kmay",
+      poste: "Product Manager",
+    },
+    {
+      name: "Kechfi FATIMA Zahra",
+      poste: "UI/UX Designer",
+    },
+    {
+      name: "LBHIHI HAMZA ",
+      poste: "Data Scientist",
+    },
+    {
+      name: "Chakir Saad",
+      poste: "Backend Developer",
+    },
+    {
+      name: " SI KARIM L2a7madi",
+      poste: "Frontend Developer",
+    },
+    {
+      name: "NADIA Nadya",
+      poste: "Business Analyst",
+    },
+    {
+      name: "RAMI Salah-eddine",
+      poste: "Chef RH",
+    },
+    {
+      name: "BOULAAJOUL Anass",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali",
+      poste: "Product Manager",
+    },
+    {
+      name: "FATIMA Zahra",
+      poste: "UI/UX Designer",
+    },
+    {
+      name: "HAMZA Alaoui",
+      poste: "Data Scientist",
+    },
+    {
+      name: "AMINA Chakir",
+      poste: "Backend Developer",
+    },
+    {
+      name: "KARIM Hassan",
+      poste: "Frontend Developer",
+    },
+    {
+      name: "NADIA Bousfiha",
+      poste: "Business Analyst",
+    },
+    {
+      name: "Mohamed Salah",
+      poste: "Chef RH",
+    },
+    {
+      name: "Anass Sefriwi",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali Kmay",
+      poste: "Product Manager",
+    },
+    {
+      name: "Kechfi FATIMA Zahra",
+      poste: "UI/UX Designer",
+    },
+    {
+      name: "LBHIHI HAMZA ",
+      poste: "Data Scientist",
+    },
+    {
+      name: "Chakir Saad",
+      poste: "Backend Developer",
+    },
+    {
+      name: " SI KARIM L2a7madi",
+      poste: "Frontend Developer",
+    },
+    {
+      name: "NADIA Nadya",
+      poste: "Business Analyst",
+    },
+    {
+      name: "RAMI Salah-eddine",
+      poste: "Chef RH",
+    },
+    {
+      name: "BOULAAJOUL Anass",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali",
+      poste: "Product Manager",
+    },
+    {
+      name: "FATIMA Zahra",
+      poste: "UI/UX Designer",
+    },
+    {
+      name: "HAMZA Alaoui",
+      poste: "Data Scientist",
+    },
+    {
+      name: "AMINA Chakir",
+      poste: "Backend Developer",
+    },
+    {
+      name: "KARIM Hassan",
+      poste: "Frontend Developer",
+    },
+    {
+      name: "NADIA Bousfiha",
+      poste: "Business Analyst",
+    },
+    {
+      name: "Mohamed Salah",
+      poste: "Chef RH",
+    },
+    {
+      name: "Anass Sefriwi",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali Kmay",
+      poste: "Product Manager",
+    },
+    {
+      name: "Kechfi FATIMA Zahra",
+      poste: "UI/UX Designer",
+    },
+    {
+      name: "LBHIHI HAMZA ",
+      poste: "Data Scientist",
+    },
+    {
+      name: "Chakir Saad",
+      poste: "Backend Developer",
+    },
+    {
+      name: " SI KARIM L2a7madi",
+      poste: "Frontend Developer",
+    },
+    {
+      name: "NADIA Nadya",
+      poste: "Business Analyst",
+    },
+    {
+      name: "RAMI Salah-eddine",
+      poste: "Chef RH",
+    },
+    {
+      name: "BOULAAJOUL Anass",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali",
+      poste: "Product Manager",
+    },
+    {
+      name: "FATIMA Zahra",
+      poste: "UI/UX Designer",
+    },
+    {
+      name: "HAMZA Alaoui",
+      poste: "Data Scientist",
+    },
+    {
+      name: "AMINA Chakir",
+      poste: "Backend Developer",
+    },
+    {
+      name: "KARIM Hassan",
+      poste: "Frontend Developer",
+    },
+    {
+      name: "NADIA Bousfiha",
+      poste: "Business Analyst",
+    },
+    {
+      name: "Mohamed Salah",
+      poste: "Chef RH",
+    },
+    {
+      name: "Anass Sefriwi",
+      poste: "Developpeur Mobile",
+    },
+    {
+      name: "MOHAMED Ali Kmay",
+      poste: "Product Manager",
+    },
+    {
+      name: "Kechfi FATIMA Zahra",
+      poste: "UI/UX Designer",
+    },
+    {
+      name: "LBHIHI HAMZA ",
+      poste: "Data Scientist",
+    },
+    {
+      name: "Chakir Saad",
+      poste: "Backend Developer",
+    },
+    {
+      name: " SI KARIM L2a7madi",
+      poste: "Frontend Developer",
+    },
+    {
+      name: "NADIA Nadya",
+      poste: "Business Analyst",
+    },
   ];
 
   const pageCount = Math.ceil(encadrants.length / itemsPerPage);
 
   const pageNumbers = [];
-  for (let i = 0; i < pageCount; i++) {
+  for (let i = 1; i <= pageCount; i++) {
     pageNumbers.push(i);
   }
+
+  let paginationItems = [];
+
+  if (pageCount <= 5) {
+    paginationItems = pageNumbers;
+  } else {
+    if (currentPage <= 3) {
+      paginationItems = [...pageNumbers.slice(0, 5), "...", pageCount];
+    } else if (currentPage >= pageCount - 2) {
+      paginationItems = [
+        1,
+        "...",
+        ...pageNumbers.slice(pageCount - 5, pageCount),
+      ];
+    } else {
+      paginationItems = [
+        1,
+        "...",
+        ...pageNumbers.slice(currentPage - 2, currentPage + 1),
+        "...",
+        pageCount,
+      ];
+    }
+  }
+
   return (
     <div className="app">
       <Sidebar />
@@ -139,7 +469,7 @@ function Encadrant() {
           </div>
         </div>
         <div className="new-encadrants">
-          <h2>Liste des encadrants</h2>
+          <label>Liste des encadrants</label>
         </div>
         <div className="encadrant-content">
           {encadrants
@@ -154,15 +484,32 @@ function Encadrant() {
             ))}
         </div>
         <div className="pagination">
-          {[...Array(pageCount).keys()].map((number) => (
-            <button
-              key={number}
-              onClick={() => setCurrentPage(number + 1)}
-              style={{ color: number + 1 === currentPage ? "#000" : "#888" }}
-            >
-              {number + 1}
-            </button>
-          ))}
+          {paginationItems.map((item, index) => {
+            if (typeof item === "number") {
+              return (
+                <button
+                  key={index}
+                  className={`pagination-btn ${
+                    item === currentPage ? "active" : ""
+                  }`}
+                  onClick={() => setCurrentPage(item)}
+                >
+                  {item}
+                </button>
+              );
+            } else {
+              return (
+                <button
+                  key={index}
+                  className={`pagination-btn`}
+                  style={{ cursor: "default", color: "#ced4da" }}
+                  disabled
+                >
+                  {item}
+                </button>
+              );
+            }
+          })}
         </div>
       </main>
     </div>
