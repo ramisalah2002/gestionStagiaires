@@ -1,0 +1,108 @@
+.choice-container{
+    padding-top: 20px;
+    width: 100vw;
+    height: calc(100vh - 20px);
+    background: #f7f1d8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20%;
+}
+.background-img-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: 27%;
+    background: none;
+}
+.background-img-container img{
+    width: 100%;
+    height: auto;
+}
+.choices-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.choices-container .choice-wrapper{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: #000;
+}
+.choice-content-1{
+    background: #8fa3ae;
+    height: 200px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.choice-content-2{
+    background: #fb8d01;
+    height: 200px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.choice-content-3{
+    background: #857a8f;
+    height: 200px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.text-container{
+    width: 100%;
+    height: 60px;
+    background: #eeeeee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.text-container label{
+    font-size: 18px;
+    font-weight: bold;
+}
+.image-div-1{
+    margin-bottom: -20px;
+    border: 4px solid #9ea7dc;
+    z-index: 10;
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    background: url("../../images/adminBackground.jpg");
+    background-size: cover;
+}
+.image-div-2{
+    margin-bottom: -20px;
+    border: 4px solid #9ea7dc;
+    z-index: 10;
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    background: url("../../images/encadrantBackground.jpg");
+    background-size: cover;
+}
+.image-div-3{
+    margin-bottom: -20px;
+    border: 4px solid #9ea7dc;
+    z-index: 10;
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    background: url("../../images/stagieireBackground.jpg");
+    background-size: cover;
+}
+.choice-content{
+    transition: ease .3s;
+}
+.choice-wrapper:hover .choice-content{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    transition: ease .3s;
+    transform: scale(101%);
+}

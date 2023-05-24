@@ -19,6 +19,12 @@ import {
   faFileImport,
   faFileUpload,
   faMessage,
+  faGraduationCap,
+  faSchool,
+  faUserTie,
+  faMailReply,
+  faPhoneAlt,
+  faPhone,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faUser,
@@ -26,9 +32,11 @@ import {
   faPlusSquare,
   faEye,
   faTrashAlt,
+  faEnvelope,
+  faCalendar,
 } from '@fortawesome/free-regular-svg-icons';
 import './StagiaireProfile.css';
-import Sidebar from '../../components/Sidebar/Sidebar';
+import Sidebar from '../../components/Sidebar/Sidebar.jsx';
 import { FaFileDownload, FaFileImport } from 'react-icons/fa';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
@@ -69,7 +77,7 @@ function StagiaireProfile() {
     <div className="app">
       <Sidebar />
       <main className="main-content">
-        <div className='background-img-container'>
+        <div className='top-img-container'>
             <img src='../../images/logoMen.png'/>
         </div>
         <div className='user-container'>
@@ -87,10 +95,50 @@ function StagiaireProfile() {
         </div>
         <div className='stagiaire-info-container'>
             <div className='left-info-container'>
-
+                <div className='formation-container'>
+                    <div className='formation-header'>
+                        <FontAwesomeIcon className='formation-icon' icon={faGraduationCap} />
+                        Formation
+                    </div>
+                    <label>2ème année génie logiciel</label>
+                </div>
+                <div className='formation-container'>
+                    <div className='formation-header'>
+                        <FontAwesomeIcon className='formation-icon' icon={faSchool} />
+                        Établissement
+                    </div>
+                    <label>École supérieure de technologie - Salé</label>
+                </div>
+                <div className='formation-container'>
+                    <div className='formation-header'>
+                        <FontAwesomeIcon className='encadrant-icon' icon={faUserTie} />
+                        Encadrant
+                    </div>
+                    <label>BOULAAJOUL Anass</label>
+                </div>
             </div>
             <div className='right-info-container'>
-
+                <div className='cordonnees-container'>
+                    <div className='cordonnees-header'>
+                        <FontAwesomeIcon className='cordonnees-icon' icon={faEnvelope} />
+                        Email
+                    </div>
+                    <label>ramisalaheddine1@gmail.com</label>
+                </div>
+                <div className='cordonnees-container'>
+                    <div className='cordonnees-header'>
+                        <FontAwesomeIcon className='cordonnees-icon' icon={faPhone} />
+                        Téléphone
+                    </div>
+                    <label>+212 641442579</label>
+                </div>
+                <div className='cordonnees-container'>
+                    <div className='cordonnees-header'>
+                        <FontAwesomeIcon className='calendar-icon' icon={faCalendar} />
+                        Date de naissance
+                    </div>
+                    <label>22-12-1900</label>
+                </div>
             </div>
         </div>
       </main>
