@@ -29,6 +29,24 @@ class UtilisateurController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'email' => 'required|email|unique:utilisateur',
+            'password' => 'required',
+            'telephone' => 'required',
+            'dateNaissance' => 'required|date',
+            'genre' => 'required',
+            'CIN' => 'required|unique:utilisateur',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $imageName = null;
+        if ($request->file('image')) {
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+        }
+
         $utilisateur = new Utilisateur;
         $utilisateur->nom = $request->input('nom');
         $utilisateur->prenom = $request->input('prenom');
@@ -38,6 +56,7 @@ class UtilisateurController extends Controller
         $utilisateur->dateNaissance = $request->input('dateNaissance');
         $utilisateur->genre = $request->input('genre');
         $utilisateur->CIN = $request->input('CIN');
+        $utilisateur->image = $imageName;
         $utilisateur->save();
     }
 

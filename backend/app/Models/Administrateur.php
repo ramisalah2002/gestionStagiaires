@@ -25,6 +25,7 @@ class Administrateur extends Authenticatable
         'dateNaissance',
         'genre',
         'CIN',
+        'image',
     ];
     protected $hidden = [
         'password',

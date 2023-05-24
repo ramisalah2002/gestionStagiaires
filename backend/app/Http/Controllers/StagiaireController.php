@@ -29,6 +29,26 @@ class StagiaireController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'email' => 'required|email|unique:stagiaire',
+            'password' => 'required',
+            'telephone' => 'required',
+            'dateNaissance' => 'required|date',
+            'genre' => 'required',
+            'CIN' => 'required|unique:stagiaire',
+            'CNE' => 'required|unique:stagiaire',
+            'formation' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $imageName = null;
+        if ($request->file('image')) {
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+        }
+
         $stagiaire = new Stagiaire;
         $stagiaire->nom = $request->input('nom');
         $stagiaire->prenom = $request->input('prenom');
@@ -40,6 +60,8 @@ class StagiaireController extends Controller
         $stagiaire->CIN = $request->input('CIN');
         $stagiaire->CNE = $request->input('CNE');
         $stagiaire->formation = $request->input('formation');
+        $stagiaire->image = $imageName;
+        $stagiaire->save();
     }
 
     /**

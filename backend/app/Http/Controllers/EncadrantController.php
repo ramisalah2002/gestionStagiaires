@@ -29,6 +29,25 @@ class EncadrantController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'email' => 'required|email|unique:encadrant',
+            'password' => 'required',
+            'telephone' => 'required',
+            'dateNaissance' => 'required|date',
+            'genre' => 'required',
+            'CIN' => 'required|unique:encadrant',
+            'fonction' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $imageName = null;
+        if ($request->file('image')) {
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+        }
+
         $encadrant = new Encadrant;
         $encadrant->nom = $request->input('nom');
         $encadrant->prenom = $request->input('prenom');
@@ -39,9 +58,9 @@ class EncadrantController extends Controller
         $encadrant->genre = $request->input('genre');
         $encadrant->CIN = $request->input('CIN');
         $encadrant->fonction = $request->input('fonction');
+        $encadrant->image = $imageName;
         $encadrant->save();
-
-        return response()->json($encadrant);
+    //  return response()->json($encadrant);
     }
 
     /**
