@@ -1,4 +1,4 @@
-.background-img-container{
+.top-img-container{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -6,7 +6,7 @@
     width: 100%;
     background: #fff;
 }
-.background-img-container img{
+.top-img-container img{
     width: 100%;
     height: auto;
 }
@@ -76,6 +76,7 @@
     margin-top: 4px;
 }
 .stagiaire-info-container{
+    margin-top: 32px;
     display: flex;
     flex-direction: row;
     align-items: flex-start;

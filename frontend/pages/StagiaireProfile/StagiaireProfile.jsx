@@ -36,7 +36,7 @@ import {
   faCalendar,
 } from '@fortawesome/free-regular-svg-icons';
 import './StagiaireProfile.css';
-import Sidebar from '../../components/Sidebar/Sidebar';
+import Sidebar from '../../components/Sidebar/Sidebar.jsx';
 import { FaFileDownload, FaFileImport } from 'react-icons/fa';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
@@ -77,7 +77,7 @@ function StagiaireProfile() {
     <div className="app">
       <Sidebar />
       <main className="main-content">
-        <div className='background-img-container'>
+        <div className='top-img-container'>
             <img src='../../images/logoMen.png'/>
         </div>
         <div className='user-container'>

@@ -267,20 +267,20 @@ function Stagiaire() {
             <h2>Tous les stagiaires</h2>
             <div className="stagiaires-link-container">
             <input
-        ref={fileInputRef}
-        type="file"
-        accept=".xlsx"
-        style={{ display: 'none' }}
-        onChange={handleFileChange}
-      />
-      <Link className="import-stagiaires-link" onClick={handleImportStagiaires}>
-        <FontAwesomeIcon className="import-icon" icon={faFileUpload}></FontAwesomeIcon>
-      </Link>
-      {showImport && stagiairesList.length > 0 && (
-        <table>
-          {/* Table content */}
-        </table>
-      )}
+              ref={fileInputRef}
+              type="file"
+              accept=".xlsx"
+              style={{ display: 'none' }}
+              onChange={handleFileChange}
+            />
+            <Link className="import-stagiaires-link" onClick={handleImportStagiaires}>
+              <FontAwesomeIcon className="import-icon" icon={faFileUpload}></FontAwesomeIcon>
+            </Link>
+            {showImport && stagiairesList.length > 0 && (
+              <table>
+                {/* Table content */}
+              </table>
+            )}
                 <div className="download-links-wrapper" ref={containerRef}>
                   <Link className="download-stagiaires-link" onClick={toggleLinks}>
                     <FontAwesomeIcon className="download-icon" icon={faDownload}></FontAwesomeIcon>

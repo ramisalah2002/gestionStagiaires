@@ -15,6 +15,8 @@ import {
   faBars,
   faPlus,
   faClose,
+  faChartArea,
+  faComment,
 } from "@fortawesome/free-solid-svg-icons";
 import "./Sidebar.css";
 
@@ -140,19 +142,18 @@ function Sidebar() {
             </li>
             <li className={activeLink === "link5" ? "active-link" : "link"}>
               <Link onClick={() => handleLinkClick("link5")} to="/absence">
-                <FontAwesomeIcon
-                  className="small-icons"
-                  icon={faCalendarCheck}
-                />
+                <FontAwesomeIcon className="small-icons" icon={faCalendarCheck}/>
                 <label>{showSidebar ? "Absence" : null}</label>
               </Link>
             </li>
             <li className={activeLink === "link6" ? "active-link" : "link"}>
-              <Link
-                onClick={() => handleLinkClick("link6")}
-                to="/parametres"
-                className={activeLink === "link6" ? "active-link" : "link"}
-              >
+              <Link onClick={() => handleLinkClick("link6")} to="/discussions">
+                <FontAwesomeIcon className="small-icons" icon={faComment}/>
+                <label>{showSidebar ? "Discussions" : null}</label>
+              </Link>
+            </li>
+            <li className={activeLink === "link7" ? "active-link" : "link"}>
+              <Link onClick={() => handleLinkClick("link7")} to="/parametres">
                 <FontAwesomeIcon className="small-icons" icon={faGear} />
                 <label>{showSidebar ? "Paramètres" : null}</label>
               </Link>
