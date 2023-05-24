@@ -25,6 +25,7 @@ class Encadrant extends Authenticatable
         'genre',
         'CIN',
         'fonction',
+        'image',
     ];use HasFactory;
     protected $hidden = [
         'password',

@@ -29,6 +29,24 @@ class EncadrantController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'email' => 'required|email|unique:encadrant',
+            'password' => 'required',
+            'telephone' => 'required',
+            'dateNaissance' => 'required|date',
+            'genre' => 'required',
+            'CIN' => 'required|unique:encadrant',
+            'fonction' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $imageData = null;
+        if ($request->file('image')) {
+            $imageData = file_get_contents($request->file('image'));
+        }
+
         $encadrant = new Encadrant;
         $encadrant->nom = $request->input('nom');
         $encadrant->prenom = $request->input('prenom');
@@ -39,9 +57,9 @@ class EncadrantController extends Controller
         $encadrant->genre = $request->input('genre');
         $encadrant->CIN = $request->input('CIN');
         $encadrant->fonction = $request->input('fonction');
+        $encadrant->image = $imageData;
         $encadrant->save();
-
-        return response()->json($encadrant);
+    //  return response()->json($encadrant);
     }
 
     /**
@@ -66,8 +84,39 @@ class EncadrantController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'telephone' => 'required',
+            'dateNaissance' => 'required|date',
+            'genre' => 'required',
+            'CIN' => 'required',
+            'fonction' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
         $encadrant = Encadrant::find($id);
-        $encadrant->update($request->all());
+
+        if ($request->file('image')) {
+            $imageData = file_get_contents($request->file('image'));
+            $encadrant->image = $imageData;
+        }
+
+        $encadrant->nom = $request->input('nom');
+        $encadrant->prenom = $request->input('prenom');
+        $encadrant->email = $request->input('email');
+        $encadrant->password = \Hash::make($request->input('password'));
+        $encadrant->telephone = $request->input('telephone');
+        $encadrant->dateNaissance = $request->input('dateNaissance');
+        $encadrant->genre = $request->input('genre');
+        $encadrant->CIN = $request->input('CIN');
+        $encadrant->CNE = $request->input('CNE');
+        $encadrant->fonction = $request->input('fonction');
+
+        $encadrant->save();
+
         return response()->json('');
     }
 

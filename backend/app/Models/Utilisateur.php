@@ -21,6 +21,7 @@ class Utilisateur extends Model
         'dateNaissance',
         'genre',
         'CIN',
+        'image',
     ];
 
     protected $hidden = [

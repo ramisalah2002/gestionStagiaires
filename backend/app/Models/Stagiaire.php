@@ -25,6 +25,7 @@ class Stagiaire extends Authenticatable
         'CIN',
         'CNE',
         'formation',
+        'image',
     ];
 
     protected $hidden = [
