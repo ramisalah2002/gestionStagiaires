@@ -1,50 +1,18 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import LoginPage from '../../pages/LoginPage/LoginPage';
-import { saveAs } from 'file-saver';
-import ExcelJS from 'exceljs';
-
 import {
   faSearch,
-  faCircleUser,
-  faCalendarDays,
-  faPen,
-  faPlus,
-  faStopwatch,
-  faChevronRight,
-  faDownload,
-  faCloudDownloadAlt,
-  faFileImport,
-  faFileUpload,
-  faMessage,
-  faGraduationCap,
-  faSchool,
-  faUserTie,
-  faMailReply,
-  faPhoneAlt,
-  faPhone,
+  faPaperPlane
 } from '@fortawesome/free-solid-svg-icons';
-import {
-  faUser,
-  faRectangleList,
-  faPlusSquare,
-  faEye,
-  faTrashAlt,
-  faEnvelope,
-  faCalendar,
-} from '@fortawesome/free-regular-svg-icons';
 import './Chat.css';
 import Sidebar from '../../components/Sidebar/Sidebar.jsx';
-import { FaFileDownload, FaFileImport } from 'react-icons/fa';
-import jsPDF from 'jspdf';
-import 'jspdf-autotable';
-import readXlsxFile from 'read-excel-file';
 
 function StagiaireProfile() {
   const [user, setUser] = useState(null);
   const navigateTo = useNavigate();
+  
 
   useEffect(() => {
     const userData = localStorage.getItem('user');
@@ -98,10 +66,10 @@ function StagiaireProfile() {
       <main className="main-content">
         <div className='chat-container'>
             <div className="left-section">
-                <div className="search-chat">
+                <form className="search-chat">
                   <FontAwesomeIcon className="search-icon" icon={faSearch} />
                   <input className="search-input" placeholder="Rechercher ..." type="text" />
-                </div>
+                </form>
                 <div className="profiles-container">
                   {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((profileId) => (
                     <div
@@ -112,7 +80,7 @@ function StagiaireProfile() {
                       <div className="profile-img"></div>
                       <div className="profile-info">
                         <div className="profile-header">
-                          <div className="profile-name">Rami salah-eddine</div>
+                          <div className="profile-name">BOULAAJOUL Anass</div>
                           <div className="profile-date">09:00</div>
                         </div>
                         <label className="last-message">Bonjour Salah-eddine</label>
@@ -121,20 +89,134 @@ function StagiaireProfile() {
                   ))}
                 </div>
             </div>
-            <div className="right-section" style={{ backgroundColor: activeProfile ? '#d9dbe3' : '#fff' }}>
+            <div className="right-section" style={{ backgroundColor: activeProfile ? '#f0f2f5' : '#fff' }}>
               {activeProfile ? (
-                <div className="second-profile-section">
-                  <div className="second-profile-img"></div>
-                  <label className="second-profile-name">Boulaajoul anass</label>
-                </div>
+                <>
+                  <div className="second-profile-section">
+                    <div className="second-profile-img"></div>
+                    <label className="second-profile-name">BOULAAJOUL Anass</label>
+                  </div>
+                  <div className="chat-content">
+                    <div className="chat-message-sender">
+                      <div className='sender-img'></div>
+                      <div className="sender-message-content">
+                        <label>Rami salah-eddine</label>
+                        <p >
+                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
+                        </p>
+                      </div>
+                    </div>
+                    <div className="chat-message-reciever">
+                      <div className="sender-message-content">
+                        <p >
+                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
+                        </p>
+                      </div>
+                      <div className='sender-img'></div>
+                    </div>
+                    <div className="chat-message-sender">
+                      <div className='sender-img'></div>
+                      <div className="sender-message-content">
+                        <label>Rami salah-eddine</label>
+                        <p >
+                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
+                        </p>
+                      </div>
+                    </div>
+                    <div className="chat-message-reciever">
+                      <div className="sender-message-content">
+                        <p >
+                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
+                        </p>
+                      </div>
+                      <div className='sender-img'></div>
+                    </div>
+                    <div className="chat-message-sender">
+                      <div className='sender-img'></div>
+                      <div className="sender-message-content">
+                        <label>Rami salah-eddine</label>
+                        <p >
+                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
+                        </p>
+                      </div>
+                    </div>
+                    <div className="chat-message-reciever">
+                      <div className="sender-message-content">
+                        <p >
+                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
+                        </p>
+                      </div>
+                      <div className='sender-img'></div>
+                    </div>
+                    <div className="chat-message-sender">
+                      <div className='sender-img'></div>
+                      <div className="sender-message-content">
+                        <label>Rami salah-eddine</label>
+                        <p >
+                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
+                        </p>
+                      </div>
+                    </div>
+                    <div className="chat-message-reciever">
+                      <div className="sender-message-content">
+                        <p >
+                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
+                        </p>
+                      </div>
+                      <div className='sender-img'></div>
+                    </div>
+                    <div className="chat-message-sender">
+                      <div className='sender-img'></div>
+                      <div className="sender-message-content">
+                        <label>Rami salah-eddine</label>
+                        <p >
+                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
+                        </p>
+                      </div>
+                    </div>
+                    <div className="chat-message-reciever">
+                      <div className="sender-message-content">
+                        <p >
+                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
+                        </p>
+                      </div>
+                      <div className='sender-img'></div>
+                    </div>
+                    <div className="chat-message-sender">
+                      <div className='sender-img'></div>
+                      <div className="sender-message-content">
+                        <label>Rami salah-eddine</label>
+                        <p >
+                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
+                        </p>
+                      </div>
+                    </div>
+                    <div className="chat-message-reciever">
+                      <div className="sender-message-content">
+                        <p >
+                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
+                        </p>
+                      </div>
+                      <div className='sender-img'></div>
+                    </div>
+                    
+                  </div>
+                  <form className="bottom-div">
+                    <input className='message-input' placeholder='Tapez votre message' type="text"></input>
+                    <Link className='send-message-link'>
+                      <FontAwesomeIcon className="send-icon" icon={faPaperPlane} />
+                    </Link>
+                  </form>
+                </>
               ) : (
                 <div className='default-message'>
-                    <img src='../../images/test.jpg'></img>
-                    <label className='menstage-label'>MENStage</label>
-                    <label className='menstage-paragraph'>Échangez vos messages entre vous en toutes sécurité</label>
+                  <img src='../../images/test.jpg' alt="Default Message" />
+                  <label className='menstage-label'>MENStage</label>
+                  <label className='menstage-paragraph'>Échangez vos messages entre vous en toute sécurité</label>
                 </div>
               )}
             </div>
+
         </div>
       </main>
     </div>
