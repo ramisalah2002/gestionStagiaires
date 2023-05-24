@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('genre');
             $table->string('CIN');
             $table->string('fonction');
-            $table->string('image')->nullable();
+            $table->binary('image')->nullable();
 
             $table->timestamps();
         });

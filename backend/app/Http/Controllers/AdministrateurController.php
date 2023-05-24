@@ -43,10 +43,9 @@ class AdministrateurController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $imageName = null;
+        $imageData = null;
         if ($request->file('image')) {
-            $imageName = time().'.'.$request->image->extension();
-            $request->image->move(public_path('images'), $imageName);
+            $imageData = file_get_contents($request->file('image'));
         }
 
         $administrateur = new Administrateur;
@@ -59,7 +58,7 @@ class AdministrateurController extends Controller
         $administrateur->dateNaissance = $request->input('dateNaissance');
         $administrateur->genre = $request->input('genre');
         $administrateur->CIN = $request->input('CIN');
-        $administrateur->image = $imageName;
+        $administrateur->image = $imageData;
         $administrateur->save();
     }
 
@@ -85,8 +84,37 @@ class AdministrateurController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'telephone' => 'required',
+            'dateNaissance' => 'required|date',
+            'genre' => 'required',
+            'CIN' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
         $administrateur = Administrateur::find($id);
-        $administrateur->update($request->all());
+
+        if ($request->file('image')) {
+            $imageData = file_get_contents($request->file('image'));
+            $administrateur->image = $imageData;
+        }
+
+        $administrateur->nom = $request->input('nom');
+        $administrateur->prenom = $request->input('prenom');
+        $administrateur->email = $request->input('email');
+        $administrateur->password = \Hash::make($request->input('password'));
+        $administrateur->telephone = $request->input('telephone');
+        $administrateur->dateNaissance = $request->input('dateNaissance');
+        $administrateur->genre = $request->input('genre');
+        $administrateur->CIN = $request->input('CIN');
+        $administrateur->CNE = $request->input('CNE');
+
+        $administrateur->save();
+
         return response()->json('');
     }
 

@@ -41,10 +41,9 @@ class UtilisateurController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $imageName = null;
+        $imageData = null;
         if ($request->file('image')) {
-            $imageName = time().'.'.$request->image->extension();
-            $request->image->move(public_path('images'), $imageName);
+            $imageData = file_get_contents($request->file('image'));
         }
 
         $utilisateur = new Utilisateur;
@@ -56,7 +55,7 @@ class UtilisateurController extends Controller
         $utilisateur->dateNaissance = $request->input('dateNaissance');
         $utilisateur->genre = $request->input('genre');
         $utilisateur->CIN = $request->input('CIN');
-        $utilisateur->image = $imageName;
+        $utilisateur->image = $imageData;
         $utilisateur->save();
     }
 
@@ -82,8 +81,36 @@ class UtilisateurController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'telephone' => 'required',
+            'dateNaissance' => 'required|date',
+            'genre' => 'required',
+            'CIN' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
         $utilisateur = Utilisateur::find($id);
-        $utilisateur->update($request->all());
+
+        if ($request->file('image')) {
+            $imageData = file_get_contents($request->file('image'));
+            $utilisateur->image = $imageData;
+        }
+
+        $utilisateur->nom = $request->input('nom');
+        $utilisateur->prenom = $request->input('prenom');
+        $utilisateur->email = $request->input('email');
+        $utilisateur->password = \Hash::make($request->input('password'));
+        $utilisateur->telephone = $request->input('telephone');
+        $utilisateur->dateNaissance = $request->input('dateNaissance');
+        $utilisateur->genre = $request->input('genre');
+        $utilisateur->CIN = $request->input('CIN');
+
+        $utilisateur->save();
+
         return response()->json('');
     }
 

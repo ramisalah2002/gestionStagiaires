@@ -43,10 +43,9 @@ class StagiaireController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $imageName = null;
+        $imageData = null;
         if ($request->file('image')) {
-            $imageName = time().'.'.$request->image->extension();
-            $request->image->move(public_path('images'), $imageName);
+            $imageData = file_get_contents($request->file('image'));
         }
 
         $stagiaire = new Stagiaire;
@@ -60,7 +59,7 @@ class StagiaireController extends Controller
         $stagiaire->CIN = $request->input('CIN');
         $stagiaire->CNE = $request->input('CNE');
         $stagiaire->formation = $request->input('formation');
-        $stagiaire->image = $imageName;
+        $stagiaire->image = $imageData;
         $stagiaire->save();
     }
 
@@ -86,8 +85,40 @@ class StagiaireController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'telephone' => 'required',
+            'dateNaissance' => 'required|date',
+            'genre' => 'required',
+            'CIN' => 'required',
+            'CNE' => 'required|unique:stagiaire',
+            'formation' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
         $stagiaire = Stagiaire::find($id);
-        $stagiaire->update($request->all());
+
+        if ($request->file('image')) {
+            $imageData = file_get_contents($request->file('image'));
+            $stagiaire->image = $imageData;
+        }
+
+        $stagiaire->nom = $request->input('nom');
+        $stagiaire->prenom = $request->input('prenom');
+        $stagiaire->email = $request->input('email');
+        $stagiaire->password = \Hash::make($request->input('password'));
+        $stagiaire->telephone = $request->input('telephone');
+        $stagiaire->dateNaissance = $request->input('dateNaissance');
+        $stagiaire->genre = $request->input('genre');
+        $stagiaire->CIN = $request->input('CIN');
+        $stagiaire->CNE = $request->input('CNE');
+        $stagiaire->formation = $request->input('formation');
+
+        $stagiaire->save();
+
         return response()->json('');
     }
 
