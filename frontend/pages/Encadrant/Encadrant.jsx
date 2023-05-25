@@ -10,10 +10,23 @@ import "./Encadrant.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
 
 function Encadrant() {
+  const [searchResults, setSearchResults] = useState([]); // New state for the search results
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchingText, setSearchingText] = useState("");
   const [user, setUser] = useState(null);
   const navigateTo = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
+
+  const handleSearchTermChange = (searchTerm) => {
+    // Filter the stagiaires array when the search term changes
+    const results = encadrants.filter((encadrant) =>
+      encadrant.name.toLowerCase().startsWith(searchTerm.toLowerCase())
+    );
+    setSearchResults(results);
+    setIsSearching(searchTerm !== "");
+    setSearchingText(searchTerm !== "" ? "Résultat de la recherche" : "");
+  };
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -465,52 +478,77 @@ function Encadrant() {
               className="search-input"
               placeholder="Rechercher ..."
               type="text"
+              onChange={(event) => handleSearchTermChange(event.target.value)}
             />
           </div>
         </div>
-        <div className="new-encadrants">
-          <label>Liste des encadrants</label>
-        </div>
-        <div className="encadrant-content">
-          {encadrants
-            .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
-            .map((encadrant, index) => (
-              <div key={index} className="encadrant-card">
-                <div className="image-top"></div>
-                <label className="encadrant-name">{encadrant.name}</label>
-                <label className="encadrant-poste">{encadrant.poste}</label>
-                <Link className="voir-detail">Voir détail</Link>
-              </div>
-            ))}
-        </div>
-        <div className="pagination">
-          {paginationItems.map((item, index) => {
-            if (typeof item === "number") {
-              return (
-                <button
-                  key={index}
-                  className={`pagination-btn ${
-                    item === currentPage ? "active" : ""
-                  }`}
-                  onClick={() => setCurrentPage(item)}
-                >
-                  {item}
-                </button>
-              );
-            } else {
-              return (
-                <button
-                  key={index}
-                  className={`pagination-btn`}
-                  style={{ cursor: "default", color: "#ced4da" }}
-                  disabled
-                >
-                  {item}
-                </button>
-              );
-            }
-          })}
-        </div>
+        {isSearching && (
+          <>
+            <div className="new-encadrants">
+              <label>{searchingText}</label>
+            </div>
+            <div className="encadrant-content">
+              {searchResults.map((encadrant, index) => (
+                <div key={index} className="encadrant-card">
+                  <div className="image-top"></div>
+                  <label className="encadrant-name">{encadrant.name}</label>
+                  <label className="encadrant-poste">{encadrant.poste}</label>
+                  <Link className="voir-detail">Voir détail</Link>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+        {!isSearching && (
+          <>
+            <div className="new-encadrants">
+              <label>Liste des encadrants</label>
+            </div>
+            <div className="encadrant-content">
+              {encadrants
+                .slice(
+                  (currentPage - 1) * itemsPerPage,
+                  currentPage * itemsPerPage
+                )
+                .map((encadrant, index) => (
+                  <div key={index} className="encadrant-card">
+                    <div className="image-top"></div>
+                    <label className="encadrant-name">{encadrant.name}</label>
+                    <label className="encadrant-poste">{encadrant.poste}</label>
+                    <Link className="voir-detail">Voir détail</Link>
+                  </div>
+                ))}
+            </div>
+            <div className="pagination">
+              {paginationItems.map((item, index) => {
+                if (typeof item === "number") {
+                  return (
+                    <button
+                      key={index}
+                      className={`pagination-btn ${
+                        item === currentPage ? "active" : ""
+                      }`}
+                      onClick={() => setCurrentPage(item)}
+                    >
+                      {item}
+                    </button>
+                  );
+                } else {
+                  return (
+                    <button
+                      key={index}
+                      className={`pagination-btn`}
+                      style={{ cursor: "default", color: "#ced4da" }}
+                      disabled
+                    >
+                      {item}
+                    </button>
+                  );
+                }
+              })}
+            </div>
+          </>
+        )}
       </main>
     </div>
   );

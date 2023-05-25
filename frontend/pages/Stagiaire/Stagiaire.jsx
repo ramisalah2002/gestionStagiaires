@@ -300,29 +300,27 @@ function Stagiaire() {
             />
           </div>
         </div>
-        <div className="last-stagiaires-container-search">
-          {isSearching && (
-            <>
-              <div className="new-stagiaires">
-                <h2>{searchingText}</h2>
-              </div>
-              <div className="last-stagiaires-content-search">
-                {searchResults.map((stagiaire) => (
-                  <div key={stagiaire.id} className="last-stagiaire-card">
-                    <div className="image-top"></div>
-                    <label className="last-stagiaire-name">
-                      {stagiaire.nom}
-                    </label>
-                    <label className="last-stagiaire-formation">
-                      2ème année génie logiciel
-                    </label>
-                    <Link className="voir-detail">Voir détail</Link>
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
-        </div>
+
+        {isSearching && (
+          <div className="last-stagiaires-container-search">
+            <div className="new-stagiaires">
+              <h2>{searchingText}</h2>
+            </div>
+            <div className="last-stagiaires-content-search">
+              {searchResults.map((stagiaire) => (
+                <div key={stagiaire.id} className="last-stagiaire-card">
+                  <div className="image-top"></div>
+                  <label className="last-stagiaire-name">{stagiaire.nom}</label>
+                  <label className="last-stagiaire-formation">
+                    2ème année génie logiciel
+                  </label>
+                  <Link className="voir-detail">Voir détail</Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {!isSearching && (
           <>
             <div className="last-stagiaires-container-search">

@@ -1,6 +1,12 @@
-import React,{useState,useEffect, useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 import Header from "../../components/Header/Header";
 import { FaTrash } from "react-icons/fa";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -51,90 +57,195 @@ function Parametres() {
   const handleDeleteButtonClick = () => {
     setSelectedImage(null);
   };
+  const [searchResults, setSearchResults] = useState([]); // New state for the search results
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchingText, setSearchingText] = useState("");
+
+  const handleSearchTermChange = (searchTerm) => {
+    // Filter the stagiaires array when the search term changes
+    const results = stagiaires.filter((stagiaire) =>
+      stagiaire.nom.toLowerCase().startsWith(searchTerm.toLowerCase())
+    );
+    setSearchResults(results);
+    setIsSearching(searchTerm !== "");
+    setSearchingText(searchTerm !== "" ? "Résultat de la recherche" : "");
+  };
+
+  const stagiaires = [
+    {
+      id: 1,
+      nom: "Rami Salah-eddine",
+      email: "ramisalah2002@gmail.com",
+      status: "Actif",
+      joursStage: "4 jours",
+    },
+    {
+      id: 2,
+      nom: "John Doe",
+      email: "johndoe@example.com",
+      status: "Terminé",
+      joursStage: "10 jours",
+    },
+    {
+      id: 3,
+      nom: "Rami Salah-eddine",
+      email: "ramisalah2002@gmail.com",
+      status: "Actif",
+      joursStage: "4 jours",
+    },
+    {
+      id: 4,
+      nom: "John Doe",
+      email: "johndoe@example.com",
+      status: "Terminé",
+      joursStage: "10 jours",
+    },
+    {
+      id: 5,
+      nom: "John Doe",
+      email: "johndoe@example.com",
+      status: "Terminé",
+      joursStage: "10 jours",
+    },
+    {
+      id: 6,
+      nom: "Rami Salah-eddine",
+      email: "ramisalah2002@gmail.com",
+      status: "Actif",
+      joursStage: "4 jours",
+    },
+    {
+      id: 7,
+      nom: "John Doe",
+      email: "johndoe@example.com",
+      status: "Terminé",
+      joursStage: "10 jours",
+    },
+  ];
 
   return (
     <div className="app">
       <Sidebar />
       <main className="main-content">
-          <div className="header">
-            <div className="admin-container">
-              <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
-              <div className="admin-info">
-                {user && (
-                  <>
-                    <label className="admin-name">
-                      {user.nom} {user.prenom}
-                    </label>
-                    <label className="admin-post">{user.fonction}</label>
-                  </>
-                )}
-              </div>
-              <div className="vertical-line"></div>
-              <div className="today-container">
-                <FontAwesomeIcon className="calendar-icon" icon={faCalendarDays} />
-                <label className="today-label">{currentDate}</label>
-              </div>
+        <div className="header">
+          <div className="admin-container">
+            <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
+            <div className="admin-info">
+              {user && (
+                <>
+                  <label className="admin-name">
+                    {user.nom} {user.prenom}
+                  </label>
+                  <label className="admin-post">{user.fonction}</label>
+                </>
+              )}
             </div>
-            <div className="search-container">
-              <FontAwesomeIcon className="search-icon" icon={faSearch} />
-              <input className="search-input" placeholder="Rechercher ..." type="text" />
+            <div className="vertical-line"></div>
+            <div className="today-container">
+              <FontAwesomeIcon
+                className="calendar-icon"
+                icon={faCalendarDays}
+              />
+              <label className="today-label">{currentDate}</label>
             </div>
           </div>
-        <div className="sections-container">
-          <div className="parametres-container">
-            <div className="parametres-top-container">
-              <div className="parametres-top-section">
-                <div className="Parametres-header">
-                  <label className="Parametres-title">Mon Profil</label>
-                  <label className="Parametres-underTitle">
-                    Gérez les paramètres de votre profil
+          <div className="search-container">
+            <FontAwesomeIcon className="search-icon" icon={faSearch} />
+            <input
+              className="search-input"
+              placeholder="Rechercher ..."
+              type="text"
+              onChange={(event) => handleSearchTermChange(event.target.value)}
+            />
+          </div>
+        </div>
+        {isSearching && (
+          <div className="last-stagiaires-container-search">
+            <div className="new-stagiaires">
+              <h2>{searchingText}</h2>
+            </div>
+            <div className="last-stagiaires-content">
+              {searchResults.slice(0, 4).map((stagiaire) => (
+                <div key={stagiaire.id} className="last-stagiaire-card">
+                  <div className="image-top"></div>
+                  <label className="last-stagiaire-name">{stagiaire.nom}</label>
+                  <label className="last-stagiaire-formation">
+                    2ème année génie logiciel
                   </label>
+                  <Link className="voir-detail">Voir détail</Link>
                 </div>
-                <div className="Parametres-content">
-                  <div className="Parametres-photoProfil">
-                    <div className="params-img-div">
-                      <label className="Parametres-imageTitle">
-                        Votre photo de Profil
-                      </label>
-                      <div
-                        className="Parametres-img"
-                        style={{
-                          backgroundImage: selectedImage ? `url(${selectedImage})` : "url(../../images/user.jpg)",
-                        }}
-                      ></div>
-                    </div>
-                    <div className="photoProfil-buttons">
-                    <input
-                      ref={fileInputRef}
-                      type="file"
-                      style={{ display: 'none' }}
-                      accept="image/*"
-                      onChange={handleFileInputChange}
-                    />
-                      <button className="photoProfil-button change-photo" onClick={handleButtonClick}>
-                        Changer de Photo
-                      </button>
-                      <button className="photoProfil-button delete-photo" onClick={handleDeleteButtonClick}>
-                        <FaTrash size={20} color="red" /> Supprimer
-                      </button>
-                    </div>
-                  </div>
-                  <div className="photoProfil-bottom">
-                    <label>
-                      Ajoutez votre photo. La taille recommandée est 256x256px
+              ))}
+            </div>
+          </div>
+        )}
+        {!isSearching && (
+          <div className="sections-container">
+            <div className="parametres-container">
+              <div className="parametres-top-container">
+                <div className="parametres-top-section">
+                  <div className="Parametres-header">
+                    <label className="Parametres-title">Mon Profil</label>
+                    <label className="Parametres-underTitle">
+                      Gérez les paramètres de votre profil
                     </label>
                   </div>
+                  <div className="Parametres-content">
+                    <div className="Parametres-photoProfil">
+                      <div className="params-img-div">
+                        <label className="Parametres-imageTitle">
+                          Votre photo de Profil
+                        </label>
+                        <div
+                          className="Parametres-img"
+                          style={{
+                            backgroundImage: selectedImage
+                              ? `url(${selectedImage})`
+                              : "url(../../images/user.jpg)",
+                          }}
+                        ></div>
+                      </div>
+                      <div className="photoProfil-buttons">
+                        <input
+                          ref={fileInputRef}
+                          type="file"
+                          style={{ display: "none" }}
+                          accept="image/*"
+                          onChange={handleFileInputChange}
+                        />
+                        <button
+                          className="photoProfil-button change-photo"
+                          onClick={handleButtonClick}
+                        >
+                          Changer de Photo
+                        </button>
+                        <button
+                          className="photoProfil-button delete-photo"
+                          onClick={handleDeleteButtonClick}
+                        >
+                          <FaTrash size={20} color="red" /> Supprimer
+                        </button>
+                      </div>
+                    </div>
+                    <div className="photoProfil-bottom">
+                      <label>
+                        Ajoutez votre photo. La taille recommandée est 256x256px
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div className="parametres-top-section-img">
+                  <img src="../../images/settingsImg.png"></img>
                 </div>
               </div>
-              <div className="parametres-top-section-img">
-                <img src="../../images/settingsImg.png"></img>
-              </div>
-            </div>
-            <div className="parametres-infos-container">
-              <div className="parametres-section">
+              <div className="parametres-infos-container">
+                <div className="parametres-section">
                   <div className="form-input-group">
                     <label>Nom</label>
-                    <input type="text" name="nom" placeholder="Entrez votre nom" />
+                    <input
+                      type="text"
+                      name="nom"
+                      placeholder="Entrez votre nom"
+                    />
                   </div>
                   <div className="form-input-group">
                     <label>Prénom</label>
@@ -152,42 +263,45 @@ function Parametres() {
                       placeholder="Entrez votre email"
                     />
                   </div>
-              </div>
-              <div className="parametres-section">
-                <div className="form-input-group password-input-group">
-                  <label htmlFor="password">Mot de passe actuel</label>
-                  <div className="password-input-container">
+                </div>
+                <div className="parametres-section">
+                  <div className="form-input-group password-input-group">
+                    <label htmlFor="password">Mot de passe actuel</label>
+                    <div className="password-input-container">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        id="password"
+                        placeholder="Votre mot de passe"
+                      />
+                      <span
+                        className="toggle-password-visibility"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="form-input-group">
+                    <label>Nouveau Mot de passe</label>
                     <input
-                      type={showPassword ? "text" : "password"}
-                      id="password"
-                      placeholder="Votre mot de passe"
+                      type="password"
+                      name="telephone"
+                      placeholder="Entrez le nouveau mot de passe"
                     />
-                    <span
-                      className="toggle-password-visibility"
-                      onClick={() => setShowPassword(!showPassword)}
-                    >
-                      {showPassword ? <FaEyeSlash /> : <FaEye />}
-                    </span>
+                  </div>
+                  <div className="form-input-group">
+                    <label>Confirmez Mot de passe</label>
+                    <input
+                      type="password"
+                      name="dateNaissance"
+                      placeholder="Confirmez le nouveau mot de passe"
+                    />
                   </div>
                 </div>
-                <div className="form-input-group">
-                  <label>Nouveau Mot de passe</label>
-                  <input
-                    type="password"
-                    name="telephone"
-                    placeholder="Entrez le nouveau mot de passe"
-                  />
-                </div>
-                <div className="form-input-group">
-                  <label>Confirmez Mot de passe</label>
-                  <input type="password" name="dateNaissance"
-                  placeholder="Confirmez le nouveau mot de passe" />
-                </div>
               </div>
-            </div>
-            <div className="paramatres-infos-container">
-              <div className="parametres-section-last">
-                <div className="section-last-div">
+              <div className="paramatres-infos-container">
+                <div className="parametres-section-last">
+                  <div className="section-last-div">
                     <div className="form-input-group">
                       <label>Téléphone</label>
                       <input
@@ -201,8 +315,8 @@ function Parametres() {
                       <label>Date de naissance</label>
                       <input type="date" name="dateNaissance" />
                     </div>
-                </div>
-                <div className="section-last-div">
+                  </div>
+                  <div className="section-last-div">
                     <div className="form-input-group">
                       <label>Genre</label>
                       <select name="genre">
@@ -214,16 +328,21 @@ function Parametres() {
 
                     <div className="form-input-group">
                       <label>CIN</label>
-                      <input type="text" name="cin" placeholder="Entrez votre CIN" />
+                      <input
+                        type="text"
+                        name="cin"
+                        placeholder="Entrez votre CIN"
+                      />
                     </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="save-div">
-              <Link className="save-link">Enregistrer les modifications</Link>
+              <div className="save-div">
+                <Link className="save-link">Enregistrer les modifications</Link>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </main>
     </div>
   );

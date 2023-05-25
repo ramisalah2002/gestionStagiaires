@@ -1,7 +1,13 @@
-import React from "react";
-import { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import { useRef } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 import Header from "../../components/Header/Header";
 import { FaTrash } from "react-icons/fa";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -68,12 +74,24 @@ const EquipesBox = ({ equipes }) => (
 );
 
 function Parametres() {
+  const [searchResults, setSearchResults] = useState([]); // New state for the search results
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchingText, setSearchingText] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
   const currentDate = new Date().toLocaleString("fr-FR", {
     day: "numeric",
     month: "short",
   });
+  const handleSearchTermChange = (searchTerm) => {
+    // Filter the stagiaires array when the search term changes
+    const results = equipes.filter((equipe) =>
+      equipe.nomProjet.toLowerCase().startsWith(searchTerm.toLowerCase())
+    );
+    setSearchResults(results);
+    setIsSearching(searchTerm !== "");
+    setSearchingText(searchTerm !== "" ? "Résultat de la recherche" : "");
+  };
   const equipes = [
     {
       tempsRestant: 24,
@@ -421,6 +439,19 @@ function Parametres() {
     },
   ];
 
+  const [user, setUser] = useState(null);
+  const navigateTo = useNavigate();
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (!userData) {
+      // User data not found, navigate to LoginPage
+      navigateTo("/LoginPage");
+      return;
+    }
+
+    setUser(JSON.parse(userData));
+  }, [navigateTo]);
+
   const pageCount = Math.ceil(equipes.length / itemsPerPage);
 
   const pageNumbers = [];
@@ -449,53 +480,99 @@ function Parametres() {
     <div className="app">
       <Sidebar />
       <main className="main-content">
-        <Header />
-        <div className="teams-container">
-          <div className="teams-header">
-            <h2>Équipes</h2>
-            <Link className="new-team-link">
-              <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>Ajouter équipe
-            </Link>
+        <div className="header">
+          <div className="admin-container">
+            <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
+            <div className="admin-info">
+              {user && (
+                <>
+                  <label className="admin-name">
+                    {user.nom} {user.prenom}
+                  </label>
+                  <label className="admin-post">{user.fonction}</label>
+                </>
+              )}
+            </div>
+            <div className="vertical-line"></div>
+            <div className="today-container">
+              <FontAwesomeIcon
+                className="calendar-icon"
+                icon={faCalendarDays}
+              />
+              <label className="today-label">{currentDate}</label>
+            </div>
           </div>
-          <div className="teams-content">
-            {equipes
-              .slice(
-                (currentPage - 1) * itemsPerPage,
-                currentPage * itemsPerPage
-              )
-              .map((equipes, index) => (
-                <EquipesBox key={index} equipes={equipes} />
-              ))}
-          </div>
-          <div className="pagination">
-            {paginationItems.map((item, index) => {
-              if (typeof item === "number") {
-                return (
-                  <button
-                    key={index}
-                    className={`pagination-btn ${
-                      item === currentPage ? "active" : ""
-                    }`}
-                    onClick={() => setCurrentPage(item)}
-                  >
-                    {item}
-                  </button>
-                );
-              } else {
-                return (
-                  <button
-                    key={index}
-                    className={`pagination-btn`}
-                    style={{ cursor: "default", color: "#ced4da" }}
-                    disabled
-                  >
-                    {item}
-                  </button>
-                );
-              }
-            })}
+          <div className="search-container">
+            <FontAwesomeIcon className="search-icon" icon={faSearch} />
+            <input
+              className="search-input"
+              placeholder="Rechercher ..."
+              type="text"
+              onChange={(event) => handleSearchTermChange(event.target.value)}
+            />
           </div>
         </div>
+        {isSearching && (
+          <div className="teams-container">
+            <div className="teams-header">
+              <h2>{searchingText}</h2>
+            </div>
+            <div className="teams-content">
+              {searchResults.map((equipe, index) => (
+                <EquipesBox key={index} equipes={equipe} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {!isSearching && (
+          <div className="teams-container">
+            <div className="teams-header">
+              <h2>Équipes</h2>
+              <Link className="new-team-link">
+                <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>Ajouter équipe
+              </Link>
+            </div>
+            <div className="teams-content">
+              {equipes
+                .slice(
+                  (currentPage - 1) * itemsPerPage,
+                  currentPage * itemsPerPage
+                )
+                .map((equipes, index) => (
+                  <EquipesBox key={index} equipes={equipes} />
+                ))}
+            </div>
+            <div className="pagination">
+              {paginationItems.map((item, index) => {
+                if (typeof item === "number") {
+                  return (
+                    <button
+                      key={index}
+                      className={`pagination-btn ${
+                        item === currentPage ? "active" : ""
+                      }`}
+                      onClick={() => setCurrentPage(item)}
+                    >
+                      {item}
+                    </button>
+                  );
+                } else {
+                  return (
+                    <button
+                      key={index}
+                      className={`pagination-btn`}
+                      style={{ cursor: "default", color: "#ced4da" }}
+                      disabled
+                    >
+                      {item}
+                    </button>
+                  );
+                }
+              })}
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );
