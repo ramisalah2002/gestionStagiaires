@@ -22,6 +22,7 @@ import Absence from "../pages/Absence/Absence";
 import StagiaireProfile from "../pages/StagiaireProfile/StagiaireProfile";
 import ChoicePage from "../pages/ChoicePage/ChoicePage";
 import Chat from "../pages/Chat/Chat";
+import Contact from "../pages/email-test/Contact";
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
         <Route path="/discussions" element={<Chat />} />
         <Route path="/parametres" element={<Parametres />} />
         <Route path="/profile-stagiaire" element={<StagiaireProfile />} />
+        <Route path="/send-email" element={<Contact />} />
       </Routes>
     </Router>
   );
