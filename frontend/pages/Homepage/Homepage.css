@@ -157,7 +157,7 @@
 .project-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100% !important;
   gap: 10px;
   width: calc(100% - 40px) !important;
   background: #fff;
@@ -165,57 +165,58 @@
   border-radius: 10px;
   box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
 }
-.abscence-container {
-  height: 100%;
+.abscence-container-a{
+  height: 100% !important;
   background: #fff;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 20px;
   padding: 10px 20px;
   width: calc(100% - 40px);
-  border-radius: 10px;
+  border-radius: 15px;
   box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
 }
-.abscence-content {
+.abscence-content-a{
   height: 100%;
   background: #fff;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
-.today-abscence {
+.today-abscence-a{
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 20px;
 }
-.today-abscence-container {
+.today-abscence-container-a{
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  background: #c2d4fd;
+  background: #C2D4FD;
   height: 22px;
   width: 90px;
   border-radius: 5px;
 }
-.today-abscence-day {
-  color: #2354a1;
+.today-abscence-day{
+  color: #2354A1;
   font-size: 12;
   font-weight: medium;
 }
-.see-more-abscence {
+.see-more-abscence{
   font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #2354a1;
+  color: #2354A1;
   height: 22px;
   width: 72px;
   padding: 0;
-  background: #f2f3f7;
+  background: #F2F3F7;
   border-radius: 5px;
 }
 .project-info {
