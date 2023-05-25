@@ -22,7 +22,8 @@ import "./Sidebar.css";
 
 function Sidebar() {
   const [showSidebar, setShowSidebar] = useState(true);
-  const [showModal, setShowModal] = useState(false);
+  const [showStagiaireModal, setShowStagiaireModal] = useState(false);
+  const [showEquipeModal, setShowEquipeModal] = useState(false);
 
   const navigateTo = useNavigate();
 
@@ -38,12 +39,19 @@ function Sidebar() {
     setShowSidebar(!showSidebar);
   };
 
-  const openModal = () => {
-    setShowModal(true);
+  const openStagiaireModal = () => {
+    setShowStagiaireModal(true);
   };
 
-  const closeModal = () => {
-    setShowModal(false);
+  const closeStagiaireModal = () => {
+    setShowStagiaireModal(false);
+  };
+  const openEquipeModal = () => {
+    setShowEquipeModal(true);
+  };
+
+  const closeEquipeModal = () => {
+    setShowEquipeModal(false);
   };
 
   const [activeLink, setActiveLink] = useState("");
@@ -65,6 +73,38 @@ function Sidebar() {
     "Password9",
     "Password10",
   ];
+
+  const [stagiaires, setStagiaires] = useState([
+    { id: 1, nom: 'RAMI Salah-eddine' },
+    { id: 2, nom: 'John Doe' },
+    { id: 3, nom: 'Jane Smith' },
+    // Add more stagiaires as needed
+  ]);
+
+  const [selectedStagiaires, setSelectedStagiaires] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleStagiaireClick = (stagiaire) => {
+    if (selectedStagiaires.find((s) => s.id === stagiaire.id)) {
+      const updatedStagiaires = selectedStagiaires.filter((s) => s.id !== stagiaire.id);
+      setSelectedStagiaires(updatedStagiaires);
+    } else {
+      setSelectedStagiaires([...selectedStagiaires, stagiaire]);
+    }
+  };
+
+  const handleDeleteStagiaire = (stagiaireId) => {
+    const updatedStagiaires = selectedStagiaires.filter((s) => s.id !== stagiaireId);
+    setSelectedStagiaires(updatedStagiaires);
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const filteredStagiaires = stagiaires.filter((stagiaire) =>
+    stagiaire.nom.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const [generatedPassword, setGeneratedPassword] = useState("");
 
@@ -112,7 +152,7 @@ function Sidebar() {
                 <FontAwesomeIcon className="big-icons" icon={faUserGroup} />
                 <label>{showSidebar ? "Stagiaires" : null}</label>
               </Link>
-              <Link onClick={() => openModal()} className="plus-container">
+              <Link onClick={() => openStagiaireModal()} className="plus-container">
                 <FontAwesomeIcon className="plus-icon" icon={faPlus} />
               </Link>
             </li>
@@ -124,7 +164,7 @@ function Sidebar() {
                 />
                 <label>{showSidebar ? "Equipes" : null}</label>
               </Link>
-              <Link className="plus-container">
+              <Link onClick={() => openEquipeModal()} className="plus-container">
                 <FontAwesomeIcon className="plus-icon" icon={faPlus} />
               </Link>
             </li>
@@ -182,12 +222,12 @@ function Sidebar() {
           </ul>
         </div>
       </div>
-      {showModal && (
+      {showStagiaireModal && (
         <div className="stagiaire-modal-overlay">
           <form className="stagiaire-modal-content">
             <div className="stagiaire-modal-header">
-              <h2>Ajouter stagiaire</h2>
-              <Link onClick={closeModal} className="stagiaire-close-link">
+              <h2>Nouveau stagiaire</h2>
+              <Link onClick={closeStagiaireModal} className="stagiaire-close-link">
                 <FontAwesomeIcon icon={faClose} />
               </Link>
             </div>
@@ -294,12 +334,87 @@ function Sidebar() {
               </div>
             </div>
             <div className="save-container">
-              <Link onClick={closeModal} className="annuler-link">
+              <Link onClick={closeStagiaireModal} className="annuler-link">
                 Annuler
               </Link>
               <Link className="ajouter-link">Ajouter</Link>
             </div>
           </form>
+        </div>
+      )}
+      {showEquipeModal && (
+        <div className="equipe-modal-overlay">
+          <div className="equipe-modal-content">
+            <div className="equipe-modal-header">
+              <h2>Nouvelle Équipe</h2>
+              <Link onClick={closeEquipeModal} className="equipe-close-link">
+                <FontAwesomeIcon className="equipe-icon" icon={faClose} />
+              </Link>
+            </div>
+            <div className="equipe-info-devider">
+              <div className="equipe-info-devider-line"></div>
+            </div>
+            <div className="form-group">
+              <div className="nom-container">
+                <label>Nom de l'équipe</label>
+                <input placeholder="Entrez le nom de l'équipe" />
+              </div>
+            </div>
+            <div className="equipe-info-devider">
+              <div className="equipe-info-devider-line"></div>
+            </div>
+            <div className="form-group">
+              <div className="nom-container">
+                <label>Ajouter des stagiaires</label>
+                <input
+                  placeholder="Entrez le nom du stagiaire"
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                />
+              </div>
+            </div>
+            <div className="equipe-stagiaire-liste">
+              {filteredStagiaires.length > 0 && (
+                <div className="stagiaire-equipe">
+                  <div className="stagiaire-equipe-info">
+                    <div className="stagiaire-equipe-img"></div>
+                    <label>{filteredStagiaires[0].nom}</label>
+                  </div>
+                  <button
+                    className="ajouter-stagiaire-equipe-link"
+                    onClick={() => handleStagiaireClick(filteredStagiaires[0])}
+                    disabled={selectedStagiaires.find((s) => s.id === filteredStagiaires[0].id)}
+                  >
+                    {selectedStagiaires.find((s) => s.id === filteredStagiaires[0].id)
+                      ? 'Sélectionné'
+                      : 'Ajouter'}
+                  </button>
+                </div>
+              )}
+            </div>
+            <div className="selected-stagiaires">
+              <label>Stagiaires sélectionnés :</label>
+              <div className="selected-stagiaire-liste">
+                {selectedStagiaires.map((stagiaire) => (
+                  <div key={stagiaire.id} className="stagiaire-equipe-img">
+                    <button
+                      style={{background:"none",outline:"none",border:"none"}}
+                      className="delete-selected-stagiaire-link"
+                      onClick={() => handleDeleteStagiaire(stagiaire.id)}
+                    >
+                      <FontAwesomeIcon className="stagiaire-equipe-delete-icon" icon={faClose} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="save-container">
+              <Link onClick={closeEquipeModal} className="annuler-link">
+                Annuler
+              </Link>
+              <Link className="ajouter-link">Créer</Link>
+            </div>
+          </div>
         </div>
       )}
     </>

@@ -18,6 +18,7 @@ import {
   faCloudDownloadAlt,
   faFileImport,
   faFileUpload,
+  faClose
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faUser,
@@ -36,6 +37,7 @@ import readXlsxFile from "read-excel-file";
 function Stagiaire() {
   const [searchResults, setSearchResults] = useState([]); // New state for the search results
   const [isSearching, setIsSearching] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [searchingText, setSearchingText] = useState(
     "Les 4 derniers stagiaires"
   );
@@ -60,6 +62,52 @@ function Stagiaire() {
   useEffect(() => {
     setSearchResults(stagiaires);
   }, []);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  //generer un mdp aleatoire :
+  const predefinedPasswords = [
+    "Password1",
+    "Password2",
+    "Password3",
+    "Password4",
+    "Password5",
+    "Password6",
+    "Password7",
+    "Password8",
+    "Password9",
+    "Password10",
+  ];
+
+  const [generatedPassword, setGeneratedPassword] = useState("");
+
+  const generatePassword = () => {
+    const length = 8; // desired length of the password
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    let newGeneratedPassword = "";
+
+    while (true) {
+      newGeneratedPassword = "";
+      for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        newGeneratedPassword += characters.charAt(randomIndex);
+      }
+
+      if (!predefinedPasswords.includes(newGeneratedPassword)) {
+        break;
+      }
+    }
+
+    setGeneratedPassword(newGeneratedPassword);
+  };
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -394,7 +442,7 @@ function Stagiaire() {
                       </div>
                     )}
                   </div>
-                  <Link className="new-team-link">
+                  <Link onClick={() => openModal()} className="new-team-link">
                     <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>Ajouter
                     stagiaire
                   </Link>
@@ -453,6 +501,126 @@ function Stagiaire() {
           </>
         )}
       </main>
+      {showModal && (
+        <div className="stagiaire-modal-overlay">
+          <form className="stagiaire-modal-content">
+            <div className="stagiaire-modal-header">
+              <h2>Ajouter stagiaire</h2>
+              <Link onClick={closeModal} className="stagiaire-close-link">
+                <FontAwesomeIcon icon={faClose} />
+              </Link>
+            </div>
+            <div className="info-devider">
+              <div className="info-devider-line"></div>
+              <div className="info-devider-text">Informations personnelles</div>
+              <div className="info-devider-line"></div>
+            </div>
+            <div className="form-group">
+              <div className="nom-container">
+                <label>Nom du stagiaire</label>
+                <input placeholder="Entrez le nom du stagiaire" />
+              </div>
+              <div className="prenom-container">
+                <label>Prénom du stagiaire</label>
+                <input placeholder="Entrez le prénom du stagiaire" />
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="email-container">
+                <label>Email du stagiaire</label>
+                <input placeholder="Entrez l'email du stagiaire" />
+              </div>
+              <div className="email-container">
+                <label>Mot de passe du stagiaire</label>
+                <div className="password-container">
+                  <input
+                    disabled
+                    value={
+                      generatedPassword || "Votre mot de passe sera généré"
+                    }
+                  />
+                  <Link
+                    className="generate-password"
+                    onClick={generatePassword}
+                  >
+                    Génerer
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="nom-container">
+                <label>Téléphone du stagiaire</label>
+                <input
+                  type="number"
+                  min={0}
+                  placeholder="Entrez le téléphone du stagiaire"
+                />
+              </div>
+              <div className="prenom-container">
+                <label>Genre du stagiaire</label>
+                <select>
+                  <option>Homme</option>
+                  <option>Femme</option>
+                </select>
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="nom-container">
+                <label>CIN du stagiaire</label>
+                <input placeholder="Entrez le CIN du stagiaire" />
+              </div>
+              <div className="prenom-container">
+                <label>CNE du stagiaire</label>
+                <input placeholder="Entrez le CNE du stagiaire" />
+              </div>
+              <div className="prenom-container">
+                <label>Date de naissance du stagiaire</label>
+                <input className="date-naissance-input" type="date" />
+              </div>
+            </div>
+            <div className="info-devider">
+              <div className="info-devider-line"></div>
+              <div className="info-devider-text">Formation</div>
+              <div className="info-devider-line"></div>
+            </div>
+            <div className="form-group">
+              <div className="prenom-container">
+                <label>Établissement du stagiaire</label>
+                <select>
+                  <option>ESTS - Université M5</option>
+                  <option>ENSA Kénitra</option>
+                </select>
+              </div>
+              <div className="prenom-container">
+                <label>Formation du stagiaire</label>
+                <input placeholder="Entrez la formation du stagiaire" />
+              </div>
+            </div>
+            <div className="info-devider">
+              <div className="info-devider-line"></div>
+              <div className="info-devider-text">Encadrant</div>
+              <div className="info-devider-line"></div>
+            </div>
+            <div className="form-group">
+              <div className="prenom-container">
+                <label>Affectez un encadrant</label>
+                <select>
+                  <option>Choisir un encadrant</option>
+                  <option>KOUNAIDI Houssain</option>
+                  <option>Bahae-eddine</option>
+                </select>
+              </div>
+            </div>
+            <div className="save-container">
+              <Link onClick={closeModal} className="annuler-link">
+                Annuler
+              </Link>
+              <Link className="ajouter-link">Ajouter</Link>
+            </div>
+          </form>
+        </div>
+      )}
     </div>
   );
 }
