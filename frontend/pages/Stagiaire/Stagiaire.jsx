@@ -127,6 +127,20 @@ function Stagiaire() {
       status: "Terminé",
       joursStage: "10 jours",
     },
+    {
+      id: 8,
+      nom: "John Doe",
+      email: "johndoe@example.com",
+      status: "Terminé",
+      joursStage: "10 jours",
+    },
+    {
+      id: 7,
+      nom: "John Doe",
+      email: "johndoe@example.com",
+      status: "Terminé",
+      joursStage: "10 jours",
+    },
   ];
 
   const getCurrentDate = () => {
@@ -286,130 +300,157 @@ function Stagiaire() {
             />
           </div>
         </div>
-        <div className="last-stagiaires-container">
-          <div className="new-stagiaires">
-            <h2>{searchingText}</h2>
-          </div>
-          <div className="last-stagiaires-content">
-            {searchResults.slice(0, 4).map((stagiaire) => (
-              <div key={stagiaire.id} className="last-stagiaire-card">
-                <div className="image-top"></div>
-                <label className="last-stagiaire-name">{stagiaire.nom}</label>
-                <label className="last-stagiaire-formation">
-                  2ème année génie logiciel
-                </label>
-                <Link className="voir-detail">Voir détail</Link>
+        <div className="last-stagiaires-container-search">
+          {isSearching && (
+            <>
+              <div className="new-stagiaires">
+                <h2>{searchingText}</h2>
               </div>
-            ))}
-          </div>
+              <div className="last-stagiaires-content-search">
+                {searchResults.map((stagiaire) => (
+                  <div key={stagiaire.id} className="last-stagiaire-card">
+                    <div className="image-top"></div>
+                    <label className="last-stagiaire-name">
+                      {stagiaire.nom}
+                    </label>
+                    <label className="last-stagiaire-formation">
+                      2ème année génie logiciel
+                    </label>
+                    <Link className="voir-detail">Voir détail</Link>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </div>
         {!isSearching && (
-          <div className="table-container">
-            <div className="teams-header">
-              <h2>Tous les stagiaires</h2>
-              <div className="stagiaires-link-container">
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept=".xlsx"
-                  style={{ display: "none" }}
-                  onChange={handleFileChange}
-                />
-                <Link
-                  className="import-stagiaires-link"
-                  onClick={handleImportStagiaires}
-                >
-                  <FontAwesomeIcon
-                    className="import-icon"
-                    icon={faFileUpload}
-                  ></FontAwesomeIcon>
-                </Link>
-                {showImport && stagiairesList.length > 0 && (
-                  <table>{/* Table content */}</table>
-                )}
-                <div className="download-links-wrapper" ref={containerRef}>
-                  <Link
-                    className="download-stagiaires-link"
-                    onClick={toggleLinks}
-                  >
-                    <FontAwesomeIcon
-                      className="download-icon"
-                      icon={faDownload}
-                    ></FontAwesomeIcon>
-                  </Link>
-                  {showLinks && (
-                    <div className="download-links-container">
-                      <Link
-                        onClick={handleDownloadStagiairesPdf}
-                        className="download-link"
-                      >
-                        Télécharger PDF
-                      </Link>
-                      <Link
-                        onClick={handleDownloadStagiairesXlsx}
-                        className="download-link"
-                      >
-                        Télécharger XLSX
-                      </Link>
-                    </div>
-                  )}
-                </div>
-                <Link className="new-team-link">
-                  <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>Ajouter
-                  stagiaire
-                </Link>
+          <>
+            <div className="last-stagiaires-container-search">
+              <div className="new-stagiaires">
+                <h2>{searchingText}</h2>
+              </div>
+              <div className="last-stagiaires-content-search">
+                {searchResults.slice(0, 4).map((stagiaire) => (
+                  <div key={stagiaire.id} className="last-stagiaire-card">
+                    <div className="image-top"></div>
+                    <label className="last-stagiaire-name">
+                      {stagiaire.nom}
+                    </label>
+                    <label className="last-stagiaire-formation">
+                      2ème année génie logiciel
+                    </label>
+                    <Link className="voir-detail">Voir détail</Link>
+                  </div>
+                ))}
               </div>
             </div>
-            <table className="custom-table">
-              <thead>
-                <tr>
-                  <th>Nom</th>
-                  <th>Email</th>
-                  <th>Status</th>
-                  <th>En stage</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {stagiaires.map((stagiaire) => (
-                  <tr key={stagiaire.id}>
-                    <td className="stagiaire-div">
-                      <div className="circle"></div> {stagiaire.nom}
-                    </td>
-                    <td>{stagiaire.email}</td>
-                    <td>
-                      <div
-                        className={
-                          stagiaire.status === "Actif"
-                            ? "status-actif"
-                            : "status-inactif"
-                        }
-                      >
-                        {stagiaire.status}
+            <div className="table-container">
+              <div className="teams-header">
+                <h2>Tous les stagiaires</h2>
+                <div className="stagiaires-link-container">
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept=".xlsx"
+                    style={{ display: "none" }}
+                    onChange={handleFileChange}
+                  />
+                  <Link
+                    className="import-stagiaires-link"
+                    onClick={handleImportStagiaires}
+                  >
+                    <FontAwesomeIcon
+                      className="import-icon"
+                      icon={faFileUpload}
+                    ></FontAwesomeIcon>
+                  </Link>
+                  {showImport && stagiairesList.length > 0 && (
+                    <table>{/* Table content */}</table>
+                  )}
+                  <div className="download-links-wrapper" ref={containerRef}>
+                    <Link
+                      className="download-stagiaires-link"
+                      onClick={toggleLinks}
+                    >
+                      <FontAwesomeIcon
+                        className="download-icon"
+                        icon={faDownload}
+                      ></FontAwesomeIcon>
+                    </Link>
+                    {showLinks && (
+                      <div className="download-links-container">
+                        <Link
+                          onClick={handleDownloadStagiairesPdf}
+                          className="download-link"
+                        >
+                          Télécharger PDF
+                        </Link>
+                        <Link
+                          onClick={handleDownloadStagiairesXlsx}
+                          className="download-link"
+                        >
+                          Télécharger XLSX
+                        </Link>
                       </div>
-                    </td>
-                    <td>
-                      <label className="days-in-stage">
-                        {stagiaire.joursStage}
-                      </label>
-                    </td>
-                    <td className="actions-td">
-                      <Link className="action-modifier">
-                        <FontAwesomeIcon icon={faEye} />
-                        Voir
-                      </Link>
-                      <Link className="delete-link">
-                        <FontAwesomeIcon
-                          className="delete-icon"
-                          icon={faTrashAlt}
-                        />
-                      </Link>
-                    </td>
+                    )}
+                  </div>
+                  <Link className="new-team-link">
+                    <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>Ajouter
+                    stagiaire
+                  </Link>
+                </div>
+              </div>
+              <table className="custom-table">
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>En stage</th>
+                    <th>Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {stagiaires.map((stagiaire) => (
+                    <tr key={stagiaire.id}>
+                      <td className="stagiaire-div">
+                        <div className="circle"></div> {stagiaire.nom}
+                      </td>
+                      <td>{stagiaire.email}</td>
+                      <td>
+                        <div
+                          className={
+                            stagiaire.status === "Actif"
+                              ? "status-actif"
+                              : "status-inactif"
+                          }
+                        >
+                          {stagiaire.status}
+                        </div>
+                      </td>
+                      <td>
+                        <label className="days-in-stage">
+                          {stagiaire.joursStage}
+                        </label>
+                      </td>
+                      <td className="actions-td">
+                        <Link className="action-modifier">
+                          <FontAwesomeIcon icon={faEye} />
+                          Voir
+                        </Link>
+                        <Link className="delete-link">
+                          <FontAwesomeIcon
+                            className="delete-icon"
+                            icon={faTrashAlt}
+                          />
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
         )}
       </main>
     </div>
