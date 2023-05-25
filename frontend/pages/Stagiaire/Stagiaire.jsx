@@ -127,6 +127,20 @@ function Stagiaire() {
       status: "Terminé",
       joursStage: "10 jours",
     },
+    {
+      id: 8,
+      nom: "John Doe",
+      email: "johndoe@example.com",
+      status: "Terminé",
+      joursStage: "10 jours",
+    },
+    {
+      id: 7,
+      nom: "John Doe",
+      email: "johndoe@example.com",
+      status: "Terminé",
+      joursStage: "10 jours",
+    },
   ];
 
   const getCurrentDate = () => {
@@ -286,32 +300,36 @@ function Stagiaire() {
             />
           </div>
         </div>
-        {isSearching && (
-          <div className="last-stagiaires-container">
-            <div className="new-stagiaires">
-              <h2>{searchingText}</h2>
-            </div>
-            <div className="last-stagiaires-content">
-              {searchResults.slice(0, 4).map((stagiaire) => (
-                <div key={stagiaire.id} className="last-stagiaire-card">
-                  <div className="image-top"></div>
-                  <label className="last-stagiaire-name">{stagiaire.nom}</label>
-                  <label className="last-stagiaire-formation">
-                    2ème année génie logiciel
-                  </label>
-                  <Link className="voir-detail">Voir détail</Link>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-        {!isSearching && (
-          <>
-            <div className="last-stagiaires-container">
+        <div className="last-stagiaires-container-search">
+          {isSearching && (
+            <>
               <div className="new-stagiaires">
                 <h2>{searchingText}</h2>
               </div>
-              <div className="last-stagiaires-content">
+              <div className="last-stagiaires-content-search">
+                {searchResults.map((stagiaire) => (
+                  <div key={stagiaire.id} className="last-stagiaire-card">
+                    <div className="image-top"></div>
+                    <label className="last-stagiaire-name">
+                      {stagiaire.nom}
+                    </label>
+                    <label className="last-stagiaire-formation">
+                      2ème année génie logiciel
+                    </label>
+                    <Link className="voir-detail">Voir détail</Link>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+        {!isSearching && (
+          <>
+            <div className="last-stagiaires-container-search">
+              <div className="new-stagiaires">
+                <h2>{searchingText}</h2>
+              </div>
+              <div className="last-stagiaires-content-search">
                 {searchResults.slice(0, 4).map((stagiaire) => (
                   <div key={stagiaire.id} className="last-stagiaire-card">
                     <div className="image-top"></div>

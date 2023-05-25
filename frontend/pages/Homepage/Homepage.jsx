@@ -140,7 +140,7 @@ function Homepage() {
           </div>
         </div>
         {isSearching && (
-          <div className="last-stagiaires-container">
+          <div className="last-stagiaires-container-search">
             <div className="new-stagiaires">
               <h2>{searchingText}</h2>
             </div>
