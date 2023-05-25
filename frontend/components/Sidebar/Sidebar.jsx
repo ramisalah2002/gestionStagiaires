@@ -142,7 +142,7 @@ function Sidebar() {
         <div className={`links-container`}>
           <ul className="links-list">
             <li className={activeLink === "link1" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link1")} to="/Homepage">
+              <Link onClick={() => handleLinkClick("link1")} to="/encadrant/accueil">
                 <FontAwesomeIcon className="big-icons" icon={faHome} />
                 <label>{showSidebar ? "Accueil" : null}</label>
               </Link>

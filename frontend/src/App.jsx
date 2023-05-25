@@ -32,14 +32,14 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<ChoicePage />} />
-        <Route path="/LoginPage" element={<LoginPage />} />
-        <Route path="/Homepage" element={<Homepage />} />
+        <Route path="/encadrant/login" element={<LoginPage />} />
+        <Route path="/encadrant/accueil" element={<Homepage />} />
         <Route path="/stagiaires" element={<Stagiaire />} />
         <Route path="/equipes" element={<Equipes />} />
         <Route path="/encadrants" element={<Encadrant />} />
         <Route path="/absence" element={<Absence />} />
         <Route path="/discussions" element={<Chat />} />
-        <Route path="/Parametres" element={<Parametres />} />
+        <Route path="/parametres" element={<Parametres />} />
         <Route path="/profile-stagiaire" element={<StagiaireProfile />} />
       </Routes>
     </Router>

@@ -375,7 +375,7 @@ function Stagiaire() {
           <>
             <div className="last-stagiaires-container-search">
               <div className="new-stagiaires">
-                <h2>{searchingText}</h2>
+                <h2 className="text-header">{searchingText}</h2>
               </div>
               <div className="last-stagiaires-content-search">
                 {searchResults.slice(0, 4).map((stagiaire) => (
