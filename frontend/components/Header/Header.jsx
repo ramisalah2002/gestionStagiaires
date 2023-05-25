@@ -9,12 +9,6 @@ import {
 import "./Header.css";
 
 function Header() {
-  const [searchTerm, setSearchTerm] = useState(""); // New state for the search term
-
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value); // Update the state when the search input changes
-  };
-
   const currentDate = new Date().toLocaleString("fr-FR", {
     day: "numeric",
     month: "short",
@@ -39,8 +33,6 @@ function Header() {
           className="search-input"
           placeholder="Rechercher ..."
           type="text"
-          value={searchTerm} // Control the input value with the state
-          onChange={handleSearchChange} // Handle changes in the search input
         />
       </div>
     </div>
