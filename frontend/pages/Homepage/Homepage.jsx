@@ -333,11 +333,11 @@ function Homepage() {
                   </div>
                 </div>
               </div>
-              <div className="abscence-container">
+              <div className="abscence-container-a">
                 <div className="stagiaires-header">
-                  <div className="today-abscence">
+                  <div className="today-abscence-a">
                     <label className="stagiaires-title">Abscence</label>
-                    <div className="today-abscence-container">
+                    <div className="today-abscence-container-a">
                       <label className="today-abscence-day">Aujourd'hui</label>
                     </div>
                   </div>
@@ -345,14 +345,12 @@ function Homepage() {
                     voir plus
                   </Link>
                 </div>
-                <div className="abscence-content">
+                <div className="abscence-content-a">
                   <div className="abscence">
                     <div className="abscence-info">
                       <div className="red-line"></div>
                       <div className="stagiaire-nom-formation">
-                        <label className="stagiaire-nom">
-                          RAMI Salah-eddine
-                        </label>
+                        <label className="stagiaire-nom">RAMI Salah-eddine</label>
                         <label className="stagiaire-formation">
                           justification: certificat medical
                         </label>
@@ -363,9 +361,7 @@ function Homepage() {
                     <div className="abscence-info">
                       <div className="red-line"></div>
                       <div className="stagiaire-nom-formation">
-                        <label className="stagiaire-nom">
-                          BOULAAJOUL Anass
-                        </label>
+                        <label className="stagiaire-nom">BOULAAJOUL Anass</label>
                         <label className="stagiaire-formation">
                           justification: certificat medical
                         </label>
@@ -376,9 +372,18 @@ function Homepage() {
                     <div className="abscence-info">
                       <div className="red-line"></div>
                       <div className="stagiaire-nom-formation">
-                        <label className="stagiaire-nom">
-                          BOULAAJOUL Anass
+                        <label className="stagiaire-nom">BOULAAJOUL Anass</label>
+                        <label className="stagiaire-formation">
+                          justification: certificat medical
                         </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="abscence">
+                    <div className="abscence-info">
+                      <div className="red-line"></div>
+                      <div className="stagiaire-nom-formation">
+                        <label className="stagiaire-nom">BOULAAJOUL Anass</label>
                         <label className="stagiaire-formation">
                           justification: certificat medical
                         </label>
