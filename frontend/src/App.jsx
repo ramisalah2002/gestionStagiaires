@@ -23,6 +23,7 @@ import StagiaireProfile from "../pages/StagiaireProfile/StagiaireProfile";
 import ChoicePage from "../pages/ChoicePage/ChoicePage";
 import Chat from "../pages/Chat/Chat";
 import Contact from "../pages/email-test/Contact";
+import ResetPassword from "../pages/ResetPassword/ResetPassword";
 
 function App() {
   useEffect(() => {
@@ -41,8 +42,9 @@ function App() {
         <Route path="/discussions" element={<Chat />} />
         <Route path="/parametres" element={<Parametres />} />
         <Route path="/profile-stagiaire" element={<StagiaireProfile />} />
-        <Route path="/projet" element={<Projet />} />
+        <Route path="/projets" element={<Projet />} />
         <Route path="/send-email" element={<Contact />} />
+        <Route path="/reset-password/:userId" element={<ResetPassword />} />
       </Routes>
     </Router>
   );

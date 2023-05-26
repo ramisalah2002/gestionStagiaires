@@ -42,7 +42,7 @@ const StagiaireBox = ({ stagiaire }) => (
         {stagiaire.status}
       </span>
     </div>
-    <Link className="voir-detail">Voir profile d'abscence</Link>
+    <Link className="projet-voir-detail">Voir détail</Link>
   </div>
 );
 
@@ -332,7 +332,7 @@ function Absence() {
           </div>
         </div>
         {isSearching && (
-          <div className="abscence-container">
+          <div className="abscence-container-back">
             <label>{searchingText}</label>
             <div className="absence-management-search">
               {searchResults.map((stagiaire, index) => (
@@ -342,8 +342,8 @@ function Absence() {
           </div>
         )}
         {!isSearching && (
-          <div className="abscence-container">
-            <label>Listes des abscence</label>
+          <div className="abscence-container-back">
+            <label>Listes des absences</label>
             <div className="absence-management">
               {stagiaires
                 .slice(

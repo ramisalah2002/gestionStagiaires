@@ -1,7 +1,9 @@
+
 .table-container {
   margin-top: 0px;
   overflow: hidden;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .table-wrapper {
@@ -325,7 +327,4 @@
   gap: 10px;
   row-gap: 40px;
   transition: ease 0.5s;
-}
-.new-stagiaires .text-header{
-  margin-top: -30px;
 }

@@ -80,7 +80,7 @@ function Projet() {
             />
           </div>
         </div>
-        <div className="sections-container">
+        <div className="sections-container-projet">
           <div className="projet-container">
             <div className="projet-header">
               <img className="projet-picture" src={projetImage} alt="Profile" />

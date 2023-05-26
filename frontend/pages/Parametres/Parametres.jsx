@@ -71,57 +71,7 @@ function Parametres() {
     setSearchingText(searchTerm !== "" ? "Résultat de la recherche" : "");
   };
 
-  const stagiaires = [
-    {
-      id: 1,
-      nom: "Rami Salah-eddine",
-      email: "ramisalah2002@gmail.com",
-      status: "Actif",
-      joursStage: "4 jours",
-    },
-    {
-      id: 2,
-      nom: "John Doe",
-      email: "johndoe@example.com",
-      status: "Terminé",
-      joursStage: "10 jours",
-    },
-    {
-      id: 3,
-      nom: "Rami Salah-eddine",
-      email: "ramisalah2002@gmail.com",
-      status: "Actif",
-      joursStage: "4 jours",
-    },
-    {
-      id: 4,
-      nom: "John Doe",
-      email: "johndoe@example.com",
-      status: "Terminé",
-      joursStage: "10 jours",
-    },
-    {
-      id: 5,
-      nom: "John Doe",
-      email: "johndoe@example.com",
-      status: "Terminé",
-      joursStage: "10 jours",
-    },
-    {
-      id: 6,
-      nom: "Rami Salah-eddine",
-      email: "ramisalah2002@gmail.com",
-      status: "Actif",
-      joursStage: "4 jours",
-    },
-    {
-      id: 7,
-      nom: "John Doe",
-      email: "johndoe@example.com",
-      status: "Terminé",
-      joursStage: "10 jours",
-    },
-  ];
+  
 
   return (
     <div className="app">

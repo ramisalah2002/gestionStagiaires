@@ -18,7 +18,7 @@
   height: fit-content;
   overflow: scroll !important;
 }
-.abscence-container {
+.abscence-container-back {
   width: 100%;
   background: none;
   display: flex;
@@ -28,7 +28,7 @@
   overflow: scroll;
   margin: 0;
 }
-.abscence-container label {
+.abscence-container-back label {
   font-size: 1.5em;
   font-weight: bold;
 }
@@ -62,16 +62,19 @@
   text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: ease 0.5s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .stagiaire-box:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
-.stagiaire-box .voir-detail {
+.stagiaire-box .projet-voir-detail {
   background: #dce1eb;
   border: 1px solid #dce1eb;
   border-radius: 5px;
-  width: 200px;
+  width: 100%;
   color: #7c828d;
   transition: ease 0.3s;
 }
@@ -141,6 +144,8 @@
 
 .detail {
   display: flex;
+  width: 100%;
+  flex-direction: row;
   justify-content: space-between;
   border-bottom: 1px solid #ddd; /* This will create a horizontal line under each detail */
   padding-bottom: 3px; /* Add some space under the line */

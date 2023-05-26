@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Homepage from "../Homepage/Homepage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -52,6 +52,8 @@ function LoginPage() {
     }
   };
 
+  const userId = 4;
+
   return (
     <div className="mainContainer">
       <div className="left">
@@ -83,7 +85,8 @@ function LoginPage() {
               <input type="checkbox" id="rememberMe" />
               <label htmlFor="rememberMe">Se souvenir de moi</label>
             </div>
-            <a href="#">Mot de passe oublié</a>
+            <Link to={`/reset-password/${userId}`}>Mot de passe oublié</Link>
+
           </div>
           <button type="submit">Se connecter</button>
         </form>
