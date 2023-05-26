@@ -18,7 +18,7 @@ function ChoicePage() {
     const userData = localStorage.getItem("user");
     if (userData) {
       // User data not found, navigate to LoginPage
-      navigateTo("/Homepage");
+      navigateTo("/encadrant/accueil");
       return;
     }
   }, [navigateTo]);
@@ -45,7 +45,7 @@ function ChoicePage() {
       localStorage.setItem("token", data.token);
 
       // Redirect to HomePage
-      navigateTo("/Homepage");
+      navigateTo("/encadrant/accueil");
     } else {
       // Handle error
       console.log(data.message);
@@ -58,7 +58,7 @@ function ChoicePage() {
           <img src='../../images/logoMen.png'/>
       </div>
       <div className="choices-container">
-        <Link to="/parametres" className="choice-wrapper">
+        <Link to="/encadrant/accueil" className="choice-wrapper">
           <div className="choice-content choice-content-1">
             <div className="image-div-1"></div>
           </div>

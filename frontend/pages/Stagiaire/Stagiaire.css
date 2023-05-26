@@ -326,3 +326,6 @@
   row-gap: 40px;
   transition: ease 0.5s;
 }
+.new-stagiaires .text-header{
+  margin-top: -30px;
+}

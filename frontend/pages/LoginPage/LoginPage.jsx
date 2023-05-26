@@ -18,7 +18,7 @@ function LoginPage() {
     const userData = localStorage.getItem("user");
     if (userData) {
       // User data not found, navigate to LoginPage
-      navigateTo("/Homepage");
+      navigateTo("/encadrant/accueil");
       return;
     }
   }, [navigateTo]);
@@ -45,7 +45,7 @@ function LoginPage() {
       localStorage.setItem("token", data.token);
 
       // Redirect to HomePage
-      navigateTo("/Homepage");
+      navigateTo("/encadrant/accueil");
     } else {
       // Handle error
       console.log(data.message);

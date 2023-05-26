@@ -1,0 +1,22 @@
+section{
+    display: flex;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    width: 30%;
+}
+.container form{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+.container form input{
+    height: 40px;
+}
+.container form textarea{
+    height: 80px;
+    resize: none;
+}

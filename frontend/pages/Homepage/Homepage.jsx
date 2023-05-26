@@ -91,7 +91,7 @@ function Homepage() {
     const userData = localStorage.getItem("user");
     if (!userData) {
       // User data not found, navigate to LoginPage
-      navigateTo("/LoginPage");
+      navigateTo("/encadrant/login");
       return;
     }
 
