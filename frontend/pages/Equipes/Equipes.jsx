@@ -29,7 +29,6 @@ import {
   faClockFour,
 } from "@fortawesome/free-regular-svg-icons";
 import "./Equipes.css";
-
 const EquipesBox = ({ equipes }) => (
   <div className="team-card">
     <div className="link-header">

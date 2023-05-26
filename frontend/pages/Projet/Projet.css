@@ -5,29 +5,10 @@
 
 .sections-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   gap: 10px;
-  transition: ease 0.5s;
-}
-
-.last-stagiaires-container-search {
-  width: 100%;
-  background: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding-bottom: 40px;
-}
-
-.last-stagiaires-content-search {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  width: 100%;
-  gap: 10px;
-  row-gap: 40px;
   transition: ease 0.5s;
 }
 
@@ -40,7 +21,7 @@
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
-.stagiaires-container {
+.projet-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -53,38 +34,134 @@
   border-radius: 10px;
   box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
   transition: ease 0.5s;
+  height: 300px;
+  width: 50%;
 }
 
-.stagiaires-header {
+.projet-header {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
 }
-
-.stagiaires-header .stagiaires-title {
-  font-size: 30px;
-  font-weight: 600;
-  color: #000;
-}
-.stagiaires-header .stagiaires-count {
-  width: 70px;
-  color: #2354a1;
-  height: 30px;
-  background: #f2f3f7;
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-.stagiaires-content {
+.projet-body {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  margin-top: -12px;
+}
+.projet-body-details h4 {
+  margin-bottom: 0px;
+  color: #495057;
+  font-size: 16px;
+  font-weight: 700;
+}
+.projet-body-details p {
+  margin-top: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #74788d;
+}
+.projet-body-date {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: 25px;
+}
+.projet-body-date .icon {
+  color: #556ee6;
+  margin-right: 10px;
+}
+.projet-body-date-debut {
+  flex-direction: column;
+  font-size: 14px;
+  color: #495057;
+  font-weight: 700;
+  text-align: left;
+  margin-right: 150px;
+}
+.projet-body-date-debut p {
+  flex-direction: column;
+  font-size: 13px;
+  color: #74788d;
+  font-weight: 500;
+  margin-top: 5px;
+}
+.projet-body-date-fin {
+  flex-direction: column;
+  font-size: 14px;
+  color: #495057;
+  font-weight: 700;
+  text-align: left;
+}
+.projet-body-date-fin p {
+  flex-direction: column;
+  font-size: 13px;
+  color: #74788d;
+  font-weight: 500;
+  margin-top: 5px;
+}
+.technologies {
+  margin-top: 10px;
+  margin-left: 30px;
+}
+.technologie {
+  display: flex;
   align-items: center;
-  overflow: hidden;
-  gap: 15px;
-  height: 100%;
+  position: relative;
+  margin-bottom: 4px;
+}
+.tech-icon {
+  height: 10px;
+  width: auto;
+  margin-top: 3px;
+  margin-right: 7px;
+  margin-right: 15px;
+}
+.technologie img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  object-fit: contain;
+}
+.technologie label {
+  margin: 0;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 9px;
+  margin-left: 5px;
+}
+.projet-header .projet-titles {
+  margin-top: 10px;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.projet-header .projet-title {
+  font-size: 16px;
+  font: sans-serif;
+  font-weight: 700;
+  color: #495057;
+}
+.projet-header .projet-under-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #74788d;
+  margin-top: 1px;
+}
+.projet-picture {
+  width: 65px;
+  height: 65px;
+  border-radius: 10%;
+  object-fit: cover;
+  position: relative;
+  margin-top: 8px;
+  margin-right: 10px;
+  box-shadow: 0 2px 4px rgba(62, 62, 62, 0.1);
 }
 .stagiaire {
   display: flex;
@@ -157,7 +234,7 @@
 .project-container {
   display: flex;
   flex-direction: column;
-  height: 100% !important;
+  height: 100%;
   gap: 10px;
   width: calc(100% - 40px) !important;
   background: #fff;
@@ -165,33 +242,32 @@
   border-radius: 10px;
   box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
 }
-.abscence-container-a {
-  height: 100% !important;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 10px 20px;
-  width: calc(100% - 40px);
-  border-radius: 15px;
-  box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
-}
-.abscence-content-a {
+.abscence-container {
   height: 100%;
   background: #fff;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
+  padding: 10px 20px;
+  width: calc(100% - 40px);
+  border-radius: 10px;
+  box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
 }
-.today-abscence-a {
+.abscence-content {
+  height: 100%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.today-abscence {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 20px;
 }
-.today-abscence-container-a {
+.today-abscence-container {
   display: flex;
   flex-direction: row;
   justify-content: center;

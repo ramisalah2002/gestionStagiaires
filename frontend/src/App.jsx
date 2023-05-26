@@ -11,7 +11,6 @@ import "./App.css";
 import Encadrant from "../pages/Encadrant/Encadrant";
 import { useNavigate } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./App.css";
 import Homepage from "../pages/Homepage/Homepage";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import Parametres from "../pages/Parametres/Parametres";
@@ -19,14 +18,14 @@ import UserContext from "../components/UserContext";
 import Stagiaire from "../pages/Stagiaire/Stagiaire";
 import Equipes from "../pages/Equipes/Equipes";
 import Absence from "../pages/Absence/Absence";
+import Projet from "../pages/Projet/Projet";
 import StagiaireProfile from "../pages/StagiaireProfile/StagiaireProfile";
 import ChoicePage from "../pages/ChoicePage/ChoicePage";
 import Chat from "../pages/Chat/Chat";
 
 function App() {
-
   useEffect(() => {
-    document.title = 'MENStage';
+    document.title = "MENStage";
   }, []);
   return (
     <Router>
@@ -41,6 +40,7 @@ function App() {
         <Route path="/discussions" element={<Chat />} />
         <Route path="/Parametres" element={<Parametres />} />
         <Route path="/profile-stagiaire" element={<StagiaireProfile />} />
+        <Route path="/projet" element={<Projet />} />
       </Routes>
     </Router>
   );

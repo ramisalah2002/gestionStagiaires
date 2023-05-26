@@ -26,7 +26,6 @@ const StagiaireBox = ({ stagiaire }) => (
   <div className="stagiaire-box">
     <div className="profile-picture-wrapper">
       <img className="profile-picture" src={stagiaire.image} alt="Profile" />
-      {/* You could add your dynamic elements here */}
     </div>
     <h2 className="stagiaire-name">{stagiaire.name}</h2>
     <div className="detail presence-days">

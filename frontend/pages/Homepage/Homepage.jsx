@@ -350,7 +350,9 @@ function Homepage() {
                     <div className="abscence-info">
                       <div className="red-line"></div>
                       <div className="stagiaire-nom-formation">
-                        <label className="stagiaire-nom">RAMI Salah-eddine</label>
+                        <label className="stagiaire-nom">
+                          RAMI Salah-eddine
+                        </label>
                         <label className="stagiaire-formation">
                           justification: certificat medical
                         </label>
@@ -361,7 +363,9 @@ function Homepage() {
                     <div className="abscence-info">
                       <div className="red-line"></div>
                       <div className="stagiaire-nom-formation">
-                        <label className="stagiaire-nom">BOULAAJOUL Anass</label>
+                        <label className="stagiaire-nom">
+                          BOULAAJOUL Anass
+                        </label>
                         <label className="stagiaire-formation">
                           justification: certificat medical
                         </label>
@@ -372,7 +376,9 @@ function Homepage() {
                     <div className="abscence-info">
                       <div className="red-line"></div>
                       <div className="stagiaire-nom-formation">
-                        <label className="stagiaire-nom">BOULAAJOUL Anass</label>
+                        <label className="stagiaire-nom">
+                          BOULAAJOUL Anass
+                        </label>
                         <label className="stagiaire-formation">
                           justification: certificat medical
                         </label>
@@ -383,7 +389,9 @@ function Homepage() {
                     <div className="abscence-info">
                       <div className="red-line"></div>
                       <div className="stagiaire-nom-formation">
-                        <label className="stagiaire-nom">BOULAAJOUL Anass</label>
+                        <label className="stagiaire-nom">
+                          BOULAAJOUL Anass
+                        </label>
                         <label className="stagiaire-formation">
                           justification: certificat medical
                         </label>
