@@ -41,11 +41,8 @@ function App() {
         <Route path="/discussions" element={<Chat />} />
         <Route path="/parametres" element={<Parametres />} />
         <Route path="/profile-stagiaire" element={<StagiaireProfile />} />
-<<<<<<< HEAD
         <Route path="/projet" element={<Projet />} />
-=======
         <Route path="/send-email" element={<Contact />} />
->>>>>>> 22186637190f8e19f459c728b231aca733ae76be
       </Routes>
     </Router>
   );
