@@ -19,8 +19,10 @@ import {
   faTriangleCircleSquare,
   faTriangleExclamation,
   faPlay,
+  faPeopleGroup,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { faUser, faRectangleList } from "@fortawesome/free-regular-svg-icons";
+import { faRectangleList } from "@fortawesome/free-regular-svg-icons";
 import "./Projet.css";
 import projetImage from "./../../images/user.jpg";
 import technologieImage1 from "./../../images/React.png";
@@ -80,52 +82,117 @@ function Projet() {
             />
           </div>
         </div>
-        <div className="sections-container">
-          <div className="projet-container">
-            <div className="projet-header">
-              <img className="projet-picture" src={projetImage} alt="Profile" />
-              <div className="projet-titles">
-                <label className="projet-title">Gestion des examens</label>
-                <p className="projet-under-title">
-                  Une application Mobile de gestion et passage des examend en
-                  ligne.
-                </p>
+        <div className="sections-container-p">
+          <div className="projet-containert-collaborators">
+            <div className="projet-container">
+              <div className="projet-header">
+                <img
+                  className="projet-picture"
+                  src={projetImage}
+                  alt="Profile"
+                />
+                <div className="projet-titles">
+                  <label className="projet-title">Gestion des examens</label>
+                  <p className="projet-under-title">
+                    Une application Mobile de gestion et passage des examend en
+                    ligne.
+                  </p>
+                </div>
+              </div>
+              <div className="projet-body">
+                <div className="projet-body-details">
+                  <h4>Technologies utilisées :</h4>
+                  <div className="technologies">
+                    <div className="technologie">
+                      <FontAwesomeIcon className="tech-icon" icon={faPlay} />
+                      <img
+                        className="technologie-picture"
+                        src={technologieImage1}
+                        alt="technologieImage1"
+                      />
+                      <label>React Native</label>
+                    </div>
+                    <div className="technologie">
+                      <FontAwesomeIcon className="tech-icon" icon={faPlay} />
+                      <img
+                        className="technologie-picture"
+                        src={technologieImage2}
+                        alt="technologieImage2"
+                      />
+                      <label>Laravel</label>
+                    </div>
+                  </div>
+                </div>
+                <div className="projet-body-date">
+                  <div className="projet-body-date-debut">
+                    <FontAwesomeIcon className="icon" icon={faCalendarAlt} />
+                    <span>Date debut</span>
+                    <p>08 Sept, 2019</p>
+                  </div>
+                  <div className="projet-body-date-fin">
+                    <FontAwesomeIcon className="icon" icon={faCalendarCheck} />
+                    <span>Date Fin</span>
+                    <p>12 Oct, 2019</p>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="projet-body">
-              <div className="projet-body-details">
-                <h4>Technologies utilisées :</h4>
-                <div className="technologies">
-                  <div className="technologie">
-                    <FontAwesomeIcon className="tech-icon" icon={faPlay} />
-                    <img
-                      className="technologie-picture"
-                      src={technologieImage1}
-                      alt="technologieImage1"
-                    />
-                    <label>React Native</label>
-                  </div>
-                  <div className="technologie">
-                    <FontAwesomeIcon className="tech-icon" icon={faPlay} />
-                    <img
-                      className="technologie-picture"
-                      src={technologieImage2}
-                      alt="technologieImage2"
-                    />
-                    <label>Laravel</label>
-                  </div>
-                </div>
+            <div className="projet-collaborators">
+              <div className="collaborators-header">
+                <FontAwesomeIcon className="team-icon" icon={faPeopleGroup} />
+                <p>Membres d'éqipe</p>
               </div>
-              <div className="projet-body-date">
-                <div className="projet-body-date-debut">
-                  <FontAwesomeIcon className="icon" icon={faCalendarAlt} />
-                  <span>Date debut</span>
-                  <p>08 Sept, 2019</p>
+              <div className="collaborators-body">
+                <div className="collaboratores-body-encadrant">
+                  <div className="header-collaboratores-body">
+                    <FontAwesomeIcon className="header-icon" icon={faUser} />
+                    <label>Encadrant :</label>
+                  </div>
+                  <div className="collaboratores-body-encadrant-imageName">
+                    <img
+                      className="encadrant-image"
+                      src={projetImage}
+                      alt="encadrantImage"
+                    />
+                    <div className="encadrant-fonction">
+                      <label className="nomEnacrant">Mr. Fouad Toufik</label>
+                      <label className="fonction">Enseignant</label>
+                    </div>
+                  </div>
                 </div>
-                <div className="projet-body-date-fin">
-                  <FontAwesomeIcon className="icon" icon={faCalendarCheck} />
-                  <span>Date Fin</span>
-                  <p>12 Oct, 2019</p>
+                <div className="collaboratores-body-equipes">
+                  <div className="header-collaboratores-equipes">
+                    <FontAwesomeIcon className="header-icon" icon={faUser} />
+                    <label>Stagiaires :</label>
+                  </div>
+                  <div className="collaboratores-body-stagiaire">
+                    <div className="collaboratores-body-stagiaire-imageName">
+                      <img
+                        className="stagiaire-image"
+                        src={projetImage}
+                        alt="stagiaireImage"
+                      />
+                      <div className="stagiaire-formation">
+                        <label className="nomStagiaire">
+                          Rami Salah-eddine
+                        </label>
+                        <label className="formation">Génie Logiciel</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="collaboratores-body-stagiaire">
+                    <div className="collaboratores-body-stagiaire-imageName">
+                      <img
+                        className="stagiaire-image"
+                        src={projetImage}
+                        alt="stagiaireImage"
+                      />
+                      <div className="stagiaire-formation">
+                        <label className="nomStagiaire">Boulaajoul Anass</label>
+                        <label className="formation">Génie Logiciel</label>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
