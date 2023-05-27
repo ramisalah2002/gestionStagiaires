@@ -1,33 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faRectangleList } from "@fortawesome/free-regular-svg-icons";
-import './ResetPassword.css';
-import { faArrowLeft, faKey, faLock} from '@fortawesome/free-solid-svg-icons';
-import {FiKey} from 'react-icons/fi';
-import {BsArrowLeft} from 'react-icons/bs';
+import { faArrowLeft, faKey, faLock } from '@fortawesome/free-solid-svg-icons';
+import { FiKey, FiMail } from 'react-icons/fi';
+import { BsArrowLeft } from 'react-icons/bs';
+import './ForgotPassword.css';
 
 const ResetPassword = () => {
-  const { userId } = useParams();
+  const { token } = useParams();
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Handle password reset logic here...
+  };
 
   return (
     <div className='reset-password-wrapper'>
-      <div className='reset-password-container'>
+      <form className='reset-password-container' onSubmit={handleSubmit}>
         <div className='key-icon-container'>
           <FiKey className='key-icon'></FiKey>
         </div>
-        <label className='reset-password-title'>Mot de passe oublié?</label>
-        <p className='reset-password-paragraph'>Pas de soucis, nous vous enverrons des instructions de réinitialisation</p>
+        <label className='reset-password-title'>Définir un nouveau mot de passe</label>
+        <p className='reset-password-paragraph'>Veuillez taper le nouveau mot de passe que vous souhaitez définir</p>
         <div className='reset-password-email-container'>
-          <label>Email</label>
-          <input placeholder='Entrez votre email' type="email"/>
+          <label>Mot de passe</label>
+          <input
+            placeholder='********'
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
-        <button className='reset-button'>Réinitialiser</button>
-        <Link to="/stagiaires" className='go-back-link'>
+        <div className='reset-password-email-container'>
+          <label>Confirmer le mot de passe</label>
+          <input
+            placeholder='********'
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+        </div>
+        <button className='reset-button' type='submit'>Réinitialiser</button>
+        <Link to="/encadrant/login" className='go-back-link'>
           <FontAwesomeIcon className="go-back-icon" icon={faArrowLeft} />
           <label>Revenir à la page de connexion</label>
         </Link>
-      </div>
+      </form>
     </div>
   );
 };

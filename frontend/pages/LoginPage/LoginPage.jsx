@@ -85,7 +85,7 @@ function LoginPage() {
               <input type="checkbox" id="rememberMe" />
               <label htmlFor="rememberMe">Se souvenir de moi</label>
             </div>
-            <Link to={`/reset-password/${userId}`}>Mot de passe oublié</Link>
+            <Link to='/forgot-password'>Mot de passe oublié</Link>
 
           </div>
           <button type="submit">Se connecter</button>

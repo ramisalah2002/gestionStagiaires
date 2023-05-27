@@ -23,7 +23,9 @@ import StagiaireProfile from "../pages/StagiaireProfile/StagiaireProfile";
 import ChoicePage from "../pages/ChoicePage/ChoicePage";
 import Chat from "../pages/Chat/Chat";
 import Contact from "../pages/email-test/Contact";
+import ForgotPassword from "../pages/ResetPassword/ForgotPassword";
 import ResetPassword from "../pages/ResetPassword/ResetPassword";
+import EmailSent from "../pages/ResetPassword/EmailSent";
 
 function App() {
   useEffect(() => {
@@ -44,7 +46,10 @@ function App() {
         <Route path="/profile-stagiaire" element={<StagiaireProfile />} />
         <Route path="/projets" element={<Projet />} />
         <Route path="/send-email" element={<Contact />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/forgot-password/" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
+        <Route path="/reset-email-sent" element={<EmailSent />} />
+
       </Routes>
     </Router>
   );
