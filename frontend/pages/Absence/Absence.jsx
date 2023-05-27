@@ -332,7 +332,7 @@ function Absence() {
           </div>
         </div>
         {isSearching && (
-          <div className="abscence-container-back">
+          <div className="absence-container-back">
             <label>{searchingText}</label>
             <div className="absence-management-search">
               {searchResults.map((stagiaire, index) => (
@@ -342,7 +342,7 @@ function Absence() {
           </div>
         )}
         {!isSearching && (
-          <div className="abscence-container-back">
+          <div className="absence-container-back">
             <label>Listes des absences</label>
             <div className="absence-management">
               {stagiaires

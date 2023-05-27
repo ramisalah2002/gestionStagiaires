@@ -18,7 +18,7 @@
   height: fit-content;
   overflow: scroll !important;
 }
-.abscence-container-back {
+.absence-container-back {
   width: 100%;
   background: none;
   display: flex;
@@ -28,7 +28,7 @@
   overflow: scroll;
   margin: 0;
 }
-.abscence-container-back label {
+.absence-container-back label {
   font-size: 1.5em;
   font-weight: bold;
 }
@@ -78,7 +78,7 @@
   color: #7c828d;
   transition: ease 0.3s;
 }
-.stagiaire-box .voir-detail:hover {
+.stagiaire-box .projet-voir-detail:hover {
   background: #eaebef;
   color: #7c828d;
   border: 1px solid #a9aeb3;

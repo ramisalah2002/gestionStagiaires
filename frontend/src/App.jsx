@@ -44,7 +44,7 @@ function App() {
         <Route path="/profile-stagiaire" element={<StagiaireProfile />} />
         <Route path="/projets" element={<Projet />} />
         <Route path="/send-email" element={<Contact />} />
-        <Route path="/reset-password/:userId" element={<ResetPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
     </Router>
   );
