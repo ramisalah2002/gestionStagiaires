@@ -237,6 +237,7 @@
 .new-encadrants label {
   font-size: 1.5em;
   font-weight: bold;
+  margin-top: 20px;
 }
 @media (max-width: 1280px) {
   .last-stagiaires-content {

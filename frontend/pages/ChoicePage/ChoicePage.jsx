@@ -58,7 +58,7 @@ function ChoicePage() {
           <img src='../../images/logoMen.png'/>
       </div>
       <div className="choices-container">
-        <Link to="/encadrant/accueil" className="choice-wrapper">
+        <Link to="/encadrant/login" className="choice-wrapper">
           <div className="choice-content choice-content-1">
             <div className="image-div-1"></div>
           </div>
@@ -66,7 +66,7 @@ function ChoicePage() {
             <label>Espace Administrateur</label>
           </div>
         </Link>
-        <Link className="choice-wrapper">
+        <Link to="/encadrant/login" className="choice-wrapper">
           <div className="choice-content choice-content-2">
             <div className="image-div-2"></div>
           </div>
@@ -74,7 +74,7 @@ function ChoicePage() {
             <label>Espace Encadrant</label>
           </div>
         </Link>
-        <Link className="choice-wrapper">
+        <Link to="/stagiaire/login" className="choice-wrapper">
           <div className="choice-content choice-content-3">
             <div className="image-div-3"></div>
           </div>

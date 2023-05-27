@@ -163,7 +163,7 @@ function Homepage() {
             <div className="stagiaires-container">
               <div className="stagiaires-header">
                 <label className="stagiaires-title">Stagiaires</label>
-                <Link to="./other" className="stagiaires-count">
+                <Link to="/stagiaires" className="stagiaires-count">
                   <FontAwesomeIcon icon={faUser} /> 66
                 </Link>
               </div>
@@ -293,7 +293,7 @@ function Homepage() {
               <div className="project-container">
                 <div className="stagiaires-header">
                   <label className="stagiaires-title">Projets</label>
-                  <Link to="./other" className="stagiaires-count">
+                  <Link to="/projets" className="stagiaires-count">
                     <FontAwesomeIcon icon={faRectangleList} /> 66
                   </Link>
                 </div>
@@ -336,12 +336,12 @@ function Homepage() {
               <div className="abscence-container-a">
                 <div className="stagiaires-header">
                   <div className="today-abscence-a">
-                    <label className="stagiaires-title">Abscence</label>
+                    <label className="stagiaires-title">Absence</label>
                     <div className="today-abscence-container-a">
                       <label className="today-abscence-day">Aujourd'hui</label>
                     </div>
                   </div>
-                  <Link to="../example" className="see-more-abscence">
+                  <Link to="/absence" className="see-more-abscence">
                     voir plus
                   </Link>
                 </div>

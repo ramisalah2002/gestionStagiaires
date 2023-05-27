@@ -49,9 +49,18 @@ input::-webkit-inner-spin-button {
 
 .logo {
   height: 6em;
-  padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo div{
+  background: url('../../images/appLogo.png');
+  height: 60px;
+  background-size: cover;
+  width: 160px;
 }
 .logo Link i {
   cursor: pointer;

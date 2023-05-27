@@ -31,7 +31,7 @@ function Encadrant() {
   useEffect(() => {
     const userData = localStorage.getItem("user");
     if (!userData) {
-      navigateTo("/LoginPage");
+      navigateTo("/encadrant/login");
       return;
     }
 

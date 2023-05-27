@@ -136,8 +136,8 @@ function Sidebar() {
         <div className="toggle-button" onClick={toggleSidebar}>
           <FontAwesomeIcon icon={faBars} />
         </div>
-        <Link to="/" className="logo">
-          <h2>LOGO</h2>
+        <Link to="/encadrant/accueil" className="logo">
+          <div></div>
         </Link>
         <div className={`links-container`}>
           <ul className="links-list">
