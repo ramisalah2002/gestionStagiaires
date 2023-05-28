@@ -27,7 +27,75 @@ import "./Projet.css";
 import projetImage from "./../../images/user.jpg";
 import technologieImage1 from "./../../images/React.png";
 import technologieImage2 from "./../../images/Laravel.png";
+import { Chart, registerables } from "chart.js";
+Chart.register(...registerables);
+import { Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
+
+function getRandomData() {
+  let data = [];
+  for (let i = 0; i < 10; i++) {
+    data.push(Math.floor(Math.random() * 100));
+  }
+  return data;
+}
+
 function Projet() {
+  const data = {
+    labels: [
+      "Semaine 1",
+      "Semaine 2",
+      "Semaine 3",
+      "Semaine 4",
+      "Semaine 5",
+      "Semaine 6",
+      "Semaine 7",
+      "Semaine 8",
+      "Semaine 9",
+      "Semaine 10",
+    ],
+    datasets: [
+      {
+        label: "Progression",
+        data: getRandomData(),
+        backgroundColor: "#6f84ea",
+        borderColor: "#6f84ea",
+        borderWidth: 1,
+        barThickness: 10,
+        minBarLength: 2,
+      },
+    ],
+  };
+
+  const options = {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+      x: {
+        max: 10, // adjust this value to control the horizontal size of the chart
+      },
+    },
+    maintainAspectRatio: false,
+    plugins: {
+      title: {
+        display: true,
+        text: "Progression du Projet",
+        padding: {
+          top: 20,
+          bottom: 50,
+        },
+      },
+      legend: {
+        display: false,
+      },
+    },
+    animation: {
+      duration: 2000, // duration of the animation
+      easing: "easeInOutBounce", // type of the animation
+    },
+  };
+
   const [user, setUser] = useState(null);
   const navigateTo = useNavigate();
 
@@ -197,108 +265,9 @@ function Projet() {
               </div>
             </div>
           </div>
-          <div className="project-abscence-section">
-            <div className="project-container">
-              <div className="stagiaires-header">
-                <label className="stagiaires-title">Projets</label>
-                <Link to="./other" className="stagiaires-count">
-                  <FontAwesomeIcon icon={faRectangleList} /> 66
-                </Link>
-              </div>
-              <div className="stagiaires-content">
-                <div className="stagiaire">
-                  <div className="project-info">
-                    <div className="stagiaire-nom-formation">
-                      <label className="stagiaire-nom">Theme projet 1</label>
-                      <label className="stagiaire-formation">
-                        équipe: Stagiaire1 et Stagiaire2
-                      </label>
-                    </div>
-                  </div>
-                  <div className="project-status-yellow">En cours</div>
-                </div>
-                <div className="stagiaire">
-                  <div className="project-info">
-                    <div className="stagiaire-nom-formation">
-                      <label className="stagiaire-nom">Theme projet 2</label>
-                      <label className="stagiaire-formation">
-                        équipe: Stagiaire3 et Stagiaire4
-                      </label>
-                    </div>
-                  </div>
-                  <div className="project-status-green">Terminé</div>
-                </div>
-                <div className="stagiaire">
-                  <div className="project-info">
-                    <div className="stagiaire-nom-formation">
-                      <label className="stagiaire-nom">Theme projet 2</label>
-                      <label className="stagiaire-formation">
-                        équipe: Stagiaire3 et Stagiaire4
-                      </label>
-                    </div>
-                  </div>
-                  <div className="project-status-green">Terminé</div>
-                </div>
-              </div>
-            </div>
-            <div className="abscence-container-a">
-              <div className="stagiaires-header">
-                <div className="today-abscence-a">
-                  <label className="stagiaires-title">Abscence</label>
-                  <div className="today-abscence-container-a">
-                    <label className="today-abscence-day">Aujourd'hui</label>
-                  </div>
-                </div>
-                <Link to="../example" className="see-more-abscence">
-                  voir plus
-                </Link>
-              </div>
-              <div className="abscence-content-a">
-                <div className="abscence">
-                  <div className="abscence-info">
-                    <div className="red-line"></div>
-                    <div className="stagiaire-nom-formation">
-                      <label className="stagiaire-nom">RAMI Salah-eddine</label>
-                      <label className="stagiaire-formation">
-                        justification: certificat medical
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div className="abscence">
-                  <div className="abscence-info">
-                    <div className="red-line"></div>
-                    <div className="stagiaire-nom-formation">
-                      <label className="stagiaire-nom">BOULAAJOUL Anass</label>
-                      <label className="stagiaire-formation">
-                        justification: certificat medical
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div className="abscence">
-                  <div className="abscence-info">
-                    <div className="red-line"></div>
-                    <div className="stagiaire-nom-formation">
-                      <label className="stagiaire-nom">BOULAAJOUL Anass</label>
-                      <label className="stagiaire-formation">
-                        justification: certificat medical
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div className="abscence">
-                  <div className="abscence-info">
-                    <div className="red-line"></div>
-                    <div className="stagiaire-nom-formation">
-                      <label className="stagiaire-nom">BOULAAJOUL Anass</label>
-                      <label className="stagiaire-formation">
-                        justification: certificat medical
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div className="projetImage-projetGraphe">
+            <div className="projetGraphe">
+              <Bar data={data} options={options} />
             </div>
           </div>
         </div>
