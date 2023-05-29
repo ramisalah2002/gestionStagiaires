@@ -18,10 +18,10 @@ const EmailSent = () => {
         <label className='reset-password-title'>Vérifier votre e-mail</label>
         <p className='reset-password-paragraph'>Nous avons envoyé un email de réinitialisation du mot de passe</p>
         <Link to="https://www.google.com/gmail" target="_blank" className='reset-button'>Vérifier ma boîte de récéption</Link>
-        <div className='go-back-link'>
+        <Link to="/encadrant/login" className='go-back-link'>
           <FontAwesomeIcon className="go-back-icon" icon={faArrowLeft} />
-          <label onClick={() => navigate("/encadrant/login")}>Revenir à la page de connexion</label>
-        </div>
+          <label>Revenir à la page de connexion</label>
+        </Link>
       </div>
     </div>
   );

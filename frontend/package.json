@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@canvasjs/charts": "^3.7.7",
+    "@canvasjs/react-charts": "^1.0.0",
     "@emailjs/browser": "^3.11.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
@@ -24,6 +26,8 @@
     "exceljs": "^4.3.0",
     "faker": "^6.6.6",
     "file-saver": "^2.0.5",
+    "highcharts": "^11.0.1",
+    "highcharts-react-official": "^3.2.0",
     "ionicons": "^7.1.0",
     "jsonwebtoken": "^9.0.0",
     "jspdf": "^2.5.1",
@@ -31,11 +35,13 @@
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-confirm-alert": "^3.0.6",
+    "react-cookie": "^4.1.1",
     "react-dom": "^18.2.0",
     "react-feather": "^2.0.10",
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.11.1",
     "read-excel-file": "^5.6.1",
+    "recharts": "^2.6.2",
     "xlsx": "^0.18.5",
     "xlsx-populate": "^1.21.0",
     "xlsx-style": "^0.8.13"

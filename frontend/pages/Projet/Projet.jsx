@@ -31,6 +31,14 @@ import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
 import { Line } from "react-chartjs-2";
 import { Bar } from "react-chartjs-2";
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
+import exporting from 'highcharts/modules/exporting';
+import exportData from 'highcharts/modules/export-data';
+
+// Initialize exporting and exportData modules
+exporting(Highcharts);
+exportData(Highcharts);
 
 function getRandomData() {
   let data = [];
@@ -41,59 +49,134 @@ function getRandomData() {
 }
 
 function Projet() {
-  const data = {
-    labels: [
-      "Semaine 1",
-      "Semaine 2",
-      "Semaine 3",
-      "Semaine 4",
-      "Semaine 5",
-      "Semaine 6",
-      "Semaine 7",
-      "Semaine 8",
-      "Semaine 9",
-      "Semaine 10",
-    ],
-    datasets: [
-      {
-        label: "Progression",
-        data: getRandomData(),
-        backgroundColor: "#6f84ea",
-        borderColor: "#6f84ea",
-        borderWidth: 1,
-        barThickness: 10,
-        minBarLength: 2,
-      },
-    ],
-  };
 
-  const options = {
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
-      x: {
-        max: 10, // adjust this value to control the horizontal size of the chart
-      },
+  const projectProgressOptions = {
+    chart: {
+      type: 'column',
+      width: '650'
     },
-    maintainAspectRatio: false,
-    plugins: {
+    title: {
+      text: ''
+    },
+    xAxis: {
+      categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
       title: {
-        display: true,
-        text: "Progression du Projet",
-        padding: {
-          top: 20,
-          bottom: 50,
+        text: 'Semaines'
+      }
+    },
+    yAxis: {
+      min: 0,
+      max: 100,
+      title: {
+        text: 'Progrès (%)'
+      }
+    },
+    plotOptions: {
+      column: {
+        groupPadding: 0.1,
+        pointPadding: 0.05
+      }
+    },
+    series: [{
+      name: 'Progrès du projet',
+      data: [20, 40, 60, 80, 90, 100],
+      // Set the width of the bars
+      pointWidth: 50,
+      showInLegend: false
+    }],
+    lang: {
+      decimalPoint: ',',
+      thousandsSep: ' ',
+      loading: 'Chargement...',
+      noData: 'Aucune donnée à afficher',
+      contextButtonTitle: 'Menu',
+      downloadJPEG: 'Télécharger en JPEG',
+      downloadPDF: 'Télécharger en PDF',
+      downloadPNG: 'Télécharger en PNG',
+      downloadSVG: 'Télécharger en SVG',
+      printChart: 'Imprimer le graphique',
+      resetZoom: 'Réinitialiser le zoom',
+      resetZoomTitle: 'Réinitialiser le zoom à l\'échelle 1:1',
+      thousandsSep: ' ',
+      decimalPoint: ',',
+      viewFullscreen: 'Afficher en plein écran'
+    },
+    // Add exporting options
+    exporting: {
+      buttons: {
+        contextButton: {
+          align: 'right',
+          x: 14,
+          y: -15,
+          menuItems: ['downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG']
+        }
+      },
+      buttonOptions: {
+        theme: {
+          zIndex: 999 // set the z-index of the button icon
+        }
+      }
+    }
+  };
+  
+
+  const pieChartOptions = {
+    chart: {
+      type: 'pie',
+      plotBackgroundColor: null,
+      plotBorderWidth: null,
+      plotShadow: false,
+      spacing: [0, 0, 0, 0],
+      backgroundColor: '#fff',
+    },
+    title: {
+      text: ''
+    },
+    plotOptions: {
+      pie: {
+        innerSize: '60%',
+        dataLabels: {
+          enabled: false,
+          format: '<b>{point.name}</b>: {point.percentage:.1f} %'
         },
-      },
-      legend: {
-        display: false,
-      },
+        showInLegend: true
+      }
     },
-    animation: {
-      duration: 2000, // duration of the animation
-      easing: "easeInOutBounce", // type of the animation
+    series: [{
+      name: 'Progrès',
+      colorByPoint: true,
+      data: [{
+        name: 'Terminé',
+        y: 66.7
+      }, {
+        name: 'En cours',
+        y: 33.3
+      }]
+    }],
+    lang: {
+      decimalPoint: ',',
+      thousandsSep: ' ',
+      loading: 'Chargement...',
+      noData: 'Aucune donnée à afficher',
+      contextButtonTitle: 'Menu',
+      downloadJPEG: 'Télécharger en JPEG',
+      downloadPDF: 'Télécharger en PDF',
+      downloadPNG: 'Télécharger en PNG',
+      downloadSVG: 'Télécharger en SVG',
+      printChart: 'Imprimer le graphique',
+      resetZoom: 'Réinitialiser le zoom',
+      resetZoomTitle: 'Réinitialiser le zoom à l\'échelle 1:1',
+      thousandsSep: ' ',
+      decimalPoint: ',',
+      viewFullscreen: 'Afficher en plein écran'
     },
+    exporting: {
+      buttons: {
+        contextButton: {
+          menuItems: ['downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG']
+        }
+      }
+    }
   };
 
   const [user, setUser] = useState(null);
@@ -270,8 +353,11 @@ function Projet() {
             </div>
           </div>
           <div className="projetImage-projetGraphe">
-            <div className="projetGraphe">
-              <Bar data={data} options={options} />
+            <div className="projetGraphe-1">
+              <HighchartsReact highcharts={Highcharts} options={projectProgressOptions} />
+            </div>
+            <div className="projetGraphe-2">
+              <HighchartsReact highcharts={Highcharts} options={pieChartOptions} />
             </div>
           </div>
         </div>

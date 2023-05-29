@@ -27,6 +27,8 @@ import ForgotPassword from "../pages/ResetPassword/ForgotPassword";
 import ResetPassword from "../pages/ResetPassword/ResetPassword";
 import EmailSent from "../pages/ResetPassword/EmailSent";
 import StagiaireHomePage from "../stagiairePages/Homepage/Homepage";
+import NotFoundPage from "../pages/NotFound/NotFoundPage";
+import PieChart from "../pages/charts/PieChart";
 
 function App() {
   useEffect(() => {
@@ -51,6 +53,8 @@ function App() {
         <Route path="/reset-password/:token" element={<ResetPassword />} />
         <Route path="/reset-email-sent" element={<EmailSent />} />
         <Route path="/stagiaire/accueil" element={<StagiaireHomePage />} />
+        <Route path="/page-not-found" element={<NotFoundPage />} />
+        <Route path="/test" element={<PieChart />} />
       </Routes>
     </Router>
   );
