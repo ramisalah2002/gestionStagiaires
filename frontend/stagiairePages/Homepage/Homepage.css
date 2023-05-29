@@ -1,0 +1,256 @@
+.body {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  gap: 10px;
+  transition: ease 0.5s;
+}
+.profile-absence {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 80%;
+}
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 1; /* Added to occupy remaining vertical space */
+  overflow: hidden;
+  gap: 12px;
+  height: calc(100vh - 160px);
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
+  transition: ease 0.5s;
+  height: 210px;
+  width: 100%;
+}
+.haut-profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  height: 33%;
+  width: 100%;
+  background-color: #d5dafa;
+  padding: 20px 20px;
+  position: relative;
+}
+.bienvenue {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+  height: 33%;
+  width: 60%;
+}
+.haut-bienvenue {
+  color: #556ee6;
+  font-size: 16.25px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.bas-bienvenue {
+  color: #556ee6;
+  font-size: 14px;
+  font-weight: 500;
+}
+.image-haut-profile {
+  display: flex;
+  justify-content: flex-end;
+}
+.image-box {
+  height: 100px;
+  width: auto;
+  position: absolute;
+  right: 35px;
+  bottom: 0;
+}
+.bas-profile {
+  display: flex;
+  justify-content: flex-start;
+}
+.bas-profile-gauche {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.img-profile {
+  height: 80px;
+  width: 80px;
+  background: url("../../images/user.jpg");
+  background-size: cover;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  margin-top: -59px;
+  margin-left: 35px;
+  z-index: 2;
+}
+.bas-profile-gauche-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 20px;
+  margin-top: 5px;
+  row-gap: 5px;
+  text-align: left;
+}
+.bas-profile-gauche-text .nomStagiare {
+  font-size: 16px;
+  font-weight: 700;
+}
+.bas-profile-gauche-text .formation {
+  font-size: 15px;
+  color: #74788d;
+  font-weight: 500;
+}
+.bas-profile-droit-date {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 30px;
+  margin-left: 20px;
+}
+.bas-profile-droit-dateDebut,
+.bas-profile-droit-dateFin {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
+  row-gap: 0px;
+  gap: 10px;
+}
+.debutIcon,
+.finIcon {
+  height: 15px;
+  width: 15px;
+  border: none;
+  color: #fff;
+  background-color: #556ee6;
+  border-radius: 50%;
+  padding: 7.5px;
+}
+.bas-profile-droit-dateDebut-txt,
+.bas-profile-droit-dateFin-txt {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+.bas-profile-droit-dateDebut-txt .top,
+.bas-profile-droit-dateFin-txt .top {
+  font-size: 14px;
+  font-weight: 500;
+  color: #74788d;
+}
+.bas-profile-droit-dateDebut-txt .date,
+.bas-profile-droit-dateFin-txt .date {
+  font-size: 14px;
+  font-weight: 500;
+  color: #000;
+}
+.bas-profile-droit-viewProfile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.bas-profile-droit-viewProfile .viewButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #556ee6;
+  color: #fff;
+  padding: 3px 8px;
+}
+.bas-profile-droit-viewProfile .flecheDroit {
+  height: 12px;
+  padding-left: 5px;
+  margin-top: 2px;
+}
+.absence {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 1; /* Added to occupy remaining vertical space */
+  overflow: hidden;
+  padding: 10px 20px;
+  gap: 12px;
+  height: calc(100vh - 160px);
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
+  transition: ease 0.5s;
+  height: 450px;
+}
+.progression-reunion-projet {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.progression {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 1; /* Added to occupy remaining vertical space */
+  overflow: hidden;
+  padding: 10px 20px;
+  gap: 12px;
+  height: calc(100vh - 160px);
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
+  transition: ease 0.5s;
+  height: 400px;
+}
+.reunion-projet {
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
+}
+
+.projet {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 1; /* Added to occupy remaining vertical space */
+  overflow: hidden;
+  padding: 10px 20px;
+  gap: 12px;
+  height: calc(100vh - 160px);
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
+  transition: ease 0.5s;
+  height: 300px;
+  width: 80%;
+}
+.reunion {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 1; /* Added to occupy remaining vertical space */
+  overflow: hidden;
+  padding: 10px 20px;
+  gap: 12px;
+  height: calc(100vh - 160px);
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
+  transition: ease 0.5s;
+  height: 300px;
+  width: 20%;
+}

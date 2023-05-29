@@ -151,7 +151,7 @@ function Projet() {
           </div>
         </div>
         <div className="sections-container-p">
-          <div className="projet-containert-collaborators">
+          <div className="projet-container-collaborators">
             <div className="projet-container">
               <div className="projet-header">
                 <img
@@ -223,7 +223,9 @@ function Projet() {
                       alt="encadrantImage"
                     />
                     <div className="encadrant-fonction">
-                      <label className="nomEnacrant">Mr. Fouad Toufik</label>
+                      <a href="#" className="nomEnacrant">
+                        Mr. Fouad Toufik
+                      </a>
                       <label className="fonction">Enseignant</label>
                     </div>
                   </div>
@@ -241,9 +243,9 @@ function Projet() {
                         alt="stagiaireImage"
                       />
                       <div className="stagiaire-formation">
-                        <label className="nomStagiaire">
+                        <a href="#" className="nomStagiaire">
                           Rami Salah-eddine
-                        </label>
+                        </a>
                         <label className="formation">Génie Logiciel</label>
                       </div>
                     </div>
@@ -256,7 +258,9 @@ function Projet() {
                         alt="stagiaireImage"
                       />
                       <div className="stagiaire-formation">
-                        <label className="nomStagiaire">Boulaajoul Anass</label>
+                        <a href="#" className="nomStagiaire">
+                          Boulaajoul Anass
+                        </a>
                         <label className="formation">Génie Logiciel</label>
                       </div>
                     </div>
