@@ -4,19 +4,61 @@ import HighchartsReact from 'highcharts-react-official';
 import exporting from 'highcharts/modules/exporting';
 import exportData from 'highcharts/modules/export-data';
 
-// Initialize exporting modules
+// Initialize exporting and exportData modules
 exporting(Highcharts);
 exportData(Highcharts);
 
-const PieChart = () => {
-  const options = {
+const App = () => {
+  const projectProgressOptions = {
+    chart: {
+      type: 'column'
+    },
+    title: {
+      text: 'Project Progress'
+    },
+    xAxis: {
+      categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6']
+    },
+    yAxis: {
+      min: 0,
+      max: 100,
+      title: {
+        text: 'Progress (%)'
+      }
+    },
+    series: [{
+      name: 'Project Progress',
+      data: [20, 40, 60, 80, 90, 100],
+      // Set the width of the bars
+      pointWidth: 30
+    }],
+    // Add exporting options
+    exporting: {
+      buttons: {
+        contextButton: {
+          menuItems: [
+            'downloadPNG',
+            'downloadJPEG',
+            'downloadPDF',
+            'downloadSVG',
+            'separator',
+            'downloadCSV',
+            'downloadXLS'
+          ]
+        }
+      }
+    }
+  };
+
+  const pieChartOptions = {
     chart: {
       type: 'pie',
       plotBackgroundColor: null,
       plotBorderWidth: null,
       plotShadow: false,
       spacing: [0, 0, 0, 0],
-      backgroundColor: 'transparent'
+      backgroundColor: '#fff',
+      width: '500'
     },
     title: {
       text: ''
@@ -64,16 +106,22 @@ const PieChart = () => {
         contextButton: {
           menuItems: ['downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG']
         }
-      },
-      filename: 'my_pie_chart' // Custom filename for the downloaded file
+      }
     }
   };
 
   return (
-    <div className='pie-chart'>
-      <HighchartsReact highcharts={Highcharts} options={options} />
+    <div style={{display :'flex'}}>
+      <div>
+        <h1>Project Progress</h1>
+        <HighchartsReact highcharts={Highcharts} options={projectProgressOptions} />
+      </div>
+      <div>
+        <h1>Absences</h1>
+        <HighchartsReact highcharts={Highcharts} options={pieChartOptions} />
+      </div>
     </div>
   );
 };
 
-export default PieChart;
+export default App;
