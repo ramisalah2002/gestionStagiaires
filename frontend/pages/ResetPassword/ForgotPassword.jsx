@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
+import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faKey, faLock } from '@fortawesome/free-solid-svg-icons';
@@ -13,23 +13,20 @@ const ForgotPassword = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
-  
-    // Generate a token
+
     const token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-  
+
     // Set the token and email to cookies
     document.cookie = `email=${email};max-age=300`; // 300 seconds = 5 minutes
     document.cookie = `token=${token};max-age=300`;
-  
-    // Prepare the email data
+
     const templateParams = {
-      user_email : email,
+      user_email: email,
       user_name: "User", // Replace "User" with the user's name
       message: `${window.location.origin}/reset-password/${token}`
     };
-  
-    // Send the email
-    emailjs.send('service_qf5nk4n', 'template_nam9a9e', templateParams, 'WrNLXx0JfCLRI5jeK')
+
+    emailjs.send('service_qf5nk4n', 'template_4dxa01g', templateParams, 'WrNLXx0JfCLRI5jeK')
       .then((result) => {
         console.log(result.text);
         navigate('/reset-email-sent/');
@@ -37,7 +34,7 @@ const ForgotPassword = () => {
         console.log(error.text);
       });
   };
-  
+
 
   return (
     <div className='reset-password-wrapper'>

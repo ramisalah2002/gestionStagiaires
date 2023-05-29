@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Homepage from "../Homepage/Homepage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
-import appLogo from "../../images/appLogo.png";
+import appLogo from "../../images/MENStage.png";
 import logoLeft from "../../images/logoLeft.png";
 import logoMen from "../../images/logoMen.png";
 import "./LoginPage.css";

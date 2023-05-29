@@ -152,7 +152,7 @@
   justify-content: flex-start;
   flex-grow: 1; /* Added to occupy remaining vertical space */
   gap: 10px;
-  height: 100%;
+  height: calc(100vh - 140px);
 }
 .project-container {
   display: flex;

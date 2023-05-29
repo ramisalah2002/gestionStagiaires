@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useCookies } from 'react-cookie';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faKey, faLock } from '@fortawesome/free-solid-svg-icons';
-import { FiKey, FiMail } from 'react-icons/fi';
+import { FiKey } from 'react-icons/fi';
 import { BsArrowLeft } from 'react-icons/bs';
 import './ForgotPassword.css';
 
@@ -10,6 +11,14 @@ const ResetPassword = () => {
   const { token } = useParams();
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [cookies] = useCookies(['token']);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!cookies.token || cookies.token !== token) {
+      navigate('/page-not-found');
+    }
+  }, [cookies.token, token, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
