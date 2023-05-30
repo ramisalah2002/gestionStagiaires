@@ -173,6 +173,9 @@ function Projet() {
     exporting: {
       buttons: {
         contextButton: {
+          align: 'right',
+          x: 4,
+          y: -5,
           menuItems: ['downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG']
         }
       }
@@ -291,7 +294,7 @@ function Projet() {
             <div className="projet-collaborators">
               <div className="collaborators-header">
                 <FontAwesomeIcon className="team-icon" icon={faPeopleGroup} />
-                <p>Membres d'éqipe</p>
+                <p>Membres d'équipe</p>
               </div>
               <div className="collaborators-body">
                 <div className="collaboratores-body-encadrant">
