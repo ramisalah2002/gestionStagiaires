@@ -134,7 +134,6 @@ function Homepage() {
       plotShadow: false,
       spacing: [0, 0, 0, 0],
       backgroundColor: '#fff',
-      width: '500'
     },
     title: {
       text: 'Absences',

@@ -184,7 +184,7 @@
   justify-content: flex-start;
   flex-grow: 1; /* Added to occupy remaining vertical space */
   overflow: hidden;
-  padding: 10px 20px;
+  padding: 10px 0px;
   gap: 12px;
   height: calc(100vh - 160px);
   background: #fff;
@@ -206,7 +206,7 @@
   justify-content: flex-start;
   flex-grow: 1; /* Added to occupy remaining vertical space */
   overflow: hidden;
-  padding: 10px 20px;
+  padding: 10px 0px;
   gap: 12px;
   height: calc(100vh - 160px);
   background: #fff;
