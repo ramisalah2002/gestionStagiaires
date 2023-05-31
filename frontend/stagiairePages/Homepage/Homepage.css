@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 50%;
+  width: 44%;
 }
 .profile {
   display: flex;
@@ -20,12 +20,12 @@
   flex-grow: 1; /* Added to occupy remaining vertical space */
   overflow: hidden;
   gap: 12px;
+  height: calc(100vh - 160px);
   background: #fff;
   border-radius: 10px;
   box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
   transition: ease 0.5s;
   height: 210px;
-  padding-bottom: 20px;
   width: 100%;
 }
 .haut-profile {
@@ -182,39 +182,6 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
-  padding: 10px 0px;
-  gap: 12px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
-  transition: ease 0.5s;
-}
-.absence-chart-header{
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 10px 0;
-}
-.absence-chart-title{
-  color: #121827;
-  font-size: 1.6rem;
-  font-weight: 500;
-  margin-left: 20px;
-}
-.progression-reunion-projet {
-  background: transparent;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 50%;
-}
-.progression {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
   flex-grow: 1; /* Added to occupy remaining vertical space */
   overflow: hidden;
   padding: 10px 0px;
@@ -224,7 +191,29 @@
   border-radius: 10px;
   box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
   transition: ease 0.5s;
-  height: fit-content
+  height: 450px;
+}
+.progression-reunion-projet {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: calc(56% - 10px);
+}
+.progression {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 1; /* Added to occupy remaining vertical space */
+  overflow: hidden;
+  padding: 10px 0px;
+  gap: 12px;
+  height: calc(100vh - 160px);
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
+  transition: ease 0.5s;
+  height: 500px;
 }
 .reunion-projet {
   background: transparent;
@@ -247,7 +236,7 @@
   box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
   transition: ease 0.5s;
   height: 270px;
-  width: 80%;
+  width: 77%;
 }
 .haut-projet {
   display: flex;
@@ -397,6 +386,7 @@
   flex-direction: row;
   gap: 0px;
   margin-top: 0px;
+  margin-right: 5px;
 }
 .entete-image .imgEncadrant {
   height: 75px;
@@ -404,13 +394,14 @@
   background: url("../../images/user.jpg");
   background-size: cover;
   border-radius: 50%;
-  border: 5px solid #fff;
+  margin: 4px;
+  border: 1px solid #dad8d8;
   z-index: 2;
 }
 .entete-image .entete {
   font-size: 12px;
   font-weight: 800;
-  color: #e6ac55;
+  color: #ff8c00;
   transform: rotate(-90deg);
   padding: 0px;
   margin-top: 35px;
@@ -445,6 +436,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: row;
+  color: #556ee6;
 }
 
 .linkEncadrant .flecheDroit {
@@ -452,21 +444,111 @@
   padding-left: 5px;
   margin-top: 5px;
 }
+.reunion-logo {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 22%;
+}
 .reunion {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
   flex-grow: 1; /* Added to occupy remaining vertical space */
   overflow: hidden;
-  padding: 10px 20px;
-  gap: 12px;
-  height: calc(100vh - 160px);
+  gap: 10px;
   background: #fff;
   border-radius: 10px;
   box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
   transition: ease 0.5s;
-  height: 200px;
-  width: 20%;
+  height: calc(100% - 140px);
+  width: 100%;
+  position: relative;
+}
+
+.reunion .bas-reunion {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  background-color: #dcebe9;
+  /* #dff5ea; */
+  width: 100%;
+  padding-bottom: 10px;
+}
+.bas-reunion .bas-reunion-txt {
+  color: #009898;
+  font-weight: 700;
+  font-size: 16px;
+  margin-top: -12px;
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
+    1px 1px 0 #fff;
+}
+.bas-reunion .bas-reunion-backgound {
+  height: 75px;
+  width: 120px;
+  background: url("../../images/meeting.png");
+  background-size: cover;
+  z-index: 2;
+  margin-top: -5px;
+}
+.reunion .reunion-info {
+  display: flex;
+  flex-direction: column;
+  column-gap: 10px;
+  padding-left: 1px;
+  height: fit-content;
+  padding-top: 10px;
+  margin-top: 5px;
+}
+
+.reunion-info .nomEncadrant-reunion,
+.dateReunion,
+.lieuReunion {
+  display: flex;
+  flex-direction: row;
+  row-gap: 5px;
+  column-gap: 10px;
+  align-items: center;
+  padding: 4px 2px;
+}
+.txt-info-reunion {
+  font-size: 10px;
+  font-weight: 700;
+}
+.icon-info-reunion {
+  height: 10px;
+  width: 10px;
+  background-color: #009898;
+  border-radius: 50%;
+  color: #fff;
+  padding: 4px;
+}
+.reunion-logo .logo-under {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1; /* Added to occupy remaining vertical space */
+  overflow: hidden;
+  padding: 0px 0px;
+  gap: 12px;
+  border-radius: 10px;
+  box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
+  transition: ease 0.5s;
+  height: fit-content;
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+}
+.logo-under .logo-background {
+  background: url("../../images/MENStage.png");
+  height: 40px;
+  background-size: cover;
+  width: 110px;
 }
 .change-filter-wrapper {
   position: relative;
