@@ -20,6 +20,8 @@ import {
   faFlushed,
   faArrowAltCircleDown,
   faArrowRight,
+  faUserAlt,
+  faMapMarkerAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { faUser, faRectangleList } from "@fortawesome/free-regular-svg-icons";
 import "../Homepage/Homepage.css";
@@ -27,15 +29,14 @@ import profileBoxImage from "../../images/profile-img.png";
 import imgProfile from "../../images/user.jpg";
 import projetImage from "../../images/projetImage.jpg";
 import projetBackGround from "../../images/projetBackground.png";
-import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
-import exporting from 'highcharts/modules/exporting';
-import exportData from 'highcharts/modules/export-data';
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+import exporting from "highcharts/modules/exporting";
+import exportData from "highcharts/modules/export-data";
 
 // Initialize exporting and exportData modules
 exporting(Highcharts);
 exportData(Highcharts);
-
 
 function Homepage() {
   const [searchResults, setSearchResults] = useState([]); // New state for the search results
@@ -123,98 +124,107 @@ function Homepage() {
     month: "short",
   });
 
-
-
   //absence chart
   const pieChartOptions = {
     chart: {
-      type: 'pie',
+      type: "pie",
       plotBackgroundColor: null,
       plotBorderWidth: null,
       plotShadow: false,
       spacing: [0, 0, 0, 0],
-      backgroundColor: '#fff',
-      width: '500'
+      backgroundColor: "#fff",
     },
     title: {
-      text: 'Absences',
+      text: "Absences",
       y: 20,
       style: {
-        fontSize: '18px'
-      }
+        fontSize: "18px",
+      },
     },
     subtitle: {
-      text: '<b>Absence</b><br>120 heures',
-      align: 'center',
-      verticalAlign: 'middle',
+      text: "<b>Absence</b><br>120 heures",
+      align: "center",
+      verticalAlign: "middle",
       y: -5,
       style: {
-        fontSize: '16px'
-      }
+        fontSize: "16px",
+      },
     },
     plotOptions: {
       pie: {
-        innerSize: '60%',
+        innerSize: "60%",
         dataLabels: {
           enabled: false,
-          format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+          format: "<b>{point.name}</b>: {point.percentage:.1f} %",
         },
-        showInLegend: true
-      }
-    },
-    series: [{
-      name: '',
-      colorByPoint: true,
-      data: [{
-        name: 'Absences justifiées',
-        y: 50
-      }, {
-        name: 'Absences non justifiées',
-        y: 25
-      }, {
-        name: 'Présences',
-        y: 25
-      }, {
-        name: 'Jours restants',
-        y: 25
+        showInLegend: true,
       },
-    ]
-    }],
+    },
+    series: [
+      {
+        name: "",
+        colorByPoint: true,
+        data: [
+          {
+            name: "Absences justifiées",
+            y: 50,
+          },
+          {
+            name: "Absences non justifiées",
+            y: 25,
+          },
+          {
+            name: "Présences",
+            y: 25,
+          },
+          {
+            name: "Jours restants",
+            y: 25,
+          },
+        ],
+      },
+    ],
     lang: {
-      decimalPoint: ',',
-      thousandsSep: ' ',
-      loading: 'Chargement...',
-      noData: 'Aucune donnée à afficher',
-      contextButtonTitle: 'Menu',
-      downloadJPEG: 'Télécharger en JPEG',
-      downloadPDF: 'Télécharger en PDF',
-      downloadPNG: 'Télécharger en PNG',
-      downloadSVG: 'Télécharger en SVG',
-      printChart: 'Imprimer le graphique',
-      resetZoom: 'Réinitialiser le zoom',
-      resetZoomTitle: 'Réinitialiser le zoom à l\'échelle 1:1',
-      thousandsSep: ' ',
-      decimalPoint: ',',
-      viewFullscreen: 'Afficher en plein écran'
+      decimalPoint: ",",
+      thousandsSep: " ",
+      loading: "Chargement...",
+      noData: "Aucune donnée à afficher",
+      contextButtonTitle: "Menu",
+      downloadJPEG: "Télécharger en JPEG",
+      downloadPDF: "Télécharger en PDF",
+      downloadPNG: "Télécharger en PNG",
+      downloadSVG: "Télécharger en SVG",
+      printChart: "Imprimer le graphique",
+      resetZoom: "Réinitialiser le zoom",
+      resetZoomTitle: "Réinitialiser le zoom à l'échelle 1:1",
+      thousandsSep: " ",
+      decimalPoint: ",",
+      viewFullscreen: "Afficher en plein écran",
     },
     exporting: {
       buttons: {
         contextButton: {
-          menuItems: ['downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG', 'viewFullscreen']
-        }
-      }
-    }
+          menuItems: [
+            "downloadPNG",
+            "downloadJPEG",
+            "downloadPDF",
+            "downloadSVG",
+            "viewFullscreen",
+          ],
+        },
+      },
+    },
   };
 
   //line chart
-  const categories = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+  const categories = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
 
   const splineChartOptions = {
     chart: {
-      type: 'spline'
+      type: "spline",
     },
     title: {
-      text: 'Projects Progress'
+      text: "Projects Progress",
     },
     xAxis: {
       categories: categories,
@@ -222,33 +232,33 @@ function Homepage() {
       lineWidth: 0, // Hide x-axis line
       plotLines: categories.map((category, index) => ({
         value: index, // Position the plot line between each category
-        color: '#ccc', // Color of the vertical line
+        color: "#ccc", // Color of the vertical line
         width: 1, // Width of the vertical line
-        zIndex: 3 // Set a higher z-index to make sure it's displayed above the series
+        zIndex: 3, // Set a higher z-index to make sure it's displayed above the series
       })),
       labels: {
         style: {
-          fontWeight: '500', // Make the labels bolder
+          fontWeight: "500", // Make the labels bolder
           fontSize: 14,
-          color: "#727b88"
-        }
-      }
+          color: "#727b88",
+        },
+      },
     },
     yAxis: {
       title: {
-        text: 'Progrès (%)',
+        text: "Progrès (%)",
         enabled: false,
       },
       gridLineWidth: 0, // Hide y-axis grid lines
       lineWidth: 0, // Hide y-axis line
       labels: {
-        format: '{value}%', // Format the labels as percentages
+        format: "{value}%", // Format the labels as percentages
         style: {
-          fontWeight: '600', // Make the labels bolder
+          fontWeight: "600", // Make the labels bolder
           fontSize: 14,
-          color: "#727b88"
-        }
-      }
+          color: "#727b88",
+        },
+      },
     },
     plotOptions: {
       series: {
@@ -259,80 +269,81 @@ function Homepage() {
           states: {
             hover: {
               enabled: true, // Enable markers on hover
-              fillColor: '#000', // Marker color on hover
+              fillColor: "#000", // Marker color on hover
               lineWidth: 2, // Marker border width on hover
-              lineColor: '#fff' // Marker border color on hover
-            }
-          }
-        }
-      }
+              lineColor: "#fff", // Marker border color on hover
+            },
+          },
+        },
+      },
     },
     tooltip: {
-      pointFormat: '<span style="color:{series.color};fontWeight:bold">{series.name}</span>: <b>{point.y}%</b><br/>', // Format tooltip with percentage value
+      pointFormat:
+        '<span style="color:{series.color};fontWeight:bold">{series.name}</span>: <b>{point.y}%</b><br/>', // Format tooltip with percentage value
     },
     series: [
       {
-        name: 'Conception',
+        name: "Conception",
         data: [5, 2, 6, 1, 5, 3],
-        type: 'spline',
-        color: '#2dad73', // Color for Conception line
+        type: "spline",
+        color: "#2dad73", // Color for Conception line
         marker: {
-          symbol: 'circle', // Rounded marker shape
-          radius: 4 // Adjust the radius for marker size
-        }
+          symbol: "circle", // Rounded marker shape
+          radius: 4, // Adjust the radius for marker size
+        },
       },
       {
-        name: 'Frontend',
+        name: "Frontend",
         data: [0, 5, 1, 6, 4, 1],
-        type: 'spline',
-        color: '#fcc93e', // Color for Frontend line
+        type: "spline",
+        color: "#fcc93e", // Color for Frontend line
         marker: {
-          symbol: 'circle', // Rounded marker shape
-          radius: 4 // Adjust the radius for marker size
-        }
+          symbol: "circle", // Rounded marker shape
+          radius: 4, // Adjust the radius for marker size
+        },
       },
       {
-        name: 'Backend',
+        name: "Backend",
         data: [1, 7, 4, 5, 3, 6],
-        type: 'spline',
-        color: '#3077ed', // Color for Backend line
+        type: "spline",
+        color: "#3077ed", // Color for Backend line
         marker: {
-          symbol: 'circle', // Rounded marker shape
-          radius: 4 // Adjust the radius for marker size
-        }
-      }
+          symbol: "circle", // Rounded marker shape
+          radius: 4, // Adjust the radius for marker size
+        },
+      },
     ],
     lang: {
-      decimalPoint: ',',
-      thousandsSep: ' ',
-      loading: 'Chargement...',
-      noData: 'Aucune donnée à afficher',
-      contextButtonTitle: 'Menu',
-      downloadJPEG: 'Télécharger en JPEG',
-      downloadPDF: 'Télécharger en PDF',
-      downloadPNG: 'Télécharger en PNG',
-      downloadSVG: 'Télécharger en SVG',
-      printChart: 'Imprimer le graphique',
-      resetZoom: 'Réinitialiser le zoom',
-      resetZoomTitle: 'Réinitialiser le zoom à l\'échelle 1:1',
-      thousandsSep: ' ',
-      decimalPoint: ',',
-      viewFullscreen: 'Afficher en plein écran'
+      decimalPoint: ",",
+      thousandsSep: " ",
+      loading: "Chargement...",
+      noData: "Aucune donnée à afficher",
+      contextButtonTitle: "Menu",
+      downloadJPEG: "Télécharger en JPEG",
+      downloadPDF: "Télécharger en PDF",
+      downloadPNG: "Télécharger en PNG",
+      downloadSVG: "Télécharger en SVG",
+      printChart: "Imprimer le graphique",
+      resetZoom: "Réinitialiser le zoom",
+      resetZoomTitle: "Réinitialiser le zoom à l'échelle 1:1",
+      thousandsSep: " ",
+      decimalPoint: ",",
+      viewFullscreen: "Afficher en plein écran",
     },
     exporting: {
       buttons: {
         contextButton: {
-          menuItems: ['downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG', 'viewFullscreen']
-        }
-      }
-    }
+          menuItems: [
+            "downloadPNG",
+            "downloadJPEG",
+            "downloadPDF",
+            "downloadSVG",
+            "viewFullscreen",
+          ],
+        },
+      },
+    },
   };
-  
-  
-  
-  
-
-  
 
   return (
     <div className="app">
@@ -432,12 +443,18 @@ function Homepage() {
               </div>
             </div>
             <div className="absence">
-              <HighchartsReact highcharts={Highcharts} options={pieChartOptions} />
+              <HighchartsReact
+                highcharts={Highcharts}
+                options={pieChartOptions}
+              />
             </div>
           </div>
           <div className="progression-reunion-projet">
             <div className="progression">
-              <HighchartsReact highcharts={Highcharts} options={splineChartOptions} />
+              <HighchartsReact
+                highcharts={Highcharts}
+                options={splineChartOptions}
+              />
             </div>
             <div className="reunion-projet">
               <div className="projet">
@@ -491,7 +508,40 @@ function Homepage() {
                   </div>
                 </div>
               </div>
-              <div className="reunion"></div>
+              <div className="reunion-logo">
+                <div className="reunion">
+                  <div className="reunion-info">
+                    <div className="nomEncadrant-reunion">
+                      <FontAwesomeIcon
+                        className="icon-info-reunion"
+                        icon={faUserAlt}
+                      />
+                      <div className="txt-info-reunion">Mr. Fouad Toufik</div>
+                    </div>
+                    <div className="dateReunion">
+                      <FontAwesomeIcon
+                        className="icon-info-reunion"
+                        icon={faCalendarWeek}
+                      />
+                      <div className="txt-info-reunion">20 juin 2023</div>
+                    </div>
+                    <div className="lieuReunion">
+                      <FontAwesomeIcon
+                        className="icon-info-reunion"
+                        icon={faMapMarkerAlt}
+                      />
+                      <div className="txt-info-reunion">Bureau Mr. Toufik</div>
+                    </div>
+                  </div>
+                  <div className="bas-reunion">
+                    <div className="bas-reunion-txt">REUNION</div>
+                    <div className="bas-reunion-backgound" />
+                  </div>
+                </div>
+                <div className="logo-under">
+                  <div className="logo-background" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
