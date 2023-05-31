@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 80%;
+  width: 50%;
 }
 .profile {
   display: flex;
@@ -20,12 +20,12 @@
   flex-grow: 1; /* Added to occupy remaining vertical space */
   overflow: hidden;
   gap: 12px;
-  height: calc(100vh - 160px);
   background: #fff;
   border-radius: 10px;
   box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
   transition: ease 0.5s;
   height: 210px;
+  padding-bottom: 20px;
   width: 100%;
 }
 .haut-profile {
@@ -182,28 +182,39 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  flex-grow: 1; /* Added to occupy remaining vertical space */
-  overflow: hidden;
+  align-items: center;
   padding: 10px 0px;
   gap: 12px;
-  height: calc(100vh - 160px);
   background: #fff;
   border-radius: 10px;
   box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
   transition: ease 0.5s;
-  height: 450px;
+}
+.absence-chart-header{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+.absence-chart-title{
+  color: #121827;
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-left: 20px;
 }
 .progression-reunion-projet {
   background: transparent;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 100%;
+  width: 50%;
 }
 .progression {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
   flex-grow: 1; /* Added to occupy remaining vertical space */
   overflow: hidden;
   padding: 10px 0px;
@@ -213,7 +224,7 @@
   border-radius: 10px;
   box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
   transition: ease 0.5s;
-  height: 500px;
+  height: fit-content
 }
 .reunion-projet {
   background: transparent;
@@ -456,4 +467,102 @@
   transition: ease 0.5s;
   height: 200px;
   width: 20%;
+}
+.change-filter-wrapper {
+  position: relative;
+  margin-right: 10px;
+}
+.change-filter-link {
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid #a9aeb385;
+  color: #1f212c;
+  font-size: 17px;
+  padding: 10px 15px;
+  transition: ease 0.3s;
+}
+.change-links-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  top: 0;
+  margin-top: -8.5px;
+  left: 0;
+  z-index: 20;
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  white-space: nowrap;
+}
+.change-link {
+  font-size: 14px;
+  color: #4a4f5d;
+  text-decoration: none;
+  transition: ease 0.2s;
+  width: calc(100% - 10px);
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 5px;
+  text-align: start;
+}
+.change-link:hover {
+  background: #d6d6d8;
+}
+.circle-chart-absence{
+  width: 200px;
+  height: 200px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.circle-chart-absence .label-1{
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #101827;
+}
+.circle-chart-absence .label-2{
+  font-size: 1rem;
+  font-weight: 500;
+  color: #757d8a;
+}
+.absence-chart-bottom{
+  width: calc(100% - 20px);
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.absence-chart-bottom .abscence-chart-div{
+  width: 90%;
+  display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.point-name-container{
+  width: 100%;
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.point-circle{
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fcc93e;
 }

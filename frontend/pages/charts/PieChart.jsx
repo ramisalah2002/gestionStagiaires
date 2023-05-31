@@ -19,7 +19,9 @@ const App = () => {
       plotShadow: false,
       spacing: [0, 0, 0, 0],
       backgroundColor: '#fff',
-      width: '500'
+      width: '',
+      height: '',
+      aspectRatio: 1,
     },
     title: {
       text: ''
