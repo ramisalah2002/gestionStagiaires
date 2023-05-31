@@ -3,52 +3,13 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import exporting from 'highcharts/modules/exporting';
 import exportData from 'highcharts/modules/export-data';
+import './Chart.css';
 
 // Initialize exporting and exportData modules
 exporting(Highcharts);
 exportData(Highcharts);
 
 const App = () => {
-  const projectProgressOptions = {
-    chart: {
-      type: 'column'
-    },
-    title: {
-      text: 'Project Progress'
-    },
-    xAxis: {
-      categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6']
-    },
-    yAxis: {
-      min: 0,
-      max: 100,
-      title: {
-        text: 'Progress (%)'
-      }
-    },
-    series: [{
-      name: 'Project Progress',
-      data: [20, 40, 60, 80, 90, 100],
-      // Set the width of the bars
-      pointWidth: 30
-    }],
-    // Add exporting options
-    exporting: {
-      buttons: {
-        contextButton: {
-          menuItems: [
-            'downloadPNG',
-            'downloadJPEG',
-            'downloadPDF',
-            'downloadSVG',
-            'separator',
-            'downloadCSV',
-            'downloadXLS'
-          ]
-        }
-      }
-    }
-  };
 
   const pieChartOptions = {
     chart: {
@@ -67,10 +28,10 @@ const App = () => {
       pie: {
         innerSize: '60%',
         dataLabels: {
-          enabled: true,
+          enabled: false,
           format: '<b>{point.name}</b>: {point.percentage:.1f} %'
         },
-        showInLegend: true
+        showInLegend: false
       }
     },
     series: [{
@@ -111,15 +72,11 @@ const App = () => {
   };
 
   return (
-    <div style={{display :'flex'}}>
-      <div>
-        <h1>Project Progress</h1>
-        <HighchartsReact highcharts={Highcharts} options={projectProgressOptions} />
-      </div>
-      <div>
-        <h1>Absences</h1>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', }}>
+        <div className='circle-chart'>
+          <label>Absences</label>
+        </div>
         <HighchartsReact highcharts={Highcharts} options={pieChartOptions} />
-      </div>
     </div>
   );
 };
