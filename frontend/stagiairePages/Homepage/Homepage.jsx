@@ -25,6 +25,8 @@ import { faUser, faRectangleList } from "@fortawesome/free-regular-svg-icons";
 import "../Homepage/Homepage.css";
 import profileBoxImage from "../../images/profile-img.png";
 import imgProfile from "../../images/user.jpg";
+import projetImage from "../../images/projetImage.jpg";
+import projetBackGround from "../../images/projetBackground.png";
 
 function Homepage() {
   const [searchResults, setSearchResults] = useState([]); // New state for the search results
@@ -198,13 +200,13 @@ function Homepage() {
                     </div>
                   </div>
                   <div className="bas-profile-droit-viewProfile">
-                    <button className="viewButton">
+                    <Link className="viewButton" to="#">
                       <div className="txtViewPofile">voir profile</div>
                       <FontAwesomeIcon
                         className="flecheDroit"
                         icon={faArrowRight}
                       />
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -214,7 +216,57 @@ function Homepage() {
           <div className="progression-reunion-projet">
             <div className="progression"></div>
             <div className="reunion-projet">
-              <div className="projet"></div>
+              <div className="projet">
+                <div className="haut-projet">
+                  <div className="haut-projet-gauche">
+                    <div className="projetBackGround">
+                      <div className="projetBackGround-img" />
+                    </div>
+                  </div>
+                  <div className="haut-projet-droit">
+                    <div className="nomApplication">JEXAMEN</div>
+                    <div className="descriptionApplication">
+                      Une application de passage des examens en ligne
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bas-projet">
+                  <div className="bas-projet-gauche">
+                    <div className="infoEncadrant">
+                      <div className="entete-image">
+                        <div className="entete">Encadrant</div>
+                        <div className="imgEncadrant" />
+                      </div>
+                      <div className="nomEncadrant-fonction">
+                        <div className="nomEncadrant">Mr. Fouad Toufik</div>
+                        <div className="fonction">Enseignant</div>
+                      </div>
+                    </div>
+                    <Link className="linkEncadrant" to="#">
+                      <div className="linkTxt">Encadrant Profile</div>
+                      <FontAwesomeIcon
+                        className="flecheDroit"
+                        icon={faArrowRight}
+                      />
+                    </Link>
+                  </div>
+                  <div className="bas-projet-droit">
+                    <div className="projet-img" />
+                    <div className="under-logo">
+                      <div className="nomProjet">JEXAMEN</div>
+                      <div className="typeProjet">Mobile</div>
+                      <Link className="viewProjetButton" to="#">
+                        <div className="voirDetailsProjet">voir details</div>
+                        <FontAwesomeIcon
+                          className="flecheDroit"
+                          icon={faArrowRight}
+                        />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div className="reunion"></div>
             </div>
           </div>

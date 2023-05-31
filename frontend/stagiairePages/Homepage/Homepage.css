@@ -171,6 +171,7 @@
   background-color: #556ee6;
   color: #fff;
   padding: 3px 8px;
+  border-radius: 8px;
 }
 .bas-profile-droit-viewProfile .flecheDroit {
   height: 12px;
@@ -212,7 +213,7 @@
   border-radius: 10px;
   box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
   transition: ease 0.5s;
-  height: 400px;
+  height: 500px;
 }
 .reunion-projet {
   background: transparent;
@@ -226,17 +227,219 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  flex-grow: 1; /* Added to occupy remaining vertical space */
+  flex-grow: 1;
   overflow: hidden;
-  padding: 10px 20px;
   gap: 12px;
   height: calc(100vh - 160px);
   background: #fff;
   border-radius: 10px;
   box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
   transition: ease 0.5s;
-  height: 300px;
+  height: 270px;
   width: 80%;
+}
+.haut-projet {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+  text-align: right;
+  height: 32%;
+  width: calc(100% - 20px);
+  background-color: #fdf2e0;
+  padding: 20px 0px;
+  position: relative;
+  padding-right: 20px;
+}
+.haut-projet-droit {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  text-align: right;
+  width: 100%;
+}
+.haut-projet .nomApplication {
+  color: #ff8c00;
+  font-size: 16.25px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.haut-projet .descriptionApplication {
+  color: #ff8c00;
+  font-size: 14px;
+  font-weight: 500;
+}
+.haut-projet-gauche {
+  display: flex;
+  padding: 0px;
+  /* position: relative; */
+}
+.projetBackGround {
+  display: flex;
+  padding: 0px;
+}
+.projetBackGround-img {
+  background: url(/images/projetBackground.png);
+  height: 120px;
+  width: 100px;
+  background-size: cover;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  position: relative;
+  margin: 0px;
+  opacity: 0.7;
+  transform: rotate(-30deg);
+  z-index: 0;
+  padding: -2px;
+  margin-top: -13px;
+}
+
+.bas-projet {
+  display: flex;
+  justify-content: flex-end;
+}
+.bas-projet-droit {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: end;
+  z-index: 1;
+}
+.bas-projet-droit .projet-img {
+  height: 80px;
+  width: 80px;
+  background: url(/images/projetImage.jpg);
+  background-size: cover;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  margin-top: -59px;
+  margin-right: 35px;
+  z-index: 10;
+}
+.bas-projet-droit .under-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-right: 23px;
+}
+.under-logo .nomProjet {
+  font-size: 15.25px;
+  font-weight: 700;
+  color: #556ee6;
+}
+.under-logo .typeProjet {
+  font-size: 12px;
+  font-weight: 700;
+  color: #556ee6;
+  background-color: #d5dafa;
+  border-radius: 6px;
+  width: fit-content;
+  padding: 0px 6px;
+}
+.viewProjetButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.viewProjetButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #ff8c00;
+  margin-top: 20px;
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 8px;
+}
+.voirDetailsProjet {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.viewProjetButton .flecheDroit {
+  height: 12px;
+  padding-left: 5px;
+  margin-top: 2px;
+}
+.bas-projet-gauche {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 450px;
+}
+.bas-projet-gauche .infoEncadrant {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  position: relative;
+}
+.infoEncadrant .entete-image {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 0px;
+  margin-top: 0px;
+}
+.entete-image .imgEncadrant {
+  height: 75px;
+  width: 75px;
+  background: url("../../images/user.jpg");
+  background-size: cover;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  z-index: 2;
+}
+.entete-image .entete {
+  font-size: 12px;
+  font-weight: 800;
+  color: #e6ac55;
+  transform: rotate(-90deg);
+  padding: 0px;
+  margin-top: 35px;
+  margin-left: -20px;
+  margin-right: -25px;
+}
+.infoEncadrant .nomEncadrant-fonction {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.nomEncadrant-fonction .nomEncadrant {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #000;
+}
+
+.nomEncadrant-fonction .fonction {
+  font-size: 14px;
+  font-weight: 500;
+  color: #74788d;
+}
+
+.bas-projet-gauche .linkEncadrant {
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 3px;
+  margin-left: 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.linkEncadrant .flecheDroit {
+  height: 12px;
+  padding-left: 5px;
+  margin-top: 5px;
 }
 .reunion {
   display: flex;
@@ -251,6 +454,6 @@
   border-radius: 10px;
   box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
   transition: ease 0.5s;
-  height: 300px;
+  height: 200px;
   width: 20%;
 }
