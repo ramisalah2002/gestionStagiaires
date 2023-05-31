@@ -186,7 +186,6 @@
   overflow: hidden;
   padding: 10px 0px;
   gap: 12px;
-  height: calc(100vh - 160px);
   background: #fff;
   border-radius: 10px;
   box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
@@ -567,12 +566,15 @@
   margin-right: 10px;
 }
 .change-filter-link {
+  display: block;
+  white-space: nowrap;
+  width: 100px;
   background: #fff;
   border-radius: 5px;
   border: 1px solid #a9aeb385;
   color: #1f212c;
-  font-size: 17px;
-  padding: 10px 15px;
+  font-size: 15px;
+  padding: 7px 15px;
   transition: ease 0.3s;
 }
 .change-links-container {
@@ -582,7 +584,7 @@
   align-items: flex-start;
   justify-content: center;
   top: 0;
-  margin-top: -8.5px;
+  margin-top: -0px;
   left: 0;
   z-index: 20;
   background-color: white;
@@ -590,17 +592,18 @@
   border-radius: 5px;
   border: 1px solid #ccc;
   white-space: nowrap;
+  width: 120px;
 }
 .change-link {
   font-size: 14px;
   color: #4a4f5d;
   text-decoration: none;
   transition: ease 0.2s;
-  width: calc(100% - 10px);
   padding-left: 5px;
   padding-right: 5px;
   border-radius: 5px;
   text-align: start;
+  width: 110px;
 }
 .change-link:hover {
   background: #d6d6d8;
@@ -658,5 +661,21 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #fcc93e;
+}
+.indicators-conteiner{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.indicator-container{
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+.indicator-container label{
+  color: #232835;
+  font-size: 14px;
+  font-weight: 600;
 }
