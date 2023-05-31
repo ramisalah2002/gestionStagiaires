@@ -30,6 +30,9 @@ import profileBoxImage from "../../images/profile-img.png";
 import imgProfile from "../../images/user.jpg";
 import projetImage from "../../images/projetImage.jpg";
 import projetBackGround from "../../images/projetBackground.png";
+import MonthProgress from "../../charts/MonthProgress";
+import Absence from "../../charts/Absence";
+import AllTimeProgress from "../../charts/AllTimeProgress";
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import exporting from 'highcharts/modules/exporting';
@@ -147,210 +150,6 @@ function Homepage() {
     day: "numeric",
     month: "short",
   });
-
-
-
-  //absence chart
-  const pieChartOptions = {
-    chart: {
-      type: 'pie',
-      plotBackgroundColor: null,
-      plotBorderWidth: null,
-      plotShadow: false,
-      spacing: [0, 0, 0, 0],
-      backgroundColor: '#fff',
-    },
-    title: {
-      text: 'Absences',
-      y: 20,
-      style: {
-        fontSize: '18px'
-      }
-    },
-    subtitle: {
-      text: '<b>Absence</b><br>120 heures',
-      align: 'center',
-      verticalAlign: 'middle',
-      y: -5,
-      style: {
-        fontSize: '16px'
-      }
-    },
-    plotOptions: {
-      pie: {
-        innerSize: '60%',
-        dataLabels: {
-          enabled: false,
-          format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-        },
-        showInLegend: true
-      }
-    },
-    series: [{
-      name: '',
-      colorByPoint: true,
-      data: [{
-        name: 'Absences justifiées',
-        y: 50
-      }, {
-        name: 'Absences non justifiées',
-        y: 25
-      }, {
-        name: 'Présences',
-        y: 25
-      }, {
-        name: 'Jours restants',
-        y: 25
-      },
-    ]
-    }],
-    lang: {
-      decimalPoint: ',',
-      thousandsSep: ' ',
-      loading: 'Chargement...',
-      noData: 'Aucune donnée à afficher',
-      contextButtonTitle: 'Menu',
-      downloadJPEG: 'Télécharger en JPEG',
-      downloadPDF: 'Télécharger en PDF',
-      downloadPNG: 'Télécharger en PNG',
-      downloadSVG: 'Télécharger en SVG',
-      printChart: 'Imprimer le graphique',
-      resetZoom: 'Réinitialiser le zoom',
-      resetZoomTitle: 'Réinitialiser le zoom à l\'échelle 1:1',
-      thousandsSep: ' ',
-      decimalPoint: ',',
-      viewFullscreen: 'Afficher en plein écran'
-    },
-    exporting: {
-      buttons: {
-        contextButton: {
-          menuItems: ['downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG', 'viewFullscreen']
-        }
-      }
-    }
-  };
-
-  //line chart
-  const categories = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
-
-  const splineChartOptions = {
-    chart: {
-      type: 'spline'
-    },
-    title: {
-      text: 'Projects Progress'
-    },
-    xAxis: {
-      categories: categories,
-      gridLineWidth: 0, // Hide x-axis grid lines
-      lineWidth: 0, // Hide x-axis line
-      plotLines: categories.map((category, index) => ({
-        value: index, // Position the plot line between each category
-        color: '#ccc', // Color of the vertical line
-        width: 1, // Width of the vertical line
-        zIndex: 3 // Set a higher z-index to make sure it's displayed above the series
-      })),
-      labels: {
-        style: {
-          fontWeight: '500', // Make the labels bolder
-          fontSize: 14,
-          color: "#727b88"
-        }
-      }
-    },
-    yAxis: {
-      title: {
-        text: 'Progrès (%)',
-        enabled: false,
-      },
-      gridLineWidth: 0, // Hide y-axis grid lines
-      lineWidth: 0, // Hide y-axis line
-      labels: {
-        format: '{value}%', // Format the labels as percentages
-        style: {
-          fontWeight: '600', // Make the labels bolder
-          fontSize: 14,
-          color: "#727b88"
-        }
-      }
-    },
-    plotOptions: {
-      series: {
-        showInLegend: false,
-        lineWidth: 2, // Set the line width to 2px
-        marker: {
-          enabled: false, // Disable markers by default
-          states: {
-            hover: {
-              enabled: true, // Enable markers on hover
-              fillColor: '#000', // Marker color on hover
-              lineWidth: 2, // Marker border width on hover
-              lineColor: '#fff' // Marker border color on hover
-            }
-          }
-        }
-      }
-    },
-    tooltip: {
-      pointFormat: '<span style="color:{series.color};fontWeight:bold">{series.name}</span>: <b>{point.y}%</b><br/>', // Format tooltip with percentage value
-    },
-    series: [
-      {
-        name: 'Conception',
-        data: [5, 2, 6, 1, 5, 3],
-        type: 'spline',
-        color: '#2dad73', // Color for Conception line
-        marker: {
-          symbol: 'circle', // Rounded marker shape
-          radius: 4 // Adjust the radius for marker size
-        }
-      },
-      {
-        name: 'Frontend',
-        data: [0, 5, 1, 6, 4, 1],
-        type: 'spline',
-        color: '#fcc93e', // Color for Frontend line
-        marker: {
-          symbol: 'circle', // Rounded marker shape
-          radius: 4 // Adjust the radius for marker size
-        }
-      },
-      {
-        name: 'Backend',
-        data: [1, 7, 4, 5, 3, 6],
-        type: 'spline',
-        color: '#3077ed', // Color for Backend line
-        marker: {
-          symbol: 'circle', // Rounded marker shape
-          radius: 4 // Adjust the radius for marker size
-        }
-      }
-    ],
-    lang: {
-      decimalPoint: ',',
-      thousandsSep: ' ',
-      loading: 'Chargement...',
-      noData: 'Aucune donnée à afficher',
-      contextButtonTitle: 'Menu',
-      downloadJPEG: 'Télécharger en JPEG',
-      downloadPDF: 'Télécharger en PDF',
-      downloadPNG: 'Télécharger en PNG',
-      downloadSVG: 'Télécharger en SVG',
-      printChart: 'Imprimer le graphique',
-      resetZoom: 'Réinitialiser le zoom',
-      resetZoomTitle: 'Réinitialiser le zoom à l\'échelle 1:1',
-      thousandsSep: ' ',
-      decimalPoint: ',',
-      viewFullscreen: 'Afficher en plein écran'
-    },
-    exporting: {
-      buttons: {
-        contextButton: {
-          menuItems: ['downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG', 'viewFullscreen']
-        }
-      }
-    }
-  };
   
   
   
@@ -456,12 +255,72 @@ function Homepage() {
               </div>
             </div>
             <div className="absence">
-              <HighchartsReact highcharts={Highcharts} options={pieChartOptions} />
+              <div className="absence-chart-header">
+                <label className="absence-chart-title">Absences</label>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', width: '100%',height:'100%',}}>
+                <div className='circle-chart-absence'>
+                  <label className="label-1">12 jours</label>
+                  <label className="label-2">Total Abs.</label>
+                </div>
+                <Absence/>
+              </div>
+              <div className="absence-chart-bottom">
+                <div className="abscence-chart-div">
+                  <div className="point-name-container">
+                    <div className="point-circle"></div>
+                    <label>Présences</label>
+                  </div>
+                  <div>25</div>
+                </div>
+                <div className="abscence-chart-div">
+                  <div className="point-name-container">
+                    <div className="point-circle"></div>
+                    <label>Présences</label>
+                  </div>
+                  <div>25</div>
+                </div>
+                <div className="abscence-chart-div">
+                  <div className="point-name-container">
+                    <div className="point-circle"></div>
+                    <label>Présences</label>
+                  </div>
+                  <div>25</div>
+                </div>
+                <div className="abscence-chart-div">
+                  <div className="point-name-container">
+                    <div className="point-circle"></div>
+                    <label>Présences</label>
+                  </div>
+                  <div>25</div>
+                </div>
+              </div>
             </div>
           </div>
           <div className="progression-reunion-projet">
-            <div className="progression">
-              <HighchartsReact highcharts={Highcharts} options={splineChartOptions} />
+          <div className="progression">
+              <div className="absence-chart-header">
+                <label className="absence-chart-title">Progrès du projet</label>
+                <div className="change-filter-wrapper" ref={containerRef}>
+                    <Link className="change-filter-link" onClick={toggleLinks}>Tout le temps</Link>
+                    {showLinks && (
+                      <div className="change-links-container">
+                        <Link
+                          className="change-link"
+                        >
+                          Tout le temps
+                        </Link>
+                        <Link
+                          className="change-link"
+                        >
+                          Dernière semaine 
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+              </div>
+              {/* filter */}
+              <MonthProgress/>
             </div>
             <div className="reunion-projet">
               <div className="projet">
