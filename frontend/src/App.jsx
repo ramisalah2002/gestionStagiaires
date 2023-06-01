@@ -14,7 +14,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from "../pages/Homepage/Homepage";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import Parametres from "../pages/Parametres/Parametres";
-import UserContext from "../components/UserContext";
 import Stagiaire from "../pages/Stagiaire/Stagiaire";
 import Equipes from "../pages/Equipes/Equipes";
 import Absence from "../pages/Absence/Absence";
@@ -29,34 +28,40 @@ import EmailSent from "../pages/ResetPassword/EmailSent";
 import StagiaireHomePage from "../stagiairePages/Homepage/Homepage";
 import NotFoundPage from "../pages/NotFound/NotFoundPage";
 import PieChart from "../pages/charts/PieChart";
+import { UserProvider } from "../pages/LoginPage/Context/UserContext";
 
 function App() {
   useEffect(() => {
     document.title = "MENStage";
   }, []);
+
+  const [user, setUser] = useState(null);
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<ChoicePage />} />
-        <Route path="/encadrant/login" element={<LoginPage />} />
-        <Route path="/encadrant/accueil" element={<Homepage />} />
-        <Route path="/stagiaires" element={<Stagiaire />} />
-        <Route path="/equipes" element={<Equipes />} />
-        <Route path="/encadrants" element={<Encadrant />} />
-        <Route path="/absence" element={<Absence />} />
-        <Route path="/discussions" element={<Chat />} />
-        <Route path="/parametres" element={<Parametres />} />
-        <Route path="/profile-stagiaire" element={<StagiaireProfile />} />
-        <Route path="/projets" element={<Projet />} />
-        <Route path="/send-email" element={<Contact />} />
-        <Route path="/forgot-password/" element={<ForgotPassword />} />
-        <Route path="/reset-password/:token" element={<ResetPassword />} />
-        <Route path="/reset-email-sent" element={<EmailSent />} />
-        <Route path="/stagiaire/accueil" element={<StagiaireHomePage />} />
-        <Route path="/page-not-found" element={<NotFoundPage />} />
-        <Route path="/test" element={<PieChart />} />
-      </Routes>
-    </Router>
+      <Router>
+        <UserProvider>
+          <Routes>
+            <Route path="/" element={<ChoicePage />} />
+            <Route path="/encadrant/login" element={<LoginPage />} />
+            <Route path="/encadrant/accueil" element={<Homepage />} />
+            <Route path="/stagiaires" element={<Stagiaire />} />
+            <Route path="/equipes" element={<Equipes />} />
+            <Route path="/encadrants" element={<Encadrant />} />
+            <Route path="/absence" element={<Absence />} />
+            <Route path="/discussions" element={<Chat />} />
+            <Route path="/parametres" element={<Parametres />} />
+            <Route path="/profile-stagiaire" element={<StagiaireProfile />} />
+            <Route path="/projets" element={<Projet />} />
+            <Route path="/send-email" element={<Contact />} />
+            <Route path="/forgot-password/" element={<ForgotPassword />} />
+            <Route path="/reset-password/:token" element={<ResetPassword />} />
+            <Route path="/reset-email-sent" element={<EmailSent />} />
+            <Route path="/stagiaire/accueil" element={<StagiaireHomePage />} />
+            <Route path="/page-not-found" element={<NotFoundPage />} />
+            <Route path="/test" element={<PieChart />} />
+          </Routes>
+        </UserProvider>
+      </Router>
   );
 }
 

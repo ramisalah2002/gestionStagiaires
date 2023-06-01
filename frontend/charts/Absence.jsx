@@ -78,7 +78,6 @@ const Absence = () => {
       resetZoom: 'Réinitialiser le zoom',
       resetZoomTitle: 'Réinitialiser le zoom à l\'échelle 1:1',
       thousandsSep: ' ',
-      decimalPoint: ',',
       viewFullscreen: 'Afficher en plein écran'
     },
     exporting: {

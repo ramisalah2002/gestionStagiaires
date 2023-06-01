@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import { UserContext } from "../LoginPage/Context/UserContext";
 import {
   BrowserRouter as Router,
   Routes,
@@ -84,19 +85,21 @@ function Homepage() {
     },
   ];
 
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
   const navigateTo = useNavigate();
 
-  useEffect(() => {
-    const userData = localStorage.getItem("user");
-    if (!userData) {
-      // User data not found, navigate to LoginPage
-      navigateTo("/encadrant/login");
-      return;
-    }
+  // useEffect(() => {
+  //   const userData = localStorage.getItem("user");
+  //   if (!userData) {
+  //     // User data not found, navigate to LoginPage
+  //     navigateTo("/encadrant/login");
+  //     return;
+  //   }
 
-    setUser(JSON.parse(userData));
-  }, [navigateTo]);
+  //   setUser(JSON.parse(userData));
+  // }, [navigateTo]);
+
+  const { user } = useContext(UserContext);
 
   const currentDate = new Date().toLocaleString("fr-FR", {
     day: "numeric",
@@ -111,14 +114,14 @@ function Homepage() {
           <div className="admin-container">
             <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
             <div className="admin-info">
-              {user && (
-                <>
-                  <label className="admin-name">
-                    {user.nom} {user.prenom}
-                  </label>
-                  <label className="admin-post">{user.fonction}</label>
-                </>
-              )}
+            {user && (
+        <>
+          <label className="admin-name">
+            {user.nom} {user.prenom}
+          </label>
+          <label className="admin-post">{user.fonction}</label>
+        </>
+      )}
             </div>
             <div className="vertical-line"></div>
             <div className="today-container">

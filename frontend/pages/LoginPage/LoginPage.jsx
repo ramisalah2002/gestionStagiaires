@@ -1,6 +1,8 @@
-import React, { useState, useEffect} from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { UserContext } from "./Context/UserContext";
+import { UserProvider } from "./Context/UserContext";
+
 import Homepage from "../Homepage/Homepage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
@@ -13,15 +15,9 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigateTo = useNavigate();
+  const userContext = useContext(UserContext);
 
-  useEffect(() => {
-    const userData = localStorage.getItem("user");
-    if (userData) {
-      // User data not found, navigate to LoginPage
-      navigateTo("/encadrant/accueil");
-      return;
-    }
-  }, [navigateTo]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,19 +36,12 @@ function LoginPage() {
     const data = await response.json();
 
     if (response.ok) {
-      // Store user and token information to localStorage or Context API or Redux
-      localStorage.setItem("user", JSON.stringify(data.user));
-      localStorage.setItem("token", data.token);
-
-      // Redirect to HomePage
+      userContext.setUser(data.user);
       navigateTo("/encadrant/accueil");
     } else {
-      // Handle error
       console.log(data.message);
     }
   };
-
-  const userId = 4;
 
   return (
     <div className="mainContainer">

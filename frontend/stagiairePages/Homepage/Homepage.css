@@ -679,3 +679,7 @@
   font-size: 14px;
   font-weight: 600;
 }
+.highcharts-contextmenu {
+  top: -30px; /* Adjust the desired vertical position */
+  z-index: 10; /* Set the desired z-index value */
+}
