@@ -27,10 +27,7 @@ class Encadrant extends Authenticatable
         'fonction',
         'image',
     ];use HasFactory;
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+
     public function stage()
     {
         return $this->hasMany(Stage::class);

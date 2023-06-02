@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,14 @@ Route::apiResource('demandeStage',\App\Http\Controllers\DemandeStageController::
 
 //Encadrant
 Route::apiResource('encadrant',\App\Http\Controllers\EncadrantController::class);
+
+
+//image upload
+Route::post('/images/upload', [ImageController::class, 'upload']);
+Route::get('/images', [ImageController::class, 'index']);
+
+
+
 
 //Presentation
 Route::apiResource('presentation',\App\Http\Controllers\PresentationController::class);
