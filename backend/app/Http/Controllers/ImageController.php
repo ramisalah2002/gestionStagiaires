@@ -23,7 +23,7 @@ class ImageController extends Controller
 
     public function index()
     {
-        $images = Image::all(['id', 'data']);
+        $images = Image::all(['id', 'data', 'created_at']);
 
         return response()->json($images);
     }
