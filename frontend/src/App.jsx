@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from "../pages/Homepage/Homepage";
 import LoginPage from "../pages/LoginPage/LoginPage";
+import LoginPageStagiaire from "../stagiairePages/LoginPage/LoginPage";
 import Parametres from "../pages/Parametres/Parametres";
 import Stagiaire from "../pages/Stagiaire/Stagiaire";
 import Equipes from "../pages/Equipes/Equipes";
@@ -29,6 +30,8 @@ import StagiaireHomePage from "../stagiairePages/Homepage/Homepage";
 import NotFoundPage from "../pages/NotFound/NotFoundPage";
 import PieChart from "../pages/charts/PieChart";
 import { UserProvider } from "../pages/LoginPage/Context/UserContext";
+import ImageUploadForm from "../tests/ImageUploadForm";
+import DisplayImages from "../tests/DisplayImages";
 
 function App() {
   useEffect(() => {
@@ -43,6 +46,7 @@ function App() {
           <Routes>
             <Route path="/" element={<ChoicePage />} />
             <Route path="/encadrant/login" element={<LoginPage />} />
+            <Route path="/stagiaire/login" element={<LoginPageStagiaire />} />
             <Route path="/encadrant/accueil" element={<Homepage />} />
             <Route path="/stagiaires" element={<Stagiaire />} />
             <Route path="/equipes" element={<Equipes />} />
@@ -59,6 +63,8 @@ function App() {
             <Route path="/stagiaire/accueil" element={<StagiaireHomePage />} />
             <Route path="/page-not-found" element={<NotFoundPage />} />
             <Route path="/test" element={<PieChart />} />
+            <Route path="/upload-image" element={<ImageUploadForm />} />
+            <Route path="/images-uploaded" element={<DisplayImages />} />
           </Routes>
         </UserProvider>
       </Router>

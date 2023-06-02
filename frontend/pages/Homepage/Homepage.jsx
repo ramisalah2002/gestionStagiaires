@@ -85,26 +85,27 @@ function Homepage() {
     },
   ];
 
-  // const [user, setUser] = useState(null);
   const navigateTo = useNavigate();
+  const { user, loading } = useContext(UserContext);
 
-  // useEffect(() => {
-  //   const userData = localStorage.getItem("user");
-  //   if (!userData) {
-  //     // User data not found, navigate to LoginPage
-  //     navigateTo("/encadrant/login");
-  //     return;
-  //   }
+  useEffect(() => {
+    if (!user && !loading) {
+      // User is not logged in, redirect to LoginPage
+      navigateTo("/encadrant/login");
+    }
+  }, [user, loading, navigateTo]);
 
-  //   setUser(JSON.parse(userData));
-  // }, [navigateTo]);
 
-  const { user } = useContext(UserContext);
 
   const currentDate = new Date().toLocaleString("fr-FR", {
     day: "numeric",
     month: "short",
   });
+
+  if (loading) {
+    // Show loading state while user data is being fetched
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="app">
@@ -114,14 +115,14 @@ function Homepage() {
           <div className="admin-container">
             <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
             <div className="admin-info">
-            {user && (
-        <>
-          <label className="admin-name">
-            {user.nom} {user.prenom}
-          </label>
-          <label className="admin-post">{user.fonction}</label>
-        </>
-      )}
+              {user && (
+                <>
+                  <label className="admin-name">
+                    {user.nom} {user.prenom}
+                  </label>
+                  <label className="admin-post">{user.fonction}</label>
+                </>
+              )}
             </div>
             <div className="vertical-line"></div>
             <div className="today-container">

@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import LoginPage from "../../pages/LoginPage/LoginPage";
+import { UserContext } from "../LoginPage/Context/UserContext";
 import { saveAs } from "file-saver";
 import ExcelJS from "exceljs";
 
@@ -56,7 +57,7 @@ function Stagiaire() {
     );
   };
 
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
   const navigateTo = useNavigate();
 
   useEffect(() => {
@@ -109,16 +110,15 @@ function Stagiaire() {
     setGeneratedPassword(newGeneratedPassword);
   };
 
-  useEffect(() => {
-    const userData = localStorage.getItem("user");
-    if (!userData) {
-      // User data not found, navigate to LoginPage
-      navigateTo("/LoginPage");
-      return;
-    }
+  const userContext = useContext(UserContext);
 
-    setUser(JSON.parse(userData));
-  }, [navigateTo]);
+
+  useEffect(() => {
+    if (!userContext.user) {
+      // User is not logged in, redirect to LoginPage
+      navigateTo("/encadrant/login");
+    }
+  }, [userContext.user, navigateTo]);
 
   const currentDate = new Date().toLocaleString("fr-FR", {
     day: "numeric",
@@ -311,6 +311,8 @@ function Stagiaire() {
   const handleImportStagiaires = () => {
     fileInputRef.current.click(); // Trigger the hidden input file click event
   };
+
+  const { user } = useContext(UserContext);
 
   return (
     <div className="app">

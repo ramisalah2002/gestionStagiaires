@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useRef } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
+import { UserContext } from "../LoginPage/Context/UserContext";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import {
   BrowserRouter as Router,
@@ -438,18 +438,16 @@ function Parametres() {
     },
   ];
 
-  const [user, setUser] = useState(null);
+  const { user } = useContext(UserContext);
+  const userContext = useContext(UserContext);
   const navigateTo = useNavigate();
   useEffect(() => {
-    const userData = localStorage.getItem("user");
-    if (!userData) {
-      // User data not found, navigate to LoginPage
-      navigateTo("/LoginPage");
-      return;
+    if (!userContext.user) {
+      // User is not logged in, redirect to LoginPage
+      navigateTo("/encadrant/login");
     }
-
-    setUser(JSON.parse(userData));
-  }, [navigateTo]);
+  }, [userContext.user, navigateTo]);
+  
 
   const pageCount = Math.ceil(equipes.length / itemsPerPage);
 

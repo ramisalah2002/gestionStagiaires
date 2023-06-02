@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef} from "react";
-import Sidebar from "../../components/Sidebar/Sidebar";
+import StagiaireSidebar from "../../components/Sidebar/StagiaireSidebar";
 import {
   BrowserRouter as Router,
   Routes,
@@ -177,7 +177,7 @@ function Homepage() {
 
   return (
     <div className="app">
-      <Sidebar />
+      <StagiaireSidebar />
       <main className="main-content">
         <div className="header">
           <div className="admin-container">

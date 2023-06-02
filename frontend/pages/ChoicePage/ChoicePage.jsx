@@ -14,14 +14,7 @@ function ChoicePage() {
   const [password, setPassword] = useState("");
   const navigateTo = useNavigate();
 
-  useEffect(() => {
-    const userData = localStorage.getItem("user");
-    if (userData) {
-      // User data not found, navigate to LoginPage
-      navigateTo("/encadrant/accueil");
-      return;
-    }
-  }, [navigateTo]);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,7 +51,7 @@ function ChoicePage() {
           <img src='../../images/logoMen.png'/>
       </div>
       <div className="choices-container">
-        <Link to="/encadrant/login" className="choice-wrapper">
+        <Link  className="choice-wrapper">
           <div className="choice-content choice-content-1">
             <div className="image-div-1"></div>
           </div>

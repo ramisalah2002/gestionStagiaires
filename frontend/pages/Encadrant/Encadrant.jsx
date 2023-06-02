@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
+import { UserContext } from "../LoginPage/Context/UserContext";
 import { useNavigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -13,8 +14,6 @@ function Encadrant() {
   const [searchResults, setSearchResults] = useState([]); // New state for the search results
   const [isSearching, setIsSearching] = useState(false);
   const [searchingText, setSearchingText] = useState("");
-  const [user, setUser] = useState(null);
-  const navigateTo = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
 
@@ -28,15 +27,15 @@ function Encadrant() {
     setSearchingText(searchTerm !== "" ? "Résultat de la recherche" : "");
   };
 
+  const { user } = useContext(UserContext);
+  const userContext = useContext(UserContext);
+  const navigateTo = useNavigate();
   useEffect(() => {
-    const userData = localStorage.getItem("user");
-    if (!userData) {
+    if (!userContext.user) {
+      // User is not logged in, redirect to LoginPage
       navigateTo("/encadrant/login");
-      return;
     }
-
-    setUser(JSON.parse(userData));
-  }, [navigateTo]);
+  }, [userContext.user, navigateTo]);
 
   const currentDate = new Date().toLocaleString("fr-FR", {
     day: "numeric",

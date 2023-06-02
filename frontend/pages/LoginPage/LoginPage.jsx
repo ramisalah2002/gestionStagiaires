@@ -15,8 +15,17 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigateTo = useNavigate();
+
   const userContext = useContext(UserContext);
 
+  const { user, setUser } = useContext(UserContext);
+
+  useEffect(() => {
+    if (user) {
+      // User is already authenticated, redirect to the appropriate page
+      navigateTo("/encadrant/accueil");
+    }
+  }, [user, navigateTo]);
 
 
   const handleSubmit = async (e) => {
@@ -42,6 +51,7 @@ function LoginPage() {
       console.log(data.message);
     }
   };
+  
 
   return (
     <div className="mainContainer">
