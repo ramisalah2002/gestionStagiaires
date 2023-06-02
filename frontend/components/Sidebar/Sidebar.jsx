@@ -29,7 +29,7 @@ function Sidebar() {
 
   const handleLogout = () => {
     // Remove user data from localStorage
-    localStorage.removeItem("user");
+    localStorage.removeItem("admin");
 
     // Navigate to LoginPage
     window.location.href = "/";

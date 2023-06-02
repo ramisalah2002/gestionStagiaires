@@ -29,7 +29,7 @@ import EmailSent from "../pages/ResetPassword/EmailSent";
 import StagiaireHomePage from "../stagiairePages/Homepage/Homepage";
 import NotFoundPage from "../pages/NotFound/NotFoundPage";
 import PieChart from "../pages/charts/PieChart";
-import { UserProvider } from "../pages/LoginPage/Context/UserContext";
+import { AdminProvider } from "../Contexts/AdminContext";
 import ImageUploadForm from "../tests/ImageUploadForm";
 import DisplayImages from "../tests/DisplayImages";
 
@@ -42,7 +42,7 @@ function App() {
 
   return (
       <Router>
-        <UserProvider>
+        <AdminProvider>
           <Routes>
             <Route path="/" element={<ChoicePage />} />
             <Route path="/encadrant/login" element={<LoginPage />} />
@@ -66,7 +66,7 @@ function App() {
             <Route path="/upload-image" element={<ImageUploadForm />} />
             <Route path="/images-uploaded" element={<DisplayImages />} />
           </Routes>
-        </UserProvider>
+        </AdminProvider>
       </Router>
   );
 }

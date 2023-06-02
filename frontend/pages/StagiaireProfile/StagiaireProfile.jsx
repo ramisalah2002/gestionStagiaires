@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useContext } from 'react';
+import { AdminContext } from '../../Contexts/AdminContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -43,19 +44,20 @@ import 'jspdf-autotable';
 import readXlsxFile from 'read-excel-file';
 
 function StagiaireProfile() {
-  const [user, setUser] = useState(null);
   const navigateTo = useNavigate();
+  const { admin, loading } = useContext(AdminContext);
+  const adminContext = useContext(AdminContext);
 
   useEffect(() => {
-    const userData = localStorage.getItem('user');
-    if (!userData) {
-      // User data not found, navigate to LoginPage
-      navigateTo('/LoginPage');
-      return;
+    const adminData = localStorage.getItem("admin");
+    if (!adminData && !loading) {
+      // Admin data doesn't exist in localStorage, redirect to LoginPage
+      navigateTo("/encadrant/login");
+    } else if (adminData && !admin) {
+      // Admin data exists in localStorage but not in context, set the admin context
+      adminContext.setAdmin(JSON.parse(adminData));
     }
-
-    setUser(JSON.parse(userData));
-  }, [navigateTo]);
+  }, [admin, loading, navigateTo, adminContext]);
 
   const currentDate = new Date().toLocaleString('fr-FR', {
     day: 'numeric',
@@ -72,14 +74,30 @@ function StagiaireProfile() {
   };
 
   
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setSelectedImage(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
     <div className="app">
       <Sidebar />
       <main className="main-content">
-        <div className='top-img-container'>
-            <img src='../../images/logoMen.png'/>
-        </div>
+      <div className='top-img-container'>
+      <img src={selectedImage || '../../images/logoMen.png'} alt='Cover Image' />
+      <label className='change-cover-link'>
+        Changer la photo de couverture
+        <input type='file' accept='image/*' onChange={handleImageChange} style={{ display: 'none' }} />
+      </label>
+    </div>
         <div className='user-container'>
             <div className='user-content'>
                 <div className='user-img-div'></div>

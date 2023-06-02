@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { UserContext } from "./Context/UserContext";
-import { UserProvider } from "./Context/UserContext";
+import { AdminContext } from "../../Contexts/AdminContext";
+
 
 import Homepage from "../Homepage/Homepage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,16 +16,16 @@ function LoginPage() {
   const [password, setPassword] = useState("");
   const navigateTo = useNavigate();
 
-  const userContext = useContext(UserContext);
+  const adminContext = useContext(AdminContext);
 
-  const { user, setUser } = useContext(UserContext);
+  const { admin, setAdmin } = useContext(AdminContext);
 
   useEffect(() => {
-    if (user) {
+    if (admin) {
       // User is already authenticated, redirect to the appropriate page
       navigateTo("/encadrant/accueil");
     }
-  }, [user, navigateTo]);
+  }, [admin, navigateTo]);
 
 
   const handleSubmit = async (e) => {
@@ -45,7 +45,8 @@ function LoginPage() {
     const data = await response.json();
 
     if (response.ok) {
-      userContext.setUser(data.user);
+      adminContext.setAdmin(data.user);
+      localStorage.setItem("admin", JSON.stringify(data.user));
       navigateTo("/encadrant/accueil");
     } else {
       console.log(data.message);

@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const ImageUploadForm = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [base64Data, setBase64Data] = useState(null);
-
-  const navigateTo = useNavigate();
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -36,7 +33,6 @@ const ImageUploadForm = () => {
 
         if (response.ok) {
           console.log('Image uploaded successfully');
-            navigateTo('../images-uploaded');
         } else {
           console.log('Error uploading image');
         }

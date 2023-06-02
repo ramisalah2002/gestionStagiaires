@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import { UserContext } from "../LoginPage/Context/UserContext";
+import { AdminContext } from "../../Contexts/AdminContext";
 import {
   BrowserRouter as Router,
   Routes,
@@ -86,14 +86,19 @@ function Homepage() {
   ];
 
   const navigateTo = useNavigate();
-  const { user, loading } = useContext(UserContext);
+  const { admin, loading } = useContext(AdminContext);
+  const adminContext = useContext(AdminContext);
 
   useEffect(() => {
-    if (!user && !loading) {
-      // User is not logged in, redirect to LoginPage
+    const adminData = localStorage.getItem("admin");
+    if (!adminData && !loading) {
+      // Admin data doesn't exist in localStorage, redirect to LoginPage
       navigateTo("/encadrant/login");
+    } else if (adminData && !admin) {
+      // Admin data exists in localStorage but not in context, set the admin context
+      adminContext.setAdmin(JSON.parse(adminData));
     }
-  }, [user, loading, navigateTo]);
+  }, [admin, loading, navigateTo, adminContext]);
 
 
 
@@ -115,12 +120,12 @@ function Homepage() {
           <div className="admin-container">
             <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
             <div className="admin-info">
-              {user && (
+              {admin && (
                 <>
                   <label className="admin-name">
-                    {user.nom} {user.prenom}
+                    {admin.nom} {admin.prenom}
                   </label>
-                  <label className="admin-post">{user.fonction}</label>
+                  <label className="admin-post">{admin.fonction}</label>
                 </>
               )}
             </div>

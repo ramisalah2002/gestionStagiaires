@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import LoginPage from "../../pages/LoginPage/LoginPage";
-import { UserContext } from "../LoginPage/Context/UserContext";
+import { AdminContext } from "../../Contexts/AdminContext";
 import { saveAs } from "file-saver";
 import ExcelJS from "exceljs";
 
@@ -110,15 +110,19 @@ function Stagiaire() {
     setGeneratedPassword(newGeneratedPassword);
   };
 
-  const userContext = useContext(UserContext);
-
+  const { admin, loading } = useContext(AdminContext);
+  const adminContext = useContext(AdminContext);
 
   useEffect(() => {
-    if (!userContext.user) {
-      // User is not logged in, redirect to LoginPage
+    const adminData = localStorage.getItem("admin");
+    if (!adminData && !loading) {
+      // Admin data doesn't exist in localStorage, redirect to LoginPage
       navigateTo("/encadrant/login");
+    } else if (adminData && !admin) {
+      // Admin data exists in localStorage but not in context, set the admin context
+      adminContext.setAdmin(JSON.parse(adminData));
     }
-  }, [userContext.user, navigateTo]);
+  }, [admin, loading, navigateTo, adminContext]);
 
   const currentDate = new Date().toLocaleString("fr-FR", {
     day: "numeric",
@@ -183,7 +187,7 @@ function Stagiaire() {
       joursStage: "10 jours",
     },
     {
-      id: 7,
+      id: 9,
       nom: "John Doe",
       email: "johndoe@example.com",
       status: "Terminé",
@@ -312,7 +316,6 @@ function Stagiaire() {
     fileInputRef.current.click(); // Trigger the hidden input file click event
   };
 
-  const { user } = useContext(UserContext);
 
   return (
     <div className="app">
@@ -322,12 +325,12 @@ function Stagiaire() {
           <div className="admin-container">
             <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
             <div className="admin-info">
-              {user && (
+              {admin && (
                 <>
                   <label className="admin-name">
-                    {user.nom} {user.prenom}
+                    {admin.nom} {admin.prenom}
                   </label>
-                  <label className="admin-post">{user.fonction}</label>
+                  <label className="admin-post">{admin.fonction}</label>
                 </>
               )}
             </div>

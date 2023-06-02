@@ -26,11 +26,15 @@ const DisplayImages = () => {
       <h1>Image Gallery</h1>
       <div className="image-container">
         {images.map((image) => (
+          <>
+
+          <label>{image.created_at}</label>
           <div
             key={image.id}
             className="image-item"
             style={{ backgroundImage: `url(data:image/jpeg;base64,${image.data})` }}
           />
+          </>
         ))}
       </div>
     </div>
