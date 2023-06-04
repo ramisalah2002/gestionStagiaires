@@ -661,24 +661,20 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-<<<<<<< HEAD
-  background: #fcc93e;
 }
-=======
-}
-.indicators-conteiner{
+.indicators-conteiner {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-.indicator-container{
+.indicator-container {
   margin-left: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 8px;
 }
-.indicator-container label{
+.indicator-container label {
   color: #232835;
   font-size: 14px;
   font-weight: 600;
@@ -687,4 +683,3 @@
   top: -30px; /* Adjust the desired vertical position */
   z-index: 10; /* Set the desired z-index value */
 }
->>>>>>> c0694d773abfdb7dfd1252ec0424ef2e4de234e8

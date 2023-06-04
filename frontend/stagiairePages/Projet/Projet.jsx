@@ -26,11 +26,7 @@ import projetImage from "../../images/projetImage.jpg";
 import ReactNativeImage from "../../images/React.png";
 import LaravelImage from "../../images/Laravel.png";
 
-<<<<<<< HEAD
-function Projet() {
-=======
 function ProjetStagiaire() {
->>>>>>> c8eacd1f7891bd84c40c1ea3bfe759888e65c4bb
   const [currentTechnologie, setCurrentTechnologie] = useState(0);
 
   const technologies = [
@@ -67,11 +63,7 @@ function ProjetStagiaire() {
   const navigateTo = useNavigate();
 
   useEffect(() => {
-<<<<<<< HEAD
-    const userData = localStorage.getItem("user");
-=======
     const userData = localStorage.getItem("admin");
->>>>>>> c8eacd1f7891bd84c40c1ea3bfe759888e65c4bb
     if (!userData) {
       // User data not found, navigate to LoginPage
       navigateTo("/LoginPage");
@@ -136,11 +128,7 @@ function ProjetStagiaire() {
                 <div className="header-type">Mobile</div>
               </div>
             </div>
-<<<<<<< HEAD
-            <div class="vertical-line" />
-=======
             <div className="vertical-line" />
->>>>>>> c8eacd1f7891bd84c40c1ea3bfe759888e65c4bb
             <div className="encadrantInformations">
               <div className="sideInformations">Encadrant</div>
               <img
@@ -153,11 +141,7 @@ function ProjetStagiaire() {
                 <div className="header-fonction">Enseignant</div>
               </div>
             </div>
-<<<<<<< HEAD
-            <div class="vertical-line" />
-=======
             <div className="vertical-line" />
->>>>>>> c8eacd1f7891bd84c40c1ea3bfe759888e65c4bb
             <div className="equipeInformations">
               <div className="sideInformations">Stagiaires</div>
               <div className="membreInformations">
@@ -183,11 +167,7 @@ function ProjetStagiaire() {
                 </div>
               </div>
             </div>
-<<<<<<< HEAD
-            <div class="vertical-line" />
-=======
             <div className="vertical-line" />
->>>>>>> c8eacd1f7891bd84c40c1ea3bfe759888e65c4bb
             <Link
               className="parametresProjet"
               to="#"
@@ -400,8 +380,4 @@ function ProjetStagiaire() {
   );
 }
 
-<<<<<<< HEAD
-export default Projet;
-=======
 export default ProjetStagiaire;
->>>>>>> c8eacd1f7891bd84c40c1ea3bfe759888e65c4bb
