@@ -1,0 +1,599 @@
+.header-projet {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  gap: 10px;
+}
+.header-projet .header-projet-txt {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  font-weight: 700;
+  font-size: 20px;
+  margin-left: 10px;
+}
+.header-projet .header-projet-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 1; /* Added to occupy remaining vertical space */
+  overflow: hidden;
+  height: calc(100vh - 160px);
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
+  transition: ease 0.5s;
+  height: 80px;
+  width: 100%;
+  flex-direction: row;
+}
+.projetInformations,
+.encadrantInformations,
+.equipeInformations,
+.membreInformations {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  flex-direction: row;
+  margin-right: 20px;
+}
+.projetImage,
+.encadrantImage,
+.stagiaireImage {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin-right: 20px;
+  position: relative;
+  border: 2px solid rgb(237, 237, 237);
+  padding: 1px;
+}
+.sideInformations {
+  transform: rotate(-90deg);
+  padding: auto;
+  font-size: 12px;
+  font-weight: 900;
+}
+.projetInformations .sideInformations {
+  color: #556ee6;
+}
+.encadrantInformations .sideInformations {
+  color: #f46a6a;
+}
+.equipeInformations .sideInformations {
+  color: #f1b44c;
+}
+.projetText,
+.encadrantText,
+.stagiaireText {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.header-nom {
+  padding: auto;
+  font-size: 14px;
+  font-weight: 700;
+}
+.header-type {
+  font-size: 12px;
+  font-weight: 700;
+  color: #556ee6;
+  background-color: #d5dafa;
+  border-radius: 6px;
+  width: fit-content;
+  padding: 0px 6px;
+}
+.header-fonction {
+  font-size: 12px;
+  font-weight: 700;
+  color: #f46a6a;
+  background-color: #f8e0e2;
+  border-radius: 6px;
+  width: fit-content;
+  padding: 0px 6px;
+}
+.header-formation {
+  font-size: 12px;
+  font-weight: 700;
+  color: #f1b44c;
+  background-color: #fdf2e0;
+  border-radius: 6px;
+  width: fit-content;
+  padding: 0px 6px;
+}
+.vertical-line {
+  height: 65px;
+  width: 1.6px;
+  background-color: #f0f2f6;
+}
+.parametresProjet {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 4.5%;
+}
+.parametresIcon {
+  height: 23px;
+  width: 23px;
+  color: rgb(37, 37, 37);
+}
+.parametresIcon:hover {
+  color: rgb(93, 93, 93);
+}
+.body-projet {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 10px;
+  height: 100%;
+}
+.progres-progresGenerale {
+  display: flex;
+  flex-direction: column;
+  width: calc(35% - 10px);
+  gap: 10px;
+  height: 100%;
+}
+.progres-progresGenerale .progres-projet {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 1; /* Added to occupy remaining vertical space */
+  overflow: hidden;
+  gap: 12px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
+  transition: ease 0.5s;
+  height: 400px;
+  width: 100%;
+  text-align: left;
+}
+.entete {
+  padding: 10px;
+  color: #000;
+  font-size: 16px;
+  font-weight: 700;
+}
+.progressionGenerale {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.progressionGenerale .parametresIcon {
+  height: 85px;
+  width: 85px;
+  color: #556ee6;
+  padding: 15px;
+}
+.pourcentageProgressionGenerale {
+  color: #495057;
+  font-size: 17px;
+  font-weight: 700;
+}
+.underTextProgressionGenerale {
+  color: #495057;
+  font-size: 14px;
+  font-weight: 500;
+}
+.progressionsProjet {
+  width: 100%;
+  margin: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+}
+.progressionConception,
+.progressionFontEnd,
+.progressionBackEnd {
+  width: 100%;
+  margin: 10px 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-start;
+  padding-left: 20px;
+}
+.progressionText {
+  color: #495057;
+  font-size: 14px;
+  font-weight: 500;
+}
+td.progressionText {
+  width: 35px;
+}
+.progressionPourcentage {
+  color: #495057;
+  font-size: 17px;
+  font-weight: 700;
+  margin-left: 50px;
+}
+.progressionBar {
+  height: 20%;
+  width: auto;
+  background-color: none;
+}
+.progressionConceptionBar {
+  height: 100%;
+  background-color: #556ee6;
+  border-radius: 8px;
+}
+.progressionFontEndBar {
+  height: 100%;
+  background-color: #34c38f;
+  border-radius: 8px;
+}
+.progressionBackEndBar {
+  height: 100%;
+  background-color: #f1b34c;
+  border-radius: 8px;
+}
+.progres-progresGenerale .progresGenerale-projet {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 1; /* Added to occupy remaining vertical space */
+  overflow: hidden;
+  gap: 12px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
+  transition: ease 0.5s;
+  height: 420px;
+  width: 100%;
+  text-align: left;
+}
+.verticalLine-activityContainer {
+  width: 100%;
+  height: fit-content;
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  margin-left: 25px;
+  border-left: 3px dashed #f6f6f6;
+}
+.activityContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.activity {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+  margin-left: -8px;
+}
+.activity td {
+  text-align: left;
+  vertical-align: top;
+  padding-bottom: 20px;
+}
+.flechRightIcon {
+  color: #495057;
+  padding: 2px;
+  height: 9px;
+  width: 9px;
+  border-radius: 50%;
+  border: 1.5px solid #495057;
+}
+td.dateAtctivity {
+  font-size: 14px;
+  text-align: center;
+  font-weight: 700;
+  width: 0px;
+  padding-right: 20px;
+}
+.contenuActivity {
+  text-align: left;
+  font-size: 13px;
+  margin-left: 20px;
+  width: 60%;
+}
+.buttonVoirPlus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+}
+.buttonVoirPlus .button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: #556ee6;
+  color: #fff;
+  width: fit-content;
+  padding: 5px 10px;
+  gap: 10px;
+}
+.button .flechIcon {
+  margin-top: 3px;
+  height: 14px;
+  width: 14px;
+}
+.grapheGenerale-descriptif-equipe {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 35%);
+  gap: 10px;
+  height: 100%;
+}
+.grapheGenerale-descriptif-equipe .grapheGenerale {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 1; /* Added to occupy remaining vertical space */
+  overflow: hidden;
+  gap: 12px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
+  transition: ease 0.5s;
+  height: 560px;
+  width: 100%;
+}
+.descriptif-technologie {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 10px;
+  height: 260px;
+}
+.descriptif {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 1; /* Added to occupy remaining vertical space */
+  overflow: hidden;
+  gap: 12px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
+  transition: ease 0.5s;
+  height: 100%;
+  width: 60%;
+}
+.haut-projet-p {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+  text-align: right;
+  height: 32%;
+  width: calc(100% - 20px);
+  background-color: #fdf2e0;
+  padding: 20px 0px;
+  padding-bottom: 35px;
+  position: relative;
+  padding-right: 20px;
+}
+.haut-projet-droit-p {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  text-align: right;
+  width: 100%;
+}
+.haut-projet-p .nomApplication-p {
+  color: #ff8c00;
+  font-size: 16.25px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.haut-projet-p .descriptionApplication-p {
+  color: #ff8c00;
+  font-size: 14px;
+  font-weight: 500;
+}
+.haut-projet-gauche-p {
+  display: flex;
+  padding: 0px;
+  /* position: relative; */
+}
+.projetBackGround-p {
+  display: flex;
+  padding: 0px;
+}
+.projetBackGround-img-p {
+  background: url(/images/projetBackground.png);
+  height: 120px;
+  width: 100px;
+  background-size: cover;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  position: relative;
+  margin: 0px;
+  opacity: 0.7;
+  transform: rotate(-30deg);
+  z-index: 0;
+  padding: -2px;
+  margin-top: -13px;
+}
+
+.bas-projet-p {
+  display: flex;
+  justify-content: flex-end;
+  height: 30%;
+}
+.bas-projet-droit-p {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: end;
+  z-index: 1;
+}
+.bas-projet-droit-p .projet-img-p {
+  height: 80px;
+  width: 80px;
+  background: url(/images/projetImage.jpg);
+  background-size: cover;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  margin-top: -59px;
+  margin-right: 35px;
+  z-index: 10;
+}
+.bas-projet-droit-p .under-logo-p {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-right: 23px;
+  margin-right: 18px;
+}
+.under-logo-p .nomProjet-p {
+  font-size: 15.25px;
+  font-weight: 700;
+  color: #556ee6;
+}
+.under-logo-p .typeProjet-p {
+  font-size: 12px;
+  font-weight: 700;
+  color: #556ee6;
+  background-color: #d5dafa;
+  border-radius: 6px;
+  width: fit-content;
+  padding: 0px 6px;
+}
+
+.bas-projet-gauche-p {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  margin-left: 10px;
+  width: 100%;
+}
+
+.bas-profile-droit-date-p {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0px;
+  margin-left: 20px;
+}
+.bas-profile-droit-dateDebut-p,
+.bas-profile-droit-dateFin-p {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
+  row-gap: 0px;
+  gap: 10px;
+  width: 50%;
+}
+.debutIcon-p,
+.finIcon-p {
+  height: 15px;
+  width: 15px;
+  border: none;
+  color: #fff;
+  background-color: #556ee6;
+  border-radius: 50%;
+  padding: 7.5px;
+}
+.bas-profile-droit-dateDebut-txt-p,
+.bas-profile-droit-dateFin-txt-p {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  width: 100px;
+}
+.bas-profile-droit-dateDebut-txt-p .top-p,
+.bas-profile-droit-dateFin-txt-p .top-p {
+  font-size: 14px;
+  font-weight: 500;
+  color: #74788d;
+}
+.bas-profile-droit-dateDebut-txt-p .date-p,
+.bas-profile-droit-dateFin-txt-p .date-p {
+  font-size: 14px;
+  font-weight: 500;
+  color: #000;
+}
+.technologie-p {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-grow: 1; /* Added to occupy remaining vertical space */
+  overflow: hidden;
+  gap: 12px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
+  transition: ease 0.5s;
+  height: 100%;
+  width: calc(40% - 10px);
+}
+.technologies-p {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 30px;
+}
+.technologieonContainer-p {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.technologieImage-p {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  height: 90px;
+  width: fit-content;
+}
+.horizantaleLine-p {
+  border-top: 1px solid #d5dafa;
+  width: 100%;
+  height: 0;
+  margin-bottom: 10px;
+}
+.nomTechnologie-p {
+  font-size: 14px;
+  font-weight: 700;
+  color: #000;
+}
+.buttonsContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.suivant,
+.precedent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: transparent;
+  padding: 0px;
+}
+.suivant {
+  justify-content: flex-end;
+}
+.precedent {
+  justify-content: flex-start;
+}
