@@ -11,17 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('utilisateur', function (Blueprint $table) {
+        Schema::create('messsage', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->string('prenom');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('telephone');
-            $table->Date('dateNaissance');
-            $table->string('genre');
-            $table->string('CIN');
-            $table->longText('image')->nullable();
+            $table->foreignId('emetteur_id')->references('id')->on('utilisateur')->onDelete('cascade');
+            $table->foreignId('recepteur_id')->references('id')->on('utilisateur')->onDelete('cascade');
+            $table->text('contenu');
             $table->timestamps();
         });
     }
@@ -33,5 +27,4 @@ return new class extends Migration
     {
         //
     }
-
 };

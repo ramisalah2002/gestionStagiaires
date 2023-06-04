@@ -28,5 +28,12 @@ class Utilisateur extends Model
         'password',
         'remember_token',
     ];
-
+    public function mdp_tokens()
+    {
+        return $this->hasMany(Mdp_tokens::class);
+    }
+    public function massage()
+    {
+        return $this->hasMany(Massage::class);
+    }
 }

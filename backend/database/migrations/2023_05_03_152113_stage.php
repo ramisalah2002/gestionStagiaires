@@ -17,7 +17,6 @@ return new class extends Migration
             $table->dateTime('duree');
             $table->foreignId('stagiaire_id')->references('id')->on('stagiaire')->onDelete('cascade');
             $table->foreignId('administrateur_id')->references('id')->on('administrateur')->onDelete('cascade');
-            $table->foreignId('encadrant_id')->references('id')->on('encadrant')->onDelete('cascade');
             $table->timestamps();
         });
     }

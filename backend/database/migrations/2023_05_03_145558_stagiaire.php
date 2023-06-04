@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('CIN');
             $table->string('CNE');
             $table->string('formation');
-            $table->binary('image')->nullable();
-
+            $table->longText('image')->nullable();
+            $table->longText('couverture')->nullable();
             $table->timestamps();
         });
     }

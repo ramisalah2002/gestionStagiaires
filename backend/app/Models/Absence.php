@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Presentation extends Model
+class Absence extends Model
 {
-    protected $table = 'presentation';
+    protected $table = 'absence';
 
     use HasFactory;
     protected $fillable = [
         'date',
-        'heure',
-        'description',
-        'stage_id',
+        'justification',
+        'stagiaire_id',
     ];
-    public function stage()
+
+    public function stagiaire()
     {
-        return $this->belongsTo(Stage::class);
+        return $this->belongsTo(Stagiaire::class);
     }
 }

@@ -26,17 +26,18 @@ class Encadrant extends Authenticatable
         'CIN',
         'fonction',
         'image',
+        'couverture',
     ];use HasFactory;
     protected $hidden = [
         'password',
         'remember_token',
     ];
-    public function stage()
-    {
-        return $this->hasMany(Stage::class);
-    }
     public function reunion()
     {
         return $this->hasMany(Reunion::class);
+    }
+    public function equipe()
+    {
+        return $this->hasMany(Equipe::class);
     }
 }
