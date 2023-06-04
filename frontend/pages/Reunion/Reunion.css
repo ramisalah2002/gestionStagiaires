@@ -1,0 +1,272 @@
+.sections-container-reunion{
+    width: 100%;
+    overflow-y: scroll;
+}
+.reunion-rows{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.reunion-row{
+    width: 220px;
+    height: 100%;
+}
+.reunion-header{
+    display: flex;
+    flex-direction: column;
+}
+.horizontal-divider{
+    width: 220px;
+    height: .5px;
+
+    margin-bottom: 10px;
+}
+.reunion-header .reunion-nbr{
+    font-size: 36px;
+    font-weight: bold;
+    color: #ccc;
+}
+.reunion-header .reunion-day{
+    margin-top: -10px;
+    font-size: 24px;
+    font-weight: 700;
+}
+.reunions-container{
+    width: 220px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.reunion-container{
+    width: 210px;
+    height: 120px;
+    background: #ffdedb;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+.reunion-container-green{
+    background: #e5f2f3;
+}
+.left-line-reunion{
+    height: 100%;
+    width: 10px;
+    background: #ee4e41;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.left-line-reunion-green{
+    height: 100%;
+    width: 10px;
+    background: #598f90;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.reunion-info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    cursor: pointer;
+    width: calc(100% - 10px);
+    padding-left: 10px;
+}
+.reunion-container .reunion-info .reunion-objet{
+    color: #de5d54;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.reunion-container .reunion-info .reunion-heure{
+    color: #988585;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.reunion-container .reunion-info .reunion-lieu{
+    color: #988585;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.reunion-container-green .reunion-info .reunion-objet{
+    color: #7ca1a0;
+}
+.reunion-container-green .reunion-info .reunion-heure{
+    color: #adc1bf;
+}
+.reunion-container-green .reunion-info .reunion-lieu{
+    color: #adc1bf;
+}
+.modal-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    z-index: 10;
+    overflow-x: hidden;
+    transition: width 1s ease;
+}
+
+.modal {
+  width: 400px;
+  height: 100vh;
+  background-color: #e8e7f2;
+  transform: translateX(100%);
+  transition: transform 0.5s ease;
+}
+
+.modal-container.open {
+  width: 100%;
+}
+
+.modal-container.open .modal {
+  transform: translateX(0);
+}
+
+.modal-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-header .reunion-img {
+  width: 300px;
+  height: 300px;
+  background: url('../../images/reunion-img.png');
+  background-size: cover;
+}
+
+.close-reunion-label {
+  background: #e8e7f2;
+  width: 40px;
+  height: 40px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  transform: translateY(-100%);
+  transition: transform 0.7s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-reunion-icon {
+  font-size: 28px;
+}
+
+.modal-container.open .close-reunion-label {
+  transform: translateY(10px);
+  transition-delay: 0.25s; /* Delay the appearance of the close label */
+}
+.reunion-label{
+    display: flex;
+    align-items: flex-start;
+    justify-content: start;
+    margin-left: 20px;
+    color: #453e66;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+.reunion-section{
+    width: calc(100% - 20px);
+    display: flex;
+    padding-left: 20px;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.reunion-section-left{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #c2bfd0;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+}
+.reunion-section-left-2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #d4e1e4;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+}
+.reunion-section-left-3{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f2f3f7;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+}
+.reunion-section-left-4{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e6d2e2;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+}
+.reunion-section-icon{
+    color: #463f5f;
+    font-size: 28px;
+}
+.reunion-section-left-5{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ebd3dc;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+}
+.reunion-section-icon-5{
+    color: #bab4cb;
+    font-size: 28px;
+}
+.reunion-section-icon-2{
+    color: #549192;
+    font-size: 28px;
+}
+.reunion-section-icon-3{
+    color: #c1bcd3;
+    font-size: 28px;
+}
+.reunion-section-icon-4{
+    color: #b04883;
+    font-size: 28px;
+}
+.reunion-section-right{
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.reunion-section-title{
+    font-size: 18px;
+    font-weight: 700;
+    color: #413c5c;
+}
+.reunion-section-paragraph{
+    font-size: 14px;
+    font-weight: 600;
+    color: #b8b4cc;
+}
