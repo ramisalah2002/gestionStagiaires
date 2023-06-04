@@ -32,6 +32,10 @@ import PieChart from "../pages/charts/PieChart";
 import { AdminProvider } from "../Contexts/AdminContext";
 import ImageUploadForm from "../tests/ImageUploadForm";
 import DisplayImages from "../tests/DisplayImages";
+import Reunion from "../pages/Reunion/Reunion";
+import SendMessagePage from "../pages/email-test/SendMessage";
+import ReceiveMessagePage from "../pages/email-test/ReceiveMessage";
+import ProjetStagiaire from "../stagiairePages/Projet/Projet";
 
 function App() {
   useEffect(() => {
@@ -65,6 +69,10 @@ function App() {
             <Route path="/test" element={<PieChart />} />
             <Route path="/upload-image" element={<ImageUploadForm />} />
             <Route path="/images-uploaded" element={<DisplayImages />} />
+            <Route path="/reunion" element={<Reunion />} />
+            <Route path="/send-message" element={<SendMessagePage />} />
+            <Route path="/receive-message" element={<ReceiveMessagePage />} />
+            <Route path="/stagiaire/projet" element={<ProjetStagiaire />} />
           </Routes>
         </AdminProvider>
       </Router>
