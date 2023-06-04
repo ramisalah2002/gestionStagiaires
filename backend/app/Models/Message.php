@@ -14,6 +14,7 @@ class Message extends Model
         'emetteur_id',
         'recepteur_id',
         'contenu',
+        'est_lu',
     ];
 
     public function utilisateur()

@@ -1,36 +1,136 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+namespace App\Http\Controllers;
 
-return new class extends Migration
+use App\Models\Administrateur;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
+
+class AdministrateurController extends Controller
 {
     /**
-     * Run the migrations.
+     * Display a listing of the resource.
      */
-    public function up(): void
+    public function index()
     {
-        Schema::create('administrateur', function (Blueprint $table) {
-            $table->id();
-            $table->string('nom');
-            $table->string('prenom');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('telephone');
-            $table->Date('dateNaissance');
-            $table->string('genre');
-            $table->string('CIN');
-            $table->longText('image')->nullable();
-            $table->timestamps();
-        });
+        $administrateur = Administrateur::all();
+        return response()->json($administrateur);
     }
 
     /**
-     * Reverse the migrations.
+     * Show the form for creating a new resource.
      */
-    public function down(): void
+    public function create()
     {
         //
     }
-};
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'email' => 'required|email|unique:encadrant',
+            'password' => 'required',
+            'telephone' => 'required',
+            'dateNaissance' => 'required|date',
+            'genre' => 'required',
+            'CIN' => 'required|unique:encadrant',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $imageData = null;
+        if ($request->file('image')) {
+            $imagePath = $request->file('image')->path();
+            $imageFile = file_get_contents($imagePath);
+            // Encode the image in base64
+            $imageData = base64_encode($imageFile);
+        }
+
+        $administrateur = new Administrateur;
+        $administrateur->nom = $request->input('nom');
+        $administrateur->prenom = $request->input('prenom');
+        $administrateur->email = $request->input('email');
+        // Encrypt the password before storing it
+        $administrateur->password = \Hash::make($request->input('password'));
+        $administrateur->telephone = $request->input('telephone');
+        $administrateur->dateNaissance = $request->input('dateNaissance');
+        $administrateur->genre = $request->input('genre');
+        $administrateur->CIN = $request->input('CIN');
+        $administrateur->image = $imageData;
+        $administrateur->save();
+        return response()->json($administrateur);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show($id)
+    {
+        $administrateur = Administrateur::find($id);
+        return response()->json($administrateur);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'telephone' => 'required',
+            'dateNaissance' => 'required|date',
+            'genre' => 'required',
+            'CIN' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $administrateur = Administrateur::find($id);
+
+        if ($request->file('image')) {
+            $imagePath = $request->file('image')->path();
+            $imageFile = file_get_contents($imagePath);
+            // Encode the image in base64
+            $imageData = base64_encode($imageFile);
+            $administrateur->image = $imageData;
+        }
+
+        $administrateur->nom = $request->input('nom');
+        $administrateur->prenom = $request->input('prenom');
+        $administrateur->email = $request->input('email');
+        $administrateur->password = \Hash::make($request->input('password'));
+        $administrateur->telephone = $request->input('telephone');
+        $administrateur->dateNaissance = $request->input('dateNaissance');
+        $administrateur->genre = $request->input('genre');
+        $administrateur->CIN = $request->input('CIN');
+
+        $administrateur->save();
+
+        return response()->json('');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id)
+    {
+        $administrateur = Administrateur::find($id);
+        $administrateur->delete();
+        return response()->json('');
+    }
+}

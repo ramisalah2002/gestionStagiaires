@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reunion;
+use App\Models\Equipe;
 use Illuminate\Http\Request;
 
-class ReunionController extends Controller
+class EquipeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $reunion = Reunion::all();
-        return response()->json($reunion);
+        $equipe = Equipe::all();
+        return response()->json($equipe);
     }
 
     /**
@@ -29,31 +29,28 @@ class ReunionController extends Controller
      */
     public function store(Request $request)
     {
-        $reunion = new Reunion([
-            'date' => $request->input('date'),
-            'duree' => $request->input('duree'),
-            'objet' => $request->input('objet'),
-            'lieu' => $request->input('lieu'),
-            'heure' => $request->input('heure'),
+        $equipe = new Equipe([
+            'nom_equipe' => $request->input('nom_equipe'),
+            'stagiaire_id' => $request->input('stagiaire_id'),
             'encadrant_id' => $request->input('encadrant_id'),
         ]);
-        $reunion->save();
+        $equipe->save();
         return response()->json('');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(string $id)
     {
-        $reunion = Reunion::find($id) ;
-        return response()->json($reunion) ;
+        $equipe = Equipe::find($id) ;
+        return response()->json($equipe);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(string $id)
     {
         //
     }
@@ -61,20 +58,20 @@ class ReunionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
-        $reunion = Reunion::find($id);
-        $reunion->update($request->all());
+        $equipe = Equipe::find($id);
+        $equipe->update($request->all());
         return response()->json('');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(string $id)
     {
-        $reunion = Reunion::find($id);
-        $reunion->delete();
+        $equipe = Equipe::find($id);
+        $equipe->delete();
         return response()->json('');
     }
 }

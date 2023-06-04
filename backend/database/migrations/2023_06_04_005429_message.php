@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('emetteur_id')->references('id')->on('utilisateur')->onDelete('cascade');
             $table->foreignId('recepteur_id')->references('id')->on('utilisateur')->onDelete('cascade');
             $table->text('contenu');
+            $table->boolean('est_lu');
             $table->timestamps();
         });
     }

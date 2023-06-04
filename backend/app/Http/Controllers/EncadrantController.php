@@ -39,12 +39,23 @@ class EncadrantController extends Controller
             'genre' => 'required',
             'CIN' => 'required|unique:encadrant',
             'fonction' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable',
+            'couverture' => 'nullable',
         ]);
 
         $imageData = null;
+        $couvertureData = null;
+
         if ($request->file('image')) {
-            $imageData = file_get_contents($request->file('image'));
+            $imagePath = $request->file('image')->path();
+            $imageFile = file_get_contents($imagePath);
+            $imageData = base64_encode($imageFile);
+        }
+
+        if ($request->file('couverture')) {
+            $couverturePath = $request->file('couverture')->path();
+            $couvertureFile = file_get_contents($couverturePath);
+            $couvertureData = base64_encode($couvertureFile);
         }
 
         $encadrant = new Encadrant;
@@ -58,6 +69,7 @@ class EncadrantController extends Controller
         $encadrant->CIN = $request->input('CIN');
         $encadrant->fonction = $request->input('fonction');
         $encadrant->image = $imageData;
+        $encadrant->couverture = $couvertureData;
         $encadrant->save();
     //  return response()->json($encadrant);
     }
@@ -94,14 +106,22 @@ class EncadrantController extends Controller
             'genre' => 'required',
             'CIN' => 'required',
             'fonction' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable',
+            'couverture' => 'nullable',
         ]);
 
         $encadrant = Encadrant::find($id);
 
         if ($request->file('image')) {
-            $imageData = file_get_contents($request->file('image'));
-            $encadrant->image = $imageData;
+            $imagePath = $request->file('image')->path();
+            $imageFile = file_get_contents($imagePath);
+            $encadrant->image = base64_encode($imageFile);
+        }
+
+        if ($request->file('couverture')) {
+            $couverturePath = $request->file('couverture')->path();
+            $couvertureFile = file_get_contents($couverturePath);
+            $encadrant->couverture = base64_encode($couvertureFile);
         }
 
         $encadrant->nom = $request->input('nom');
@@ -112,7 +132,6 @@ class EncadrantController extends Controller
         $encadrant->dateNaissance = $request->input('dateNaissance');
         $encadrant->genre = $request->input('genre');
         $encadrant->CIN = $request->input('CIN');
-        $encadrant->CNE = $request->input('CNE');
         $encadrant->fonction = $request->input('fonction');
 
         $encadrant->save();

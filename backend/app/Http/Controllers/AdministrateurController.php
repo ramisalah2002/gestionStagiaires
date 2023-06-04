@@ -40,7 +40,7 @@ class AdministrateurController extends Controller
             'dateNaissance' => 'required|date',
             'genre' => 'required',
             'CIN' => 'required|unique:encadrant',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable',
         ]);
 
         $imageData = null;
@@ -60,6 +60,7 @@ class AdministrateurController extends Controller
         $administrateur->CIN = $request->input('CIN');
         $administrateur->image = $imageData;
         $administrateur->save();
+        return response()->json('');
     }
 
     /**
@@ -93,7 +94,7 @@ class AdministrateurController extends Controller
             'dateNaissance' => 'required|date',
             'genre' => 'required',
             'CIN' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable',
         ]);
 
         $administrateur = Administrateur::find($id);
@@ -115,7 +116,7 @@ class AdministrateurController extends Controller
 
         $administrateur->save();
 
-        return response()->json('');
+
     }
 
     /**

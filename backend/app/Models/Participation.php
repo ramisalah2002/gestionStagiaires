@@ -12,7 +12,6 @@ class Participation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'date',
         'stagiaire_id',
         'reunion_id',
     ];

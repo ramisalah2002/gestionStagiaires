@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Attestation;
+use App\Models\Mdp_tokens;
 use Illuminate\Http\Request;
 
-class AttestationController extends Controller
+class Mdp_tokensController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $attestation = Attestation::all();
-        return response()->json($attestation);
+        $mdp_token = Mdp_tokens::all();
+        return response()->json($mdp_token);
     }
 
     /**
@@ -29,13 +29,11 @@ class AttestationController extends Controller
      */
     public function store(Request $request)
     {
-        $attestation = new Attestation;
-        $attestation->date = $request->input('date');
-        $attestation->duree_stage = $request->input('duree_stage');
-        $attestation->contenu = $request->input('contenu');
-        $attestation->administrateur_id = $request->input('administrateur_id');
-        $attestation->stagiaire_id = $request->input('stagiaire_id');
-        $attestation->save();
+        $mdp_token = new Mdp_tokens([
+        'token' => $request->input('token'),
+    ]);
+        $mdp_token->save();
+        return response()->json('');
     }
 
     /**
@@ -43,8 +41,8 @@ class AttestationController extends Controller
      */
     public function show(string $id)
     {
-        $attestation = Attestation::find($id);
-        return response()->json($attestation);
+        $mdp_token = Mdp_tokens::find($id) ;
+        return response()->json($mdp_token);
     }
 
     /**
@@ -60,18 +58,18 @@ class AttestationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $attestation = Attestation::find($id);
-        $attestation->update($request->all());
+        $mdp_token = Mdp_tokens::find($id);
+        $mdp_token->update($request->all());
         return response()->json('');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( string $id)
+    public function destroy(string $id)
     {
-        $attestation = Attestation::find($id);
-        $attestation->delete();
+        $mdp_token = Mdp_tokens::find($id);
+        $mdp_token->delete();
         return response()->json('');
     }
 }

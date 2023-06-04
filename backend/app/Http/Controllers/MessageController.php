@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Realisation;
+use App\Models\Message;
 use Illuminate\Http\Request;
 
-class RealisationController extends Controller
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $realisation = Realisation::all();
-        return response()->json($realisation);
+        $message = Message::all();
+        return response()->json($message);
     }
 
     /**
@@ -29,14 +29,13 @@ class RealisationController extends Controller
      */
     public function store(Request $request)
     {
-        $realisation = new Realisation([
-            'dateDebut' => $request->input('dateDebut'),
-            'duree' => $request->input('duree'),
-            'note' => $request->input('note'),
-            'stagiaire_id' => $request->input('stagiaire_id'),
-            'encadrant_id' => $request->input('encadrant_id'),
+        $message = new Message([
+            'emetteur_id' => $request->input('emetteur_id'),
+            'recepteur_id' => $request->input('recepteur_id'),
+            'contenu' => $request->input('contenu'),
+            'est_lu' => $request->input('est_lu'),
         ]);
-        $realisation->save();
+        $message->save();
         return response()->json('');
     }
 
@@ -45,8 +44,8 @@ class RealisationController extends Controller
      */
     public function show(string $id)
     {
-        $realisation = Realisation::find($id) ;
-        return response()->json($realisation) ;
+        $message = Message::find($id) ;
+        return response()->json($message);
     }
 
     /**
@@ -62,8 +61,8 @@ class RealisationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $realisation = Realisation::find($id) ;
-        $realisation->update($request->all());
+        $message = Message::find($id);
+        $message->update($request->all());
         return response()->json('');
     }
 
@@ -72,8 +71,8 @@ class RealisationController extends Controller
      */
     public function destroy(string $id)
     {
-        $realisation = Realisation::find($id) ;
-        $realisation->delete();
+        $message = Message::find($id);
+        $message->delete();
         return response()->json('');
     }
 }

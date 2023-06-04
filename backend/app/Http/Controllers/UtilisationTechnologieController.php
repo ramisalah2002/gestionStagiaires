@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Attestation;
+use App\Models\UtilisationTechnologie;
 use Illuminate\Http\Request;
 
-class AttestationController extends Controller
+class UtilisationTechnologieController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $attestation = Attestation::all();
-        return response()->json($attestation);
+        $utilisationTechnologie = UtilisationTechnologie::all();
+        return response()->json($utilisationTechnologie);
     }
 
     /**
@@ -29,13 +29,12 @@ class AttestationController extends Controller
      */
     public function store(Request $request)
     {
-        $attestation = new Attestation;
-        $attestation->date = $request->input('date');
-        $attestation->duree_stage = $request->input('duree_stage');
-        $attestation->contenu = $request->input('contenu');
-        $attestation->administrateur_id = $request->input('administrateur_id');
-        $attestation->stagiaire_id = $request->input('stagiaire_id');
-        $attestation->save();
+        $utilisationTechnologie = new UtilisationTechnologie([
+            'projet_id' => $request->input('projet_id'),
+            'technologie_id' => $request->input('technologie_id'),
+        ]);
+        $utilisationTechnologie->save();
+        return response()->json('');
     }
 
     /**
@@ -43,8 +42,8 @@ class AttestationController extends Controller
      */
     public function show(string $id)
     {
-        $attestation = Attestation::find($id);
-        return response()->json($attestation);
+        $utilisationTechnologie = UtilisationTechnologie::find($id) ;
+        return response()->json($utilisationTechnologie);
     }
 
     /**
@@ -60,18 +59,18 @@ class AttestationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $attestation = Attestation::find($id);
-        $attestation->update($request->all());
+        $utilisationTechnologie = UtilisationTechnologie::find($id);
+        $utilisationTechnologie->update($request->all());
         return response()->json('');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( string $id)
+    public function destroy(string $id)
     {
-        $attestation = Attestation::find($id);
-        $attestation->delete();
+        $utilisationTechnologie = UtilisationTechnologie::find($id);
+        $utilisationTechnologie->delete();
         return response()->json('');
     }
 }
