@@ -8,7 +8,7 @@ import logoLeft from "../../images/logoLeft.png";
 import logoMen from "../../images/logoMen.png";
 import "./LoginPage.css";
 
-function LoginPage() {
+function LoginPageStagiaire() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigateTo = useNavigate();
@@ -17,7 +17,7 @@ function LoginPage() {
     const userData = localStorage.getItem("user");
     if (userData) {
       // User data not found, navigate to LoginPage
-      navigateTo("/encadrant/accueil");
+      navigateTo("/stagiaire/accueil");
       return;
     }
   }, [navigateTo]);
@@ -44,7 +44,7 @@ function LoginPage() {
       localStorage.setItem("token", data.token);
 
       // Redirect to HomePage
-      navigateTo("/encadrant/accueil");
+      navigateTo("/stagiaire/accueil");
     } else {
       // Handle error
       console.log(data.message);
@@ -93,4 +93,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default LoginPageStagiaire;

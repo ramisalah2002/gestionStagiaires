@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useRef } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
+import { AdminContext } from "../../Contexts/AdminContext";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import {
   BrowserRouter as Router,
@@ -438,18 +438,21 @@ function Parametres() {
     },
   ];
 
-  const [user, setUser] = useState(null);
   const navigateTo = useNavigate();
-  useEffect(() => {
-    const userData = localStorage.getItem("user");
-    if (!userData) {
-      // User data not found, navigate to LoginPage
-      navigateTo("/LoginPage");
-      return;
-    }
+  const { admin, loading } = useContext(AdminContext);
+  const adminContext = useContext(AdminContext);
 
-    setUser(JSON.parse(userData));
-  }, [navigateTo]);
+  useEffect(() => {
+    const adminData = localStorage.getItem("admin");
+    if (!adminData && !loading) {
+      // Admin data doesn't exist in localStorage, redirect to LoginPage
+      navigateTo("/encadrant/login");
+    } else if (adminData && !admin) {
+      // Admin data exists in localStorage but not in context, set the admin context
+      adminContext.setAdmin(JSON.parse(adminData));
+    }
+  }, [admin, loading, navigateTo, adminContext]);
+  
 
   const pageCount = Math.ceil(equipes.length / itemsPerPage);
 
@@ -483,12 +486,12 @@ function Parametres() {
           <div className="admin-container">
             <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
             <div className="admin-info">
-              {user && (
+              {admin && (
                 <>
                   <label className="admin-name">
-                    {user.nom} {user.prenom}
+                    {admin.nom} {admin.prenom}
                   </label>
-                  <label className="admin-post">{user.fonction}</label>
+                  <label className="admin-post">{admin.fonction}</label>
                 </>
               )}
             </div>

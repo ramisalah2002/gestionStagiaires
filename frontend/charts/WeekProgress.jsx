@@ -9,10 +9,10 @@ import './Charts.css';
 exporting(Highcharts);
 exportData(Highcharts);
 
-const MonthProgress = () => {
+const WeekProgress = () => {
 
     //line chart
-  const categories = ['sem1', 'sem2', 'sem3', 'sem4'];
+  const categories = ['03/01', '04/01', '05/01', '06/01', '07/01', '08/01', '09/01'];
 
   const splineChartOptions = {
     chart: {
@@ -78,7 +78,7 @@ const MonthProgress = () => {
     series: [
       {
         name: 'Conception',
-        data: [5, 2, 6, 1],
+        data: [5, 2, 6, 1, 3, 5, 0],
         type: 'spline',
         color: '#2dad73', // Color for Conception line
         marker: {
@@ -88,7 +88,7 @@ const MonthProgress = () => {
       },
       {
         name: 'Frontend',
-        data: [0, 5, 1, 6],
+        data: [0, 5, 1, 6, 1, 4, 2],
         type: 'spline',
         color: '#fcc93e', // Color for Frontend line
         marker: {
@@ -98,7 +98,7 @@ const MonthProgress = () => {
       },
       {
         name: 'Backend',
-        data: [1, 7, 4, 5],
+        data: [1, 7, 4, 5, 1, 7, 0],
         type: 'spline',
         color: '#3077ed', // Color for Backend line
         marker: {
@@ -139,4 +139,4 @@ const MonthProgress = () => {
   )
 }
 
-export default MonthProgress
+export default WeekProgress

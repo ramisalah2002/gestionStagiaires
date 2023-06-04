@@ -20,7 +20,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./Sidebar.css";
 
-function Sidebar() {
+function StagiaireSidebar() {
   const [showSidebar, setShowSidebar] = useState(true);
   const [showStagiaireModal, setShowStagiaireModal] = useState(false);
   const [showEquipeModal, setShowEquipeModal] = useState(false);
@@ -29,7 +29,7 @@ function Sidebar() {
 
   const handleLogout = () => {
     // Remove user data from localStorage
-    localStorage.removeItem("admin");
+    localStorage.removeItem("user");
 
     // Navigate to LoginPage
     window.location.href = "/";
@@ -136,24 +136,15 @@ function Sidebar() {
         <div className="toggle-button" onClick={toggleSidebar}>
           <FontAwesomeIcon icon={faBars} />
         </div>
-        <Link to="/encadrant/accueil" className="logo">
+        <Link to="/stagiaire/accueil" className="logo">
           <div></div>
         </Link>
         <div className={`links-container`}>
           <ul className="links-list">
             <li className={activeLink === "link1" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link1")} to="/encadrant/accueil">
+              <Link onClick={() => handleLinkClick("link1")} to="/stagiaire/accueil">
                 <FontAwesomeIcon className="big-icons" icon={faHome} />
                 <label>{showSidebar ? "Accueil" : null}</label>
-              </Link>
-            </li>
-            <li className={activeLink === "link2" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link2")} to="/stagiaires">
-                <FontAwesomeIcon className="big-icons" icon={faUserGroup} />
-                <label>{showSidebar ? "Stagiaires" : null}</label>
-              </Link>
-              <Link onClick={() => openStagiaireModal()} className="plus-container">
-                <FontAwesomeIcon className="plus-icon" icon={faPlus} />
               </Link>
             </li>
             <li className={activeLink === "link3" ? "active-link" : "link"}>
@@ -421,4 +412,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default StagiaireSidebar;

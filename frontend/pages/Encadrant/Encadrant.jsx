@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
+import { AdminContext } from "../../Contexts/AdminContext";
 import { useNavigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -13,8 +14,6 @@ function Encadrant() {
   const [searchResults, setSearchResults] = useState([]); // New state for the search results
   const [isSearching, setIsSearching] = useState(false);
   const [searchingText, setSearchingText] = useState("");
-  const [user, setUser] = useState(null);
-  const navigateTo = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
 
@@ -28,15 +27,20 @@ function Encadrant() {
     setSearchingText(searchTerm !== "" ? "Résultat de la recherche" : "");
   };
 
-  useEffect(() => {
-    const userData = localStorage.getItem("user");
-    if (!userData) {
-      navigateTo("/encadrant/login");
-      return;
-    }
+  const navigateTo = useNavigate();
+  const { admin, loading } = useContext(AdminContext);
+  const adminContext = useContext(AdminContext);
 
-    setUser(JSON.parse(userData));
-  }, [navigateTo]);
+  useEffect(() => {
+    const adminData = localStorage.getItem("admin");
+    if (!adminData && !loading) {
+      // Admin data doesn't exist in localStorage, redirect to LoginPage
+      navigateTo("/encadrant/login");
+    } else if (adminData && !admin) {
+      // Admin data exists in localStorage but not in context, set the admin context
+      adminContext.setAdmin(JSON.parse(adminData));
+    }
+  }, [admin, loading, navigateTo, adminContext]);
 
   const currentDate = new Date().toLocaleString("fr-FR", {
     day: "numeric",
@@ -454,12 +458,12 @@ function Encadrant() {
           <div className="admin-container">
             <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
             <div className="admin-info">
-              {user && (
+              {admin && (
                 <>
                   <label className="admin-name">
-                    {user.nom} {user.prenom}
+                    {admin.nom} {admin.prenom}
                   </label>
-                  <label className="admin-post">{user.fonction}</label>
+                  <label className="admin-post">{admin.fonction}</label>
                 </>
               )}
             </div>

@@ -260,7 +260,6 @@
 .sender-img{
     width: 30px;
     height: 30px;
-    background: url("../../images/user.jpg");
     background-size: cover;
     border-radius: 50%;
 }

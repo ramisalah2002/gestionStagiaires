@@ -1,6 +1,8 @@
-import React, { useState, useEffect} from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { AdminContext } from "../../Contexts/AdminContext";
+
+
 import Homepage from "../Homepage/Homepage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
@@ -14,14 +16,17 @@ function LoginPage() {
   const [password, setPassword] = useState("");
   const navigateTo = useNavigate();
 
+  const adminContext = useContext(AdminContext);
+
+  const { admin, setAdmin } = useContext(AdminContext);
+
   useEffect(() => {
-    const userData = localStorage.getItem("user");
-    if (userData) {
-      // User data not found, navigate to LoginPage
+    if (admin) {
+      // User is already authenticated, redirect to the appropriate page
       navigateTo("/encadrant/accueil");
-      return;
     }
-  }, [navigateTo]);
+  }, [admin, navigateTo]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,19 +45,14 @@ function LoginPage() {
     const data = await response.json();
 
     if (response.ok) {
-      // Store user and token information to localStorage or Context API or Redux
-      localStorage.setItem("user", JSON.stringify(data.user));
-      localStorage.setItem("token", data.token);
-
-      // Redirect to HomePage
+      adminContext.setAdmin(data.user);
+      localStorage.setItem("admin", JSON.stringify(data.user));
       navigateTo("/encadrant/accueil");
     } else {
-      // Handle error
       console.log(data.message);
     }
   };
-
-  const userId = 4;
+  
 
   return (
     <div className="mainContainer">

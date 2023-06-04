@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useState, useRef, useEffect, useContext } from "react";
+import { AdminContext } from "../../Contexts/AdminContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
 import LoginPage from '../../pages/LoginPage/LoginPage';
@@ -10,26 +11,52 @@ import './Chat.css';
 import Sidebar from '../../components/Sidebar/Sidebar.jsx';
 
 function StagiaireProfile() {
-  const [user, setUser] = useState(null);
+
   const navigateTo = useNavigate();
-  
+  const { admin, loading } = useContext(AdminContext);
+  const adminContext = useContext(AdminContext);
 
   useEffect(() => {
-    const userData = localStorage.getItem('user');
-    if (!userData) {
-      // User data not found, navigate to LoginPage
-      navigateTo('/LoginPage');
-      return;
+    const adminData = localStorage.getItem("admin");
+    if (!adminData && !loading) {
+      // Admin data doesn't exist in localStorage, redirect to LoginPage
+      navigateTo("/encadrant/login");
+    } else if (adminData && !admin) {
+      // Admin data exists in localStorage but not in context, set the admin context
+      adminContext.setAdmin(JSON.parse(adminData));
     }
-
-    setUser(JSON.parse(userData));
-  }, [navigateTo]);
+  }, [admin, loading, navigateTo, adminContext]);
 
   const currentDate = new Date().toLocaleString('fr-FR', {
     day: 'numeric',
     month: 'short',
   });
 
+  
+
+  const profiles= [
+    {
+      id: 1,
+      nom: "RAMI Salah-eddine",
+      email: "ramisalah2002@gmail.com",
+      image: '../../images/user.jpg',
+      lastMessage: 'fen cv',
+    },
+    {
+      id: 2,
+      nom: "BOULAAJOUL Anass",
+      email: "ramisalah2002@gmail.com",
+      image: '../../images/user.jpg',
+      lastMessage: 'Cv lhamdollah',
+    },
+    {
+      id: 3,
+      nom: "BACHA Zinelabidine",
+      email: "ramisalah2002@gmail.com",
+      image: '../../images/user.jpg',
+      lastMessage: 'Kidayr bikhir',
+    },
+  ]
   
 
   const getCurrentDate = () => {
@@ -43,7 +70,8 @@ function StagiaireProfile() {
    useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
-        setActiveProfile(null);
+        setActiveProfileId(null);
+        setActiveProfileNom(null);
       }
     };
 
@@ -55,10 +83,12 @@ function StagiaireProfile() {
   }, []);
 
   
-  const [activeProfile, setActiveProfile] = useState(null);
+  const [activeProfileId, setActiveProfileId] = useState(null);
+  const [activeProfileNom, setActiveProfileNom] = useState(null);
 
-  const handleProfileClick = (profileId) => {
-    setActiveProfile(profileId);
+  const handleProfileClick = (id,nom) => {
+    setActiveProfileId(id);
+    setActiveProfileNom(nom);
   };
   return (
     <div className="app">
@@ -71,30 +101,30 @@ function StagiaireProfile() {
                   <input className="search-input" placeholder="Rechercher ..." type="text" />
                 </form>
                 <div className="profiles-container">
-                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((profileId) => (
+                  {profiles.map((profile) => (
                     <div
-                      key={profileId}
-                      className={`profile-item ${activeProfile === profileId ? 'active-profile-item' : ''}`}
-                      onClick={() => handleProfileClick(profileId)}
+                      key={profile.id}
+                      className={`profile-item ${activeProfileId === profile.id ? 'active-profile-item' : ''}`}
+                      onClick={() => handleProfileClick(profile.id, profile.nom)}
                     >
-                      <div className="profile-img"></div>
+                      <div style={{ background: `url(${profile.image})`, backgroundSize: 'cover' }} className="profile-img"></div>
                       <div className="profile-info">
                         <div className="profile-header">
-                          <div className="profile-name">BOULAAJOUL Anass</div>
+                          <div className="profile-name">{profile.nom}</div>
                           <div className="profile-date">09:00</div>
                         </div>
-                        <label className="last-message">Bonjour Salah-eddine</label>
+                        <label className="last-message">{profile.lastMessage}</label>
                       </div>
                     </div>
                   ))}
                 </div>
             </div>
-            <div className="right-section" style={{ backgroundColor: activeProfile ? '#f0f2f5' : '#fff' }}>
-              {activeProfile ? (
+            <div className="right-section" style={{ backgroundColor: activeProfileId ? '#f0f2f5' : '#fff' }}>
+              {activeProfileId ? (
                 <>
                   <div className="second-profile-section">
                     <div className="second-profile-img"></div>
-                    <label className="second-profile-name">BOULAAJOUL Anass</label>
+                    <label className="second-profile-name">{activeProfileNom}</label>
                   </div>
                   <div className="chat-content">
                     <div className="chat-message-sender">

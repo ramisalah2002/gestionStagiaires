@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import React, { useState, useEffect, useRef } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
+=======
+import React, { useState, useEffect, useRef} from "react";
+import StagiaireSidebar from "../../components/Sidebar/StagiaireSidebar";
+>>>>>>> c0694d773abfdb7dfd1252ec0424ef2e4de234e8
 import {
   BrowserRouter as Router,
   Routes,
@@ -31,6 +36,7 @@ import imgProfile from "../../images/user.jpg";
 import projetImage from "../../images/projetImage.jpg";
 import projetBackGround from "../../images/projetBackground.png";
 import MonthProgress from "../../charts/MonthProgress";
+import WeekProgress from "../../charts/WeekProgress";
 import Absence from "../../charts/Absence";
 import AllTimeProgress from "../../charts/AllTimeProgress";
 import Highcharts from "highcharts";
@@ -48,6 +54,19 @@ function Homepage() {
   const [searchingText, setSearchingText] = useState("");
   const [showLinks, setShowLinks] = useState(false);
   const containerRef = useRef(null);
+  const [AllTimeProgressLink, setAllTimeLink] = useState("Tout le temps");
+  const [MonthProgressLink, setMonthProgressLink] = useState("Ce mois-ci");
+  const [WeekProgressLink, setWeekProgressLink] = useState("Cette semaine");
+  const [activeLink, setActiveLink] = useState(AllTimeProgressLink);
+  
+
+  
+  const absence_data = [
+    { nom: 'Absences justifiées', nbr_jours: 10, color: '#3176ed' },
+    { nom: 'Absences non justifiées', nbr_jours: 20, color: '#544fc5'  },
+    { nom: 'Présences', nbr_jours: 30, color: '#00de70'  },
+    { nom: 'Jours restants', nbr_jours: 40, color: '#fcc93e'  }
+  ];
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -69,7 +88,15 @@ function Homepage() {
   const toggleLinks = () => {
     setShowLinks(!showLinks);
   };
+<<<<<<< HEAD
 
+=======
+  const handleLinkClick = (link) => {
+    setActiveLink(link);
+    toggleLinks();
+  };
+  
+>>>>>>> c0694d773abfdb7dfd1252ec0424ef2e4de234e8
   const handleSearchTermChange = (searchTerm) => {
     // Filter the stagiaires array when the search term changes
     const results = stagiaires.filter((stagiaire) =>
@@ -153,7 +180,7 @@ function Homepage() {
 
   return (
     <div className="app">
-      <Sidebar />
+      <StagiaireSidebar />
       <main className="main-content">
         <div className="header">
           <div className="admin-container">
@@ -271,31 +298,31 @@ function Homepage() {
               <div className="absence-chart-bottom">
                 <div className="abscence-chart-div">
                   <div className="point-name-container">
-                    <div className="point-circle"></div>
-                    <label>Présences</label>
+                    <div style={{background: absence_data[0].color}} className="point-circle"></div>
+                    <label>{absence_data[0].nom}</label>
                   </div>
-                  <div>25</div>
+                  <div>{absence_data[0].nbr_jours}</div>
                 </div>
                 <div className="abscence-chart-div">
                   <div className="point-name-container">
-                    <div className="point-circle"></div>
-                    <label>Présences</label>
+                    <div style={{background: absence_data[1].color}} className="point-circle"></div>
+                    <label>{absence_data[1].nom}</label>
                   </div>
-                  <div>25</div>
+                  <div>{absence_data[1].nbr_jours}</div>
                 </div>
                 <div className="abscence-chart-div">
                   <div className="point-name-container">
-                    <div className="point-circle"></div>
-                    <label>Présences</label>
+                    <div style={{background: absence_data[2].color}} className="point-circle"></div>
+                    <label>{absence_data[2].nom}</label>
                   </div>
-                  <div>25</div>
+                  <div>{absence_data[2].nbr_jours}</div>
                 </div>
                 <div className="abscence-chart-div">
                   <div className="point-name-container">
-                    <div className="point-circle"></div>
-                    <label>Présences</label>
+                    <div style={{background: absence_data[3].color}} className="point-circle"></div>
+                    <label>{absence_data[3].nom}</label>
                   </div>
-                  <div>25</div>
+                  <div>{absence_data[3].nbr_jours}</div>
                 </div>
               </div>
             </div>
@@ -305,6 +332,7 @@ function Homepage() {
               <div className="absence-chart-header">
                 <label className="absence-chart-title">Progrès du projet</label>
                 <div className="change-filter-wrapper" ref={containerRef}>
+<<<<<<< HEAD
                   <Link className="change-filter-link" onClick={toggleLinks}>
                     Tout le temps
                   </Link>
@@ -318,6 +346,53 @@ function Homepage() {
               </div>
               {/* filter */}
               <MonthProgress />
+=======
+                <Link className={`change-filter-link`} onClick={() => toggleLinks()}>
+                  {activeLink}
+                </Link>
+                {showLinks && (
+                  <div className="change-links-container">
+                    <Link
+                      className={`change-link`}
+                      onClick={() => handleLinkClick(AllTimeProgressLink)}
+                    >
+                      {AllTimeProgressLink}
+                    </Link>
+                    <Link
+                      className={`change-link`}
+                      onClick={() => handleLinkClick(MonthProgressLink)}
+                    >
+                      {MonthProgressLink}
+                    </Link>
+                    <Link
+                      className={`change-link`}
+                      onClick={() => handleLinkClick(WeekProgressLink)}
+                    >
+                      {WeekProgressLink}
+                    </Link>
+                  </div>
+                )}
+              </div>
+              </div>
+              {/* filter */}
+              <div className="indicators-conteiner">
+                <div className="indicator-container">
+                  <div style={{background: '#2dad73'}} className="point-circle"/>
+                  <label>Conception</label>
+                </div>
+                <div className="indicator-container">
+                  <div style={{background: '#fcc93e'}} className="point-circle"/>
+                  <label>Frontend</label>
+                </div>
+                <div className="indicator-container">
+                  <div style={{background: '#3077ed'}} className="point-circle"/>
+                  <label>Backend</label>
+                </div>
+              </div>
+              {activeLink === MonthProgressLink && <MonthProgress />}
+              {activeLink === WeekProgressLink && <WeekProgress />}
+              {activeLink === AllTimeProgressLink && <AllTimeProgress />}
+>>>>>>> c0694d773abfdb7dfd1252ec0424ef2e4de234e8
             </div>
             <div className="reunion-projet">
               <div className="projet">
