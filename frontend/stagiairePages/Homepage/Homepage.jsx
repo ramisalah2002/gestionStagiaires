@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import {
   BrowserRouter as Router,
@@ -33,10 +33,10 @@ import projetBackGround from "../../images/projetBackground.png";
 import MonthProgress from "../../charts/MonthProgress";
 import Absence from "../../charts/Absence";
 import AllTimeProgress from "../../charts/AllTimeProgress";
-import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
-import exporting from 'highcharts/modules/exporting';
-import exportData from 'highcharts/modules/export-data';
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+import exporting from "highcharts/modules/exporting";
+import exportData from "highcharts/modules/export-data";
 
 // Initialize exporting and exportData modules
 exporting(Highcharts);
@@ -69,7 +69,7 @@ function Homepage() {
   const toggleLinks = () => {
     setShowLinks(!showLinks);
   };
-  
+
   const handleSearchTermChange = (searchTerm) => {
     // Filter the stagiaires array when the search term changes
     const results = stagiaires.filter((stagiaire) =>
@@ -150,12 +150,6 @@ function Homepage() {
     day: "numeric",
     month: "short",
   });
-  
-  
-  
-  
-
-  
 
   return (
     <div className="app">
@@ -258,12 +252,21 @@ function Homepage() {
               <div className="absence-chart-header">
                 <label className="absence-chart-title">Absences</label>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', width: '100%',height:'100%',}}>
-                <div className='circle-chart-absence'>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  position: "relative",
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                <div className="circle-chart-absence">
                   <label className="label-1">12 jours</label>
                   <label className="label-2">Total Abs.</label>
                 </div>
-                <Absence/>
+                <Absence />
               </div>
               <div className="absence-chart-bottom">
                 <div className="abscence-chart-div">
@@ -298,29 +301,23 @@ function Homepage() {
             </div>
           </div>
           <div className="progression-reunion-projet">
-          <div className="progression">
+            <div className="progression">
               <div className="absence-chart-header">
                 <label className="absence-chart-title">Progrès du projet</label>
                 <div className="change-filter-wrapper" ref={containerRef}>
-                    <Link className="change-filter-link" onClick={toggleLinks}>Tout le temps</Link>
-                    {showLinks && (
-                      <div className="change-links-container">
-                        <Link
-                          className="change-link"
-                        >
-                          Tout le temps
-                        </Link>
-                        <Link
-                          className="change-link"
-                        >
-                          Dernière semaine 
-                        </Link>
-                      </div>
-                    )}
-                  </div>
+                  <Link className="change-filter-link" onClick={toggleLinks}>
+                    Tout le temps
+                  </Link>
+                  {showLinks && (
+                    <div className="change-links-container">
+                      <Link className="change-link">Tout le temps</Link>
+                      <Link className="change-link">Dernière semaine</Link>
+                    </div>
+                  )}
+                </div>
               </div>
               {/* filter */}
-              <MonthProgress/>
+              <MonthProgress />
             </div>
             <div className="reunion-projet">
               <div className="projet">
