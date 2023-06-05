@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Message;
+use App\Models\Mdp_tokens;
 use Illuminate\Http\Request;
 
-class MessageController extends Controller
+class Mdp_tokensController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $message = Message::all();
-        return response()->json($message);
+        $mdp_token = Mdp_tokens::all();
+        return response()->json($mdp_token);
     }
 
     /**
@@ -29,13 +29,10 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        $message = new Message([
-            'emetteur_id' => $request->input('emetteur_id'),
-            'recepteur_id' => $request->input('recepteur_id'),
-            'contenu' => $request->input('contenu'),
-            'est_lu' => $request->input('est_lu'),
-        ]);
-        $message->save();
+        $mdp_token = new Mdp_tokens([
+        'token' => $request->input('token'),
+    ]);
+        $mdp_token->save();
         return response()->json('');
     }
 
@@ -44,8 +41,8 @@ class MessageController extends Controller
      */
     public function show(string $id)
     {
-        $message = Message::find($id) ;
-        return response()->json($message);
+        $mdp_token = Mdp_tokens::find($id) ;
+        return response()->json($mdp_token);
     }
 
     /**
@@ -61,8 +58,8 @@ class MessageController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $message = Message::find($id);
-        $message->update($request->all());
+        $mdp_token = Mdp_tokens::find($id);
+        $mdp_token->update($request->all());
         return response()->json('');
     }
 
@@ -71,8 +68,8 @@ class MessageController extends Controller
      */
     public function destroy(string $id)
     {
-        $message = Message::find($id);
-        $message->delete();
+        $mdp_token = Mdp_tokens::find($id);
+        $mdp_token->delete();
         return response()->json('');
     }
 }

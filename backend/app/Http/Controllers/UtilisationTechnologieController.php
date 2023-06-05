@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Message;
+use App\Models\UtilisationTechnologie;
 use Illuminate\Http\Request;
 
-class MessageController extends Controller
+class UtilisationTechnologieController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $message = Message::all();
-        return response()->json($message);
+        $utilisationTechnologie = UtilisationTechnologie::all();
+        return response()->json($utilisationTechnologie);
     }
 
     /**
@@ -29,13 +29,11 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        $message = new Message([
-            'emetteur_id' => $request->input('emetteur_id'),
-            'recepteur_id' => $request->input('recepteur_id'),
-            'contenu' => $request->input('contenu'),
-            'est_lu' => $request->input('est_lu'),
+        $utilisationTechnologie = new UtilisationTechnologie([
+            'projet_id' => $request->input('projet_id'),
+            'technologie_id' => $request->input('technologie_id'),
         ]);
-        $message->save();
+        $utilisationTechnologie->save();
         return response()->json('');
     }
 
@@ -44,8 +42,8 @@ class MessageController extends Controller
      */
     public function show(string $id)
     {
-        $message = Message::find($id) ;
-        return response()->json($message);
+        $utilisationTechnologie = UtilisationTechnologie::find($id) ;
+        return response()->json($utilisationTechnologie);
     }
 
     /**
@@ -61,8 +59,8 @@ class MessageController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $message = Message::find($id);
-        $message->update($request->all());
+        $utilisationTechnologie = UtilisationTechnologie::find($id);
+        $utilisationTechnologie->update($request->all());
         return response()->json('');
     }
 
@@ -71,8 +69,8 @@ class MessageController extends Controller
      */
     public function destroy(string $id)
     {
-        $message = Message::find($id);
-        $message->delete();
+        $utilisationTechnologie = UtilisationTechnologie::find($id);
+        $utilisationTechnologie->delete();
         return response()->json('');
     }
 }

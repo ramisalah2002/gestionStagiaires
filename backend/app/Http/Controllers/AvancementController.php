@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Realisation;
+use App\Models\Avancement;
 use Illuminate\Http\Request;
 
-class RealisationController extends Controller
+class AvancementController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $realisation = Realisation::all();
-        return response()->json($realisation);
+        $avancement = Avancement::all();
+        return response()->json($avancement);
     }
 
     /**
@@ -29,14 +29,12 @@ class RealisationController extends Controller
      */
     public function store(Request $request)
     {
-        $realisation = new Realisation([
-            'dateDebut' => $request->input('dateDebut'),
-            'duree' => $request->input('duree'),
-            'note' => $request->input('note'),
-            'stagiaire_id' => $request->input('stagiaire_id'),
-            'encadrant_id' => $request->input('encadrant_id'),
+        $avancement = new Avancement([
+            'date' => $request->input('date'),
+            'text' => $request->input('text'),
+            'projet_id' => $request->input('projet_id'),
         ]);
-        $realisation->save();
+        $avancement->save();
         return response()->json('');
     }
 
@@ -45,8 +43,8 @@ class RealisationController extends Controller
      */
     public function show(string $id)
     {
-        $realisation = Realisation::find($id) ;
-        return response()->json($realisation) ;
+        $avancement = Avancement::find($id) ;
+        return response()->json($avancement);
     }
 
     /**
@@ -62,8 +60,8 @@ class RealisationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $realisation = Realisation::find($id) ;
-        $realisation->update($request->all());
+        $avancement = Avancement::find($id);
+        $avancement->update($request->all());
         return response()->json('');
     }
 
@@ -72,8 +70,8 @@ class RealisationController extends Controller
      */
     public function destroy(string $id)
     {
-        $realisation = Realisation::find($id) ;
-        $realisation->delete();
+        $avancement = Avancement::find($id);
+        $avancement->delete();
         return response()->json('');
     }
 }

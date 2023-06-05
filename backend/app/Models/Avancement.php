@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Presentation extends Model
+class Avancement extends Model
 {
-    protected $table = 'presentation';
+    protected $table = 'avancement';
 
     use HasFactory;
     protected $fillable = [
         'date',
-        'heure',
-        'description',
-        'stage_id',
+        'text',
+        'projet_id',
     ];
-    public function stage()
+
+    public function projet()
     {
-        return $this->belongsTo(Stage::class);
+        return $this->belongsTo(Projet::class);
     }
 }

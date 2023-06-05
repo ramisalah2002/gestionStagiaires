@@ -11,17 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('utilisateur', function (Blueprint $table) {
+        Schema::create('technologie', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->string('prenom');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('telephone');
-            $table->Date('dateNaissance');
-            $table->string('genre');
-            $table->string('CIN');
-            $table->longText('image')->nullable();
+            $table->string('nom_technologie') ;
+            $table->longText('image');
             $table->timestamps();
         });
     }
@@ -33,5 +26,4 @@ return new class extends Migration
     {
         //
     }
-
 };

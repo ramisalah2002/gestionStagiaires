@@ -191,14 +191,14 @@
   box-shadow: 3px 1px 2px 0 rgba(0, 0, 0, 0.04);
   transition: ease 0.5s;
 }
-.absence-chart-header{
+.absence-chart-header {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 10px 0;
 }
-.absence-chart-title{
+.absence-chart-title {
   color: #121827;
   font-size: 1.6rem;
   font-weight: 500;
@@ -608,7 +608,7 @@
 .change-link:hover {
   background: #d6d6d8;
 }
-.circle-chart-absence{
+.circle-chart-absence {
   width: 200px;
   height: 200px;
   background: #fff;
@@ -624,17 +624,17 @@
   align-items: center;
   justify-content: center;
 }
-.circle-chart-absence .label-1{
+.circle-chart-absence .label-1 {
   font-size: 1.6rem;
   font-weight: 700;
   color: #101827;
 }
-.circle-chart-absence .label-2{
+.circle-chart-absence .label-2 {
   font-size: 1rem;
   font-weight: 500;
   color: #757d8a;
 }
-.absence-chart-bottom{
+.absence-chart-bottom {
   width: calc(100% - 20px);
   padding: 0 20px;
   display: flex;
@@ -643,38 +643,38 @@
   align-items: center;
   justify-content: center;
 }
-.absence-chart-bottom .abscence-chart-div{
+.absence-chart-bottom .abscence-chart-div {
   width: 90%;
   display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
-.point-name-container{
+.point-name-container {
   width: 100%;
   gap: 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-.point-circle{
+.point-circle {
   width: 12px;
   height: 12px;
   border-radius: 50%;
 }
-.indicators-conteiner{
+.indicators-conteiner {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-.indicator-container{
+.indicator-container {
   margin-left: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 8px;
 }
-.indicator-container label{
+.indicator-container label {
   color: #232835;
   font-size: 14px;
   font-weight: 600;

@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import io from 'socket.io-client';
+import React, { useEffect, useState } from "react";
+import io from "socket.io-client";
 
 const ReceiveMessagePage = () => {
   const [messages, setMessages] = useState([]);
-  const socket = io('http://localhost:3000');
+  const socket = io("http://localhost:3000");
 
   useEffect(() => {
     // Listen for chat messages from the server
-    socket.on('chat message', (message) => {
+    socket.on("chat message", (message) => {
       setMessages((prevMessages) => [...prevMessages, message]);
     });
 

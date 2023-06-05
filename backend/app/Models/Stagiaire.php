@@ -22,10 +22,12 @@ class Stagiaire extends Authenticatable
         'telephone',
         'dateNaissance',
         'genre',
+        'status',
         'CIN',
         'CNE',
         'formation',
         'image',
+        'couverture',
     ];
 
     protected $hidden = [
@@ -40,13 +42,13 @@ class Stagiaire extends Authenticatable
     {
         return $this->belongsTo(Administrateur::class);
     }
-    public function projet()
-    {
-        return $this->belongsToMany(Projet::class, 'realisation');
-    }
     public function stage()
     {
         return $this->belongsTo(Stage::class);
+    }
+    public function absence()
+    {
+        return $this->hasMany(Absence::class);
     }
     public function reunion()
     {
@@ -55,6 +57,10 @@ class Stagiaire extends Authenticatable
     public function etablissement()
     {
         return $this->belongsTo(Etablissement::class);
+    }
+    public function equipe()
+    {
+        return $this->belongsTo(Equipe::class);
     }
 }
 

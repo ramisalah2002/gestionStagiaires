@@ -5,18 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Message extends Model
+class Mdp_tokens extends Model
 {
-    protected $table = 'message';
+    protected $table = 'mdp_tokens';
 
     use HasFactory;
     protected $fillable = [
-        'emetteur_id',
-        'recepteur_id',
-        'contenu',
-        'est_lu',
+        'token',
     ];
-
     public function utilisateur()
     {
         return $this->belongsTo(Utilisateur::class);

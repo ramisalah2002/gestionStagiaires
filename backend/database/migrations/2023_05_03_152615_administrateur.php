@@ -21,7 +21,7 @@ return new class extends Migration
             $table->Date('dateNaissance');
             $table->string('genre');
             $table->string('CIN');
-            $table->binary('image')->nullable();
+            $table->longText('image')->nullable();
             $table->timestamps();
         });
     }

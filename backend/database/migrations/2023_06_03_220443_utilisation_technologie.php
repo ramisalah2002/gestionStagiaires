@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('presentation', function (Blueprint $table) {
-            $table->id();
-            $table->date('date');
-            $table->time('heure');
-            $table->text('description');
-            $table->foreignId('stage_id')->references('id')->on('stage')->onDelete('cascade');
+        Schema::create('utilisation_technologie', function (Blueprint $table) {
+            $table->foreignId('projet_id')->references('id')->on('projet')->onDelete('cascade');
+            $table->foreignId('technologie_id')->references('id')->on('technologie')->onDelete('cascade');
             $table->timestamps();
         });
     }

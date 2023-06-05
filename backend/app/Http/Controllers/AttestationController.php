@@ -68,7 +68,7 @@ class AttestationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy( string $id)
     {
         $attestation = Attestation::find($id);
         $attestation->delete();

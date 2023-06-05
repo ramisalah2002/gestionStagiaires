@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+
 class UtilisateurController extends Controller
 {
     /**
@@ -14,14 +15,6 @@ class UtilisateurController extends Controller
     {
         $utilisateur = Utilisateur::all();
         return response()->json($utilisateur);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -38,25 +31,27 @@ class UtilisateurController extends Controller
             'dateNaissance' => 'required|date',
             'genre' => 'required',
             'CIN' => 'required|unique:utilisateur',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable',
         ]);
-
-        $imageData = null;
-        if ($request->file('image')) {
-            $imageData = file_get_contents($request->file('image'));
-        }
 
         $utilisateur = new Utilisateur;
         $utilisateur->nom = $request->input('nom');
         $utilisateur->prenom = $request->input('prenom');
         $utilisateur->email = $request->input('email');
-        $utilisateur->password = \Hash::make($request->input('password'));
+        $utilisateur->password = Hash::make($request->input('password'));
         $utilisateur->telephone = $request->input('telephone');
         $utilisateur->dateNaissance = $request->input('dateNaissance');
         $utilisateur->genre = $request->input('genre');
         $utilisateur->CIN = $request->input('CIN');
-        $utilisateur->image = $imageData;
+
+        if ($request->file('image')) {
+            $imagePath = $request->file('image')->path();
+            $imageFile = file_get_contents($imagePath);
+            $utilisateur->image = base64_encode($imageFile);
+        }
+
         $utilisateur->save();
+        return response()->json('');
     }
 
     /**
@@ -64,16 +59,8 @@ class UtilisateurController extends Controller
      */
     public function show($id)
     {
-        $utilisateur = Utilisateur::find($id) ;
-        return response()->json($utilisateur) ;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        //
+        $utilisateur = Utilisateur::find($id);
+        return response()->json($utilisateur);
     }
 
     /**
@@ -84,33 +71,32 @@ class UtilisateurController extends Controller
         $request->validate([
             'nom' => 'required',
             'prenom' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:utilisateur,'.$id,
             'password' => 'required',
             'telephone' => 'required',
             'dateNaissance' => 'required|date',
             'genre' => 'required',
-            'CIN' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'CIN' => 'required|unique:utilisateur,'.$id,
+            'image' => 'nullable',
         ]);
 
         $utilisateur = Utilisateur::find($id);
-
-        if ($request->file('image')) {
-            $imageData = file_get_contents($request->file('image'));
-            $utilisateur->image = $imageData;
-        }
-
         $utilisateur->nom = $request->input('nom');
         $utilisateur->prenom = $request->input('prenom');
         $utilisateur->email = $request->input('email');
-        $utilisateur->password = \Hash::make($request->input('password'));
+        $utilisateur->password = Hash::make($request->input('password'));
         $utilisateur->telephone = $request->input('telephone');
         $utilisateur->dateNaissance = $request->input('dateNaissance');
         $utilisateur->genre = $request->input('genre');
         $utilisateur->CIN = $request->input('CIN');
 
-        $utilisateur->save();
+        if ($request->file('image')) {
+            $imagePath = $request->file('image')->path();
+            $imageFile = file_get_contents($imagePath);
+            $utilisateur->image = base64_encode($imageFile);
+        }
 
+        $utilisateur->save();
         return response()->json('');
     }
 

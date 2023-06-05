@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Stagiaire;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+
 class StagiaireController extends Controller
 {
     /**
@@ -14,14 +15,6 @@ class StagiaireController extends Controller
     {
         $stagiaire = Stagiaire::all();
         return response()->json($stagiaire);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -37,16 +30,13 @@ class StagiaireController extends Controller
             'telephone' => 'required',
             'dateNaissance' => 'required|date',
             'genre' => 'required',
+            'status' => 'required',
             'CIN' => 'required|unique:stagiaire',
             'CNE' => 'required|unique:stagiaire',
             'formation' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable',
+            'couverture' => 'nullable',
         ]);
-
-        $imageData = null;
-        if ($request->file('image')) {
-            $imageData = file_get_contents($request->file('image'));
-        }
 
         $stagiaire = new Stagiaire;
         $stagiaire->nom = $request->input('nom');
@@ -56,10 +46,14 @@ class StagiaireController extends Controller
         $stagiaire->telephone = $request->input('telephone');
         $stagiaire->dateNaissance = $request->input('dateNaissance');
         $stagiaire->genre = $request->input('genre');
+        $stagiaire->status = $request->input('status');
         $stagiaire->CIN = $request->input('CIN');
         $stagiaire->CNE = $request->input('CNE');
         $stagiaire->formation = $request->input('formation');
-        $stagiaire->image = $imageData;
+        $stagiaire->image = $request->input('image');
+        $stagiaire->couverture = $request->input('couverture');
+
+        
         $stagiaire->save();
     }
 
@@ -68,16 +62,8 @@ class StagiaireController extends Controller
      */
     public function show($id)
     {
-        $stagiaire = Stagiaire::find($id) ;
-        return response()->json($stagiaire) ;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        //
+        $stagiaire = Stagiaire::find($id);
+        return response()->json($stagiaire);
     }
 
     /**
@@ -93,19 +79,15 @@ class StagiaireController extends Controller
             'telephone' => 'required',
             'dateNaissance' => 'required|date',
             'genre' => 'required',
+            'status' => 'required',
             'CIN' => 'required',
-            'CNE' => 'required|unique:stagiaire',
+            'CNE' => 'required',
             'formation' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable',
+            'couverture' => 'nullable',
         ]);
 
         $stagiaire = Stagiaire::find($id);
-
-        if ($request->file('image')) {
-            $imageData = file_get_contents($request->file('image'));
-            $stagiaire->image = $imageData;
-        }
-
         $stagiaire->nom = $request->input('nom');
         $stagiaire->prenom = $request->input('prenom');
         $stagiaire->email = $request->input('email');
@@ -113,12 +95,24 @@ class StagiaireController extends Controller
         $stagiaire->telephone = $request->input('telephone');
         $stagiaire->dateNaissance = $request->input('dateNaissance');
         $stagiaire->genre = $request->input('genre');
+        $stagiaire->status = $request->input('status');
         $stagiaire->CIN = $request->input('CIN');
         $stagiaire->CNE = $request->input('CNE');
         $stagiaire->formation = $request->input('formation');
 
-        $stagiaire->save();
+        if ($request->file('image')) {
+            $imagePath = $request->file('image')->path();
+            $imageFile = file_get_contents($imagePath);
+            $stagiaire->image = base64_encode($imageFile);
+        }
 
+        if ($request->file('couverture')) {
+            $couverturePath = $request->file('couverture')->path();
+            $couvertureFile = file_get_contents($couverturePath);
+            $stagiaire->couverture = base64_encode($couvertureFile);
+        }
+
+        $stagiaire->save();
         return response()->json('');
     }
 

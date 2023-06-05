@@ -14,6 +14,8 @@ class Reunion extends Model
         'date',
         'duree',
         'objet',
+        'lieu',
+        'heure',
         'encadrant_id',
     ];
     public function stagiaire()

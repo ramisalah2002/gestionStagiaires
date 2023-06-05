@@ -16,6 +16,8 @@ return new class extends Migration
             $table->date('date');
             $table->dateTime('duree');
             $table->string('objet');
+            $table->string('lieu');
+            $table->time('heure');
             $table->foreignId('encadrant_id')->references('id')->on('encadrant')->onDelete('cascade');
             $table->timestamps();
         });

@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reunion;
+use App\Models\Absence;
 use Illuminate\Http\Request;
 
-class ReunionController extends Controller
+class AbsenceController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $reunion = Reunion::all();
-        return response()->json($reunion);
+        $absence = Absence::all();
+        return response()->json($absence);
     }
 
     /**
@@ -29,31 +29,28 @@ class ReunionController extends Controller
      */
     public function store(Request $request)
     {
-        $reunion = new Reunion([
+        $absence = new Absence([
             'date' => $request->input('date'),
-            'duree' => $request->input('duree'),
-            'objet' => $request->input('objet'),
-            'lieu' => $request->input('lieu'),
-            'heure' => $request->input('heure'),
-            'encadrant_id' => $request->input('encadrant_id'),
+            'justification' => $request->input('justification'),
+            'stagiaire_id' => $request->input('stage_id'),
         ]);
-        $reunion->save();
+        $absence->save();
         return response()->json('');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(string $id)
     {
-        $reunion = Reunion::find($id) ;
-        return response()->json($reunion) ;
+        $absence = Absence::find($id) ;
+        return response()->json($absence);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(string $id)
     {
         //
     }
@@ -61,20 +58,20 @@ class ReunionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
-        $reunion = Reunion::find($id);
-        $reunion->update($request->all());
+        $absence = Absence::find($id);
+        $absence->update($request->all());
         return response()->json('');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(string $id)
     {
-        $reunion = Reunion::find($id);
-        $reunion->delete();
+        $absence = Absence::find($id);
+        $absence->delete();
         return response()->json('');
     }
 }

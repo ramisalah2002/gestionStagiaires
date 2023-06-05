@@ -22,6 +22,7 @@ function Homepage() {
   const [searchResults, setSearchResults] = useState([]); // New state for the search results
   const [isSearching, setIsSearching] = useState(false);
   const [searchingText, setSearchingText] = useState("");
+  const [stagiaires, setStagiaires] = useState([]);
 
   const handleSearchTermChange = (searchTerm) => {
     // Filter the stagiaires array when the search term changes
@@ -33,57 +34,12 @@ function Homepage() {
     setSearchingText(searchTerm !== "" ? "Résultat de la recherche" : "");
   };
 
-  const stagiaires = [
-    {
-      id: 1,
-      nom: "Rami Salah-eddine",
-      email: "ramisalah2002@gmail.com",
-      status: "Actif",
-      joursStage: "4 jours",
-    },
-    {
-      id: 2,
-      nom: "John Doe",
-      email: "johndoe@example.com",
-      status: "Terminé",
-      joursStage: "10 jours",
-    },
-    {
-      id: 3,
-      nom: "Rami Salah-eddine",
-      email: "ramisalah2002@gmail.com",
-      status: "Actif",
-      joursStage: "4 jours",
-    },
-    {
-      id: 4,
-      nom: "John Doe",
-      email: "johndoe@example.com",
-      status: "Terminé",
-      joursStage: "10 jours",
-    },
-    {
-      id: 5,
-      nom: "John Doe",
-      email: "johndoe@example.com",
-      status: "Terminé",
-      joursStage: "10 jours",
-    },
-    {
-      id: 6,
-      nom: "Rami Salah-eddine",
-      email: "ramisalah2002@gmail.com",
-      status: "Actif",
-      joursStage: "4 jours",
-    },
-    {
-      id: 7,
-      nom: "John Doe",
-      email: "johndoe@example.com",
-      status: "Terminé",
-      joursStage: "10 jours",
-    },
-  ];
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/stagiaire")
+      .then((response) => response.json())
+      .then((data) => setStagiaires(data))
+      .catch((error) => console.error("Erreur:", error));
+  }, []);
 
   const navigateTo = useNavigate();
   const { admin, loading } = useContext(AdminContext);
@@ -99,8 +55,6 @@ function Homepage() {
       adminContext.setAdmin(JSON.parse(adminData));
     }
   }, [admin, loading, navigateTo, adminContext]);
-
-
 
   const currentDate = new Date().toLocaleString("fr-FR", {
     day: "numeric",
@@ -154,12 +108,17 @@ function Homepage() {
               <h2>{searchingText}</h2>
             </div>
             <div className="last-stagiaires-content">
-              {searchResults.slice(0, 4).map((stagiaire) => (
+              {searchResults.map((stagiaire) => (
                 <div key={stagiaire.id} className="last-stagiaire-card">
-                  <div className="image-top"></div>
-                  <label className="last-stagiaire-name">{stagiaire.nom}</label>
+                  <div
+                    style={{ backgroundImage: `url(${stagiaire.image})` }}
+                    className="image-top"
+                  ></div>
+                  <label className="last-stagiaire-name">
+                    {stagiaire.nom} {stagiaire.prenom}
+                  </label>
                   <label className="last-stagiaire-formation">
-                    2ème année génie logiciel
+                    {stagiaire.formation}
                   </label>
                   <Link className="voir-detail">Voir détail</Link>
                 </div>
@@ -173,129 +132,29 @@ function Homepage() {
               <div className="stagiaires-header">
                 <label className="stagiaires-title">Stagiaires</label>
                 <Link to="/stagiaires" className="stagiaires-count">
-                  <FontAwesomeIcon icon={faUser} /> 66
+                  <FontAwesomeIcon icon={faUser} /> 0{stagiaires.length}
                 </Link>
               </div>
               <div className="stagiaires-content">
-                <div className="stagiaire">
-                  <div className="stagiaire-info">
-                    <div
-                      className="stagiaire-img"
-                      style={{
-                        backgroundImage: "url(../../images/user.jpg)",
-                      }}
-                    ></div>
-                    <div className="stagiaire-nom-formation">
-                      <label className="stagiaire-nom">Nom stagiaire</label>
-                      <label className="stagiaire-formation">
-                        Formation stagiaire
-                      </label>
+                {stagiaires.slice(0, 7).map((stagiaire) => (
+                  <div className="stagiaire">
+                    <div className="stagiaire-info">
+                      <div
+                        className="stagiaire-img"
+                        style={{ backgroundImage: `url(${stagiaire.image})` }}
+                      ></div>
+                      <div className="stagiaire-nom-formation">
+                        <label className="stagiaire-nom">
+                          {stagiaire.nom} {stagiaire.prenom}
+                        </label>
+                        <label className="stagiaire-formation">
+                          {stagiaire.formation}
+                        </label>
+                      </div>
                     </div>
+                    <button className="stagiaire-btn">Découvrir</button>
                   </div>
-                  <button className="stagiaire-btn">Découvrir</button>
-                </div>
-                <div className="stagiaire">
-                  <div className="stagiaire-info">
-                    <div
-                      className="stagiaire-img"
-                      style={{
-                        backgroundImage: "url(../../images/user.jpg)",
-                      }}
-                    ></div>
-                    <div className="stagiaire-nom-formation">
-                      <label className="stagiaire-nom">Nom stagiaire</label>
-                      <label className="stagiaire-formation">
-                        Formation stagiaire
-                      </label>
-                    </div>
-                  </div>
-                  <button className="stagiaire-btn">Découvrir</button>
-                </div>
-                <div className="stagiaire">
-                  <div className="stagiaire-info">
-                    <div
-                      className="stagiaire-img"
-                      style={{
-                        backgroundImage: "url(../../images/user.jpg)",
-                      }}
-                    ></div>
-                    <div className="stagiaire-nom-formation">
-                      <label className="stagiaire-nom">Nom stagiaire</label>
-                      <label className="stagiaire-formation">
-                        Formation stagiaire
-                      </label>
-                    </div>
-                  </div>
-                  <button className="stagiaire-btn">Découvrir</button>
-                </div>
-                <div className="stagiaire">
-                  <div className="stagiaire-info">
-                    <div
-                      className="stagiaire-img"
-                      style={{
-                        backgroundImage: "url(../../images/user.jpg)",
-                      }}
-                    ></div>
-                    <div className="stagiaire-nom-formation">
-                      <label className="stagiaire-nom">Nom stagiaire</label>
-                      <label className="stagiaire-formation">
-                        Formation stagiaire
-                      </label>
-                    </div>
-                  </div>
-                  <button className="stagiaire-btn">Découvrir</button>
-                </div>
-                <div className="stagiaire">
-                  <div className="stagiaire-info">
-                    <div
-                      className="stagiaire-img"
-                      style={{
-                        backgroundImage: "url(../../images/user.jpg)",
-                      }}
-                    ></div>
-                    <div className="stagiaire-nom-formation">
-                      <label className="stagiaire-nom">Nom stagiaire</label>
-                      <label className="stagiaire-formation">
-                        Formation stagiaire
-                      </label>
-                    </div>
-                  </div>
-                  <button className="stagiaire-btn">Découvrir</button>
-                </div>
-                <div className="stagiaire">
-                  <div className="stagiaire-info">
-                    <div
-                      className="stagiaire-img"
-                      style={{
-                        backgroundImage: "url(../../images/user.jpg)",
-                      }}
-                    ></div>
-                    <div className="stagiaire-nom-formation">
-                      <label className="stagiaire-nom">Nom stagiaire</label>
-                      <label className="stagiaire-formation">
-                        Formation stagiaire
-                      </label>
-                    </div>
-                  </div>
-                  <button className="stagiaire-btn">Découvrir</button>
-                </div>
-                <div className="stagiaire">
-                  <div className="stagiaire-info">
-                    <div
-                      className="stagiaire-img"
-                      style={{
-                        backgroundImage: "url(../../images/user.jpg)",
-                      }}
-                    ></div>
-                    <div className="stagiaire-nom-formation">
-                      <label className="stagiaire-nom">Nom stagiaire</label>
-                      <label className="stagiaire-formation">
-                        Formation stagiaire
-                      </label>
-                    </div>
-                  </div>
-                  <button className="stagiaire-btn">Découvrir</button>
-                </div>
+                ))}
               </div>
             </div>
             <div className="project-abscence-section">
@@ -303,7 +162,8 @@ function Homepage() {
                 <div className="stagiaires-header">
                   <label className="stagiaires-title">Projets</label>
                   <Link to="/projets" className="stagiaires-count">
-                    <FontAwesomeIcon icon={faRectangleList} /> 66
+                    <FontAwesomeIcon icon={faRectangleList} />{" "}
+                    {stagiaires.length}
                   </Link>
                 </div>
                 <div className="stagiaires-content">

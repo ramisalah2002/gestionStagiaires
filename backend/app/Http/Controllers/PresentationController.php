@@ -31,7 +31,9 @@ class PresentationController extends Controller
     {
         $presentation = new Presentation([
             'date' => $request->input('date'),
-            'projet_id' => $request->input('stage_id'),
+            'heure' => $request->input('heure'),
+            'description' => $request->input('description'),
+            'stage_id' => $request->input('stage_id'),
         ]);
         $presentation->save();
         return response()->json('');

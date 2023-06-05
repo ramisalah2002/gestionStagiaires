@@ -13,17 +13,30 @@ class Projet extends Model
     protected $fillable = [
         'sujet',
         'status',
+        'type',
+        'description',
+        'avancement_conception',
+        'avancement_frontend',
+        'avancement_backend',
+        'avancement_total',
         'stage_id',
-        'stagiaire_id',
+        'equipe_id',
     ];
 
     public function stage()
     {
         return $this->belongsTo(Stage::class);
     }
-    public function stagiaire()
+    public function technologie()
     {
-        return $this->belongsToMany(Stagiaire::class, 'realisation');
+        return $this->belongsToMany(Technologie::class, 'utilisation_technologie');
     }
-
+    public function avancement()
+    {
+        return $this->hasMany(Avancement::class);
+    }
+    public function equipe()
+    {
+        return $this->belongsTo(Equipe::class);
+    }
 }
