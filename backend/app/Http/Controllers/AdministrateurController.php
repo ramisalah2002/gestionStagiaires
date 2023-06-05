@@ -112,7 +112,7 @@ class AdministrateurController extends Controller
         $administrateur->dateNaissance = $request->input('dateNaissance');
         $administrateur->genre = $request->input('genre');
         $administrateur->CIN = $request->input('CIN');
-        $administrateur->CNE = $request->input('CNE');
+
 
         $administrateur->save();
 
