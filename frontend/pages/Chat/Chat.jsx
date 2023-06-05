@@ -115,6 +115,7 @@ function StagiaireProfile() {
                         </div>
                         <label className="last-message">{profile.lastMessage}</label>
                       </div>
+                      <div className="messages-number">99</div>
                     </div>
                   ))}
                 </div>
@@ -224,7 +225,7 @@ function StagiaireProfile() {
                     <div className="chat-message-reciever">
                       <div className="sender-message-content">
                         <p >
-                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
+                         {profiles[activeProfileId-1].lastMessage}
                         </p>
                       </div>
                       <div className='sender-img'></div>

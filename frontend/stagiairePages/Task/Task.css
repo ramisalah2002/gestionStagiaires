@@ -1,0 +1,122 @@
+.sections-container-task{
+    width: 100%;
+    height: 100%;
+}
+.tasks-header{
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: start;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 15px 0px;
+}
+.task-rows{
+    overflow-y: hidden;
+    overflow-x: scroll;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+}
+.task-row{
+    width: 33%;
+    padding: 10px 0px;
+    height: calc(100vh - 235px) !important;
+    border-radius: 5px;
+    background: rgb(229, 235, 250);
+}
+.task-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10px;
+    padding-bottom: 5px;
+}
+.plus-icon{
+    font-size: 20px;
+}
+.horizontal-line{
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.task-header .task-day{
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.tasks-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    overflow: scroll;
+}
+.task-container{
+    width: calc(100% - 20px);
+    min-height: 160px;
+    background: #fff;
+}
+.task-container-green{
+    background: #e5f2f3;
+}
+.left-line-task{
+    height: 100%;
+    width: 10px;
+    background: #ee4e41;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.left-line-task-green{
+    height: 100%;
+    width: 10px;
+    background: #598f90;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.task-info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    cursor: pointer;
+    padding-left: 10px;
+}
+.task-container .task-info .task-objet{
+    color: #de5d54;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.task-container .task-info .task-heure{
+    color: #988585;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.task-container .task-info .task-lieu{
+    color: #988585;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.task-container-green .task-info .task-objet{
+    color: #7ca1a0;
+}
+.task-container-green .task-info .task-heure{
+    color: #adc1bf;
+}
+.task-container-green .task-info .task-lieu{
+    color: #adc1bf;
+}
