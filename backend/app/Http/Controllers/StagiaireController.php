@@ -37,7 +37,7 @@ class StagiaireController extends Controller
             'image' => 'nullable',
             'couverture' => 'nullable',
             'etablissement_id' => 'nullable',
-            'equipe_id'=> 'required',
+            'equipe_id'=> 'nullable',
         ]);
 
         $stagiaire = new Stagiaire;
@@ -89,7 +89,7 @@ class StagiaireController extends Controller
             'image' => 'nullable',
             'couverture' => 'nullable',
             'etablissement_id' => 'nullable',
-            'equipe_id'=> 'required',
+            'equipe_id'=> 'nullable',
         ]);
 
         $stagiaire = Stagiaire::find($id);
