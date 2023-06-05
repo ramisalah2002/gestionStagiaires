@@ -30,7 +30,7 @@ class StageController extends Controller
     public function store(Request $request)
     {
         $stage = new Stage([
-            'date_Debut' => $request->input('date_Debut'),
+            'date_debut' => $request->input('date_debut'),
             'duree' => $request->input('duree'),
             'stagiaire_id' => $request->input('stagiaire_id'),
             'administrateur_id' => $request->input('administrateur_id'),

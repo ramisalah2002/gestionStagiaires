@@ -31,7 +31,6 @@ class EquipeController extends Controller
     {
         $equipe = new Equipe([
             'nom_equipe' => $request->input('nom_equipe'),
-            'stagiaire_id' => $request->input('stagiaire_id'),
             'encadrant_id' => $request->input('encadrant_id'),
         ]);
         $equipe->save();

@@ -62,7 +62,7 @@ class Stagiaire extends Authenticatable
     }
     public function equipe()
     {
-        return $this->belongsTo(Equipe::class);
+        return $this->hasOne(Equipe::class);
     }
 }
 
