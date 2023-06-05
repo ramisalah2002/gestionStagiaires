@@ -12,7 +12,6 @@ class Equipe extends Model
     use HasFactory;
     protected $fillable = [
         'nom_equipe',
-        'stagiaire_id',
         'encadrant_id',
     ];
     public function encadrant()
@@ -21,7 +20,7 @@ class Equipe extends Model
     }
     public function stagiaire()
     {
-        return $this->hasMany(Stagiaire::class);
+        return $this->belongsTo(Stagiaire::class);
     }
     public function projet()
     {

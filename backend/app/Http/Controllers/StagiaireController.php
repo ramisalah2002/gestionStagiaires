@@ -135,7 +135,7 @@ class StagiaireController extends Controller
             if($stagiaire->stage){
                 $date_debut = new \DateTime($stagiaire->stage->date_debut);
                 $now = new \DateTime();
-                $stagiaire->stage->enStage = $now->diff($date_debut)->format('%a jours');
+                $stagiaire->stage->enStage = $now->diff($date_debut);
             }
         }
 
