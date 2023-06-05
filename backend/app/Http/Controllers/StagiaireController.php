@@ -53,7 +53,7 @@ class StagiaireController extends Controller
         $stagiaire->image = $request->input('image');
         $stagiaire->couverture = $request->input('couverture');
 
-        
+
         $stagiaire->save();
     }
 
