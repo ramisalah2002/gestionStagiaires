@@ -43,20 +43,7 @@ class EncadrantController extends Controller
             'couverture' => 'nullable',
         ]);
 
-        $imageData = null;
-        $couvertureData = null;
 
-        if ($request->file('image')) {
-            $imagePath = $request->file('image')->path();
-            $imageFile = file_get_contents($imagePath);
-            $imageData = base64_encode($imageFile);
-        }
-
-        if ($request->file('couverture')) {
-            $couverturePath = $request->file('couverture')->path();
-            $couvertureFile = file_get_contents($couverturePath);
-            $couvertureData = base64_encode($couvertureFile);
-        }
 
         $encadrant = new Encadrant;
         $encadrant->nom = $request->input('nom');
@@ -68,8 +55,8 @@ class EncadrantController extends Controller
         $encadrant->genre = $request->input('genre');
         $encadrant->CIN = $request->input('CIN');
         $encadrant->fonction = $request->input('fonction');
-        $encadrant->image = $imageData;
-        $encadrant->couverture = $couvertureData;
+        $encadrant->image = $request->input('image');;
+        $encadrant->couverture = $request->input('couverture');;
         $encadrant->save();
     //  return response()->json($encadrant);
     }
