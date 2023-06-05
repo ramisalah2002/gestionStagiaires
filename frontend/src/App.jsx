@@ -37,6 +37,8 @@ import Reunion from "../pages/Reunion/Reunion";
 import SendMessagePage from "../pages/email-test/SendMessage";
 import ReceiveMessagePage from "../pages/email-test/ReceiveMessage";
 import ProjetStagiaire from "../stagiairePages/Projet/Projet";
+import StagiaireAbsence from "../stagiairePages/Absence/Absence";
+import Task from "../stagiairePages/Task/Task";
 
 function App() {
   useEffect(() => {
@@ -74,6 +76,8 @@ function App() {
           <Route path="/send-message" element={<SendMessagePage />} />
           <Route path="/receive-message" element={<ReceiveMessagePage />} />
           <Route path="/stagiaire/projet" element={<ProjetStagiaire />} />
+            <Route path="/stagiaire/absence" element={<StagiaireAbsence />} />
+            <Route path="/stagiaire/activités" element={<Task />} />
         </Routes>
       </AdminProvider>
     </Router>

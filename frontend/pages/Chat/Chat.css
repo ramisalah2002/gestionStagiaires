@@ -54,6 +54,23 @@
     gap: 5px;
     background: #fff;
     border-bottom: .01px solid rgba(204, 204, 204, 0.735);
+    position: relative;
+}
+.messages-number{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    font-size: 12px;
+    bottom: 10px;
+    right: 5px;
+    color: #fff;
+    font-weight: 700;
+    background: #00e272;
+    border-radius: 50px;
 }
 .active-profile-item,.profile-item:hover{
     background: #f5f7fb;
@@ -198,7 +215,7 @@
     gap: 5px;
 }
 .chat-message-sender{
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-content: flex-start;
@@ -207,7 +224,7 @@
     justify-content: flex-start;
 }
 .chat-message-reciever{
-    width: calc(100%-5px);
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-content: end;
@@ -241,8 +258,8 @@
     align-items: flex-start;
     justify-content: flex-start;
     background: #fff;
-    padding: 10px;
-    padding-top: 5px;
+    padding: 5px 10px;
+    padding-bottom: 0px;
     max-width: 70%;
     border-radius: 5px;
 }

@@ -15,6 +15,13 @@ use App\Http\Controllers\ImageController;
 |
 */
 
+Broadcast::routes();
+
+
+
+
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -25,6 +32,12 @@ Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])-
 
 //Administrateur
 Route::apiResource('administrateur',\App\Http\Controllers\AdministrateurController::class);
+
+use App\Http\Controllers\MessageController;
+
+Route::post('/messages', [MessageController::class, 'store']);
+Route::get('/messages', [MessageController::class, 'index']);
+
 
 //DemandeStage
 Route::apiResource('demandeStage',\App\Http\Controllers\DemandeStageController::class);
