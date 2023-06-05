@@ -43,7 +43,10 @@ class EncadrantController extends Controller
             'couverture' => 'nullable',
         ]);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 
         $encadrant = new Encadrant;
         $encadrant->nom = $request->input('nom');
@@ -55,8 +58,13 @@ class EncadrantController extends Controller
         $encadrant->genre = $request->input('genre');
         $encadrant->CIN = $request->input('CIN');
         $encadrant->fonction = $request->input('fonction');
+<<<<<<< HEAD
         $encadrant->image = $request->input('image');;
         $encadrant->couverture = $request->input('couverture');;
+=======
+        $encadrant->image = $request->input('image');
+        $encadrant->couverture = $request->input('couverture');
+>>>>>>> origin/main
         $encadrant->save();
     //  return response()->json($encadrant);
     }
@@ -99,18 +107,6 @@ class EncadrantController extends Controller
 
         $encadrant = Encadrant::find($id);
 
-        if ($request->file('image')) {
-            $imagePath = $request->file('image')->path();
-            $imageFile = file_get_contents($imagePath);
-            $encadrant->image = base64_encode($imageFile);
-        }
-
-        if ($request->file('couverture')) {
-            $couverturePath = $request->file('couverture')->path();
-            $couvertureFile = file_get_contents($couverturePath);
-            $encadrant->couverture = base64_encode($couvertureFile);
-        }
-
         $encadrant->nom = $request->input('nom');
         $encadrant->prenom = $request->input('prenom');
         $encadrant->email = $request->input('email');
@@ -120,7 +116,8 @@ class EncadrantController extends Controller
         $encadrant->genre = $request->input('genre');
         $encadrant->CIN = $request->input('CIN');
         $encadrant->fonction = $request->input('fonction');
-
+        $encadrant->image = $request->input('image');
+        $encadrant->couverture = $request->input('couverture');
         $encadrant->save();
 
         return response()->json('');

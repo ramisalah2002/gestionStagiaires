@@ -28,6 +28,8 @@ class Stagiaire extends Authenticatable
         'formation',
         'image',
         'couverture',
+        'etablissement_id',
+        'equipe_id',
     ];
 
     protected $hidden = [

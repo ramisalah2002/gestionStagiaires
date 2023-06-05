@@ -36,6 +36,8 @@ class StagiaireController extends Controller
             'formation' => 'required',
             'image' => 'nullable',
             'couverture' => 'nullable',
+            'etablissement_id' => 'nullable',
+            'equipe_id'=> 'required',
         ]);
 
         $stagiaire = new Stagiaire;
@@ -52,7 +54,8 @@ class StagiaireController extends Controller
         $stagiaire->formation = $request->input('formation');
         $stagiaire->image = $request->input('image');
         $stagiaire->couverture = $request->input('couverture');
-
+        $stagiaire->etablissement_id = $request->input('etablissement_id');
+        $stagiaire->equipe_id = $request->input('equipe_id');
 
         $stagiaire->save();
     }
@@ -85,6 +88,8 @@ class StagiaireController extends Controller
             'formation' => 'required',
             'image' => 'nullable',
             'couverture' => 'nullable',
+            'etablissement_id' => 'nullable',
+            'equipe_id'=> 'required',
         ]);
 
         $stagiaire = Stagiaire::find($id);
@@ -99,19 +104,10 @@ class StagiaireController extends Controller
         $stagiaire->CIN = $request->input('CIN');
         $stagiaire->CNE = $request->input('CNE');
         $stagiaire->formation = $request->input('formation');
-
-        if ($request->file('image')) {
-            $imagePath = $request->file('image')->path();
-            $imageFile = file_get_contents($imagePath);
-            $stagiaire->image = base64_encode($imageFile);
-        }
-
-        if ($request->file('couverture')) {
-            $couverturePath = $request->file('couverture')->path();
-            $couvertureFile = file_get_contents($couverturePath);
-            $stagiaire->couverture = base64_encode($couvertureFile);
-        }
-
+        $stagiaire->image = $request->input('image');
+        $stagiaire->couverture = $request->input('couverture');
+        $stagiaire->etablissement_id = $request->input('etablissement_id');
+        $stagiaire->equipe_id = $request->input('equipe_id');
         $stagiaire->save();
         return response()->json('');
     }

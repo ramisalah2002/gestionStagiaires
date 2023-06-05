@@ -34,16 +34,19 @@ class AdministrateurController extends Controller
         $request->validate([
             'nom' => 'required',
             'prenom' => 'required',
-            'email' => 'required|email|unique:encadrant',
+            'email' => 'required|email|unique:administrateur',
             'password' => 'required',
             'telephone' => 'required',
             'dateNaissance' => 'required|date',
             'genre' => 'required',
-            'CIN' => 'required|unique:encadrant',
+            'CIN' => 'required|unique:administrateur',
             'image' => 'nullable',
         ]);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 
         $administrateur = new Administrateur;
         $administrateur->nom = $request->input('nom');
@@ -55,7 +58,11 @@ class AdministrateurController extends Controller
         $administrateur->dateNaissance = $request->input('dateNaissance');
         $administrateur->genre = $request->input('genre');
         $administrateur->CIN = $request->input('CIN');
+<<<<<<< HEAD
         $administrateur->image = $request->input('image');;
+=======
+        $administrateur->image = $request->input('image');
+>>>>>>> origin/main
         $administrateur->save();
         return response()->json('');
     }
@@ -85,19 +92,22 @@ class AdministrateurController extends Controller
         $request->validate([
             'nom' => 'required',
             'prenom' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:administrateur',
             'password' => 'required',
             'telephone' => 'required',
             'dateNaissance' => 'required|date',
             'genre' => 'required',
-            'CIN' => 'required',
+            'CIN' => 'required|unique:administrateur',
             'image' => 'nullable',
         ]);
 
         $administrateur = Administrateur::find($id);
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/main
         $administrateur->nom = $request->input('nom');
         $administrateur->prenom = $request->input('prenom');
         $administrateur->email = $request->input('email');
@@ -106,7 +116,7 @@ class AdministrateurController extends Controller
         $administrateur->dateNaissance = $request->input('dateNaissance');
         $administrateur->genre = $request->input('genre');
         $administrateur->CIN = $request->input('CIN');
-
+        $administrateur->image = $request->input('image');
 
 
         $administrateur->save();

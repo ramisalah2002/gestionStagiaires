@@ -76,3 +76,6 @@ Route::apiResource('user',\App\Http\Controllers\UserController::class);
 
 //Utilisateur
 Route::apiResource('utilisateur',\App\Http\Controllers\UtilisateurController::class);
+
+//Etablissement
+Route::apiResource('etablissement',\App\Http\Controllers\EtablissementController::class);

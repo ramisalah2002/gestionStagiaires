@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('formation');
             $table->longText('image')->nullable();
             $table->longText('couverture')->nullable();
+            $table->string('etablissement_id')->references('id')->on('etablissement')->onDelete('cascade')->nullable();
+            $table->string('equipe_id')->references('id')->on('equipe')->onDelete('cascade')->nullable();
             $table->timestamps();
         });
     }
