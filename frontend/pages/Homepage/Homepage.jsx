@@ -139,7 +139,9 @@ function Homepage() {
               <div className="stagiaires-header">
                 <label className="stagiaires-title">Stagiaires</label>
                 <Link to="/stagiaires" className="stagiaires-count">
-                  <FontAwesomeIcon icon={faUser} /> 0{stagiaires.length}
+                  <FontAwesomeIcon icon={faUser} />
+                  {stagiaires.length < 10 && 0}
+                  {stagiaires.length}
                 </Link>
               </div>
               <div className="stagiaires-content">
