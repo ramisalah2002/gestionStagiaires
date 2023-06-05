@@ -131,7 +131,7 @@ function Stagiaire() {
   });
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/stagiaire")
+    fetch("http://127.0.0.1:8000/api/stagiaires-with-stage")
       .then((response) => response.json())
       .then((data) => setStagiaires(data))
       .catch((error) => console.error("Erreur:", error));
@@ -442,7 +442,11 @@ function Stagiaire() {
                         </div>
                       </td>
                       <td>
-                        <label className="days-in-stage">12 jours</label>
+                        {stagiaire.stage && (
+                          <label className="days-in-stage">
+                            {stagiaire.stage.enStage} jours
+                          </label>
+                        )}
                       </td>
                       <td className="actions-td">
                         <Link className="action-modifier">

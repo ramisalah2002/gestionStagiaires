@@ -133,14 +133,20 @@ class StagiaireController extends Controller
 
         foreach ($stagiaires as $stagiaire) {
             if($stagiaire->stage){
-                $date_debut = new \DateTime($stagiaire->stage->date_debut);
+                $date_debut = new \DateTime($stagiaire->stage->date_Debut);
                 $now = new \DateTime();
-                $stagiaire->stage->enStage = $now->diff($date_debut);
+                $interval = $now->diff($date_debut);
+                $stagiaire->stage->enStage = $interval->days;
             }
         }
 
         return response()->json($stagiaires);
     }
+
+
+
+
+
 
 
 }
