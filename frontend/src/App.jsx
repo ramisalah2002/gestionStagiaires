@@ -76,8 +76,8 @@ function App() {
           <Route path="/send-message" element={<SendMessagePage />} />
           <Route path="/receive-message" element={<ReceiveMessagePage />} />
           <Route path="/stagiaire/projet" element={<ProjetStagiaire />} />
-            <Route path="/stagiaire/absence" element={<StagiaireAbsence />} />
-            <Route path="/stagiaire/activités" element={<Task />} />
+          <Route path="/stagiaire/absence" element={<StagiaireAbsence />} />
+          <Route path="/stagiaire/activités" element={<Task />} />
         </Routes>
       </AdminProvider>
     </Router>
