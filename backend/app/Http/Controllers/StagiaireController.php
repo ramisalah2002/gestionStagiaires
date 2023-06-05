@@ -34,9 +34,10 @@ class StagiaireController extends Controller
             'CIN' => 'required|unique:stagiaire',
             'CNE' => 'required|unique:stagiaire',
             'formation' => 'required',
-            'etablissement_id' => 'required',
             'image' => 'nullable',
             'couverture' => 'nullable',
+            'etablissement_id' => 'nullable',
+            'equipe_id'=> 'required',
         ]);
 
         $stagiaire = new Stagiaire;
@@ -51,10 +52,10 @@ class StagiaireController extends Controller
         $stagiaire->CIN = $request->input('CIN');
         $stagiaire->CNE = $request->input('CNE');
         $stagiaire->formation = $request->input('formation');
-        $stagiaire->etablissement_id = $request->input('etablissement_id');
         $stagiaire->image = $request->input('image');
         $stagiaire->couverture = $request->input('couverture');
-
+        $stagiaire->etablissement_id = $request->input('etablissement_id');
+        $stagiaire->equipe_id = $request->input('equipe_id');
 
         $stagiaire->save();
     }
@@ -85,9 +86,10 @@ class StagiaireController extends Controller
             'CIN' => 'required',
             'CNE' => 'required',
             'formation' => 'required',
-            'etablissement_id' => 'required',
             'image' => 'nullable',
             'couverture' => 'nullable',
+            'etablissement_id' => 'nullable',
+            'equipe_id'=> 'required',
         ]);
 
         $stagiaire = Stagiaire::find($id);
@@ -102,10 +104,10 @@ class StagiaireController extends Controller
         $stagiaire->CIN = $request->input('CIN');
         $stagiaire->CNE = $request->input('CNE');
         $stagiaire->formation = $request->input('formation');
-        $stagiaire->etablissement_id = $request->input('etablissement_id');
         $stagiaire->image = $request->input('image');
         $stagiaire->couverture = $request->input('couverture');
-
+        $stagiaire->etablissement_id = $request->input('etablissement_id');
+        $stagiaire->equipe_id = $request->input('equipe_id');
         $stagiaire->save();
         return response()->json('');
     }
