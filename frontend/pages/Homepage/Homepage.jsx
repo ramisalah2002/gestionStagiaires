@@ -47,7 +47,6 @@ function Homepage() {
 
   useEffect(() => {
     const adminData = localStorage.getItem("admin");
-
     if (!adminData && !loading) {
       // Admin data doesn't exist in localStorage, redirect to LoginPage
       navigateTo("/encadrant/login");
@@ -55,7 +54,7 @@ function Homepage() {
       // Admin data exists in localStorage but not in context, set the admin context
       adminContext.setAdmin(JSON.parse(adminData));
     }
-  }, [admin, loading, navigateTo]);
+  }, [admin, loading, navigateTo, adminContext]);
 
   const currentDate = new Date().toLocaleString("fr-FR", {
     day: "numeric",
@@ -73,13 +72,7 @@ function Homepage() {
       <main className="main-content">
         <div className="header">
           <div className="admin-container">
-            {admin && (
-              <div
-                style={{ backgroundImage: `url(${admin.image})` }}
-                className="image-top"
-              ></div>
-            )}
-
+            <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
             <div className="admin-info">
               {admin && (
                 <>
@@ -144,7 +137,7 @@ function Homepage() {
               </div>
               <div className="stagiaires-content">
                 {stagiaires.slice(0, 7).map((stagiaire) => (
-                  <div key={stagiaire.id} className="stagiaire">
+                  <div className="stagiaire">
                     <div className="stagiaire-info">
                       <div
                         className="stagiaire-img"
