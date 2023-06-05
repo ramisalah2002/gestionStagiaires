@@ -72,13 +72,13 @@ function Homepage() {
       <main className="main-content">
         <div className="header">
           <div className="admin-container">
-            {admin.image != null && (
+            {admin && (
               <div
                 style={{ backgroundImage: `url(${admin.image})` }}
                 className="image-top"
               ></div>
             )}
-            {admin.image == null && (
+            {!admin && (
               <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
             )}
             <div className="admin-info">
@@ -128,7 +128,7 @@ function Homepage() {
                   <label className="last-stagiaire-formation">
                     {stagiaire.formation}
                   </label>
-                  <Link className="voir-detail">Voir détail</Link>
+                  <Link to={`/profile-stagiaire/${stagiaire.id}`} className="voir-detail">Voir détail</Link>
                 </div>
               ))}
             </div>
@@ -147,7 +147,7 @@ function Homepage() {
               </div>
               <div className="stagiaires-content">
                 {stagiaires.slice(0, 7).map((stagiaire) => (
-                  <div className="stagiaire">
+                  <div key={stagiaire.id} className="stagiaire">
                     <div className="stagiaire-info">
                       <div
                         className="stagiaire-img"
@@ -162,7 +162,7 @@ function Homepage() {
                         </label>
                       </div>
                     </div>
-                    <button className="stagiaire-btn">Découvrir</button>
+                    <button onClick={()=>navigateTo(`/profile-stagiaire/${stagiaire.id}`)} className="stagiaire-btn">Découvrir</button>
                   </div>
                 ))}
               </div>

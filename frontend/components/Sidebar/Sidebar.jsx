@@ -24,6 +24,13 @@ function Sidebar() {
   const [showSidebar, setShowSidebar] = useState(true);
   const [showStagiaireModal, setShowStagiaireModal] = useState(false);
   const [showEquipeModal, setShowEquipeModal] = useState(false);
+  const [stagiaires, setStagiaires] = useState([]);
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/stagiaire")
+      .then((response) => response.json())
+      .then((data) => setStagiaires(data))
+      .catch((error) => console.error("Erreur:", error));
+  }, []);
 
   const navigateTo = useNavigate();
 
@@ -74,12 +81,24 @@ function Sidebar() {
     "Password10",
   ];
 
-  const [stagiaires, setStagiaires] = useState([
-    { id: 1, nom: 'RAMI Salah-eddine' },
-    { id: 2, nom: 'John Doe' },
-    { id: 3, nom: 'Jane Smith' },
-    // Add more stagiaires as needed
-  ]);
+
+  const [encadrants, setEncadrants] = useState([]);
+
+  useEffect(() => {
+    fetchEncadrants();
+  }, []);
+
+  const fetchEncadrants = async () => {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/encadrant");
+      const data = await response.json();
+      setEncadrants(data);
+    } catch (error) {
+      console.error("Error fetching encadrants:", error);
+    }
+  };
+
+  
 
   const [selectedStagiaires, setSelectedStagiaires] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -103,8 +122,10 @@ function Sidebar() {
   };
 
   const filteredStagiaires = stagiaires.filter((stagiaire) =>
-    stagiaire.nom.toLowerCase().includes(searchQuery.toLowerCase())
+    stagiaire.nom.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    stagiaire.prenom.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
 
   const [generatedPassword, setGeneratedPassword] = useState("");
 
@@ -377,8 +398,8 @@ function Sidebar() {
               {filteredStagiaires.length > 0 && (
                 <div className="stagiaire-equipe">
                   <div className="stagiaire-equipe-info">
-                    <div className="stagiaire-equipe-img"></div>
-                    <label>{filteredStagiaires[0].nom}</label>
+                    <div style={{ backgroundImage: `url(${filteredStagiaires[0].image})` }} className="stagiaire-equipe-img"></div>
+                    <label>{filteredStagiaires[0].nom} {filteredStagiaires[0].prenom}</label>
                   </div>
                   <button
                     className="ajouter-stagiaire-equipe-link"
@@ -396,7 +417,7 @@ function Sidebar() {
               <label>Stagiaires sélectionnés :</label>
               <div className="selected-stagiaire-liste">
                 {selectedStagiaires.map((stagiaire) => (
-                  <div key={stagiaire.id} className="stagiaire-equipe-img">
+                  <div style={{ backgroundImage: `url(${stagiaire.image})` }} key={stagiaire.id} className="stagiaire-equipe-img">
                     <button
                       style={{background:"none",outline:"none",border:"none"}}
                       className="delete-selected-stagiaire-link"
@@ -406,6 +427,22 @@ function Sidebar() {
                     </button>
                   </div>
                 ))}
+              </div>
+            </div>
+            <div className="equipe-info-devider">
+              <div className="equipe-info-devider-line"></div>
+            </div>
+            <div className="form-group">
+              <div className="nom-container">
+                <label>Affecter encadrant</label>
+                <select name="selectedEncadrant">
+                  <option value="">Choisir...</option>
+                  {encadrants.map((encadrant) => (
+                    <option key={encadrant.id} value={encadrant.id}>
+                      {encadrant.nom} {encadrant.prenom}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
             <div className="save-container">

@@ -265,13 +265,13 @@ function Stagiaire() {
       <main className="main-content">
         <div className="header">
           <div className="admin-container">
-            {admin.image != null && (
+            {admin && (
               <div
                 style={{ backgroundImage: `url(${admin.image})` }}
                 className="image-top"
               ></div>
             )}
-            {admin.image == null && (
+            {!admin && (
               <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
             )}
             <div className="admin-info">
@@ -322,7 +322,7 @@ function Stagiaire() {
                   <label className="last-stagiaire-formation">
                     {stagiaire.formation}
                   </label>
-                  <Link className="voir-detail">Voir détail</Link>
+                  <Link to={`/profile-stagiaire/${stagiaire.id}`} className="voir-detail">Voir détail</Link>
                 </div>
               ))}
             </div>
@@ -348,7 +348,7 @@ function Stagiaire() {
                     <label className="last-stagiaire-formation">
                       {stagiaire.formation}
                     </label>
-                    <Link className="voir-detail">Voir détail</Link>
+                    <Link to={`/profile-stagiaire/${stagiaire.id}`} className="voir-detail">Voir détail</Link>
                   </div>
                 ))}
               </div>
@@ -445,7 +445,7 @@ function Stagiaire() {
                         <label className="days-in-stage">12 jours</label>
                       </td>
                       <td className="actions-td">
-                        <Link className="action-modifier">
+                        <Link to={`/profile-stagiaire/${stagiaire.id}`} className="action-modifier">
                           <FontAwesomeIcon icon={faEye} />
                           Voir
                         </Link>

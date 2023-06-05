@@ -85,7 +85,7 @@ function Task() {
             <div className="task-rows">
                 <div className="task-row">
                     <div className="task-header">
-                        <label className="task-day">Conception</label>
+                        <label className="task-day task-day-conception">Conception</label>
                         <FontAwesomeIcon className="plus-icon" icon={faPlus} />
                     </div>
                     <div className="horizontal-line"></div>
@@ -119,7 +119,7 @@ function Task() {
                 </div>
                 <div className="task-row">
                     <div className="task-header">
-                        <label className="task-day">Frontend</label>
+                        <label className="task-day task-day-frontend">Frontend</label>
                         <FontAwesomeIcon className="plus-icon" icon={faPlus} />
                     </div>
                     <div className="horizontal-line"></div>
@@ -132,7 +132,7 @@ function Task() {
                 </div>
                 <div className="task-row">
                     <div className="task-header">
-                        <label className="task-day">Backend</label>
+                        <label className="task-day task-day-backend">Backend</label>
                         <FontAwesomeIcon className="plus-icon" icon={faPlus} />
                     </div>
                     <div className="horizontal-line"></div>
