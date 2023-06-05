@@ -34,19 +34,15 @@ class AdministrateurController extends Controller
         $request->validate([
             'nom' => 'required',
             'prenom' => 'required',
-            'email' => 'required|email|unique:encadrant',
+            'email' => 'required|email|unique:administrateur',
             'password' => 'required',
             'telephone' => 'required',
             'dateNaissance' => 'required|date',
             'genre' => 'required',
-            'CIN' => 'required|unique:encadrant',
+            'CIN' => 'required|unique:administrateur',
             'image' => 'nullable',
         ]);
 
-        $imageData = null;
-        if ($request->file('image')) {
-            $imageData = file_get_contents($request->file('image'));
-        }
 
         $administrateur = new Administrateur;
         $administrateur->nom = $request->input('nom');
@@ -58,7 +54,7 @@ class AdministrateurController extends Controller
         $administrateur->dateNaissance = $request->input('dateNaissance');
         $administrateur->genre = $request->input('genre');
         $administrateur->CIN = $request->input('CIN');
-        $administrateur->image = $imageData;
+        $administrateur->image = $request->input('image');
         $administrateur->save();
         return response()->json('');
     }
@@ -88,21 +84,16 @@ class AdministrateurController extends Controller
         $request->validate([
             'nom' => 'required',
             'prenom' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:administrateur',
             'password' => 'required',
             'telephone' => 'required',
             'dateNaissance' => 'required|date',
             'genre' => 'required',
-            'CIN' => 'required',
+            'CIN' => 'required|unique:administrateur',
             'image' => 'nullable',
         ]);
 
         $administrateur = Administrateur::find($id);
-
-        if ($request->file('image')) {
-            $imageData = file_get_contents($request->file('image'));
-            $administrateur->image = $imageData;
-        }
 
         $administrateur->nom = $request->input('nom');
         $administrateur->prenom = $request->input('prenom');
@@ -112,7 +103,7 @@ class AdministrateurController extends Controller
         $administrateur->dateNaissance = $request->input('dateNaissance');
         $administrateur->genre = $request->input('genre');
         $administrateur->CIN = $request->input('CIN');
-
+        $administrateur->image = $request->input('image');
 
         $administrateur->save();
 

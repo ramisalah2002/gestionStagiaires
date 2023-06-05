@@ -26,6 +26,7 @@ class Stagiaire extends Authenticatable
         'CIN',
         'CNE',
         'formation',
+        'etablissement_id',
         'image',
         'couverture',
     ];

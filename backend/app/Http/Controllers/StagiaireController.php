@@ -34,6 +34,7 @@ class StagiaireController extends Controller
             'CIN' => 'required|unique:stagiaire',
             'CNE' => 'required|unique:stagiaire',
             'formation' => 'required',
+            'etablissement_id' => 'required',
             'image' => 'nullable',
             'couverture' => 'nullable',
         ]);
@@ -50,6 +51,7 @@ class StagiaireController extends Controller
         $stagiaire->CIN = $request->input('CIN');
         $stagiaire->CNE = $request->input('CNE');
         $stagiaire->formation = $request->input('formation');
+        $stagiaire->etablissement_id = $request->input('etablissement_id');
         $stagiaire->image = $request->input('image');
         $stagiaire->couverture = $request->input('couverture');
 
@@ -83,6 +85,7 @@ class StagiaireController extends Controller
             'CIN' => 'required',
             'CNE' => 'required',
             'formation' => 'required',
+            'etablissement_id' => 'required',
             'image' => 'nullable',
             'couverture' => 'nullable',
         ]);
@@ -99,18 +102,9 @@ class StagiaireController extends Controller
         $stagiaire->CIN = $request->input('CIN');
         $stagiaire->CNE = $request->input('CNE');
         $stagiaire->formation = $request->input('formation');
-
-        if ($request->file('image')) {
-            $imagePath = $request->file('image')->path();
-            $imageFile = file_get_contents($imagePath);
-            $stagiaire->image = base64_encode($imageFile);
-        }
-
-        if ($request->file('couverture')) {
-            $couverturePath = $request->file('couverture')->path();
-            $couvertureFile = file_get_contents($couverturePath);
-            $stagiaire->couverture = base64_encode($couvertureFile);
-        }
+        $stagiaire->etablissement_id = $request->input('etablissement_id');
+        $stagiaire->image = $request->input('image');
+        $stagiaire->couverture = $request->input('couverture');
 
         $stagiaire->save();
         return response()->json('');
