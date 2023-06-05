@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\StagiaireController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,6 @@ use App\Http\Controllers\ImageController;
 |
 */
 
-Broadcast::routes();
 
 
 
@@ -83,3 +83,7 @@ Route::apiResource('etablissement',\App\Http\Controllers\EtablissementController
 
 //getting stagiaires-with-stage
 Route::get('/stagiaires-with-stage', [\App\Http\Controllers\StagiaireController::class, 'getStagiairesWithStage']);
+
+
+Route::post('/stagiaire/{id}/update-couverture', [\App\Http\Controllers\StagiaireController::class, 'updateCouverture']);
+

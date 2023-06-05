@@ -37,7 +37,7 @@ class StagiaireController extends Controller
             'image' => 'nullable',
             'couverture' => 'nullable',
             'etablissement_id' => 'nullable',
-            'equipe_id'=> 'required',
+            'equipe_id'=> 'nullable',
         ]);
 
         $stagiaire = new Stagiaire;
@@ -65,9 +65,26 @@ class StagiaireController extends Controller
      */
     public function show($id)
     {
-        $stagiaire = Stagiaire::find($id);
+        $stagiaire = Stagiaire::with('etablissement')->find($id);
+
         return response()->json($stagiaire);
     }
+
+    public function updateCouverture(Request $request, $id)
+    {
+
+        $request->validate([
+            'couverture' => 'required|string',
+        ]);
+
+        $stagiaire = Stagiaire::findOrFail($id);
+        $stagiaire->couverture = $request->input('couverture');
+        $stagiaire->save();
+
+        return response()->json('Couverture image updated successfully');
+    }
+
+
 
     /**
      * Update the specified resource in storage.
@@ -111,6 +128,8 @@ class StagiaireController extends Controller
         $stagiaire->save();
         return response()->json('');
     }
+
+
 
     /**
      * Remove the specified resource from storage.

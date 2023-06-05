@@ -43,10 +43,6 @@ class EncadrantController extends Controller
             'couverture' => 'nullable',
         ]);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/main
 
         $encadrant = new Encadrant;
         $encadrant->nom = $request->input('nom');
@@ -58,13 +54,10 @@ class EncadrantController extends Controller
         $encadrant->genre = $request->input('genre');
         $encadrant->CIN = $request->input('CIN');
         $encadrant->fonction = $request->input('fonction');
-<<<<<<< HEAD
         $encadrant->image = $request->input('image');;
         $encadrant->couverture = $request->input('couverture');;
-=======
         $encadrant->image = $request->input('image');
         $encadrant->couverture = $request->input('couverture');
->>>>>>> origin/main
         $encadrant->save();
     //  return response()->json($encadrant);
     }
