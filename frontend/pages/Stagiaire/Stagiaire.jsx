@@ -19,7 +19,7 @@ import {
   faCloudDownloadAlt,
   faFileImport,
   faFileUpload,
-  faClose
+  faClose,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faUser,
@@ -42,6 +42,7 @@ function Stagiaire() {
   const [searchingText, setSearchingText] = useState(
     "Les 4 derniers stagiaires"
   );
+  const [stagiaires, setStagiaires] = useState([]);
 
   const handleSearchTermChange = (searchTerm) => {
     // Filter the stagiaires array when the search term changes
@@ -129,71 +130,12 @@ function Stagiaire() {
     month: "short",
   });
 
-  const stagiaires = [
-    {
-      id: 1,
-      nom: "Rami Salah-eddine",
-      email: "ramisalah2002@gmail.com",
-      status: "Actif",
-      joursStage: "4 jours",
-    },
-    {
-      id: 2,
-      nom: "John Doe",
-      email: "johndoe@example.com",
-      status: "Terminé",
-      joursStage: "10 jours",
-    },
-    {
-      id: 3,
-      nom: "Rami Salah-eddine",
-      email: "ramisalah2002@gmail.com",
-      status: "Actif",
-      joursStage: "4 jours",
-    },
-    {
-      id: 4,
-      nom: "John Doe",
-      email: "johndoe@example.com",
-      status: "Terminé",
-      joursStage: "10 jours",
-    },
-    {
-      id: 5,
-      nom: "John Doe",
-      email: "johndoe@example.com",
-      status: "Terminé",
-      joursStage: "10 jours",
-    },
-    {
-      id: 6,
-      nom: "Rami Salah-eddine",
-      email: "ramisalah2002@gmail.com",
-      status: "Actif",
-      joursStage: "4 jours",
-    },
-    {
-      id: 7,
-      nom: "John Doe",
-      email: "johndoe@example.com",
-      status: "Terminé",
-      joursStage: "10 jours",
-    },
-    {
-      id: 8,
-      nom: "John Doe",
-      email: "johndoe@example.com",
-      status: "Terminé",
-      joursStage: "10 jours",
-    },
-    {
-      id: 9,
-      nom: "John Doe",
-      email: "johndoe@example.com",
-      status: "Terminé",
-      joursStage: "10 jours",
-    },
-  ];
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/stagiaire")
+      .then((response) => response.json())
+      .then((data) => setStagiaires(data))
+      .catch((error) => console.error("Erreur:", error));
+  }, []);
 
   const getCurrentDate = () => {
     const todayDate = new Date();
@@ -208,6 +150,7 @@ function Stagiaire() {
     worksheet.columns = [
       { header: "#", key: "id", width: 5 },
       { header: "Nom", key: "nom", width: 20 },
+      { header: "Prenom", key: "prenom", width: 20 },
       { header: "Email", key: "email", width: 30 },
       { header: "Status", key: "status", width: 15 },
       { header: "En stage", key: "joursStage", width: 10 },
@@ -255,7 +198,7 @@ function Stagiaire() {
       stagiaires.forEach((stagiaire, index) => {
         const rowData = [
           index + 1,
-          stagiaire.nom,
+          stagiaire.nom + " " + stagiaire.prenom,
           stagiaire.email,
           stagiaire.status,
           stagiaire.joursStage,
@@ -265,7 +208,7 @@ function Stagiaire() {
 
       const tableMarginTop = titleMarginTop + 10; // Add margin below the title
       doc.autoTable({
-        head: [["#", "Nom", "Email", "Status", "En stage"]],
+        head: [["#", "Nom et prenom", "Email", "Status", "En stage"]],
         body: tableData,
         startY: tableMarginTop,
       });
@@ -316,7 +259,6 @@ function Stagiaire() {
     fileInputRef.current.click(); // Trigger the hidden input file click event
   };
 
-
   return (
     <div className="app">
       <Sidebar />
@@ -362,10 +304,15 @@ function Stagiaire() {
             <div className="last-stagiaires-content-search">
               {searchResults.map((stagiaire) => (
                 <div key={stagiaire.id} className="last-stagiaire-card">
-                  <div className="image-top"></div>
-                  <label className="last-stagiaire-name">{stagiaire.nom}</label>
+                  <div
+                    style={{ backgroundImage: `url(${stagiaire.image})` }}
+                    className="image-top"
+                  ></div>
+                  <label className="last-stagiaire-name">
+                    {stagiaire.nom} {stagiaire.prenom}
+                  </label>
                   <label className="last-stagiaire-formation">
-                    2ème année génie logiciel
+                    {stagiaire.formation}
                   </label>
                   <Link className="voir-detail">Voir détail</Link>
                 </div>
@@ -381,14 +328,17 @@ function Stagiaire() {
                 <h2 className="text-header">{searchingText}</h2>
               </div>
               <div className="last-stagiaires-content-search">
-                {searchResults.slice(0, 4).map((stagiaire) => (
+                {stagiaires.slice(0, 4).map((stagiaire) => (
                   <div key={stagiaire.id} className="last-stagiaire-card">
-                    <div className="image-top"></div>
+                    <div
+                      style={{ backgroundImage: `url(${stagiaire.image})` }}
+                      className="image-top"
+                    ></div>
                     <label className="last-stagiaire-name">
-                      {stagiaire.nom}
+                      {stagiaire.nom} {stagiaire.prenom}
                     </label>
                     <label className="last-stagiaire-formation">
-                      2ème année génie logiciel
+                      {stagiaire.formation}
                     </label>
                     <Link className="voir-detail">Voir détail</Link>
                   </div>
@@ -465,13 +415,17 @@ function Stagiaire() {
                   {stagiaires.map((stagiaire) => (
                     <tr key={stagiaire.id}>
                       <td className="stagiaire-div">
-                        <div className="circle"></div> {stagiaire.nom}
+                        <div
+                          style={{ backgroundImage: `url(${stagiaire.image})` }}
+                          className="circle"
+                        ></div>{" "}
+                        {stagiaire.nom} {stagiaire.prenom}
                       </td>
                       <td>{stagiaire.email}</td>
                       <td>
                         <div
                           className={
-                            stagiaire.status === "Actif"
+                            stagiaire.status === "en cours"
                               ? "status-actif"
                               : "status-inactif"
                           }
@@ -480,9 +434,7 @@ function Stagiaire() {
                         </div>
                       </td>
                       <td>
-                        <label className="days-in-stage">
-                          {stagiaire.joursStage}
-                        </label>
+                        <label className="days-in-stage">12 jours</label>
                       </td>
                       <td className="actions-td">
                         <Link className="action-modifier">
