@@ -79,3 +79,7 @@ Route::apiResource('utilisateur',\App\Http\Controllers\UtilisateurController::cl
 
 //Etablissement
 Route::apiResource('etablissement',\App\Http\Controllers\EtablissementController::class);
+//UseFull Requests
+
+//getting stagiaires-with-stage
+Route::get('/stagiaires-with-stage', [\App\Http\Controllers\StagiaireController::class, 'getStagiairesWithStage']);

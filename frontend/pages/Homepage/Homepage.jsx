@@ -72,7 +72,15 @@ function Homepage() {
       <main className="main-content">
         <div className="header">
           <div className="admin-container">
-            <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
+            {admin.image != null && (
+              <div
+                style={{ backgroundImage: `url(${admin.image})` }}
+                className="image-top"
+              ></div>
+            )}
+            {admin.image == null && (
+              <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
+            )}
             <div className="admin-info">
               {admin && (
                 <>

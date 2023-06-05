@@ -46,7 +46,7 @@ class Stagiaire extends Authenticatable
     }
     public function stage()
     {
-        return $this->belongsTo(Stage::class);
+        return $this->hasOne(Stage::class);
     }
     public function absence()
     {

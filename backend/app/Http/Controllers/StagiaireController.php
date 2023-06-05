@@ -121,4 +121,26 @@ class StagiaireController extends Controller
         $stagiaire->delete();
         return response()->json('');
     }
+
+
+
+    /*
+     * API Methods
+     */
+    public function getStagiairesWithStage()
+    {
+        $stagiaires = Stagiaire::with('stage')->get();
+
+        foreach ($stagiaires as $stagiaire) {
+            if($stagiaire->stage){
+                $date_debut = new \DateTime($stagiaire->stage->date_debut);
+                $now = new \DateTime();
+                $stagiaire->stage->enStage = $now->diff($date_debut)->format('%a jours');
+            }
+        }
+
+        return response()->json($stagiaires);
+    }
+
+
 }
