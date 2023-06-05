@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('telephone');
             $table->Date('dateNaissance');
             $table->string('genre');
+            $table->string('status');
             $table->string('CIN');
             $table->string('CNE');
             $table->string('formation');

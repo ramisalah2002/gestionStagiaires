@@ -22,6 +22,7 @@ class Stagiaire extends Authenticatable
         'telephone',
         'dateNaissance',
         'genre',
+        'status',
         'CIN',
         'CNE',
         'formation',

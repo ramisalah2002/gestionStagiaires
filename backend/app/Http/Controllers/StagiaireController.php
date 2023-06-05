@@ -30,6 +30,7 @@ class StagiaireController extends Controller
             'telephone' => 'required',
             'dateNaissance' => 'required|date',
             'genre' => 'required',
+            'status' => 'required',
             'CIN' => 'required|unique:stagiaire',
             'CNE' => 'required|unique:stagiaire',
             'formation' => 'required',
@@ -45,22 +46,14 @@ class StagiaireController extends Controller
         $stagiaire->telephone = $request->input('telephone');
         $stagiaire->dateNaissance = $request->input('dateNaissance');
         $stagiaire->genre = $request->input('genre');
+        $stagiaire->status = $request->input('status');
         $stagiaire->CIN = $request->input('CIN');
         $stagiaire->CNE = $request->input('CNE');
         $stagiaire->formation = $request->input('formation');
+        $stagiaire->image = $request->input('image');
+        $stagiaire->couverture = $request->input('couverture');
 
-        if ($request->file('image')) {
-            $imagePath = $request->file('image')->path();
-            $imageFile = file_get_contents($imagePath);
-            $stagiaire->image = base64_encode($imageFile);
-        }
-
-        if ($request->file('couverture')) {
-            $couverturePath = $request->file('couverture')->path();
-            $couvertureFile = file_get_contents($couverturePath);
-            $stagiaire->couverture = base64_encode($couvertureFile);
-        }
-
+        
         $stagiaire->save();
     }
 
@@ -86,6 +79,7 @@ class StagiaireController extends Controller
             'telephone' => 'required',
             'dateNaissance' => 'required|date',
             'genre' => 'required',
+            'status' => 'required',
             'CIN' => 'required',
             'CNE' => 'required',
             'formation' => 'required',
@@ -101,6 +95,7 @@ class StagiaireController extends Controller
         $stagiaire->telephone = $request->input('telephone');
         $stagiaire->dateNaissance = $request->input('dateNaissance');
         $stagiaire->genre = $request->input('genre');
+        $stagiaire->status = $request->input('status');
         $stagiaire->CIN = $request->input('CIN');
         $stagiaire->CNE = $request->input('CNE');
         $stagiaire->formation = $request->input('formation');
