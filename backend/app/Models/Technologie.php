@@ -15,8 +15,9 @@ class Technologie extends Model
         'image',
     ];
 
-    public function technologie()
+    public function projets()
     {
-        return $this->belongsToMany(Projet::class, 'utilisation_technologie');
+        return $this->belongsToMany(Projet::class, 'utilisation_technologie', 'technologie_id', 'projet_id');
     }
+
 }

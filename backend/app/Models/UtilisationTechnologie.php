@@ -17,11 +17,11 @@ class UtilisationTechnologie extends Model
 
     public function projet()
     {
-        return $this->belongsToMany(Projet::class);
+        return $this->belongsTo(Projet::class);
     }
 
     public function technologie()
     {
-        return $this->belongsToMany(Technologie::class);
+        return $this->belongsTo(Technologie::class);
     }
 }
