@@ -67,7 +67,14 @@ const EquipesBox = ({ equipes }) => (
     <div className="team-card-footer">
       <div className="team-card-footer-left">
         {equipes.stagiaires.map((stagiaire, index) => {
-          <img className="member-img" src={stagiaire.image}></img>;
+          return (
+            <img
+              key={index}
+              className="member-img"
+              src={stagiaire.image}
+              alt={`Stagiaire ${index + 1}`}
+            ></img>
+          );
         })}
       </div>
       <div className="team-card-footer-right">
