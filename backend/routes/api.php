@@ -116,3 +116,6 @@ Route::get('/stagiaires-with-stage', [\App\Http\Controllers\StagiaireController:
 
 Route::post('/stagiaire/{id}/update-couverture', [\App\Http\Controllers\StagiaireController::class, 'updateCouverture']);
 
+//getting equipes details
+Route::get('equipes/details', [\App\Http\Controllers\EquipeController::class, 'getEquipesDetails']);
+

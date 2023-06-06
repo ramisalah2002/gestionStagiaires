@@ -12,7 +12,9 @@ class Avancement extends Model
     use HasFactory;
     protected $fillable = [
         'date',
+        'type',
         'text',
+        'valeur',
         'projet_id',
     ];
 

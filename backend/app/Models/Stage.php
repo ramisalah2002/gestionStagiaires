@@ -21,10 +21,6 @@ class Stage extends Model
     {
         return $this->belongsTo(Stagiaire::class);
     }
-    public function projet()
-    {
-        return $this->hasMany(Projet::class);
-    }
     public function administrateur()
     {
         return $this->belongsTo(Administrateur::class);
