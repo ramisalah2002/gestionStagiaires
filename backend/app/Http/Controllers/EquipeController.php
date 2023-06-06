@@ -109,7 +109,10 @@ class EquipeController extends Controller
 
             $progres_total = 0;
             foreach($equipe->projets as $projet){
-                $progres_total += $projet->avancements()->sum('valeur');
+                $avancements_types_count = $projet->avancements()->distinct('type')->count('type');
+
+                $progres_total += round($projet->avancements()->sum('valeur') / $avancements_types_count, 2);
+
             }
             $equipe->progres_total = $progres_total / $equipe->projets->count();
         }
