@@ -28,12 +28,7 @@ class TechnologieController extends Controller
 
         $technologie = new Technologie;
         $technologie->nom_technologie = $request->input('nom_technologie');
-
-        if ($request->file('image')) {
-            $imagePath = $request->file('image')->path();
-            $imageFile = file_get_contents($imagePath);
-            $technologie->image = base64_encode($imageFile);
-        }
+        $technologie->image = $request->input('image');
 
         $technologie->save();
         return response()->json('');
@@ -60,12 +55,7 @@ class TechnologieController extends Controller
 
         $technologie = Technologie::find($id);
         $technologie->nom_technologie = $request->input('nom_technologie');
-
-        if ($request->file('image')) {
-            $imagePath = $request->file('image')->path();
-            $imageFile = file_get_contents($imagePath);
-            $technologie->image = base64_encode($imageFile);
-        }
+        $technologie->image = $request->input('image');
 
         $technologie->save();
         return response()->json('');

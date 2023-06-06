@@ -110,3 +110,7 @@ Route::apiResource('utilisationTechnologie',\App\Http\Controllers\UtilisationTec
 
 //getting stagiaires-with-stage
 Route::get('/stagiaires-with-stage', [\App\Http\Controllers\StagiaireController::class, 'getStagiairesWithStage']);
+
+//getting equipes details
+Route::get('equipes/details', [\App\Http\Controllers\EquipeController::class, 'getEquipesDetails']);
+

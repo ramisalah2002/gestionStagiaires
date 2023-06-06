@@ -17,11 +17,7 @@ return new class extends Migration
             $table->string('status');
             $table->string('type');
             $table->text('description');
-            $table->float('avancement_conception');
-            $table->float('avancement_frontend');
-            $table->float('avancement_backend');
-            $table->float('avancement_total');
-            $table->foreignId('stage_id')->references('id')->on('stage')->onDelete('cascade');
+            $table->longText('image');
             $table->foreignId('equipe_id')->references('id')->on('equipe')->onDelete('cascade');
             $table->timestamps();
         });

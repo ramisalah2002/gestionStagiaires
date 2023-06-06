@@ -34,11 +34,7 @@ class ProjetController extends Controller
             'status' => $request->input('status'),
             'type' => $request->input('type'),
             'description' => $request->input('description'),
-            'avancement_conception' => $request->input('avancement_conception'),
-            'avancement_frontend' => $request->input('avancement_frontend'),
-            'avancement_backend' => $request->input('avancement_backend'),
-            'avancement_total' => $request->input('avancement_total'),
-            'stage_id' => $request->input('stage_id'),
+            'image'=> $request->input('image'),
             'equipe_id' => $request->input('equipe_id'),
         ]);
         $projet->save();

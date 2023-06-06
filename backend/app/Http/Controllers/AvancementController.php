@@ -31,7 +31,9 @@ class AvancementController extends Controller
     {
         $avancement = new Avancement([
             'date' => $request->input('date'),
+            'type' => $request->input('type'),
             'text' => $request->input('text'),
+            'valeur' => $request->input('valeur'),
             'projet_id' => $request->input('projet_id'),
         ]);
         $avancement->save();

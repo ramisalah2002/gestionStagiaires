@@ -15,23 +15,16 @@ class Projet extends Model
         'status',
         'type',
         'description',
-        'avancement_conception',
-        'avancement_frontend',
-        'avancement_backend',
-        'avancement_total',
-        'stage_id',
+        'image',
         'equipe_id',
     ];
 
-    public function stage()
-    {
-        return $this->belongsTo(Stage::class);
-    }
-    public function technologie()
+
+    public function technologies()
     {
         return $this->belongsToMany(Technologie::class, 'utilisation_technologie');
     }
-    public function avancement()
+    public function avancements()
     {
         return $this->hasMany(Avancement::class);
     }

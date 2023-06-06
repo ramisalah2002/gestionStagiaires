@@ -18,9 +18,9 @@ class Equipe extends Model
     {
         return $this->belongsTo(Encadrant::class);
     }
-    public function stagiaire()
+    public function stagiaires()
     {
-        return $this->belongsTo(Stagiaire::class);
+        return $this->hasMany(Stagiaire::class, 'equipe_id');
     }
     public function projet()
     {
