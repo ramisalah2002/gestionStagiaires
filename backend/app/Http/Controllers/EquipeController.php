@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Equipe;
+use App\Models\Stagiaire;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -17,6 +18,14 @@ class EquipeController extends Controller
         $equipe = Equipe::all();
         return response()->json($equipe);
     }
+
+    public function getStagiairesByEquipe($equipeId)
+    {
+        $stagiaires = Stagiaire::where('equipe_id', $equipeId)->get();
+
+        return response()->json($stagiaires);
+    }
+
 
     /**
      * Show the form for creating a new resource.

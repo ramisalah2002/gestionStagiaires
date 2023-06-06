@@ -32,6 +32,7 @@ Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])-
 
 //Administrateur
 Route::apiResource('administrateur',\App\Http\Controllers\AdministrateurController::class);
+Route::post('admin/login',[\App\Http\Controllers\AdministrateurController::class, 'login']);
 
 use App\Http\Controllers\MessageController;
 
@@ -44,6 +45,7 @@ Route::apiResource('demandeStage',\App\Http\Controllers\DemandeStageController::
 
 //Encadrant
 Route::apiResource('encadrant',\App\Http\Controllers\EncadrantController::class);
+Route::post('encadrant/login',[\App\Http\Controllers\EncadrantController::class, 'login']);
 
 
 //image upload
@@ -93,6 +95,8 @@ Route::apiResource('stage',\App\Http\Controllers\StageController::class);
 
 //Stagiaire
 Route::apiResource('stagiaire',\App\Http\Controllers\StagiaireController::class);
+Route::post('stagiaire/login',[\App\Http\Controllers\StagiaireController::class, 'login']);
+Route::get('/equipe/{equipeId}/stagiaires',[\App\Http\Controllers\EquipeController::class, 'getStagiairesByEquipe']);
 
 //Technologie
 Route::apiResource('technologie',\App\Http\Controllers\TechnologieController::class);

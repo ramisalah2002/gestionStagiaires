@@ -175,19 +175,19 @@ function Sidebar() {
         <div className="toggle-button" onClick={toggleSidebar}>
           <FontAwesomeIcon icon={faBars} />
         </div>
-        <Link to="/encadrant/accueil" className="logo">
+        <Link to="/admin/accueil" className="logo">
           <div></div>
         </Link>
         <div className={`links-container`}>
           <ul className="links-list">
             <li className={activeLink === "link1" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link1")} to="/encadrant/accueil">
+              <Link onClick={() => handleLinkClick("link1")} to="/admin/accueil">
                 <FontAwesomeIcon className="big-icons" icon={faHome} />
                 <label>{showSidebar ? "Accueil" : null}</label>
               </Link>
             </li>
             <li className={activeLink === "link2" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link2")} to="/stagiaires">
+              <Link onClick={() => handleLinkClick("link2")} to="/admin/stagiaires">
                 <FontAwesomeIcon className="big-icons" icon={faUserGroup} />
                 <label>{showSidebar ? "Stagiaires" : null}</label>
               </Link>
@@ -196,7 +196,7 @@ function Sidebar() {
               </Link>
             </li>
             <li className={activeLink === "link3" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link3")} to="/equipes">
+              <Link onClick={() => handleLinkClick("link3")} to="/admin/equipes">
                 <FontAwesomeIcon
                   className="big-icons"
                   icon={faUsersRectangle}
@@ -208,7 +208,7 @@ function Sidebar() {
               </Link>
             </li>
             <li className={activeLink === "link4" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link4")} to="/encadrants">
+              <Link onClick={() => handleLinkClick("link4")} to="/admin/encadrants">
                 <FontAwesomeIcon
                   className="big-icons"
                   icon={faChalkboardUser}
@@ -220,19 +220,19 @@ function Sidebar() {
               </Link>
             </li>
             <li className={activeLink === "link5" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link5")} to="/absence">
+              <Link onClick={() => handleLinkClick("link5")} to="/admin/absence">
                 <FontAwesomeIcon className="small-icons" icon={faCalendarCheck}/>
                 <label>{showSidebar ? "Absence" : null}</label>
               </Link>
             </li>
             <li className={activeLink === "link6" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link6")} to="/discussions">
+              <Link onClick={() => handleLinkClick("link6")} to="/admin/discussions">
                 <FontAwesomeIcon className="small-icons" icon={faComment}/>
                 <label>{showSidebar ? "Discussions" : null}</label>
               </Link>
             </li>
             <li className={activeLink === "link7" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link7")} to="/parametres">
+              <Link onClick={() => handleLinkClick("link7")} to="/admin/parametres">
                 <FontAwesomeIcon className="small-icons" icon={faGear} />
                 <label>{showSidebar ? "Paramètres" : null}</label>
               </Link>

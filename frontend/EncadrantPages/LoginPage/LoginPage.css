@@ -1,0 +1,124 @@
+.mainContainer {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+
+  margin: auto; /* Ajoutez cette ligne pour centrer le conteneur */
+}
+
+.mainContainer .left {
+  background-color: #2679ca;
+  flex: 1;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.mainContainer .left .welcome {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 50px;
+
+  color: #ffffff;
+  text-align: left;
+}
+
+.mainContainer .left .info {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  color: #ffffff;
+  text-align: left;
+  margin-top: 20px;
+}
+
+.mainContainer .left img {
+  max-width: 80%;
+  height: auto;
+  margin-top: 50px;
+}
+
+.mainContainer .right {
+  background-color: #f2f3f7;
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.mainContainer .right .logoMen {
+  width: 350px;
+  max-width: 80%;
+  height: auto;
+  margin-bottom: 120px;
+  margin-top: -100px;
+}
+
+.mainContainer .right .appLogo {
+  width: 200px;
+  max-width: 60%;
+  height: auto;
+  margin-bottom: 20px;
+  margin-top: 0px;
+}
+
+.mainContainer .right form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.mainContainer .right form input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #d4dbed;
+  border-radius: 5px;
+}
+
+.mainContainer .right form .bottomOptions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.mainContainer .right form .rememberMe {
+  display: flex;
+  align-items: center;
+  color: #b2b4bf;
+}
+.mainContainer .right form .rememberMe label {
+  margin-top: -9px;
+  margin-left: 10px;
+}
+
+.mainContainer .right form a {
+  color: #89a3d6;
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.mainContainer .right form button {
+  padding: 10px;
+  background-color: #3f77c4;
+  border: none;
+  color: #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.mainContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+}

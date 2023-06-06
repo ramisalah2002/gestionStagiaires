@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Administrateur;
+use App\Models\Encadrant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -43,10 +44,6 @@ class AdministrateurController extends Controller
             'image' => 'nullable',
         ]);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/main
 
         $administrateur = new Administrateur;
         $administrateur->nom = $request->input('nom');
@@ -58,13 +55,37 @@ class AdministrateurController extends Controller
         $administrateur->dateNaissance = $request->input('dateNaissance');
         $administrateur->genre = $request->input('genre');
         $administrateur->CIN = $request->input('CIN');
-<<<<<<< HEAD
         $administrateur->image = $request->input('image');;
-=======
         $administrateur->image = $request->input('image');
->>>>>>> origin/main
         $administrateur->save();
         return response()->json('');
+    }
+
+    public function login(Request $request)
+    {
+        $fields = $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        // Check Email
+        $user = Administrateur::where('email', $fields['email'])->first();
+
+        // Check password
+        if (!$user || !Hash::check($fields['password'], $user->password)) {
+            return response([
+                'message' => 'Incorrect informations'
+            ], 401);
+        }
+
+        $token = $user->createToken($user->getTable().'Token')->plainTextToken;
+
+        $response = [
+            'user' => $user,
+            'token' => $token
+        ];
+
+        return response($response, 201);
     }
 
     /**
@@ -102,12 +123,6 @@ class AdministrateurController extends Controller
         ]);
 
         $administrateur = Administrateur::find($id);
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> origin/main
         $administrateur->nom = $request->input('nom');
         $administrateur->prenom = $request->input('prenom');
         $administrateur->email = $request->input('email');
