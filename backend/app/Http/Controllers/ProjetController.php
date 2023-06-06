@@ -29,6 +29,9 @@ class ProjetController extends Controller
      */
     public function store(Request $request)
     {
+
+
+
         $projet = new Projet([
             'sujet' => $request->input('sujet'),
             'status' => $request->input('status'),

@@ -129,7 +129,7 @@ input::-webkit-inner-spin-button {
   margin-bottom: 5px;
 }
 .form-group input {
-  width: 95%;
+  width: 97%;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -154,6 +154,9 @@ input::-webkit-inner-spin-button {
   border-radius: 5px;
   outline: none;
   transition: 0.3s ease;
+}
+.form-group .select-tech {
+  width: 100%;
 }
 .form-group input::placeholder {
   color: #c9cfdc;
@@ -391,7 +394,7 @@ li:hover {
   flex-direction: column;
   align-items: center;
   padding-bottom: 10px;
-  width: 30%;
+  width: 50%;
   height: auto;
   margin: auto;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
@@ -418,9 +421,15 @@ li:hover {
   justify-content: center;
   width: 100%;
   gap: 5px;
-  margin: 20px;
+  margin: 10px;
   color: #ccc;
   font-size: 18px;
+}
+.description-input{
+  width: 100%;
+  height: 60px;
+  font-size: 16px;
+  resize: none;
 }
 .equipe-info-devider-line {
   width: 100%;

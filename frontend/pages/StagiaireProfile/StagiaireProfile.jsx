@@ -190,8 +190,8 @@ function StagiaireProfile() {
                         Établissement
                     </div>
                     {stagiaires.etablissement && (
-                      <label>{stagiaires.etablissement.nom_etablissement}</label>
-                  )}
+                        <label>{stagiaires.etablissement.nom_etablissement}</label>
+                    )}
                     
                 </div>
                 <div className='formation-container'>

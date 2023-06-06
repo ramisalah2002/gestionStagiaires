@@ -153,7 +153,7 @@ function Stagiaire() {
       { header: "Prenom", key: "prenom", width: 20 },
       { header: "Email", key: "email", width: 30 },
       { header: "Status", key: "status", width: 15 },
-      { header: "En stage", key: "joursStage", width: 10 },
+      { header: "En stage", key: "enStage", width: 10 },
     ];
     stagiaires.forEach((stagiaire) => {
       worksheet.addRow(stagiaire);
@@ -201,7 +201,7 @@ function Stagiaire() {
           stagiaire.nom + " " + stagiaire.prenom,
           stagiaire.email,
           stagiaire.status,
-          stagiaire.joursStage,
+          stagiaire.stage.enStage,
         ];
         tableData.push(rowData);
       });

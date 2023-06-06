@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Select from 'react-select';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import LoginPage from "../../pages/LoginPage/LoginPage";
@@ -25,12 +26,29 @@ function Sidebar() {
   const [showStagiaireModal, setShowStagiaireModal] = useState(false);
   const [showEquipeModal, setShowEquipeModal] = useState(false);
   const [stagiaires, setStagiaires] = useState([]);
+  const [technologies, setTechnologies] = useState([]);
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/stagiaire")
       .then((response) => response.json())
       .then((data) => setStagiaires(data))
       .catch((error) => console.error("Erreur:", error));
   }, []);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/technologie")
+      .then((response) => response.json())
+      .then((data) => setTechnologies(data))
+      .catch((error) => console.error("Erreur:", error));
+  }, []);
+
+
+  
+
+  const [selectedTechnologies, setSelectedTechnologies] = useState([]);
+
+  const handleTechnologiesChange = (selectedOptions) => {
+    setSelectedTechnologies(selectedOptions);
+  };
 
   const navigateTo = useNavigate();
 
@@ -380,6 +398,19 @@ function Sidebar() {
                 <label>Nom de l'équipe</label>
                 <input placeholder="Entrez le nom de l'équipe" />
               </div>
+              <div className="prenom-container">
+                <label>Sujet de stage</label>
+                <input placeholder="Entrez le sujet de stage" />
+              </div>
+              <div className="prenom-container">
+                <label>Type du projet</label>
+                <select>
+                  <option>Web</option>
+                  <option>Mobile</option>
+                  <option>Desktop</option>
+                  <option>Autre</option>
+                </select>
+              </div>
             </div>
             <div className="equipe-info-devider">
               <div className="equipe-info-devider-line"></div>
@@ -443,6 +474,24 @@ function Sidebar() {
                     </option>
                   ))}
                 </select>
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="nom-container">
+                <label>Choisir les technologies</label>
+                <Select className="select-tech"
+                  options={technologies.map((tech) => ({ value: tech.id, label: tech.nom_technologie }))}
+                  isMulti
+                  value={selectedTechnologies}
+                  onChange={handleTechnologiesChange}
+                  placeholder="Sélectionner les technologies ..."
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="nom-container">
+                <label>Décrire le projet </label>
+                <textarea placeholder="Donner une description du sujet du projet" className="description-input"></textarea>
               </div>
             </div>
             <div className="save-container">
