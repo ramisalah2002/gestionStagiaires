@@ -85,6 +85,10 @@ class EquipeController extends Controller
             // Récupérer les stagiaires de l'équipe
             $stagiaires = $equipe->stagiaires()->with('stage', 'equipe.projets')->get();
 
+            // Initialiser les variables pour stocker les détails des projets
+            $equipe->technologies = [];
+            $equipe->progres_total = 0;
+
             foreach($stagiaires as $stagiaire) {
                 $stage = $stagiaire->stage;
 
@@ -107,6 +111,10 @@ class EquipeController extends Controller
 
                         // Récupérer le progrès total du projet
                         $projet->progres_total = $projet->avancements()->count();
+
+                        // Ajouter les technologies et le progrès total à l'équipe
+                        $equipe->technologies = array_merge($equipe->technologies, $projet->technologies->toArray());
+                        $equipe->progres_total += $projet->progres_total;
                     }
                 }
             }
@@ -116,10 +124,14 @@ class EquipeController extends Controller
 
             // Récupérer les images des membres de l'équipe
             $equipe->equipe_images = $equipe->stagiaires()->pluck('image');
+
+            // Eliminer les doublons dans les technologies
+            $equipe->technologies = array_unique($equipe->technologies);
         }
 
         return response()->json($equipes);
     }
+
 
 
 }
