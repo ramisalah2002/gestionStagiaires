@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Equipe;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class EquipeController extends Controller
 {
@@ -85,10 +87,20 @@ class EquipeController extends Controller
 
         foreach($equipes as $equipe){
             foreach($equipe->stagiaires as $stagiaire){
+                // Calculer la date de fin du stage
+                $startDate = Carbon::createFromFormat('Y-m-d', $stagiaire->stage->date_Debut);
+                $endDate = $startDate->copy()->addMonths($stagiaire->stage->duree);
+                $stagiaire->stage->date_Fin = $endDate->toDateString();
+
+                // Calculer les jours restants
+                $now = Carbon::now();
+                $stagiaire->stage->jours_restants = $endDate->diffInDays($now);
+
                 foreach($stagiaire->equipe->projets as $projet){
                     $stagiaire->projet = $projet;
                 }
             }
+
             $equipe_images = [];
             foreach($equipe->stagiaires as $stagiaire){
                 array_push($equipe_images, $stagiaire->image);
@@ -104,6 +116,8 @@ class EquipeController extends Controller
 
         return response()->json($equipes);
     }
+
+
 
 
 
