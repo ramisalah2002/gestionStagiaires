@@ -77,60 +77,34 @@ class EquipeController extends Controller
     /*
      * Equipe Details
      */
-    public function getEquipesDetails()
+    public function getEquipesDetails(Request $request)
     {
-        $equipes = Equipe::all();
+        $equipes = Equipe::with(['stagiaires' => function($query){
+            $query->with('stage', 'equipe.projets');
+        }, 'projets.technologies'])->get();
 
-        foreach($equipes as $equipe) {
-            // Récupérer les stagiaires de l'équipe
-            $stagiaires = $equipe->stagiaires()->with('stage', 'equipe.projets')->get();
-
-            // Initialiser les variables pour stocker les détails des projets
-            $equipe->technologies = [];
-            $equipe->progres_total = 0;
-
-            foreach($stagiaires as $stagiaire) {
-                $stage = $stagiaire->stage;
-
-                if ($stage) {
-                    // Calcul des jours restants de stage
-                    $date_fin_stage = new \DateTime($stage->date_debut);
-                    $date_fin_stage->modify('+' . $stage->duree . ' months');
-                    $now = new \DateTime();
-                    $stage->jours_restants = $now->diff($date_fin_stage)->days;
-
-                    // Calcul de la date de fin du stage
-                    $stage->date_fin = $date_fin_stage->format('Y-m-d');
-
-                    // Récupérer le projet du stage
-                    $projet = $stage->projet;
-
-                    if ($projet) {
-                        // Récupérer les technologies utilisées dans le projet
-                        $projet->technologies = $projet->technologies()->pluck('nom_technologie');
-
-                        // Récupérer le progrès total du projet
-                        $projet->progres_total = $projet->avancements()->count();
-
-                        // Ajouter les technologies et le progrès total à l'équipe
-                        $equipe->technologies = array_merge($equipe->technologies, $projet->technologies->toArray());
-                        $equipe->progres_total += $projet->progres_total;
-                    }
+        foreach($equipes as $equipe){
+            foreach($equipe->stagiaires as $stagiaire){
+                foreach($stagiaire->equipe->projets as $projet){
+                    $stagiaire->projet = $projet;
                 }
             }
+            $equipe_images = [];
+            foreach($equipe->stagiaires as $stagiaire){
+                array_push($equipe_images, $stagiaire->image);
+            }
+            $equipe->equipe_images = $equipe_images;
 
-            // Ajouter les stagiaires et leurs détails à l'équipe
-            $equipe->stagiaires = $stagiaires;
-
-            // Récupérer les images des membres de l'équipe
-            $equipe->equipe_images = $equipe->stagiaires()->pluck('image');
-
-            // Eliminer les doublons dans les technologies
-            $equipe->technologies = array_unique($equipe->technologies);
+            $progres_total = 0;
+            foreach($equipe->projets as $projet){
+                $progres_total += $projet->avancements()->sum('valeur');
+            }
+            $equipe->progres_total = $progres_total / $equipe->projets->count();
         }
 
         return response()->json($equipes);
     }
+
 
 
 
