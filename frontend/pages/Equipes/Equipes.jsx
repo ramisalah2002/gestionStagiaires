@@ -37,7 +37,14 @@ const EquipesBox = ({ equipes }) => (
           className="days-left-icon"
           icon={faStopwatch}
         ></FontAwesomeIcon>
-        <label>24 jours</label>
+        {equipes.stagiaires.map((stagiaire, index) => {
+          if (index === 0) {
+            return (
+              <label key={index}>{stagiaire.stage.jours_restants} jours</label>
+            );
+          }
+          return null;
+        })}
       </div>
       <Link className="link">
         <FontAwesomeIcon className="icon-chevron" icon={faChevronRight} />
@@ -59,9 +66,9 @@ const EquipesBox = ({ equipes }) => (
     </div>
     <div className="team-card-footer">
       <div className="team-card-footer-left">
-        <img className="member-img" src="../../images/user.jpg"></img>
-        <img className="member-img" src="../../images/user.jpg"></img>
-        <img className="member-img" src="../../images/user.jpg"></img>
+        {equipes.stagiaires.map((stagiaire, index) => {
+          <img className="member-img" src={stagiaire.image}></img>;
+        })}
       </div>
       <div className="team-card-footer-right">
         <FontAwesomeIcon className="icon" icon={faCalendarDays} />
@@ -72,7 +79,7 @@ const EquipesBox = ({ equipes }) => (
   </div>
 );
 
-function Parametres() {
+function Equipes() {
   const [searchResults, setSearchResults] = useState([]); // New state for the search results
   const [isSearching, setIsSearching] = useState(false);
   const [searchingText, setSearchingText] = useState("");
@@ -91,356 +98,20 @@ function Parametres() {
     setIsSearching(searchTerm !== "");
     setSearchingText(searchTerm !== "" ? "Résultat de la recherche" : "");
   };
-  const equipes = [
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-    {
-      tempsRestant: 24,
-      langages: "React",
-      nomProjet: "Site web de gestion des stagiaires",
-      progrès: 22,
-      latestAbsence: "75",
-      délai: "24-07-2023",
-    },
-  ];
 
   const navigateTo = useNavigate();
   const { admin, loading } = useContext(AdminContext);
   const adminContext = useContext(AdminContext);
+
+  const [equipes, setEquipes] = useState([]);
+  const [stagiaires, setStagiaires] = useState([]);
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/equipes/details")
+      .then((response) => response.json())
+      .then((data) => setEquipes(data))
+      .then((data) => console.log(equipes))
+      .catch((error) => console.error("Erreur:", error));
+  }, []);
 
   useEffect(() => {
     const adminData = localStorage.getItem("admin");
@@ -452,7 +123,6 @@ function Parametres() {
       adminContext.setAdmin(JSON.parse(adminData));
     }
   }, [admin, loading, navigateTo, adminContext]);
-  
 
   const pageCount = Math.ceil(equipes.length / itemsPerPage);
 
@@ -580,4 +250,4 @@ function Parametres() {
   );
 }
 
-export default Parametres;
+export default Equipes;

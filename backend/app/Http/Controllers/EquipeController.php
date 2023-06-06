@@ -83,7 +83,7 @@ class EquipeController extends Controller
 
         foreach($equipes as $equipe) {
             // Récupérer les stagiaires de l'équipe
-            $stagiaires = $equipe->stagiaires()->with('stage.projet')->get();
+            $stagiaires = $equipe->stagiaires()->with('stage', 'equipe.projets')->get();
 
             foreach($stagiaires as $stagiaire) {
                 $stage = $stagiaire->stage;
