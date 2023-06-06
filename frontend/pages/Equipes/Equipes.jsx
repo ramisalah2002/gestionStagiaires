@@ -40,7 +40,7 @@ const EquipesBox = ({ equipes }) => (
         {equipes.stagiaires.map((stagiaire, index) => {
           if (index === 0) {
             return (
-              <label key={index}>{stagiaire.stage.jours_restants} jours</label>
+              <label style={{whiteSpace:'nowrap',width:'200px'}} key={index}>{stagiaire.stage.jours_restants} jours</label>
             );
           }
           return null;
@@ -51,21 +51,25 @@ const EquipesBox = ({ equipes }) => (
       </Link>
     </div>
     <div className="team-card-header">
-      <label className="language-label">[{equipes.langages}]</label>
-      <label className="project-label">{equipes.nomProjet}</label>
+    {equipes.projets[0].technologies.map((technologie, index) => {
+      return <label key={index} className="language-label">[{technologie.nom_technologie}]</label>
+    })}
+    <br/>
+      <label className="project-label">{equipes.projets[0].sujet}</label>
     </div>
     <div className="progress-container">
       <div className="progress-title">
         <FontAwesomeIcon icon={faListCheck} />
         <label>Progrès</label>
       </div>
-      <label className="progress-nbr">{equipes.progrès}%</label>
+      <label className="progress-nbr">{equipes.progres_total}%</label>
     </div>
     <div className="progress-line-container">
-      <div className="progress-line"></div>
+      <div style={{width:`${equipes.progres_total}%`}} className="progress-line"></div>
     </div>
     <div className="team-card-footer">
       <div className="team-card-footer-left">
+<<<<<<< HEAD
         {equipes.stagiaires.map((stagiaire, index) => {
           return (
             <img
@@ -76,11 +80,23 @@ const EquipesBox = ({ equipes }) => (
             ></img>
           );
         })}
+=======
+      {equipes.stagiaires.map((stagiaire, index) => {
+          return <img key={index} className="member-img" src={stagiaire.image} alt={`Stagiaire ${index + 1}`}></img>;
+      })}
+>>>>>>> 4edc8cffcc13847a0cf84ef37dbf9c12da3d1506
       </div>
       <div className="team-card-footer-right">
         <FontAwesomeIcon className="icon" icon={faCalendarDays} />
         <label>Délai: </label>
-        <p>{equipes.délai}</p>
+        {equipes.stagiaires.map((stagiaire, index) => {
+          if (index === 0) {
+            return (
+              <p key={index}>{stagiaire.stage.date_Fin}</p>
+            );
+          }
+          return null;
+        })}
       </div>
     </div>
   </div>

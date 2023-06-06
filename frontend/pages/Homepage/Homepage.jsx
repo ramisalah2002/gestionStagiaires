@@ -47,7 +47,6 @@ function Homepage() {
 
   useEffect(() => {
     const adminData = localStorage.getItem("admin");
-
     if (!adminData && !loading) {
       // Admin data doesn't exist in localStorage, redirect to LoginPage
       navigateTo("/encadrant/login");
@@ -55,7 +54,7 @@ function Homepage() {
       // Admin data exists in localStorage but not in context, set the admin context
       adminContext.setAdmin(JSON.parse(adminData));
     }
-  }, [admin, loading, navigateTo]);
+  }, [admin, loading, navigateTo, adminContext]);
 
   const currentDate = new Date().toLocaleString("fr-FR", {
     day: "numeric",
@@ -73,13 +72,13 @@ function Homepage() {
       <main className="main-content">
         <div className="header">
           <div className="admin-container">
-            {admin.image != null && (
+            {admin && (
               <div
                 style={{ backgroundImage: `url(${admin.image})` }}
                 className="image-top"
               ></div>
             )}
-            {admin.image == null && (
+            {!admin && (
               <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
             )}
             <div className="admin-info">
@@ -129,7 +128,7 @@ function Homepage() {
                   <label className="last-stagiaire-formation">
                     {stagiaire.formation}
                   </label>
-                  <Link className="voir-detail">Voir détail</Link>
+                  <Link to={`/profile-stagiaire/${stagiaire.id}`} className="voir-detail">Voir détail</Link>
                 </div>
               ))}
             </div>
@@ -163,7 +162,7 @@ function Homepage() {
                         </label>
                       </div>
                     </div>
-                    <button className="stagiaire-btn">Découvrir</button>
+                    <button onClick={()=>navigateTo(`/profile-stagiaire/${stagiaire.id}`)} className="stagiaire-btn">Découvrir</button>
                   </div>
                 ))}
               </div>

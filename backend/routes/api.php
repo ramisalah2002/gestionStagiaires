@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\StagiaireController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,6 @@ use App\Http\Controllers\ImageController;
 |
 */
 
-Broadcast::routes();
 
 
 
@@ -103,6 +103,8 @@ Route::apiResource('user',\App\Http\Controllers\UserController::class);
 //Utilisateur
 Route::apiResource('utilisateur',\App\Http\Controllers\UtilisateurController::class);
 
+//Etablissement
+Route::apiResource('etablissement',\App\Http\Controllers\EtablissementController::class);
 //UtilisationTechnologie
 Route::apiResource('utilisationTechnologie',\App\Http\Controllers\UtilisationTechnologieController::class);
 
@@ -110,6 +112,9 @@ Route::apiResource('utilisationTechnologie',\App\Http\Controllers\UtilisationTec
 
 //getting stagiaires-with-stage
 Route::get('/stagiaires-with-stage', [\App\Http\Controllers\StagiaireController::class, 'getStagiairesWithStage']);
+
+
+Route::post('/stagiaire/{id}/update-couverture', [\App\Http\Controllers\StagiaireController::class, 'updateCouverture']);
 
 //getting equipes details
 Route::get('equipes/details', [\App\Http\Controllers\EquipeController::class, 'getEquipesDetails']);

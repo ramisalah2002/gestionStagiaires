@@ -54,6 +54,8 @@ class EncadrantController extends Controller
         $encadrant->genre = $request->input('genre');
         $encadrant->CIN = $request->input('CIN');
         $encadrant->fonction = $request->input('fonction');
+        $encadrant->image = $request->input('image');;
+        $encadrant->couverture = $request->input('couverture');;
         $encadrant->image = $request->input('image');
         $encadrant->couverture = $request->input('couverture');
         $encadrant->save();

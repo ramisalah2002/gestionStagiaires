@@ -12,6 +12,15 @@ import Sidebar from '../../components/Sidebar/Sidebar.jsx';
 
 function StagiaireProfile() {
 
+  const parentRef = useRef(null);
+
+  useEffect(() => {
+    const parentElement = parentRef.current;
+    if (parentElement) {
+      parentElement.scrollTop = parentElement.scrollHeight - parentElement.clientHeight;
+    }
+  }, []);
+  
   const navigateTo = useNavigate();
   const { admin, loading } = useContext(AdminContext);
   const adminContext = useContext(AdminContext);
@@ -127,7 +136,7 @@ function StagiaireProfile() {
                     <div className="second-profile-img"></div>
                     <label className="second-profile-name">{activeProfileNom}</label>
                   </div>
-                  <div className="chat-content">
+                  <div ref={parentRef} className="chat-content">
                     <div className="chat-message-sender">
                       <div className='sender-img'></div>
                       <div className="sender-message-content">

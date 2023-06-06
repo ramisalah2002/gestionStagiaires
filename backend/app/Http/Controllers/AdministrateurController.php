@@ -43,6 +43,10 @@ class AdministrateurController extends Controller
             'image' => 'nullable',
         ]);
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/main
 
         $administrateur = new Administrateur;
         $administrateur->nom = $request->input('nom');
@@ -54,7 +58,11 @@ class AdministrateurController extends Controller
         $administrateur->dateNaissance = $request->input('dateNaissance');
         $administrateur->genre = $request->input('genre');
         $administrateur->CIN = $request->input('CIN');
+<<<<<<< HEAD
+        $administrateur->image = $request->input('image');;
+=======
         $administrateur->image = $request->input('image');
+>>>>>>> origin/main
         $administrateur->save();
         return response()->json('');
     }
@@ -95,6 +103,11 @@ class AdministrateurController extends Controller
 
         $administrateur = Administrateur::find($id);
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> origin/main
         $administrateur->nom = $request->input('nom');
         $administrateur->prenom = $request->input('prenom');
         $administrateur->email = $request->input('email');
@@ -104,6 +117,7 @@ class AdministrateurController extends Controller
         $administrateur->genre = $request->input('genre');
         $administrateur->CIN = $request->input('CIN');
         $administrateur->image = $request->input('image');
+
 
         $administrateur->save();
 

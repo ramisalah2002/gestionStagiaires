@@ -61,7 +61,7 @@ function App() {
           <Route path="/absence" element={<Absence />} />
           <Route path="/discussions" element={<Chat />} />
           <Route path="/parametres" element={<Parametres />} />
-          <Route path="/profile-stagiaire" element={<StagiaireProfile />} />
+          <Route path="/profile-stagiaire/:stagiaire_id" element={<StagiaireProfile />} />
           <Route path="/projets" element={<Projet />} />
           <Route path="/send-email" element={<Contact />} />
           <Route path="/forgot-password/" element={<ForgotPassword />} />
