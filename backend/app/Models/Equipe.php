@@ -26,6 +26,10 @@ class Equipe extends Model
     {
         return $this->hasOne(Projet::class, 'equipe_id');
     }
+    public function projets()
+    {
+        return $this->hasOne(Projet::class, 'equipe_id');
+    }
 
 }
 

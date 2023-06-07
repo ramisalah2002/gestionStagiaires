@@ -28,19 +28,19 @@ const StagiaireBox = ({ stagiaire }) => (
     <div className="profile-picture-wrapper">
       <img className="profile-picture" src={stagiaire.image} alt="Profile" />
     </div>
-    <h2 className="stagiaire-name">{stagiaire.name}</h2>
+    <h2 className="stagiaire-name">{stagiaire.profile}</h2>
     <div className="detail presence-days">
       <span>Absence du mois </span>
-      <span>{stagiaire.presenceDays}</span>
+      <span>{stagiaire.absence_du_mois}</span>
     </div>
     <div className="detail latest-absence">
       <span>Dernier absence </span>
-      <span>{stagiaire.latestAbsence}</span>
+      <span>{stagiaire.derniere_absence}</span>
     </div>
     <div className="detail status">
       <span>Status d'aujourd'hui </span>
-      <span className={`status-value ${stagiaire.status}`}>
-        {stagiaire.status}
+      <span className={`status-value ${stagiaire.status_d_aujourd_hui}`}>
+        {stagiaire.status_d_aujourd_hui}
       </span>
     </div>
     <Link className="projet-voir-detail">Voir détail</Link>
@@ -96,182 +96,18 @@ function Absence() {
     }
   }, [admin, loading, navigateTo, adminContext]);
 
-
   const currentDate = new Date().toLocaleString("fr-FR", {
     day: "numeric",
     month: "short",
   });
 
-  const stagiaires = [
-    {
-      name: "Rami Salah-eddine",
-      image: stagiaireImage,
-      presenceDays: 22,
-      latestAbsence: "N/A",
-      status: "present",
-    },
-    {
-      name: "Boulaajoul Anass",
-      image: stagiaireImage,
-      presenceDays: 18,
-      latestAbsence: "2023-05-01",
-      status: "absent",
-    },
-    {
-      name: "Mohammed Ali",
-      image: stagiaireImage,
-      presenceDays: 16,
-      latestAbsence: "2023-05-10",
-      status: "not-indicated",
-    },
-    {
-      name: "Fatima Zahra",
-      image: stagiaireImage,
-      presenceDays: 20,
-      latestAbsence: "2023-05-05",
-      status: "absent",
-    },
-    {
-      name: "Hamza Alaoui",
-      image: stagiaireImage,
-      presenceDays: 22,
-      latestAbsence: "2023-04-30",
-      status: "present",
-    },
-    {
-      name: "Amina Chakir",
-      image: stagiaireImage,
-      presenceDays: 18,
-      latestAbsence: "2023-05-07",
-      status: "absent",
-    },
-    {
-      name: "Karim Hassan",
-      image: stagiaireImage,
-      presenceDays: 23,
-      latestAbsence: "N/A",
-      status: "present",
-    },
-    {
-      name: "Nadia Bousfiha",
-      image: stagiaireImage,
-      presenceDays: 21,
-      latestAbsence: "2023-05-12",
-      status: "not-indicated",
-    },
-    {
-      name: "Rami Salah-eddine",
-      image: stagiaireImage,
-      presenceDays: 22,
-      latestAbsence: "N/A",
-      status: "present",
-    },
-    {
-      name: "Boulaajoul Anass",
-      image: stagiaireImage,
-      presenceDays: 18,
-      latestAbsence: "2023-05-01",
-      status: "absent",
-    },
-    {
-      name: "Mohammed Ali",
-      image: stagiaireImage,
-      presenceDays: 16,
-      latestAbsence: "2023-05-10",
-      status: "not-indicated",
-    },
-    {
-      name: "Fatima Zahra",
-      image: stagiaireImage,
-      presenceDays: 20,
-      latestAbsence: "2023-05-05",
-      status: "absent",
-    },
-    {
-      name: "Hamza Alaoui",
-      image: stagiaireImage,
-      presenceDays: 22,
-      latestAbsence: "2023-04-30",
-      status: "present",
-    },
-    {
-      name: "Amina Chakir",
-      image: stagiaireImage,
-      presenceDays: 18,
-      latestAbsence: "2023-05-07",
-      status: "absent",
-    },
-    {
-      name: "Karim Hassan",
-      image: stagiaireImage,
-      presenceDays: 23,
-      latestAbsence: "N/A",
-      status: "present",
-    },
-    {
-      name: "Nadia Bousfiha",
-      image: stagiaireImage,
-      presenceDays: 21,
-      latestAbsence: "2023-05-12",
-      status: "not-indicated",
-    },
-    {
-      name: "Rami Salah-eddine",
-      image: stagiaireImage,
-      presenceDays: 22,
-      latestAbsence: "N/A",
-      status: "present",
-    },
-    {
-      name: "Boulaajoul Anass",
-      image: stagiaireImage,
-      presenceDays: 18,
-      latestAbsence: "2023-05-01",
-      status: "absent",
-    },
-    {
-      name: "Mohammed Ali",
-      image: stagiaireImage,
-      presenceDays: 16,
-      latestAbsence: "2023-05-10",
-      status: "not-indicated",
-    },
-    {
-      name: "Fatima Zahra",
-      image: stagiaireImage,
-      presenceDays: 20,
-      latestAbsence: "2023-05-05",
-      status: "absent",
-    },
-    {
-      name: "Hamza Alaoui",
-      image: stagiaireImage,
-      presenceDays: 22,
-      latestAbsence: "2023-04-30",
-      status: "present",
-    },
-    {
-      name: "Amina Chakir",
-      image: stagiaireImage,
-      presenceDays: 18,
-      latestAbsence: "2023-05-07",
-      status: "absent",
-    },
-    {
-      name: "Karim Hassan",
-      image: stagiaireImage,
-      presenceDays: 23,
-      latestAbsence: "N/A",
-      status: "present",
-    },
-    {
-      name: "Nadia Bousfiha",
-      image: stagiaireImage,
-      presenceDays: 21,
-      latestAbsence: "2023-05-12",
-      status: "not-indicated",
-    },
-  ];
+  const [stagiaires, setStagiaires] = useState([]);
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/stagiaires/absences")
+      .then((response) => response.json())
+      .then((data) => setStagiaires(data))
+      .catch((error) => console.error("Erreur:", error));
+  }, []);
 
   const pageCount = Math.ceil(stagiaires.length / itemsPerPage);
 

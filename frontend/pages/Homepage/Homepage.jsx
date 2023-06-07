@@ -128,7 +128,12 @@ function Homepage() {
                   <label className="last-stagiaire-formation">
                     {stagiaire.formation}
                   </label>
-                  <Link to={`/profile-stagiaire/${stagiaire.id}`} className="voir-detail">Voir détail</Link>
+                  <Link
+                    to={`/profile-stagiaire/${stagiaire.id}`}
+                    className="voir-detail"
+                  >
+                    Voir détail
+                  </Link>
                 </div>
               ))}
             </div>
@@ -162,7 +167,14 @@ function Homepage() {
                         </label>
                       </div>
                     </div>
-                    <button onClick={()=>navigateTo(`/profile-stagiaire/${stagiaire.id}`)} className="stagiaire-btn">Découvrir</button>
+                    <button
+                      onClick={() =>
+                        navigateTo(`/profile-stagiaire/${stagiaire.id}`)
+                      }
+                      className="stagiaire-btn"
+                    >
+                      Découvrir
+                    </button>
                   </div>
                 ))}
               </div>

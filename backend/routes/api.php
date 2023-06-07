@@ -109,17 +109,23 @@ Route::apiResource('utilisateur',\App\Http\Controllers\UtilisateurController::cl
 
 //Etablissement
 Route::apiResource('etablissement',\App\Http\Controllers\EtablissementController::class);
+
 //UtilisationTechnologie
 Route::apiResource('utilisationTechnologie',\App\Http\Controllers\UtilisationTechnologieController::class);
 
-//UseFull Requests
+/*
+ * UseFull Requests
+ */
 
 //getting stagiaires-with-stage
 Route::get('/stagiaires-with-stage', [\App\Http\Controllers\StagiaireController::class, 'getStagiairesWithStage']);
 
-
+//updating stagiaires couvertures
 Route::post('/stagiaire/{id}/update-couverture', [\App\Http\Controllers\StagiaireController::class, 'updateCouverture']);
 
 //getting equipes details
 Route::get('equipes/details', [\App\Http\Controllers\EquipeController::class, 'getEquipesDetails']);
+
+//getting Stagiaires Absences
+Route::get('/stagiaires/absences', [StagiaireController::class, 'getAbsenceStagiaires']);
 

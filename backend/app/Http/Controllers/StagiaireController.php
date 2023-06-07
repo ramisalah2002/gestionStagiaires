@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Stagiaire;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Absence;
+use Carbon\Carbon;
 
 class StagiaireController extends Controller
 {
@@ -192,7 +194,44 @@ class StagiaireController extends Controller
         return response()->json($stagiaires);
     }
 
+    //Absence des stagiaire
+    public function getAbsenceStagiaires(Request $request)
+    {
+        // Get all stagiaires
+        $stagiaires = Stagiaire::all();
 
+        // Prepare an array to hold the results
+        $results = [];
+
+        foreach ($stagiaires as $stagiaire) {
+            // Get the current date and first day of the month
+            $now = Carbon::now();
+            $firstDayOfMonth = $now->startOfMonth();
+
+            // Get absences of the month
+            $absencesOfMonth = $stagiaire->absences()->whereBetween('date', [$firstDayOfMonth, $now])->get();
+
+            // Get the last absence
+            $lastAbsence = $stagiaire->absences()->orderBy('date', 'desc')->first();
+
+            // Determine the status of today
+            $statusToday = $stagiaire->absences()->where('date', $now->toDateString())->exists() ? 'absent' : 'present';
+
+            // Prepare the data
+            $data = [
+                'profile' => $stagiaire->nom . ' ' . $stagiaire->prenom,
+                'image' => $stagiaire->image,
+                'absence_du_mois' => $absencesOfMonth->count(),
+                'derniere_absence' => $lastAbsence ? $lastAbsence->date : 'N/A',
+                'status_d_aujourd_hui' => $statusToday,
+            ];
+
+            // Add the data to the results
+            $results[] = $data;
+        }
+
+        return response()->json($results);
+    }
 
 
 

@@ -47,377 +47,13 @@ function Encadrant() {
     month: "short",
   });
 
-  const encadrants = [
-    {
-      name: "RAMI Salah-eddine",
-      poste: "Chef RH",
-    },
-    {
-      name: "BOULAAJOUL Anass",
-      poste: "Developpeur Mobile",
-    },
-    {
-      name: "MOHAMED Ali",
-      poste: "Product Manager",
-    },
-    {
-      name: "FATIMA Zahra",
-      poste: "UI/UX Designer",
-    },
-    {
-      name: "HAMZA Alaoui",
-      poste: "Data Scientist",
-    },
-    {
-      name: "AMINA Chakir",
-      poste: "Backend Developer",
-    },
-    {
-      name: "KARIM Hassan",
-      poste: "Frontend Developer",
-    },
-    {
-      name: "NADIA Bousfiha",
-      poste: "Business Analyst",
-    },
-    {
-      name: "Mohamed Salah",
-      poste: "Chef RH",
-    },
-    {
-      name: "Anass Sefriwi",
-      poste: "Developpeur Mobile",
-    },
-    {
-      name: "MOHAMED Ali Kmay",
-      poste: "Product Manager",
-    },
-    {
-      name: "Kechfi FATIMA Zahra",
-      poste: "UI/UX Designer",
-    },
-    {
-      name: "LBHIHI HAMZA ",
-      poste: "Data Scientist",
-    },
-    {
-      name: "Chakir Saad",
-      poste: "Backend Developer",
-    },
-    {
-      name: " SI KARIM L2a7madi",
-      poste: "Frontend Developer",
-    },
-    {
-      name: "NADIA Nadya",
-      poste: "Business Analyst",
-    },
-    {
-      name: "RAMI Salah-eddine",
-      poste: "Chef RH",
-    },
-    {
-      name: "BOULAAJOUL Anass",
-      poste: "Developpeur Mobile",
-    },
-    {
-      name: "MOHAMED Ali",
-      poste: "Product Manager",
-    },
-    {
-      name: "FATIMA Zahra",
-      poste: "UI/UX Designer",
-    },
-    {
-      name: "HAMZA Alaoui",
-      poste: "Data Scientist",
-    },
-    {
-      name: "AMINA Chakir",
-      poste: "Backend Developer",
-    },
-    {
-      name: "KARIM Hassan",
-      poste: "Frontend Developer",
-    },
-    {
-      name: "NADIA Bousfiha",
-      poste: "Business Analyst",
-    },
-    {
-      name: "Mohamed Salah",
-      poste: "Chef RH",
-    },
-    {
-      name: "Anass Sefriwi",
-      poste: "Developpeur Mobile",
-    },
-    {
-      name: "MOHAMED Ali Kmay",
-      poste: "Product Manager",
-    },
-    {
-      name: "Kechfi FATIMA Zahra",
-      poste: "UI/UX Designer",
-    },
-    {
-      name: "LBHIHI HAMZA ",
-      poste: "Data Scientist",
-    },
-    {
-      name: "Chakir Saad",
-      poste: "Backend Developer",
-    },
-    {
-      name: " SI KARIM L2a7madi",
-      poste: "Frontend Developer",
-    },
-    {
-      name: "NADIA Nadya",
-      poste: "Business Analyst",
-    },
-    {
-      name: "RAMI Salah-eddine",
-      poste: "Chef RH",
-    },
-    {
-      name: "BOULAAJOUL Anass",
-      poste: "Developpeur Mobile",
-    },
-    {
-      name: "MOHAMED Ali",
-      poste: "Product Manager",
-    },
-
-    {
-      name: "NADIA Bousfiha",
-      poste: "Business Analyst",
-    },
-    {
-      name: "Mohamed Salah",
-      poste: "Chef RH",
-    },
-    {
-      name: "Anass Sefriwi",
-      poste: "Developpeur Mobile",
-    },
-    {
-      name: "MOHAMED Ali Kmay",
-      poste: "Product Manager",
-    },
-    {
-      name: "Kechfi FATIMA Zahra",
-      poste: "UI/UX Designer",
-    },
-    {
-      name: "LBHIHI HAMZA ",
-      poste: "Data Scientist",
-    },
-    {
-      name: "Chakir Saad",
-      poste: "Backend Developer",
-    },
-    {
-      name: " SI KARIM L2a7madi",
-      poste: "Frontend Developer",
-    },
-    {
-      name: "NADIA Nadya",
-      poste: "Business Analyst",
-    },
-    {
-      name: "RAMI Salah-eddine",
-      poste: "Chef RH",
-    },
-    {
-      name: "BOULAAJOUL Anass",
-      poste: "Developpeur Mobile",
-    },
-    {
-      name: "MOHAMED Ali",
-      poste: "Product Manager",
-    },
-    {
-      name: "FATIMA Zahra",
-      poste: "UI/UX Designer",
-    },
-    {
-      name: "HAMZA Alaoui",
-      poste: "Data Scientist",
-    },
-    {
-      name: "AMINA Chakir",
-      poste: "Backend Developer",
-    },
-    {
-      name: "KARIM Hassan",
-      poste: "Frontend Developer",
-    },
-    {
-      name: "NADIA Bousfiha",
-      poste: "Business Analyst",
-    },
-    {
-      name: "Mohamed Salah",
-      poste: "Chef RH",
-    },
-    {
-      name: "Anass Sefriwi",
-      poste: "Developpeur Mobile",
-    },
-    {
-      name: "MOHAMED Ali Kmay",
-      poste: "Product Manager",
-    },
-    {
-      name: "Kechfi FATIMA Zahra",
-      poste: "UI/UX Designer",
-    },
-    {
-      name: "LBHIHI HAMZA ",
-      poste: "Data Scientist",
-    },
-    {
-      name: "Chakir Saad",
-      poste: "Backend Developer",
-    },
-    {
-      name: " SI KARIM L2a7madi",
-      poste: "Frontend Developer",
-    },
-    {
-      name: "NADIA Nadya",
-      poste: "Business Analyst",
-    },
-    {
-      name: "RAMI Salah-eddine",
-      poste: "Chef RH",
-    },
-    {
-      name: "BOULAAJOUL Anass",
-      poste: "Developpeur Mobile",
-    },
-    {
-      name: "MOHAMED Ali",
-      poste: "Product Manager",
-    },
-    {
-      name: "FATIMA Zahra",
-      poste: "UI/UX Designer",
-    },
-    {
-      name: "HAMZA Alaoui",
-      poste: "Data Scientist",
-    },
-    {
-      name: "AMINA Chakir",
-      poste: "Backend Developer",
-    },
-    {
-      name: "KARIM Hassan",
-      poste: "Frontend Developer",
-    },
-    {
-      name: "NADIA Bousfiha",
-      poste: "Business Analyst",
-    },
-    {
-      name: "Mohamed Salah",
-      poste: "Chef RH",
-    },
-    {
-      name: "Anass Sefriwi",
-      poste: "Developpeur Mobile",
-    },
-    {
-      name: "MOHAMED Ali Kmay",
-      poste: "Product Manager",
-    },
-    {
-      name: "Kechfi FATIMA Zahra",
-      poste: "UI/UX Designer",
-    },
-    {
-      name: "LBHIHI HAMZA ",
-      poste: "Data Scientist",
-    },
-    {
-      name: "Chakir Saad",
-      poste: "Backend Developer",
-    },
-    {
-      name: " SI KARIM L2a7madi",
-      poste: "Frontend Developer",
-    },
-    {
-      name: "NADIA Nadya",
-      poste: "Business Analyst",
-    },
-    {
-      name: "RAMI Salah-eddine",
-      poste: "Chef RH",
-    },
-    {
-      name: "BOULAAJOUL Anass",
-      poste: "Developpeur Mobile",
-    },
-    {
-      name: "MOHAMED Ali",
-      poste: "Product Manager",
-    },
-    {
-      name: "FATIMA Zahra",
-      poste: "UI/UX Designer",
-    },
-    {
-      name: "HAMZA Alaoui",
-      poste: "Data Scientist",
-    },
-    {
-      name: "AMINA Chakir",
-      poste: "Backend Developer",
-    },
-    {
-      name: "KARIM Hassan",
-      poste: "Frontend Developer",
-    },
-    {
-      name: "NADIA Bousfiha",
-      poste: "Business Analyst",
-    },
-    {
-      name: "Mohamed Salah",
-      poste: "Chef RH",
-    },
-    {
-      name: "Anass Sefriwi",
-      poste: "Developpeur Mobile",
-    },
-    {
-      name: "MOHAMED Ali Kmay",
-      poste: "Product Manager",
-    },
-    {
-      name: "Kechfi FATIMA Zahra",
-      poste: "UI/UX Designer",
-    },
-    {
-      name: "LBHIHI HAMZA ",
-      poste: "Data Scientist",
-    },
-    {
-      name: "Chakir Saad",
-      poste: "Backend Developer",
-    },
-    {
-      name: " SI KARIM L2a7madi",
-      poste: "Frontend Developer",
-    },
-    {
-      name: "NADIA Nadya",
-      poste: "Business Analyst",
-    },
-  ];
+  const [encadrants, setEncadrants] = useState([]);
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/encadrant")
+      .then((response) => response.json())
+      .then((data) => setEncadrants(data))
+      .catch((error) => console.error("Erreur:", error));
+  }, []);
 
   const pageCount = Math.ceil(encadrants.length / itemsPerPage);
 
@@ -494,9 +130,16 @@ function Encadrant() {
             <div className="encadrant-content">
               {searchResults.map((encadrant, index) => (
                 <div key={index} className="encadrant-card">
-                  <div className="image-top"></div>
-                  <label className="encadrant-name">{encadrant.name}</label>
-                  <label className="encadrant-poste">{encadrant.poste}</label>
+                  <div
+                    className="image-top"
+                    style={{ backgroundImage: `url(${encadrant.image})` }}
+                  />
+                  <label className="encadrant-name">
+                    {encadrant.nom} {encadrant.prenom}
+                  </label>
+                  <label className="encadrant-poste">
+                    {encadrant.fonction}
+                  </label>
                   <Link className="voir-detail">Voir détail</Link>
                 </div>
               ))}
@@ -516,9 +159,16 @@ function Encadrant() {
                 )
                 .map((encadrant, index) => (
                   <div key={index} className="encadrant-card">
-                    <div className="image-top"></div>
-                    <label className="encadrant-name">{encadrant.name}</label>
-                    <label className="encadrant-poste">{encadrant.poste}</label>
+                    <div
+                      className="image-top"
+                      style={{ backgroundImage: `url(${encadrant.image})` }}
+                    />
+                    <label className="encadrant-name">
+                      {encadrant.nom} {encadrant.prenom}
+                    </label>
+                    <label className="encadrant-poste">
+                      {encadrant.fonction}
+                    </label>
                     <Link className="voir-detail">Voir détail</Link>
                   </div>
                 ))}

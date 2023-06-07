@@ -48,7 +48,7 @@ class Stagiaire extends Authenticatable
     {
         return $this->hasOne(Stage::class);
     }
-    public function absence()
+    public function absences()
     {
         return $this->hasMany(Absence::class);
     }

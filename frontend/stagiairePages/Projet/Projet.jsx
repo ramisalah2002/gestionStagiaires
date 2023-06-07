@@ -61,7 +61,6 @@ function ProjetStagiaire() {
     );
   };
 
-
   const { stagiaire } = useContext(StagiaireContext);
   const stagiaireContext = useContext(StagiaireContext);
 
@@ -81,33 +80,33 @@ function ProjetStagiaire() {
     month: "short",
   });
 
-
   const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchStagiaireData = async () => {
-            try {
-                const stagiaireData = localStorage.getItem("stagiaire");
-                const { id } = JSON.parse(stagiaireData);  // Use the id from the local storage
-                const response = await fetch(`http://127.0.0.1:8000/api/stagiaire/${id}`);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
-                setData(data); // This will contain updated data from server
-                setLoading(false);
-            } catch (error) {
-                setError(error);
-                setLoading(false);
-            }
-        };
+  useEffect(() => {
+    const fetchStagiaireData = async () => {
+      try {
+        const stagiaireData = localStorage.getItem("stagiaire");
+        const { id } = JSON.parse(stagiaireData); // Use the id from the local storage
+        const response = await fetch(
+          `http://127.0.0.1:8000/api/stagiaire/${id}`
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setData(data); // This will contain updated data from server
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    };
 
-        fetchStagiaireData();
-    }, []);
+    fetchStagiaireData();
+  }, []);
 
-    
   const [equipe, setEquipe] = useState([]);
   const [loadingEquipe, setLoadingEquipe] = useState(true);
   const [errorEquipe, setErrorEquipe] = useState(null);
@@ -117,7 +116,9 @@ function ProjetStagiaire() {
       try {
         const stagiaireData = localStorage.getItem("stagiaire");
         const { equipe_id } = JSON.parse(stagiaireData);
-        const response = await fetch(`http://127.0.0.1:8000/api/equipe/${equipe_id}/stagiaires`);
+        const response = await fetch(
+          `http://127.0.0.1:8000/api/equipe/${equipe_id}/stagiaires`
+        );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -132,7 +133,6 @@ function ProjetStagiaire() {
 
     fetchStagiaires();
   }, []);
-
 
   return (
     <div className="app">
@@ -172,22 +172,22 @@ function ProjetStagiaire() {
         <div className="header-projet">
           <div className="header-projet-txt">Présentation du projet</div>
           <div className="header-projet-container">
-          {data && data.equipe && data.equipe.projet &&(
-            <div className="projetInformations">
-              <div className="sideInformations">Projet</div>
-              <img
-                src={data.equipe.projet.image}
-                className="projetImage"
-                alt="projetImage"
-              />
-              <div className="projetText">
-                <div className="header-nom">{data.equipe.projet.sujet}</div>
-                <div className="header-type">{data.equipe.projet.type}</div>
+            {data && data.equipe && data.equipe.projet && (
+              <div className="projetInformations">
+                <div className="sideInformations">Projet</div>
+                <img
+                  src={data.equipe.projet.image}
+                  className="projetImage"
+                  alt="projetImage"
+                />
+                <div className="projetText">
+                  <div className="header-nom">{data.equipe.projet.sujet}</div>
+                  <div className="header-type">{data.equipe.projet.type}</div>
+                </div>
               </div>
-            </div>
-          )}
+            )}
             <div className="vertical-line" />
-              {data && data.equipe && data.equipe.encadrant &&(
+            {data && data.equipe && data.equipe.encadrant && (
               <div className="encadrantInformations">
                 <div className="sideInformations">Encadrant</div>
                 <img
@@ -195,13 +195,17 @@ function ProjetStagiaire() {
                   className="encadrantImage"
                   alt="encadrantImage"
                 />
-  
+
                 <div className="encadrantText">
-                  <div className="header-nom">{data.equipe.encadrant.nom} {data.equipe.encadrant.prenom}</div>
-                  <div className="header-fonction">{data.equipe.encadrant.fonction}</div>
+                  <div className="header-nom">
+                    {data.equipe.encadrant.nom} {data.equipe.encadrant.prenom}
+                  </div>
+                  <div className="header-fonction">
+                    {data.equipe.encadrant.fonction}
+                  </div>
                 </div>
               </div>
-              )}
+            )}
             <div className="vertical-line" />
             <div className="equipeInformations">
               <div className="sideInformations">Stagiaires</div>
