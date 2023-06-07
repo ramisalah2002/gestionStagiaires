@@ -113,7 +113,7 @@ function ProjetStagiaire() {
   const [errorEquipe, setErrorEquipe] = useState(null);
 
   useEffect(() => {
-    const fetchStagiaires = async () => {
+    const fetchEquipe = async () => {
       try {
         const stagiaireData = localStorage.getItem("stagiaire");
         const { equipe_id } = JSON.parse(stagiaireData);
@@ -130,7 +130,7 @@ function ProjetStagiaire() {
       }
     };
 
-    fetchStagiaires();
+    fetchEquipe();
   }, []);
 
 
@@ -205,29 +205,17 @@ function ProjetStagiaire() {
             <div className="vertical-line" />
             <div className="equipeInformations">
               <div className="sideInformations">Stagiaires</div>
-              <div className="membreInformations">
-                <img
-                  src={userImage}
-                  className="stagiaireImage"
-                  alt="stagiaireImage"
-                />
-                <div className="stagiaireText">
-                  <div className="header-nom">Rami Salah-Eddine</div>
-                  <div className="header-formation">Génie Logiciel</div>
+              {equipe.map((stagiaire) => (
+                <div key={stagiaire.id} className="membreInformations">
+                  <img src={stagiaire.image} className="stagiaireImage" alt="stagiaireImage" />
+                  <div className="stagiaireText">
+                    <div className="header-nom">{stagiaire.nom} {stagiaire.prenom}</div>
+                    <div className="header-formation">{stagiaire.formation}</div>
+                  </div>
                 </div>
-              </div>
-              <div className="membreInformations">
-                <img
-                  src={userImage}
-                  className="stagiaireImage"
-                  alt="stagiaireImage"
-                />
-                <div className="stagiaireText">
-                  <div className="header-nom">Boulaajoul Anass</div>
-                  <div className="header-formation">Génie Logiciel</div>
-                </div>
-              </div>
+              ))}
             </div>
+
             <div className="vertical-line" />
             <Link
               className="parametresProjet"
