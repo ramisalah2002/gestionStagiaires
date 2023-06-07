@@ -31,6 +31,7 @@ class Projet extends Model
     }
     public function equipe()
     {
-        return $this->belongsTo(Equipe::class);
+        return $this->belongsTo(Equipe::class, 'equipe_id');
     }
+
 }

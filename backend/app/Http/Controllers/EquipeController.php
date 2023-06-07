@@ -94,36 +94,41 @@ class EquipeController extends Controller
             $query->with('stage', 'equipe.projets');
         }, 'projets.technologies'])->get();
 
-        foreach($equipes as $equipe){
-            foreach($equipe->stagiaires as $stagiaire){
-                // Calculer la date de fin du stage
-                $startDate = Carbon::createFromFormat('Y-m-d', $stagiaire->stage->date_Debut);
-                $endDate = $startDate->copy()->addMonths($stagiaire->stage->duree);
-                $stagiaire->stage->date_Fin = $endDate->toDateString();
+        foreach($equipes as $equipe) {
+            foreach($equipe->stagiaires as $stagiaire) {
+                if ($stagiaire->stage) {
+                    // Calculer la date de fin du stage
+                    $startDate = Carbon::createFromFormat('Y-m-d', $stagiaire->stage->date_Debut);
+                    $endDate = $startDate->copy()->addMonths($stagiaire->stage->duree);
+                    $stagiaire->stage->date_Fin = $endDate->toDateString();
 
-                // Calculer les jours restants
-                $now = Carbon::now();
-                $stagiaire->stage->jours_restants = $endDate->diffInDays($now);
+                    // Calculer les jours restants
+                    $now = Carbon::now();
+                    $stagiaire->stage->jours_restants = $endDate->diffInDays($now);
+                }
 
-                foreach($stagiaire->equipe->projets as $projet){
+                foreach($stagiaire->equipe->projets as $projet) {
                     $stagiaire->projet = $projet;
                 }
             }
 
             $equipe_images = [];
-            foreach($equipe->stagiaires as $stagiaire){
-                array_push($equipe_images, $stagiaire->image);
+            foreach($equipe->stagiaires as $stagiaire) {
+                if ($stagiaire->image) {
+                    array_push($equipe_images, $stagiaire->image);
+                }
             }
             $equipe->equipe_images = $equipe_images;
 
             $progres_total = 0;
-            foreach($equipe->projets as $projet){
+            foreach($equipe->projets as $projet) {
                 $progres_total += $projet->avancements()->sum('valeur');
             }
-            $equipe->progres_total = $progres_total / $equipe->projets->count();
+            $equipe->progres_total = $equipe->projets->count() > 0 ? $progres_total / $equipe->projets->count() : 0;
         }
 
         return response()->json($equipes);
+
     }
 
 
