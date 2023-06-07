@@ -74,4 +74,7 @@ class AbsenceController extends Controller
         $absence->delete();
         return response()->json('');
     }
+
+
+
 }

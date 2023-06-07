@@ -6,7 +6,6 @@ use App\Models\Administrateur;
 use App\Models\Encadrant;
 use App\Models\Stagiaire;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller

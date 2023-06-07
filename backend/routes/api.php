@@ -40,8 +40,6 @@ Route::post('/messages', [MessageController::class, 'store']);
 Route::get('/messages', [MessageController::class, 'index']);
 
 
-//DemandeStage
-Route::apiResource('demandeStage',\App\Http\Controllers\DemandeStageController::class);
 
 //Encadrant
 Route::apiResource('encadrant',\App\Http\Controllers\EncadrantController::class);
@@ -127,5 +125,7 @@ Route::post('/stagiaire/{id}/update-couverture', [\App\Http\Controllers\Stagiair
 Route::get('equipes/details', [\App\Http\Controllers\EquipeController::class, 'getEquipesDetails']);
 
 //getting Stagiaires Absences
-Route::get('/stagiaires/absences', [StagiaireController::class, 'getAbsenceStagiaires']);
+Route::get('/stagiaires/absences', [\App\Http\Controllers\StagiaireController::class, 'getAbsenceStagiaires']);
 
+//getting projects details
+Route::get('projet/datails', [\App\Http\Controllers\ProjetController::class, 'getProjetDetails']);
