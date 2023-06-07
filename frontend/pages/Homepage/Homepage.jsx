@@ -49,7 +49,7 @@ function Homepage() {
     const adminData = localStorage.getItem("admin");
     if (!adminData && !loading) {
       // Admin data doesn't exist in localStorage, redirect to LoginPage
-      navigateTo("/encadrant/login");
+      navigateTo("/admin/login");
     } else if (adminData && !admin) {
       // Admin data exists in localStorage but not in context, set the admin context
       adminContext.setAdmin(JSON.parse(adminData));
@@ -87,7 +87,7 @@ function Homepage() {
                   <label className="admin-name">
                     {admin.nom} {admin.prenom}
                   </label>
-                  <label className="admin-post">{admin.fonction}</label>
+                  <label className="admin-post">Administrateur</label>
                 </>
               )}
             </div>

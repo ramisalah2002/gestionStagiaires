@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import { AdminContext } from "../../Contexts/AdminContext";
+import { StagiaireContext } from "../../Contexts/StagiaireContext";
 import {
   BrowserRouter as Router,
   Routes,
@@ -29,6 +29,7 @@ import LaravelImage from "../../images/Laravel.png";
 
 function ProjetStagiaire() {
   const [currentTechnologie, setCurrentTechnologie] = useState(0);
+  const navigateTo = useNavigate();
 
   const technologies = [
     {
@@ -60,25 +61,78 @@ function ProjetStagiaire() {
     );
   };
 
-  const navigateTo = useNavigate();
-  const { admin, loading } = useContext(AdminContext);
-  const adminContext = useContext(AdminContext);
+
+  const { stagiaire } = useContext(StagiaireContext);
+  const stagiaireContext = useContext(StagiaireContext);
 
   useEffect(() => {
-    const adminData = localStorage.getItem("admin");
-    if (!adminData && !loading) {
+    const stagiaireData = localStorage.getItem("stagiaire");
+    if (!stagiaireData) {
       // Admin data doesn't exist in localStorage, redirect to LoginPage
-      navigateTo("/encadrant/login");
-    } else if (adminData && !admin) {
+      navigateTo("/stagiaire/login");
+    } else if (stagiaireData && !stagiaire) {
       // Admin data exists in localStorage but not in context, set the admin context
-      adminContext.setAdmin(JSON.parse(adminData));
+      stagiaireContext.setStagiaire(JSON.parse(stagiaireData));
     }
-  }, [admin, loading, navigateTo, adminContext]);
+  }, [stagiaire, navigateTo, stagiaireContext]);
 
   const currentDate = new Date().toLocaleString("fr-FR", {
     day: "numeric",
     month: "short",
   });
+
+
+  const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchStagiaireData = async () => {
+            try {
+                const stagiaireData = localStorage.getItem("stagiaire");
+                const { id } = JSON.parse(stagiaireData);  // Use the id from the local storage
+                const response = await fetch(`http://127.0.0.1:8000/api/stagiaire/${id}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                setData(data); // This will contain updated data from server
+                setLoading(false);
+            } catch (error) {
+                setError(error);
+                setLoading(false);
+            }
+        };
+
+        fetchStagiaireData();
+    }, []);
+
+    
+  const [equipe, setEquipe] = useState([]);
+  const [loadingEquipe, setLoadingEquipe] = useState(true);
+  const [errorEquipe, setErrorEquipe] = useState(null);
+
+  useEffect(() => {
+    const fetchStagiaires = async () => {
+      try {
+        const stagiaireData = localStorage.getItem("stagiaire");
+        const { equipe_id } = JSON.parse(stagiaireData);
+        const response = await fetch(`http://127.0.0.1:8000/api/equipe/${equipe_id}/stagiaires`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setEquipe(data);
+        setLoadingEquipe(false);
+      } catch (error) {
+        setErrorEquipe(error);
+        setLoadingEquipe(false);
+      }
+    };
+
+    fetchStagiaires();
+  }, []);
+
 
   return (
     <div className="app">
@@ -88,12 +142,12 @@ function ProjetStagiaire() {
           <div className="admin-container">
             <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
             <div className="admin-info">
-              {admin && (
+              {stagiaire && (
                 <>
                   <label className="admin-name">
-                    {admin.nom} {admin.prenom}
+                    {stagiaire.nom} {stagiaire.prenom}
                   </label>
-                  <label className="admin-post">{admin.fonction}</label>
+                  <label className="admin-post">{stagiaire.formation}</label>
                 </>
               )}
             </div>
@@ -118,31 +172,36 @@ function ProjetStagiaire() {
         <div className="header-projet">
           <div className="header-projet-txt">Présentation du projet</div>
           <div className="header-projet-container">
+          {data && data.equipe && data.equipe.projet &&(
             <div className="projetInformations">
               <div className="sideInformations">Projet</div>
               <img
-                src={projetImage}
+                src={data.equipe.projet.image}
                 className="projetImage"
                 alt="projetImage"
               />
               <div className="projetText">
-                <div className="header-nom">JEXAMEN</div>
-                <div className="header-type">Mobile</div>
+                <div className="header-nom">{data.equipe.projet.sujet}</div>
+                <div className="header-type">{data.equipe.projet.type}</div>
               </div>
             </div>
+          )}
             <div className="vertical-line" />
-            <div className="encadrantInformations">
-              <div className="sideInformations">Encadrant</div>
-              <img
-                src={userImage}
-                className="encadrantImage"
-                alt="encadrantImage"
-              />
-              <div className="encadrantText">
-                <div className="header-nom">Mr. Fouad Toufik</div>
-                <div className="header-fonction">Enseignant</div>
+              {data && data.equipe && data.equipe.encadrant &&(
+              <div className="encadrantInformations">
+                <div className="sideInformations">Encadrant</div>
+                <img
+                  src={data.equipe.encadrant.image}
+                  className="encadrantImage"
+                  alt="encadrantImage"
+                />
+  
+                <div className="encadrantText">
+                  <div className="header-nom">{data.equipe.encadrant.nom} {data.equipe.encadrant.prenom}</div>
+                  <div className="header-fonction">{data.equipe.encadrant.fonction}</div>
+                </div>
               </div>
-            </div>
+              )}
             <div className="vertical-line" />
             <div className="equipeInformations">
               <div className="sideInformations">Stagiaires</div>

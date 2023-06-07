@@ -14,44 +14,13 @@ function ChoicePage() {
   const [password, setPassword] = useState("");
   const navigateTo = useNavigate();
 
-  
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const response = await fetch("http://127.0.0.1:8000/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      // Store user and token information to localStorage or Context API or Redux
-      localStorage.setItem("user", JSON.stringify(data.user));
-      localStorage.setItem("token", data.token);
-
-      // Redirect to HomePage
-      navigateTo("/encadrant/accueil");
-    } else {
-      // Handle error
-      console.log(data.message);
-    }
-  };
-
   return (
     <div className="choice-container">
       <div className='background-img-container'>
           <img src='../../images/logoMen.png'/>
       </div>
       <div className="choices-container">
-        <Link  className="choice-wrapper">
+        <Link to="/admin/login"  className="choice-wrapper">
           <div className="choice-content choice-content-1">
             <div className="image-div-1"></div>
           </div>

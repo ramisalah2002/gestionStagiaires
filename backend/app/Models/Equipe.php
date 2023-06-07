@@ -22,9 +22,10 @@ class Equipe extends Model
     {
         return $this->hasMany(Stagiaire::class, 'equipe_id');
     }
-    public function projets()
+    public function projet()
     {
-        return $this->hasMany(Projet::class);
+        return $this->hasOne(Projet::class, 'equipe_id');
     }
+
 }
 

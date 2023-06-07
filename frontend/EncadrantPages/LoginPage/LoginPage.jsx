@@ -1,37 +1,31 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { AdminContext } from "../../Contexts/AdminContext";
-
-
-import Homepage from "../Homepage/Homepage";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
-import appLogo from "../../images/MENStage.png";
+import appLogo from "../../images/appLogo.png";
 import logoLeft from "../../images/logoLeft.png";
 import logoMen from "../../images/logoMen.png";
 import "./LoginPage.css";
 
-function LoginPage() {
+function LoginPageEncadrant() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigateTo = useNavigate();
 
-  const adminContext = useContext(AdminContext);
-
-  const { admin, setAdmin } = useContext(AdminContext);
-
   useEffect(() => {
-    if (admin) {
-      // User is already authenticated, redirect to the appropriate page
-      navigateTo("/encadrant/accueil");
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      // User data not found, navigate to LoginPage
+      navigateTo("/stagiaire/accueil");
+      return;
     }
-  }, [admin, navigateTo]);
-
+  }, [navigateTo]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://127.0.0.1:8000/api/admin/login", {
+    const response = await fetch("http://127.0.0.1:8000/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -45,14 +39,19 @@ function LoginPage() {
     const data = await response.json();
 
     if (response.ok) {
-      adminContext.setAdmin(data.user);
-      localStorage.setItem("admin", JSON.stringify(data.user));
-      navigateTo("/admin/accueil");
+      // Store user and token information to localStorage or Context API or Redux
+      localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("token", data.token);
+
+      // Redirect to HomePage
+      navigateTo("/stagiaire/accueil");
     } else {
+      // Handle error
       console.log(data.message);
     }
   };
-  
+
+  const userId = 4;
 
   return (
     <div className="mainContainer">
@@ -85,8 +84,7 @@ function LoginPage() {
               <input type="checkbox" id="rememberMe" />
               <label htmlFor="rememberMe">Se souvenir de moi</label>
             </div>
-            <Link to='/forgot-password'>Mot de passe oublié</Link>
-
+            <Link to="/forgot-password">Mot de passe oublié</Link>
           </div>
           <button type="submit">Se connecter</button>
         </form>
@@ -95,4 +93,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default LoginPageEncadrant;

@@ -39,12 +39,13 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import exporting from "highcharts/modules/exporting";
 import exportData from "highcharts/modules/export-data";
+import { StagiaireContext } from "../../Contexts/StagiaireContext";
 
 // Initialize exporting and exportData modules
 exporting(Highcharts);
 exportData(Highcharts);
 
-function Homepage() {
+function StagiaireHomepage() {
   const [searchResults, setSearchResults] = useState([]); // New state for the search results
   const [isSearching, setIsSearching] = useState(false);
   const [searchingText, setSearchingText] = useState("");
@@ -97,78 +98,55 @@ function Homepage() {
     setSearchingText(searchTerm !== "" ? "Résultat de la recherche" : "");
   };
 
-  const stagiaires = [
-    {
-      id: 1,
-      nom: "Rami Salah-eddine",
-      email: "ramisalah2002@gmail.com",
-      status: "Actif",
-      joursStage: "4 jours",
-    },
-    {
-      id: 2,
-      nom: "John Doe",
-      email: "johndoe@example.com",
-      status: "Terminé",
-      joursStage: "10 jours",
-    },
-    {
-      id: 3,
-      nom: "Rami Salah-eddine",
-      email: "ramisalah2002@gmail.com",
-      status: "Actif",
-      joursStage: "4 jours",
-    },
-    {
-      id: 4,
-      nom: "John Doe",
-      email: "johndoe@example.com",
-      status: "Terminé",
-      joursStage: "10 jours",
-    },
-    {
-      id: 5,
-      nom: "John Doe",
-      email: "johndoe@example.com",
-      status: "Terminé",
-      joursStage: "10 jours",
-    },
-    {
-      id: 6,
-      nom: "Rami Salah-eddine",
-      email: "ramisalah2002@gmail.com",
-      status: "Actif",
-      joursStage: "4 jours",
-    },
-    {
-      id: 7,
-      nom: "John Doe",
-      email: "johndoe@example.com",
-      status: "Terminé",
-      joursStage: "10 jours",
-    },
-  ];
+  
 
   const navigateTo = useNavigate();
-  const { admin, loading } = useContext(AdminContext);
-  const adminContext = useContext(AdminContext);
+  const { stagiaire } = useContext(StagiaireContext);
+  const stagiaireContext = useContext(StagiaireContext);
 
   useEffect(() => {
-    const adminData = localStorage.getItem("admin");
-    if (!adminData && !loading) {
+    const stagiaireData = localStorage.getItem("stagiaire");
+    if (!stagiaireData) {
       // Admin data doesn't exist in localStorage, redirect to LoginPage
-      navigateTo("/encadrant/login");
-    } else if (adminData && !admin) {
+      navigateTo("/stagiaire/login");
+    } else if (stagiaireData && !stagiaire) {
       // Admin data exists in localStorage but not in context, set the admin context
-      adminContext.setAdmin(JSON.parse(adminData));
+      stagiaireContext.setStagiaire(JSON.parse(stagiaireData));
     }
-  }, [admin, loading, navigateTo, adminContext]);
+  }, [stagiaire, navigateTo, stagiaireContext]);
+  
+  
   
   
   const currentDate = new Date().toLocaleString("fr-FR", {
     day: "numeric",
     month: "short",
   });
+
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchStagiaireData = async () => {
+            try {
+                const stagiaireData = localStorage.getItem("stagiaire");
+                const { id } = JSON.parse(stagiaireData);  // Use the id from the local storage
+                const response = await fetch(`http://127.0.0.1:8000/api/stagiaire/${id}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                setData(data); // This will contain updated data from server
+                setLoading(false);
+            } catch (error) {
+                setError(error);
+                setLoading(false);
+            }
+        };
+
+        fetchStagiaireData();
+    }, []);
   
   
   
@@ -184,12 +162,12 @@ function Homepage() {
           <div className="admin-container">
             <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
             <div className="admin-info">
-              {admin && (
+              {stagiaire && (
                 <>
                   <label className="admin-name">
-                    {admin.nom} {admin.prenom}
+                    {stagiaire.nom} {stagiaire.prenom}
                   </label>
-                  <label className="admin-post">{admin.fonction}</label>
+                  <label className="admin-post">{stagiaire.formarion}</label>
                 </>
               )}
             </div>
@@ -217,7 +195,7 @@ function Homepage() {
             <div className="profile">
               <div className="haut-profile">
                 <div className="bienvenue">
-                  <div className="haut-bienvenue">Bienvenue Salah-eddine !</div>
+                {stagiaire &&( <div className="haut-bienvenue">{stagiaire.nom} {stagiaire.prenom}</div>)}
                   <div className="bas-bienvenue">
                     Bienvenue dans votre espace de stage
                   </div>
@@ -231,13 +209,17 @@ function Homepage() {
                 </div>
               </div>
               <div className="bas-profile">
-                <div className="bas-profile-gauche">
-                  <div className="img-profile" />
-                  <div className="bas-profile-gauche-text">
-                    <div className="nomStagiare">Rami Salah-eddine</div>
-                    <div className="formation">Génie Logiciel</div>
+                {stagiaire &&( 
+                  <div className="bas-profile-gauche">
+                    <div style={{ backgroundImage: `url(${stagiaire.image})` }} className="img-profile" />
+                    <div className="bas-profile-gauche-text">
+                      <div className="nomStagiare">{stagiaire.nom} {stagiaire.prenom}</div>
+                      <div className="formation">{stagiaire.formation}</div>
+                    </div>
                   </div>
-                </div>
+                )}
+
+
                 <div className="bas-profile-droit">
                   <div className="bas-profile-droit-date">
                     <div className="bas-profile-droit-dateDebut">
@@ -262,7 +244,7 @@ function Homepage() {
                     </div>
                   </div>
                   <div className="bas-profile-droit-viewProfile">
-                    <Link className="viewButton" to="#">
+                    <Link className="viewButton" to="/stagiaire/mon-profile">
                       <div className="txtViewPofile">voir profile</div>
                       <FontAwesomeIcon
                         className="flecheDroit"
@@ -408,12 +390,14 @@ function Homepage() {
                       <div className="projetBackGround-img" />
                     </div>
                   </div>
+                  {( data && data.equipe && data.equipe.projet &&
                   <div className="haut-projet-droit">
-                    <div className="nomApplication">JEXAMEN</div>
+                    <div className="nomApplication">{data.equipe.projet.sujet}</div>
                     <div className="descriptionApplication">
-                      Une application de passage des examens en ligne
+                    {data.equipe.projet.description}
                     </div>
                   </div>
+                  )}
                 </div>
 
                 <div className="bas-projet">
@@ -421,12 +405,16 @@ function Homepage() {
                     <div className="infoEncadrant">
                       <div className="entete-image">
                         <div className="entete">Encadrant</div>
-                        <div className="imgEncadrant" />
+                        { data && data.equipe && data.equipe.encadrant && (
+                          <div style={{ backgroundImage: `url(${data.equipe.encadrant.image})` }} className="imgEncadrant" />
+                        )}
                       </div>
-                      <div className="nomEncadrant-fonction">
-                        <div className="nomEncadrant">Mr. Fouad Toufik</div>
-                        <div className="fonction">Enseignant</div>
-                      </div>
+                      { data && data.equipe && data.equipe.encadrant &&  (
+                        <div className="nomEncadrant-fonction">
+                          <div className="nomEncadrant">{data.equipe.encadrant.nom} {data.equipe.encadrant.prenom}</div>
+                          <div className="fonction">{data.equipe.encadrant.fonction}</div>
+                        </div>
+                      )}
                     </div>
                     <Link className="linkEncadrant" to="#">
                       <div className="linkTxt">Encadrant Profile</div>
@@ -436,20 +424,22 @@ function Homepage() {
                       />
                     </Link>
                   </div>
-                  <div className="bas-projet-droit">
-                    <div className="projet-img" />
-                    <div className="under-logo">
-                      <div className="nomProjet">JEXAMEN</div>
-                      <div className="typeProjet">Mobile</div>
-                      <Link className="viewProjetButton" to="#">
-                        <div className="voirDetailsProjet">voir details</div>
-                        <FontAwesomeIcon
-                          className="flecheDroit"
-                          icon={faArrowRight}
-                        />
-                      </Link>
-                    </div>
-                  </div>
+                    {stagiaire && data && data.equipe && data.equipe.projet && (
+                      <div className="bas-projet-droit">
+                          <div style={{ backgroundImage: `url(${data.equipe.projet.image})` }} className="projet-img" />
+                          <div className="under-logo">
+                            <div className="nomProjet">{data.equipe.projet.sujet}</div>
+                            <div className="typeProjet">{data.equipe.projet.type}</div>
+                            <Link className="viewProjetButton" to="#">
+                              <div className="voirDetailsProjet">voir details</div>
+                              <FontAwesomeIcon
+                                className="flecheDroit"
+                                icon={faArrowRight}
+                              />
+                            </Link>
+                          </div>
+                      </div>
+                     )}
                 </div>
               </div>
               <div className="reunion-logo">
@@ -494,4 +484,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default StagiaireHomepage;

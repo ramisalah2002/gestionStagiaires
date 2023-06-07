@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { StagiaireContext } from "../../Contexts/StagiaireContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import appLogo from "../../images/appLogo.png";
@@ -13,19 +14,26 @@ function LoginPageStagiaire() {
   const [password, setPassword] = useState("");
   const navigateTo = useNavigate();
 
+  const stagiaireContext = useContext(StagiaireContext);
+
+  const { stagiaire, loading } = useContext(StagiaireContext);
+
   useEffect(() => {
-    const userData = localStorage.getItem("user");
-    if (userData) {
-      // User data not found, navigate to LoginPage
-      navigateTo("/stagiaire/accueil");
-      return;
+    const stagiaireData = localStorage.getItem("stagiaire");
+    if (!stagiaireData && !loading) {
+      // Admin data doesn't exist in localStorage, redirect to LoginPage
+      navigateTo("/stagiaire/login");
+    } else if (stagiaireData && !stagiaire) {
+      // Admin data exists in localStorage but not in context, set the admin context
+      stagiaireContext.setStagiaire(JSON.parse(stagiaireData));
+      navigateTo('/stagiaire/accueil');
     }
-  }, [navigateTo]);
+  }, [stagiaire, loading, navigateTo, stagiaireContext]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://127.0.0.1:8000/api/login", {
+    const response = await fetch("http://127.0.0.1:8000/api/stagiaire/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,7 +48,8 @@ function LoginPageStagiaire() {
 
     if (response.ok) {
       // Store user and token information to localStorage or Context API or Redux
-      localStorage.setItem("user", JSON.stringify(data.user));
+      console.log(data);
+      localStorage.setItem("stagiaire", JSON.stringify(data.stagiaire));
       localStorage.setItem("token", data.token);
 
       // Redirect to HomePage

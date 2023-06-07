@@ -104,9 +104,10 @@
   font-weight: 700;
 }
 .bas-profile-gauche-text .formation {
-  font-size: 15px;
+  font-size: 14px;
   color: #74788d;
-  font-weight: 500;
+  white-space: nowrap;
+  font-weight: 400;
 }
 .bas-profile-droit-date {
   display: flex;

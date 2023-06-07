@@ -16,6 +16,34 @@ class EncadrantController extends Controller
         return response()->json($encadrant);
     }
 
+    public function login(Request $request)
+    {
+        $fields = $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        // Check Email
+        $user = Encadrant::where('email', $fields['email'])->first();
+
+        // Check password
+        if (!$user || !Hash::check($fields['password'], $user->password)) {
+            return response([
+                'message' => 'Incorrect informations'
+            ], 401);
+        }
+
+        $token = $user->createToken($user->getTable().'Token')->plainTextToken;
+
+        $response = [
+            'user' => $user,
+            'token' => $token
+        ];
+
+        return response($response, 201);
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */

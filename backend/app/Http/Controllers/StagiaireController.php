@@ -60,15 +60,45 @@ class StagiaireController extends Controller
         $stagiaire->save();
     }
 
+    public function login(Request $request)
+    {
+        $fields = $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        // Check Email
+        $stagiaire = Stagiaire::where('email', $fields['email'])->first();
+
+        // Check password
+        if (!$stagiaire || !Hash::check($fields['password'], $stagiaire->password)) {
+            return response([
+                'message' => 'Incorrect informations'
+            ], 401);
+        }
+
+        $token = $stagiaire->createToken($stagiaire->getTable().'Token')->plainTextToken;
+
+        $response = [
+            'stagiaire' => $stagiaire,
+            'token' => $token
+        ];
+
+        return response($response, 201);
+    }
+
     /**
      * Display the specified resource.
      */
     public function show($id)
     {
-        $stagiaire = Stagiaire::with('etablissement')->find($id);
+        $stagiaire = Stagiaire::with(['etablissement', 'equipe', 'equipe.encadrant', 'equipe.projet'])->find($id);
 
         return response()->json($stagiaire);
     }
+
+
+
 
     public function updateCouverture(Request $request, $id)
     {
