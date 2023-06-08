@@ -98,8 +98,6 @@ function StagiaireHomepage() {
     setSearchingText(searchTerm !== "" ? "Résultat de la recherche" : "");
   };
 
-  
-
   const navigateTo = useNavigate();
   const { stagiaire } = useContext(StagiaireContext);
   const stagiaireContext = useContext(StagiaireContext);
@@ -114,45 +112,46 @@ function StagiaireHomepage() {
       stagiaireContext.setStagiaire(JSON.parse(stagiaireData));
     }
   }, [stagiaire, navigateTo, stagiaireContext]);
-  
-  
-  
-  
+
   const currentDate = new Date().toLocaleString("fr-FR", {
     day: "numeric",
     month: "short",
   });
 
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchStagiaireData = async () => {
-            try {
-                const stagiaireData = localStorage.getItem("stagiaire");
-                const { id } = JSON.parse(stagiaireData);  // Use the id from the local storage
-                const response = await fetch(`http://127.0.0.1:8000/api/stagiaire/${id}`);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
-                setData(data); // This will contain updated data from server
-                setLoading(false);
-            } catch (error) {
-                setError(error);
-                setLoading(false);
-            }
-        };
+  useEffect(() => {
+    const fetchStagiaireData = async () => {
+      try {
+        const stagiaireData = localStorage.getItem("stagiaire");
+        const { id } = JSON.parse(stagiaireData); // Use the id from the local storage
+        const response = await fetch(
+          `http://127.0.0.1:8000/api/stagiaire/${id}`
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setData(data); // This will contain updated data from server
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    };
 
-        fetchStagiaireData();
-    }, []);
-  
-  
-  
-  
+    fetchStagiaireData();
+  }, []);
 
-  
+  const [projets, setProjets] = useState([]);
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/projets/details")
+      .then((response) => response.json())
+      .then((data) => setProjets(data))
+      .catch((error) => console.error("Erreur:", error));
+  }, []);
 
   return (
     <div className="app">
@@ -195,7 +194,11 @@ function StagiaireHomepage() {
             <div className="profile">
               <div className="haut-profile">
                 <div className="bienvenue">
-                {stagiaire &&( <div className="haut-bienvenue">{stagiaire.nom} {stagiaire.prenom}</div>)}
+                  {stagiaire && (
+                    <div className="haut-bienvenue">
+                      {stagiaire.nom} {stagiaire.prenom}
+                    </div>
+                  )}
                   <div className="bas-bienvenue">
                     Bienvenue dans votre espace de stage
                   </div>
@@ -209,16 +212,20 @@ function StagiaireHomepage() {
                 </div>
               </div>
               <div className="bas-profile">
-                {stagiaire &&( 
+                {stagiaire && (
                   <div className="bas-profile-gauche">
-                    <div style={{ backgroundImage: `url(${stagiaire.image})` }} className="img-profile" />
+                    <div
+                      style={{ backgroundImage: `url(${stagiaire.image})` }}
+                      className="img-profile"
+                    />
                     <div className="bas-profile-gauche-text">
-                      <div className="nomStagiare">{stagiaire.nom} {stagiaire.prenom}</div>
+                      <div className="nomStagiare">
+                        {stagiaire.nom} {stagiaire.prenom}
+                      </div>
                       <div className="formation">{stagiaire.formation}</div>
                     </div>
                   </div>
                 )}
-
 
                 <div className="bas-profile-droit">
                   <div className="bas-profile-droit-date">
@@ -390,13 +397,15 @@ function StagiaireHomepage() {
                       <div className="projetBackGround-img" />
                     </div>
                   </div>
-                  {( data && data.equipe && data.equipe.projet &&
-                  <div className="haut-projet-droit">
-                    <div className="nomApplication">{data.equipe.projet.sujet}</div>
-                    <div className="descriptionApplication">
-                    {data.equipe.projet.description}
+                  {data && data.equipe && data.equipe.projet && (
+                    <div className="haut-projet-droit">
+                      <div className="nomApplication">
+                        {data.equipe.projet.sujet}
+                      </div>
+                      <div className="descriptionApplication">
+                        {data.equipe.projet.description}
+                      </div>
                     </div>
-                  </div>
                   )}
                 </div>
 
@@ -405,14 +414,24 @@ function StagiaireHomepage() {
                     <div className="infoEncadrant">
                       <div className="entete-image">
                         <div className="entete">Encadrant</div>
-                        { data && data.equipe && data.equipe.encadrant && (
-                          <div style={{ backgroundImage: `url(${data.equipe.encadrant.image})` }} className="imgEncadrant" />
+                        {data && data.equipe && data.equipe.encadrant && (
+                          <div
+                            style={{
+                              backgroundImage: `url(${data.equipe.encadrant.image})`,
+                            }}
+                            className="imgEncadrant"
+                          />
                         )}
                       </div>
-                      { data && data.equipe && data.equipe.encadrant &&  (
+                      {data && data.equipe && data.equipe.encadrant && (
                         <div className="nomEncadrant-fonction">
-                          <div className="nomEncadrant">{data.equipe.encadrant.nom} {data.equipe.encadrant.prenom}</div>
-                          <div className="fonction">{data.equipe.encadrant.fonction}</div>
+                          <div className="nomEncadrant">
+                            {data.equipe.encadrant.nom}{" "}
+                            {data.equipe.encadrant.prenom}
+                          </div>
+                          <div className="fonction">
+                            {data.equipe.encadrant.fonction}
+                          </div>
                         </div>
                       )}
                     </div>
@@ -424,22 +443,31 @@ function StagiaireHomepage() {
                       />
                     </Link>
                   </div>
-                    {stagiaire && data && data.equipe && data.equipe.projet && (
-                      <div className="bas-projet-droit">
-                          <div style={{ backgroundImage: `url(${data.equipe.projet.image})` }} className="projet-img" />
-                          <div className="under-logo">
-                            <div className="nomProjet">{data.equipe.projet.sujet}</div>
-                            <div className="typeProjet">{data.equipe.projet.type}</div>
-                            <Link className="viewProjetButton" to="#">
-                              <div className="voirDetailsProjet">voir details</div>
-                              <FontAwesomeIcon
-                                className="flecheDroit"
-                                icon={faArrowRight}
-                              />
-                            </Link>
-                          </div>
+                  {stagiaire && data && data.equipe && data.equipe.projet && (
+                    <div className="bas-projet-droit">
+                      <div
+                        style={{
+                          backgroundImage: `url(${data.equipe.projet.image})`,
+                        }}
+                        className="projet-img"
+                      />
+                      <div className="under-logo">
+                        <div className="nomProjet">
+                          {data.equipe.projet.sujet}
+                        </div>
+                        <div className="typeProjet">
+                          {data.equipe.projet.type}
+                        </div>
+                        <Link className="viewProjetButton" to="#">
+                          <div className="voirDetailsProjet">voir details</div>
+                          <FontAwesomeIcon
+                            className="flecheDroit"
+                            icon={faArrowRight}
+                          />
+                        </Link>
                       </div>
-                     )}
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="reunion-logo">

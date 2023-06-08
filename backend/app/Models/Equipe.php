@@ -28,7 +28,7 @@ class Equipe extends Model
     }
     public function projets()
     {
-        return $this->hasOne(Projet::class, 'equipe_id');
+        return $this->hasMany(Projet::class, 'equipe_id');
     }
 
 }

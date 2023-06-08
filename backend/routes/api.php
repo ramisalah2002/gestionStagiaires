@@ -128,4 +128,7 @@ Route::get('equipes/details', [\App\Http\Controllers\EquipeController::class, 'g
 Route::get('/stagiaires/absences', [\App\Http\Controllers\StagiaireController::class, 'getAbsenceStagiaires']);
 
 //getting projects details
-Route::get('projet/datails', [\App\Http\Controllers\ProjetController::class, 'getProjetDetails']);
+Route::get('projets/details', [\App\Http\Controllers\ProjetController::class, 'getProjetsDetails']);
+
+//getting today absences
+Route::get('absences/aujourdhui', [\App\Http\Controllers\AbsenceController::class, 'getAbsencesAujourdhui']);

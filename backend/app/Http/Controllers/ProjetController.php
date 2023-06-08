@@ -82,40 +82,26 @@ class ProjetController extends Controller
     }
 
 
-    public function getProjetDetails()
+    public function getProjetsDetails()
     {
         $projets = Projet::with([
             'equipe' => function ($query) {
-                $query->with('stagiaires');
+                $query->select('id', 'nom_equipe');
             },
-        ])->get();
+            'equipe.stagiaires' => function ($query) {
+                $query->select('id', 'nom', 'prenom', 'equipe_id');
+            },
+        ])->select('id', 'sujet', 'status', 'equipe_id')->get();
 
-        $result = [];
-
-        foreach ($projets as $projet) {
-            $data = [
-                'id' => $projet->id,
-                'sujet' => $projet->sujet,
-                'status' => $projet->status,
-                'equipe' => [
-                    'id' => $projet->equipe->id,
-                    'nom' => $projet->equipe->nom_equipe,
-                    'stagiaires' => [],
-                ],
-            ];
-
-            foreach ($projet->equipe->stagiaires as $stagiaire) {
-                $data['equipe']['stagiaires'][] = [
-                    'id' => $stagiaire->id,
-                    'nom' => $stagiaire->nom,
-                    'prenom' => $stagiaire->prenom,
-                ];
-            }
-
-            $result[] = $data;
-        }
-
-        return response()->json($result);
+        return response()->json($projets);
     }
+
+
+
+
+
+
+
+
 
 }
