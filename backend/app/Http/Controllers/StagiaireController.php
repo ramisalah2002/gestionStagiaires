@@ -110,20 +110,23 @@ class StagiaireController extends Controller
 
     public function getAvancements($stagiaireId)
     {
-        $equipeId = Stagiaire::where('id', $stagiaireId)->value('equipe_id');
+        $projetId = Projet::whereHas('equipe', function ($query) use ($stagiaireId) {
+            $query->whereHas('stagiaires', function ($query) use ($stagiaireId) {
+                $query->where('id', $stagiaireId);
+            });
+        })->value('id');
 
-        $avancements = Avancement::whereHas('projet', function ($query) use ($equipeId) {
-            $query->where('equipe_id', $equipeId);
-        })->get();
+        $avancements = Avancement::where('projet_id', $projetId)->get();
 
         $response = [
             'stagiaire_id' => $stagiaireId,
-            'projet_id' => $equipeId,
+            'projet_id' => $projetId,
             'avancements' => $avancements
         ];
 
         return response()->json($response);
     }
+
 
 
 

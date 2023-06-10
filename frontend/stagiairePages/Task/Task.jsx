@@ -49,17 +49,13 @@ function Task() {
     month: "short",
   });
 
+  
 
-  const [value, setValue] = useState('');
+  
+  
 
-  const handleChange = (event) => {
-    const currentValue = event.target.value;
-
-    // Check if the input value is empty or a valid decimal number under 10
-    if (currentValue === '' || (/^\d*\.?\d*$/.test(currentValue) && parseFloat(currentValue) <= 10)) {
-      setValue(currentValue);
-    }
-  };
+  
+  
   
   const handleConc = () => {
     setSelectedTitle("conception");
@@ -75,20 +71,104 @@ function Task() {
   };
 
   const [avancements, setAvancements] = useState([]);
+const [avancementTypes, setAvancementTypes] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://127.0.0.1:8000/api/stagiaire/1/avancements'); // Replace with your API endpoint
+const fetchAvancement = async (id) => {
+  try {
+    const response = await fetch(`http://127.0.0.1:8000/api/avancements/${id}`);
+    const data = await response.json();
+    setAvancementTypes(data);
+  } catch (error) {
+    console.error('Error fetching avancements:', error);
+  }
+};
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      // Check if stagiaire exists
+      if (stagiaire) {
+        const response = await axios.get(`http://127.0.0.1:8000/api/stagiaire/${stagiaire.id}/avancements`);
         setAvancements(response.data);
         console.log(response.data);
-      } catch (error) {
-        console.log(error);
+        fetchAvancement(response.data.projet_id);
       }
-    };
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-    fetchData();
-  }, []);
+  fetchData();
+}, [stagiaire]); // Add stagiaire as a dependency
+
+useEffect(() => {
+  if (avancementTypes.length > 0) {
+    console.log(avancementTypes); // Display avancementTypes in the console
+  } 
+}, [avancementTypes]); // Add avancementTypes as a dependency
+// Add stagiaire as a dependency
+
+
+
+  
+
+
+  function formatDate() {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+  const formattedDate = formatDate();
+
+  const [textareaValue, setTextareaValue] = useState('');
+
+const handleTextareaChange = (event) => {
+  setTextareaValue(event.target.value);
+};
+
+
+  const [value, setValue] = useState('');
+  const handleChange = (event) => {
+    const currentValue = event.target.value;
+    let maxValue = 10; // Default max value
+  
+    // Check if selectedTitle matches any avancement type
+    const matchedType = avancementTypes.find((type) => type.type.toLowerCase() === selectedTitle.toLowerCase());
+  
+    // If a match is found, update the maxValue
+    if (matchedType) {
+      maxValue = 100 - matchedType.sum_valeur;
+    }
+  
+    // Check if the input value is empty or a valid decimal number under the maxValue
+    if (currentValue === '' || (/^\d*\.?\d*$/.test(currentValue) && parseFloat(currentValue) <= maxValue)) {
+      setValue(currentValue);
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    
+    const formData = {
+      date: formattedDate,
+      type: selectedTitle,
+      text: textareaValue, // Get the value from the textarea
+      valeur: value,
+      projet_id: avancements.projet_id,
+    };
+  
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/api/avancement', formData);
+      console.log(response.data);
+      // Handle success or display a success message
+    } catch (error) {
+      console.error('Error creating avancement:', error);
+      // Handle error or display an error message
+    }
+  };
+  
 
   return (
     <div className="app">
@@ -218,23 +298,30 @@ function Task() {
       </main>
       {showAvancementModal && (
         <div className="modal-overlay-absence">
-          <div className="modal-absence">
-            <div className="absence-section">
-                <label className="absence-section-title">Ajouter un avancement "{selectedTitle}"</label>
-                <FontAwesomeIcon className="plus-icon" onClick={()=>setShowAvancementModal(false)} icon={faClose} />
-            </div>
-            <p className='absence-modal-paragraph-2'>Valeur d'avancement</p>
-            <input
-              className="avancement-val"
-              type="text" // Use "text" instead of "number" to accept decimal values
-              value={value}
-              onChange={handleChange}
-            />
-            <p className='absence-modal-paragraph-2'>Description de l'avancement</p>
-            <textarea placeholder='Je décris mon avancement' className='absence-modal-textarea'></textarea>
-            <Link onClick={{}} className='mark-absence-button'>Enregistrer</Link>
-          </div>
-        </div>
+  <div className="modal-absence">
+    <div className="absence-section">
+      <label className="absence-section-title">Ajouter un avancement "{selectedTitle}"</label>
+      <FontAwesomeIcon className="plus-icon" onClick={() => setShowAvancementModal(false)} icon={faClose} />
+    </div>
+    <p className='absence-modal-paragraph-2'>Valeur d'avancement</p>
+    <input
+      className="avancement-val"
+      type="text" // Use "text" instead of "number" to accept decimal values
+      value={value}
+      onChange={handleChange}
+    />
+    <p className='absence-modal-paragraph-2'>Description de l'avancement</p>
+    <textarea
+      placeholder='Je décris mon avancement'
+      className='absence-modal-textarea'
+      value={textareaValue} // Add the value attribute
+      onChange={handleTextareaChange} // Add the onChange event handler
+    ></textarea>
+    <Link onClick={handleSubmit} className='mark-absence-button'>Enregistrer</Link> // Call handleSubmit on click
+  </div>
+</div>
+
+
       )}
     </div>
   );

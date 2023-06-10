@@ -154,7 +154,6 @@ function ProjetStagiaire() {
         console.error('Failed to fetch equipe details:', error);
       }
     };
-
     fetchEquipeDetails();
   }, []);
 
@@ -289,7 +288,7 @@ function ProjetStagiaire() {
                     </td>
                   </tr>
                   <tr className="progressionFontEnd">
-                    <td className="progressionText">FrontEnd</td>
+                    <td className="progressionText">{detailsEquipe.avancements_types[1].type}</td>
                     <td className="progressionPourcentage">{detailsEquipe.avancements_types[1].progres_type}%</td>
                     <td className="progressionBar">
                       <div
@@ -299,7 +298,7 @@ function ProjetStagiaire() {
                     </td>
                   </tr>
                   <tr className="progressionBackEnd">
-                    <td className="progressionText">BackEnd</td>
+                    <td className="progressionText">{detailsEquipe.avancements_types[2].type}</td>
                     <td className="progressionPourcentage">{detailsEquipe.avancements_types[2].progres_type}%</td>
                     <td className="progressionBar">
                       <div

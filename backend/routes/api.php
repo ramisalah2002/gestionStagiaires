@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\StagiaireController;
+use App\Http\Controllers\AvancementController;
 use App\Models\Equipe;
 use App\Models\Stagiaire;
 use App\Models\Encadrant;
@@ -157,3 +158,7 @@ Route::get('/max-id', function () {
 Route::get('stagiaires/{stagiaireId}/projet', [StagiaireController::class, 'getProjetStagiaire']);
 
 Route::get('stagiaire/{stagiaireId}/avancements', [StagiaireController::class, 'getAvancements']);
+
+Route::get('/avancements/{projetId}', [AvancementController::class, 'getAvancementSumByType']);
+
+Route::get('/projet/{projetId}/avancements/this-week', [AvancementController::class,'getAvancementByTypeAndDay']);
