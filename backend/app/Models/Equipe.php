@@ -11,9 +11,11 @@ class Equipe extends Model
 
     use HasFactory;
     protected $fillable = [
+        'id',
         'nom_equipe',
         'encadrant_id',
     ];
+
     public function encadrant()
     {
         return $this->belongsTo(Encadrant::class);
@@ -26,6 +28,7 @@ class Equipe extends Model
     {
         return $this->hasMany(Projet::class, 'equipe_id');
     }
+
 
 
 }

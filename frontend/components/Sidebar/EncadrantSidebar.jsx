@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Select from 'react-select';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import LoginPage from "../../pages/LoginPage/LoginPage";
@@ -21,59 +20,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./Sidebar.css";
 
-function Sidebar() {
+function EncadrantSidebar() {
   const [showSidebar, setShowSidebar] = useState(true);
   const [showStagiaireModal, setShowStagiaireModal] = useState(false);
   const [showEquipeModal, setShowEquipeModal] = useState(false);
-  const [stagiaires, setStagiaires] = useState([]);
-  const [technologies, setTechnologies] = useState([]);
-
-  ///getting the biggest id in the tables (equipe, stagiaire, encadrant, administrateur)
-  const [maxId, setMaxId] = useState(null);
-
-  useEffect(() => {
-    const fetchMaxId = async () => {
-      try {
-        const response = await fetch('http://127.0.0.1:8000/api/max-id'); // Replace with your API endpoint
-        const data = await response.json();
-        setMaxId(data.max_id);
-        console.log(data.max_id);
-      } catch (error) {
-        console.error('Error fetching max ID:', error);
-      }
-    };
-
-    fetchMaxId();
-  }, []);
-
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/stagiaire")
-      .then((response) => response.json())
-      .then((data) => setStagiaires(data))
-      .catch((error) => console.error("Erreur:", error));
-  }, []);
-
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/technologie")
-      .then((response) => response.json())
-      .then((data) => setTechnologies(data))
-      .catch((error) => console.error("Erreur:", error));
-  }, []);
-
-
-  
-
-  const [selectedTechnologies, setSelectedTechnologies] = useState([]);
-
-  const handleTechnologiesChange = (selectedOptions) => {
-    setSelectedTechnologies(selectedOptions);
-  };
 
   const navigateTo = useNavigate();
 
   const handleLogout = () => {
     // Remove user data from localStorage
-    localStorage.removeItem("admin");
+    localStorage.removeItem("encadrant");
 
     // Navigate to LoginPage
     window.location.href = "/";
@@ -118,24 +74,12 @@ function Sidebar() {
     "Password10",
   ];
 
-
-  const [encadrants, setEncadrants] = useState([]);
-
-  useEffect(() => {
-    fetchEncadrants();
-  }, []);
-
-  const fetchEncadrants = async () => {
-    try {
-      const response = await fetch("http://127.0.0.1:8000/api/encadrant");
-      const data = await response.json();
-      setEncadrants(data);
-    } catch (error) {
-      console.error("Error fetching encadrants:", error);
-    }
-  };
-
-  
+  const [stagiaires, setStagiaires] = useState([
+    { id: 1, nom: 'RAMI Salah-eddine' },
+    { id: 2, nom: 'John Doe' },
+    { id: 3, nom: 'Jane Smith' },
+    // Add more stagiaires as needed
+  ]);
 
   const [selectedStagiaires, setSelectedStagiaires] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -159,10 +103,8 @@ function Sidebar() {
   };
 
   const filteredStagiaires = stagiaires.filter((stagiaire) =>
-    stagiaire.nom.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    stagiaire.prenom.toLowerCase().includes(searchQuery.toLowerCase())
+    stagiaire.nom.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
 
   const [generatedPassword, setGeneratedPassword] = useState("");
 
@@ -194,64 +136,41 @@ function Sidebar() {
         <div className="toggle-button" onClick={toggleSidebar}>
           <FontAwesomeIcon icon={faBars} />
         </div>
-        <Link to="/admin/accueil" className="logo">
+        <Link to="/encadrant/accueil" className="logo">
           <div></div>
         </Link>
         <div className={`links-container`}>
           <ul className="links-list">
             <li className={activeLink === "link1" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link1")} to="/admin/accueil">
+              <Link onClick={() => handleLinkClick("link1")} to="/encadrant/accueil">
                 <FontAwesomeIcon className="big-icons" icon={faHome} />
                 <label>{showSidebar ? "Accueil" : null}</label>
               </Link>
             </li>
-            <li className={activeLink === "link2" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link2")} to="/admin/stagiaires">
-                <FontAwesomeIcon className="big-icons" icon={faUserGroup} />
-                <label>{showSidebar ? "Stagiaires" : null}</label>
-              </Link>
-              <Link onClick={() => openStagiaireModal()} className="plus-container">
-                <FontAwesomeIcon className="plus-icon" icon={faPlus} />
-              </Link>
-            </li>
             <li className={activeLink === "link3" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link3")} to="/admin/equipes">
+              <Link onClick={() => handleLinkClick("link3")} to="/encadrant/equipes">
                 <FontAwesomeIcon
                   className="big-icons"
                   icon={faUsersRectangle}
                 />
                 <label>{showSidebar ? "Equipes" : null}</label>
               </Link>
-              <Link onClick={() => openEquipeModal()} className="plus-container">
-                <FontAwesomeIcon className="plus-icon" icon={faPlus} />
-              </Link>
-            </li>
-            <li className={activeLink === "link4" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link4")} to="/admin/encadrants">
-                <FontAwesomeIcon
-                  className="big-icons"
-                  icon={faChalkboardUser}
-                />
-                <label>{showSidebar ? "Encadrants" : null}</label>
-              </Link>
-              <Link to="/parametres" className="plus-container">
-                <FontAwesomeIcon className="plus-icon" icon={faPlus} />
-              </Link>
+              
             </li>
             <li className={activeLink === "link5" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link5")} to="/admin/absence">
+              <Link onClick={() => handleLinkClick("link5")} to="/encadrant/absence">
                 <FontAwesomeIcon className="small-icons" icon={faCalendarCheck}/>
                 <label>{showSidebar ? "Absence" : null}</label>
               </Link>
             </li>
             <li className={activeLink === "link6" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link6")} to="/admin/discussions">
+              <Link onClick={() => handleLinkClick("link6")} to="/encadrant/discussions">
                 <FontAwesomeIcon className="small-icons" icon={faComment}/>
                 <label>{showSidebar ? "Discussions" : null}</label>
               </Link>
             </li>
             <li className={activeLink === "link7" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link7")} to="/admin/parametres">
+              <Link onClick={() => handleLinkClick("link7")} to="/encadrant/parametres">
                 <FontAwesomeIcon className="small-icons" icon={faGear} />
                 <label>{showSidebar ? "Paramètres" : null}</label>
               </Link>
@@ -417,19 +336,6 @@ function Sidebar() {
                 <label>Nom de l'équipe</label>
                 <input placeholder="Entrez le nom de l'équipe" />
               </div>
-              <div className="prenom-container">
-                <label>Sujet de stage</label>
-                <input placeholder="Entrez le sujet de stage" />
-              </div>
-              <div className="prenom-container">
-                <label>Type du projet</label>
-                <select>
-                  <option>Web</option>
-                  <option>Mobile</option>
-                  <option>Desktop</option>
-                  <option>Autre</option>
-                </select>
-              </div>
             </div>
             <div className="equipe-info-devider">
               <div className="equipe-info-devider-line"></div>
@@ -448,8 +354,8 @@ function Sidebar() {
               {filteredStagiaires.length > 0 && (
                 <div className="stagiaire-equipe">
                   <div className="stagiaire-equipe-info">
-                    <div style={{ backgroundImage: `url(${filteredStagiaires[0].image})` }} className="stagiaire-equipe-img"></div>
-                    <label>{filteredStagiaires[0].nom} {filteredStagiaires[0].prenom}</label>
+                    <div className="stagiaire-equipe-img"></div>
+                    <label>{filteredStagiaires[0].nom}</label>
                   </div>
                   <button
                     className="ajouter-stagiaire-equipe-link"
@@ -467,7 +373,7 @@ function Sidebar() {
               <label>Stagiaires sélectionnés :</label>
               <div className="selected-stagiaire-liste">
                 {selectedStagiaires.map((stagiaire) => (
-                  <div style={{ backgroundImage: `url(${stagiaire.image})` }} key={stagiaire.id} className="stagiaire-equipe-img">
+                  <div key={stagiaire.id} className="stagiaire-equipe-img">
                     <button
                       style={{background:"none",outline:"none",border:"none"}}
                       className="delete-selected-stagiaire-link"
@@ -477,40 +383,6 @@ function Sidebar() {
                     </button>
                   </div>
                 ))}
-              </div>
-            </div>
-            <div className="equipe-info-devider">
-              <div className="equipe-info-devider-line"></div>
-            </div>
-            <div className="form-group">
-              <div className="nom-container">
-                <label>Affecter encadrant</label>
-                <select name="selectedEncadrant">
-                  <option value="">Choisir...</option>
-                  {encadrants.map((encadrant) => (
-                    <option key={encadrant.id} value={encadrant.id}>
-                      {encadrant.nom} {encadrant.prenom}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            <div className="form-group">
-              <div className="nom-container">
-                <label>Choisir les technologies</label>
-                <Select className="select-tech"
-                  options={technologies.map((tech) => ({ value: tech.id, label: tech.nom_technologie }))}
-                  isMulti
-                  value={selectedTechnologies}
-                  onChange={handleTechnologiesChange}
-                  placeholder="Sélectionner les technologies ..."
-                />
-              </div>
-            </div>
-            <div className="form-group">
-              <div className="nom-container">
-                <label>Décrire le projet </label>
-                <textarea placeholder="Donner une description du sujet du projet" className="description-input"></textarea>
               </div>
             </div>
             <div className="save-container">
@@ -526,4 +398,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default EncadrantSidebar;

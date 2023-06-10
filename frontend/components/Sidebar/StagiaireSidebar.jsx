@@ -29,7 +29,7 @@ function StagiaireSidebar() {
 
   const handleLogout = () => {
     // Remove user data from localStorage
-    localStorage.removeItem("user");
+    localStorage.removeItem("stagiaire");
 
     // Navigate to LoginPage
     window.location.href = "/";
@@ -147,44 +147,20 @@ function StagiaireSidebar() {
                 <label>{showSidebar ? "Accueil" : null}</label>
               </Link>
             </li>
-            <li className={activeLink === "link3" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link3")} to="/equipes">
-                <FontAwesomeIcon
-                  className="big-icons"
-                  icon={faUsersRectangle}
-                />
-                <label>{showSidebar ? "Equipes" : null}</label>
-              </Link>
-              <Link onClick={() => openEquipeModal()} className="plus-container">
-                <FontAwesomeIcon className="plus-icon" icon={faPlus} />
-              </Link>
-            </li>
-            <li className={activeLink === "link4" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link4")} to="/encadrants">
-                <FontAwesomeIcon
-                  className="big-icons"
-                  icon={faChalkboardUser}
-                />
-                <label>{showSidebar ? "Encadrants" : null}</label>
-              </Link>
-              <Link to="/parametres" className="plus-container">
-                <FontAwesomeIcon className="plus-icon" icon={faPlus} />
-              </Link>
-            </li>
             <li className={activeLink === "link5" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link5")} to="/absence">
+              <Link onClick={() => handleLinkClick("link5")} to="/stagiaire/absence">
                 <FontAwesomeIcon className="small-icons" icon={faCalendarCheck}/>
                 <label>{showSidebar ? "Absence" : null}</label>
               </Link>
             </li>
             <li className={activeLink === "link6" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link6")} to="/discussions">
+              <Link onClick={() => handleLinkClick("link6")} to="/stagiaire/discussions">
                 <FontAwesomeIcon className="small-icons" icon={faComment}/>
                 <label>{showSidebar ? "Discussions" : null}</label>
               </Link>
             </li>
             <li className={activeLink === "link7" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link7")} to="/parametres">
+              <Link onClick={() => handleLinkClick("link7")} to="/stagiaire/parametres">
                 <FontAwesomeIcon className="small-icons" icon={faGear} />
                 <label>{showSidebar ? "Paramètres" : null}</label>
               </Link>

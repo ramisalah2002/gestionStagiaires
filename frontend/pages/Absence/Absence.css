@@ -37,10 +37,11 @@
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  row-gap: 20px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 24px;
   transition: ease 0.5s;
+  padding-top: 10px;
 }
 .absence-management-search {
   display: flex;

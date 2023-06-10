@@ -1,0 +1,229 @@
+*::-webkit-scrollbar {
+    display: none;
+  }
+  .sidebar.hidden ~ .main-content {
+    width: calc(100%);
+    margin-left: 60px;
+  }
+  .sections-container {
+    justify-content: center;
+    width: 100%;
+    padding: 10px 0px;
+    gap: 12px;
+    height: auto;
+    background-color: transparent;
+    border-radius: 15px;
+    box-shadow: none;
+    transition: ease 0.5s;
+    height: fit-content;
+    overflow: scroll !important;
+  }
+  .absence-container-back {
+    width: 100%;
+    background: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow: scroll;
+    margin: 0;
+  }
+  .absence-container-back label {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  .absence-management {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 24px;
+    transition: ease 0.5s;
+    padding-top: 10px;
+  }
+  .absence-management-search {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+    justify-content: start;
+    gap: 24px;
+    row-gap: 20px;
+    transition: ease 0.5s;
+  }
+  .stagiaire-box {
+    background-color: #fff;
+    border: 1px solid #ebebeb;
+    border-radius: 10px;
+    padding: 20px;
+    width: calc(100% / 4 - 60px);
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: ease 0.5s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .stagiaire-box:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  }
+  .stagiaire-box .projet-voir-detail {
+    background: #dce1eb;
+    border: 1px solid #dce1eb;
+    border-radius: 5px;
+    width: 100%;
+    color: #7c828d;
+    transition: ease 0.3s;
+  }
+  .stagiaire-box .projet-voir-detail:hover {
+    background: #eaebef;
+    color: #7c828d;
+    border: 1px solid #a9aeb3;
+  }
+  
+  .profile-picture-wrapper {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+    border: 2px solid rgb(237, 237, 237);
+    border-radius: 50%;
+  }
+  
+  .profile-picture {
+    width: 94%;
+    height: 94%;
+    border-radius: 50%;
+    object-fit: cover;
+    position: relative;
+    top: 3.2%;
+  }
+  
+  .stagiaire-name {
+    position: relative;
+    align-items: center;
+    margin-top: -10px;
+    margin-bottom: 30px;
+    font-size: 14px;
+  }
+  
+  .presence-days,
+  .latest-absence,
+  .status {
+    color: #979696;
+    margin-top: -15px;
+    font-weight: 600;
+    font-size: 12px;
+    position: relative;
+    align-items: flex-start;
+  }
+  
+  .profile-button {
+    background-color: white;
+    border: 1px solid #f2f3f4;
+    font-size: 12px;
+    font-weight: 700;
+    color: black;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .profile-button:hover {
+    background-color: #ffffff;
+    border: 1px solid #eeeeee;
+  }
+  
+  .detail {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd; /* This will create a horizontal line under each detail */
+    padding-bottom: 3px; /* Add some space under the line */
+    margin-bottom: 20px; /* Add some space below the line and the next detail */
+  }
+  .status-value {
+    margin-top: 1px;
+    font-size: 10px;
+    padding: 3px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-radius: 5px;
+  }
+  
+  .status-value.present {
+    color: rgb(50, 182, 143);
+    background-color: rgb(220, 242, 233);
+  }
+  
+  .status-value.absent {
+    color: rgb(204, 59, 59);
+    background-color: rgb(254, 215, 215);
+  }
+  
+  .status-value.not-indicated {
+    color: rgb(238, 178, 77);
+    background-color: rgb(249, 238, 221);
+  }
+  .box-header {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .action-select {
+    margin-bottom: 10px;
+    border: 1px solid #f2f2f2;
+    border-radius: 5px;
+  }
+  .pagination {
+    margin-top: 40px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto; /* Center the .pagination div */
+    margin-right: auto; /* Center the .pagination div */
+  }
+  
+  .pagination-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    border: 1px solid rgb(206, 212, 218);
+    background-color: rgb(255, 255, 255);
+    color: rgb(116, 120, 141);
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .pagination-btn:hover {
+    background-color: #ced4da;
+    color: #4458b8;
+  }
+  
+  .pagination-btn.active {
+    background-color: #4458b8;
+    color: rgb(255, 255, 255);
+  }
+  
+  .pagination-dots {
+    margin-right: 5px;
+    color: rgb(116, 120, 141);
+  }
+  

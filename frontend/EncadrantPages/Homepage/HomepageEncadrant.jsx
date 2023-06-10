@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import { AdminContext } from "../../Contexts/AdminContext";
+import { EncadrantContext } from "../../Contexts/EncadrantContext";
 import {
   BrowserRouter as Router,
   Routes,
@@ -16,9 +16,10 @@ import {
   faCalendarDays,
 } from "@fortawesome/free-solid-svg-icons";
 import { faUser, faRectangleList } from "@fortawesome/free-regular-svg-icons";
-import "../Homepage/Homepage.css";
+import '../../pages/Homepage/Homepage.css';
+import EncadrantSidebar from "../../components/Sidebar/EncadrantSidebar";
 
-function Homepage() {
+function HomepageEncadrant() {
   const [searchResults, setSearchResults] = useState([]); // New state for the search results
   const [isSearching, setIsSearching] = useState(false);
   const [searchingText, setSearchingText] = useState("");
@@ -41,51 +42,48 @@ function Homepage() {
       .catch((error) => console.error("Erreur:", error));
   }, []);
 
+
   const navigateTo = useNavigate();
-  const { admin, loading } = useContext(AdminContext);
-  const adminContext = useContext(AdminContext);
+  const { encadrant } = useContext(EncadrantContext);
+  const encadrantContext = useContext(EncadrantContext);
 
   useEffect(() => {
-    const adminData = localStorage.getItem("admin");
-    if (!adminData && !loading) {
+    const encadrantData = localStorage.getItem("encadrant");
+    if (!encadrantData) {
       // Admin data doesn't exist in localStorage, redirect to LoginPage
-      navigateTo("/admin/login");
-    } else if (adminData && !admin) {
+      navigateTo("/encadrant/login");
+    } else if (encadrantData && !encadrant) {
       // Admin data exists in localStorage but not in context, set the admin context
-      adminContext.setAdmin(JSON.parse(adminData));
+      encadrantContext.setEncadrant(JSON.parse(encadrantData));
     }
-  }, [admin, loading, navigateTo, adminContext]);
+  }, [encadrant, navigateTo, encadrantContext]);
 
   const currentDate = new Date().toLocaleString("fr-FR", {
     day: "numeric",
     month: "short",
   });
 
-  if (loading) {
-    // Show loading state while user data is being fetched
-    return <div>Loading...</div>;
-  }
 
   return (
     <div className="app">
-      <Sidebar />
+      <EncadrantSidebar />
       <main className="main-content">
         <div className="header">
           <div className="admin-container">
-            {admin && (
+            {encadrant && (
               <div
-                style={{ backgroundImage: `url(${admin.image})` }}
+                style={{ backgroundImage: `url(${encadrant.image})` }}
                 className="image-top"
               ></div>
             )}
-            {!admin && (
+            {!encadrant && (
               <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
             )}
             <div className="admin-info">
-              {admin && (
+              {encadrant && (
                 <>
                   <label className="admin-name">
-                    {admin.nom} {admin.prenom}
+                    {encadrant.nom} {encadrant.prenom}
                   </label>
                   <label className="admin-post">Administrateur</label>
                 </>
@@ -129,7 +127,7 @@ function Homepage() {
                     {stagiaire.formation}
                   </label>
                   <Link
-                    to={`/admin/profile-stagiaire/${stagiaire.id}`}
+                    to={`/profile-stagiaire/${stagiaire.id}`}
                     className="voir-detail"
                   >
                     Voir détail
@@ -144,7 +142,7 @@ function Homepage() {
             <div className="stagiaires-container">
               <div className="stagiaires-header">
                 <label className="stagiaires-title">Stagiaires</label>
-                <Link to="/admin/stagiaires" className="stagiaires-count">
+                <Link to="/stagiaires" className="stagiaires-count">
                   <FontAwesomeIcon icon={faUser} />
                   {stagiaires.length < 10 && 0}
                   {stagiaires.length}
@@ -169,7 +167,7 @@ function Homepage() {
                     </div>
                     <button
                       onClick={() =>
-                        navigateTo(`/admin/profile-stagiaire/${stagiaire.id}`)
+                        navigateTo(`/encadrant/profile-stagiaire/${stagiaire.id}`)
                       }
                       className="stagiaire-btn"
                     >
@@ -183,7 +181,7 @@ function Homepage() {
               <div className="project-container">
                 <div className="stagiaires-header">
                   <label className="stagiaires-title">Projets</label>
-                  <Link to="/admin/projets" className="stagiaires-count">
+                  <Link to="/projets" className="stagiaires-count">
                     <FontAwesomeIcon icon={faRectangleList} />{" "}
                     {stagiaires.length}
                   </Link>
@@ -232,7 +230,7 @@ function Homepage() {
                       <label className="today-abscence-day">Aujourd'hui</label>
                     </div>
                   </div>
-                  <Link to="/admin/absence" className="see-more-abscence">
+                  <Link to="/absence" className="see-more-abscence">
                     voir plus
                   </Link>
                 </div>
@@ -299,4 +297,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default HomepageEncadrant;

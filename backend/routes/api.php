@@ -4,6 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\StagiaireController;
+use App\Models\Equipe;
+use App\Models\Stagiaire;
+use App\Models\Encadrant;
+use App\Models\Administrateur;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,8 +44,6 @@ Route::post('/messages', [MessageController::class, 'store']);
 Route::get('/messages', [MessageController::class, 'index']);
 
 
-//DemandeStage
-Route::apiResource('demandeStage',\App\Http\Controllers\DemandeStageController::class);
 
 //Encadrant
 Route::apiResource('encadrant',\App\Http\Controllers\EncadrantController::class);
@@ -109,17 +111,49 @@ Route::apiResource('utilisateur',\App\Http\Controllers\UtilisateurController::cl
 
 //Etablissement
 Route::apiResource('etablissement',\App\Http\Controllers\EtablissementController::class);
+
 //UtilisationTechnologie
 Route::apiResource('utilisationTechnologie',\App\Http\Controllers\UtilisationTechnologieController::class);
 
-//UseFull Requests
+/*
+ * UseFull Requests
+ */
 
 //getting stagiaires-with-stage
 Route::get('/stagiaires-with-stage', [\App\Http\Controllers\StagiaireController::class, 'getStagiairesWithStage']);
 
-
+//updating stagiaires couvertures
 Route::post('/stagiaire/{id}/update-couverture', [\App\Http\Controllers\StagiaireController::class, 'updateCouverture']);
 
 //getting equipes details
 Route::get('equipes/details', [\App\Http\Controllers\EquipeController::class, 'getEquipesDetails']);
+Route::get('equipes/{equipeId}', [\App\Http\Controllers\EquipeController::class, 'getEquipeDetails']);
+//getting an Encadrant equipes
+Route::get('/equipes/details/{encadrant_id}', [\App\Http\Controllers\EquipeController::class, 'getEncadrantEquipesDetails']);
 
+//getting Stagiaires Absences
+Route::get('/stagiaires/absences', [\App\Http\Controllers\StagiaireController::class, 'getAbsenceStagiaires']);
+
+//getting projects details
+Route::get('projet/datails', [\App\Http\Controllers\ProjetController::class, 'getProjetDetails']);
+
+
+//getting the biggedt id from equipe, administrateur, encadrant, stagiaire
+
+
+Route::get('/max-id', function () {
+    $maxId = max(
+        Equipe::max('id'),
+        Stagiaire::max('id'),
+        Encadrant::max('id'),
+        Administrateur::max('id')
+    );
+
+    return response()->json(['max_id' => $maxId]);
+});
+
+
+
+Route::get('stagiaires/{stagiaireId}/projet', [StagiaireController::class, 'getProjetStagiaire']);
+
+Route::get('stagiaire/{stagiaireId}/avancements', [StagiaireController::class, 'getAvancements']);

@@ -14,10 +14,10 @@ function LoginPageEncadrant() {
   const navigateTo = useNavigate();
 
   useEffect(() => {
-    const userData = localStorage.getItem("user");
-    if (userData) {
+    const encadrantData = localStorage.getItem("encadrant");
+    if (encadrantData) {
       // User data not found, navigate to LoginPage
-      navigateTo("/stagiaire/accueil");
+      navigateTo("/encadrant/accueil");
       return;
     }
   }, [navigateTo]);
@@ -40,11 +40,11 @@ function LoginPageEncadrant() {
 
     if (response.ok) {
       // Store user and token information to localStorage or Context API or Redux
-      localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("encadrant", JSON.stringify(data.user));
       localStorage.setItem("token", data.token);
 
       // Redirect to HomePage
-      navigateTo("/stagiaire/accueil");
+      navigateTo("/encadrant/accueil");
     } else {
       // Handle error
       console.log(data.message);

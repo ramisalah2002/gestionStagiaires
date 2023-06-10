@@ -58,6 +58,7 @@ class EncadrantController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'id' => 'required|unique:encadrant', // Ajoutez la validation pour l'ID unique
             'nom' => 'required',
             'prenom' => 'required',
             'email' => 'required|email|unique:encadrant',
@@ -71,8 +72,8 @@ class EncadrantController extends Controller
             'couverture' => 'nullable',
         ]);
 
-
         $encadrant = new Encadrant;
+        $encadrant->id = $request->input('id'); // Ajoutez l'ID manuellement
         $encadrant->nom = $request->input('nom');
         $encadrant->prenom = $request->input('prenom');
         $encadrant->email = $request->input('email');
@@ -82,13 +83,11 @@ class EncadrantController extends Controller
         $encadrant->genre = $request->input('genre');
         $encadrant->CIN = $request->input('CIN');
         $encadrant->fonction = $request->input('fonction');
-        $encadrant->image = $request->input('image');;
-        $encadrant->couverture = $request->input('couverture');;
         $encadrant->image = $request->input('image');
         $encadrant->couverture = $request->input('couverture');
         $encadrant->save();
-    //  return response()->json($encadrant);
     }
+
 
     /**
      * Display the specified resource.

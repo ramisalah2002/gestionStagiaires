@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
-import { AdminContext } from "../../Contexts/AdminContext";
+import { EncadrantContext } from "../../Contexts/EncadrantContext";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import {
   BrowserRouter as Router,
@@ -29,6 +29,7 @@ import {
   faClockFour,
 } from "@fortawesome/free-regular-svg-icons";
 import "./Equipes.css";
+import EncadrantSidebar from "../../components/Sidebar/EncadrantSidebar";
 const EquipesBox = ({ equipes }) => (
   <div className="team-card">
     <div className="link-header">
@@ -64,7 +65,9 @@ const EquipesBox = ({ equipes }) => (
     )}
 
       <br />
-      <label className="project-label">{equipes.projets[0].sujet}</label>
+      {equipes && equipes.projets && equipes.projets.length > 0  && (
+        <label className="project-label">{equipes.projets[0].sujet}</label>
+      )}
     </div>
     <div className="progress-container">
       <div className="progress-title">
@@ -106,7 +109,7 @@ const EquipesBox = ({ equipes }) => (
   </div>
 );
 
-function Equipes() {
+function EncadrantEquipes() {
   const [searchResults, setSearchResults] = useState([]); // New state for the search results
   const [isSearching, setIsSearching] = useState(false);
   const [searchingText, setSearchingText] = useState("");
@@ -127,8 +130,8 @@ function Equipes() {
   };
 
   const navigateTo = useNavigate();
-  const { admin, loading } = useContext(AdminContext);
-  const adminContext = useContext(AdminContext);
+  const { encadrant, loading } = useContext(EncadrantContext);
+  const encadrantContext = useContext(EncadrantContext);
 
   const [equipes, setEquipes] = useState([]);
   const [stagiaires, setStagiaires] = useState([]);
@@ -141,15 +144,15 @@ function Equipes() {
   }, []);
 
   useEffect(() => {
-    const adminData = localStorage.getItem("admin");
-    if (!adminData && !loading) {
+    const encadrantData = localStorage.getItem("encadrant");
+    if (!encadrantData && !loading) {
       // Admin data doesn't exist in localStorage, redirect to LoginPage
       navigateTo("/encadrant/login");
-    } else if (adminData && !admin) {
+    } else if (encadrantData && !encadrant) {
       // Admin data exists in localStorage but not in context, set the admin context
-      adminContext.setAdmin(JSON.parse(adminData));
+      encadrantContext.setEncadrant(JSON.parse(encadrantData));
     }
-  }, [admin, loading, navigateTo, adminContext]);
+  }, [encadrant, loading, navigateTo, encadrantContext]);
 
   const pageCount = Math.ceil(equipes.length / itemsPerPage);
 
@@ -177,18 +180,18 @@ function Equipes() {
   }
   return (
     <div className="app">
-      <Sidebar />
+      <EncadrantSidebar />
       <main className="main-content">
         <div className="header">
           <div className="admin-container">
             <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
             <div className="admin-info">
-              {admin && (
+              {encadrant && (
                 <>
                   <label className="admin-name">
-                    {admin.nom} {admin.prenom}
+                    {encadrant.nom} {encadrant.prenom}
                   </label>
-                  <label className="admin-post">{admin.fonction}</label>
+                  <label className="admin-post">{encadrant.fonction}</label>
                 </>
               )}
             </div>
@@ -277,4 +280,4 @@ function Equipes() {
   );
 }
 
-export default Equipes;
+export default EncadrantEquipes;

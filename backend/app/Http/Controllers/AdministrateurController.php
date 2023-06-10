@@ -33,6 +33,7 @@ class AdministrateurController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'id' => 'required|unique:administrateur', // Ajoutez la validation pour l'ID unique
             'nom' => 'required',
             'prenom' => 'required',
             'email' => 'required|email|unique:administrateur',
@@ -44,22 +45,22 @@ class AdministrateurController extends Controller
             'image' => 'nullable',
         ]);
 
-
         $administrateur = new Administrateur;
+        $administrateur->id = $request->input('id'); // Ajoutez l'ID manuellement
         $administrateur->nom = $request->input('nom');
         $administrateur->prenom = $request->input('prenom');
         $administrateur->email = $request->input('email');
-        // Encrypt the password before storing it
         $administrateur->password = \Hash::make($request->input('password'));
         $administrateur->telephone = $request->input('telephone');
         $administrateur->dateNaissance = $request->input('dateNaissance');
         $administrateur->genre = $request->input('genre');
         $administrateur->CIN = $request->input('CIN');
-        $administrateur->image = $request->input('image');;
         $administrateur->image = $request->input('image');
         $administrateur->save();
+
         return response()->json('');
     }
+
 
     public function login(Request $request)
     {

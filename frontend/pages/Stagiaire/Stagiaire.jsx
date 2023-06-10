@@ -118,7 +118,7 @@ function Stagiaire() {
     const adminData = localStorage.getItem("admin");
     if (!adminData && !loading) {
       // Admin data doesn't exist in localStorage, redirect to LoginPage
-      navigateTo("/encadrant/login");
+      navigateTo("/admin/login");
     } else if (adminData && !admin) {
       // Admin data exists in localStorage but not in context, set the admin context
       adminContext.setAdmin(JSON.parse(adminData));
@@ -201,7 +201,7 @@ function Stagiaire() {
           stagiaire.nom + " " + stagiaire.prenom,
           stagiaire.email,
           stagiaire.status,
-          stagiaire.stage.enStage,
+
         ];
         tableData.push(rowData);
       });
@@ -322,7 +322,7 @@ function Stagiaire() {
                   <label className="last-stagiaire-formation">
                     {stagiaire.formation}
                   </label>
-                  <Link to={`/profile-stagiaire/${stagiaire.id}`} className="voir-detail">Voir détail</Link>
+                  <Link to={`/admin/profile-stagiaire/${stagiaire.id}`} className="voir-detail">Voir détail</Link>
                 </div>
               ))}
             </div>
@@ -348,7 +348,7 @@ function Stagiaire() {
                     <label className="last-stagiaire-formation">
                       {stagiaire.formation}
                     </label>
-                    <Link to={`/profile-stagiaire/${stagiaire.id}`} className="voir-detail">Voir détail</Link>
+                    <Link to={`/admin/profile-stagiaire/${stagiaire.id}`} className="voir-detail">Voir détail</Link>
                   </div>
                 ))}
               </div>
@@ -449,7 +449,7 @@ function Stagiaire() {
                         )}
                       </td>
                       <td className="actions-td">
-                        <Link to={`/profile-stagiaire/${stagiaire.id}`} className="action-modifier">
+                        <Link to={`/admin/profile-stagiaire/${stagiaire.id}`} className="action-modifier">
                           <FontAwesomeIcon icon={faEye} />
                           Voir
                         </Link>

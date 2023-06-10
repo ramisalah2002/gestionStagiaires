@@ -80,4 +80,42 @@ class ProjetController extends Controller
         $projet->delete();
         return response()->json('');
     }
+
+
+    public function getProjetDetails()
+    {
+        $projets = Projet::with([
+            'equipe' => function ($query) {
+                $query->with('stagiaires');
+            },
+        ])->get();
+
+        $result = [];
+
+        foreach ($projets as $projet) {
+            $data = [
+                'id' => $projet->id,
+                'sujet' => $projet->sujet,
+                'status' => $projet->status,
+                'equipe' => [
+                    'id' => $projet->equipe->id,
+                    'nom' => $projet->equipe->nom_equipe,
+                    'stagiaires' => [],
+                ],
+            ];
+
+            foreach ($projet->equipe->stagiaires as $stagiaire) {
+                $data['equipe']['stagiaires'][] = [
+                    'id' => $stagiaire->id,
+                    'nom' => $stagiaire->nom,
+                    'prenom' => $stagiaire->prenom,
+                ];
+            }
+
+            $result[] = $data;
+        }
+
+        return response()->json($result);
+    }
+
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useRef, useEffect, useContext } from "react";
-import { AdminContext } from "../../Contexts/AdminContext";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import {
   BrowserRouter as Router,
@@ -22,7 +21,8 @@ import { faUser, faRectangleList } from "@fortawesome/free-regular-svg-icons";
 import "./Absence.css";
 import settingsImage from "./../../images/Settings.png";
 import stagiaireImage from "./../../images/user.jpg";
-import StagiaireSidebar from "../../components/Sidebar/StagiaireSidebar";
+import { EncadrantContext } from "../../Contexts/EncadrantContext";
+import EncadrantSidebar from "../../components/Sidebar/EncadrantSidebar";
 
 const StagiaireBox = ({ stagiaire }) => (
   <div className="stagiaire-box">
@@ -48,7 +48,7 @@ const StagiaireBox = ({ stagiaire }) => (
   </div>
 );
 
-function Absence() {
+function EncadrantAbsence() {
   const [searchResults, setSearchResults] = useState([]); // New state for the search results
   const [isSearching, setIsSearching] = useState(false);
   const [searchingText, setSearchingText] = useState("");
@@ -83,19 +83,19 @@ function Absence() {
   };
 
   const navigateTo = useNavigate();
-  const { admin, loading } = useContext(AdminContext);
-  const adminContext = useContext(AdminContext);
+  const { encadrant, loading } = useContext(EncadrantContext);
+  const encadrantContext = useContext(EncadrantContext);
 
   useEffect(() => {
-    const adminData = localStorage.getItem("admin");
-    if (!adminData && !loading) {
+    const encadrantData = localStorage.getItem("encadrant");
+    if (!encadrantData && !loading) {
       // Admin data doesn't exist in localStorage, redirect to LoginPage
       navigateTo("/encadrant/login");
-    } else if (adminData && !admin) {
+    } else if (encadrantData && !encadrant) {
       // Admin data exists in localStorage but not in context, set the admin context
-      adminContext.setAdmin(JSON.parse(adminData));
+      encadrantContext.setEncadrant(JSON.parse(encadrantData));
     }
-  }, [admin, loading, navigateTo, adminContext]);
+  }, [encadrant, loading, navigateTo, encadrantContext]);
 
   const currentDate = new Date().toLocaleString("fr-FR", {
     day: "numeric",
@@ -137,18 +137,18 @@ function Absence() {
 
   return (
     <div className="app">
-      <Sidebar />
+      <EncadrantSidebar />
       <main className="main-content">
         <div className="header">
           <div className="admin-container">
             <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
             <div className="admin-info">
-              {admin && (
+              {encadrant && (
                 <>
                   <label className="admin-name">
-                    {admin.nom} {admin.prenom}
+                    {encadrant.nom} {encadrant.prenom}
                   </label>
-                  <label className="admin-post">{admin.fonction}</label>
+                  <label className="admin-post">{encadrant.fonction}</label>
                 </>
               )}
             </div>
@@ -229,4 +229,4 @@ function Absence() {
   );
 }
 
-export default Absence;
+export default EncadrantAbsence;

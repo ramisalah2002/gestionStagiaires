@@ -15,6 +15,7 @@ class Stagiaire extends Authenticatable
 
     use HasApiTokens, HasFactory, Notifiable;
     protected $fillable = [
+        'id',
         'nom',
         'prenom',
         'email',
@@ -48,7 +49,7 @@ class Stagiaire extends Authenticatable
     {
         return $this->hasOne(Stage::class);
     }
-    public function absence()
+    public function absences()
     {
         return $this->hasMany(Absence::class);
     }

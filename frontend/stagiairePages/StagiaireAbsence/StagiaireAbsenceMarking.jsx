@@ -3,17 +3,17 @@ import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faKey, faLocationDot, faLock } from '@fortawesome/free-solid-svg-icons';
 import { FiKey, FiMail, FiUserCheck, FiUserX } from 'react-icons/fi';
-import './Absence.css';
+import './AbsenceMarking.css';
 
-const StagiaireAbsence = () => {
+const StagiaireAbsenceMarking = () => {
   const [isWithinPerimeter, setIsWithinPerimeter] = useState(false);
   const [currentCoordinates, setCurrentCoordinates] = useState(null);
   const [currentLocation, setCurrentLocation] = useState('');
   const [showModal, setShowModal] = useState(true);
 
   const perimeterCoordinates = {
-    latitude: 33.5731104,
-    longitude: -7.5898434
+    latitude: 33.9881874,
+    longitude: -6.8572053
   };
 
   const calculateDistance = (lat1, lon1, lat2, lon2) => {
@@ -54,7 +54,7 @@ const StagiaireAbsence = () => {
         perimeterCoordinates.longitude
       );
 
-      setIsWithinPerimeter(distance <= 30);
+      setIsWithinPerimeter(distance <= 900);
     }
   }, [currentCoordinates]);
 
@@ -147,4 +147,4 @@ const StagiaireAbsence = () => {
   );
 };
 
-export default StagiaireAbsence;
+export default StagiaireAbsenceMarking;
