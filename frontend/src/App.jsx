@@ -64,7 +64,10 @@ function App() {
           <Route path="/admin/absence" element={<Absence />} />
           <Route path="/admin/discussions" element={<Chat />} />
           <Route path="/admin/parametres" element={<Parametres />} />
-          <Route path="/admin/profile-stagiaire/:stagiaire_id" element={<StagiaireProfile />} />
+          <Route
+            path="/admin/profile-stagiaire/:stagiaire_id"
+            element={<StagiaireProfile />}
+          />
           <Route path="/admin/projets" element={<Projet />} />
           <Route path="/send-email" element={<Contact />} />
           <Route path="/forgot-password/" element={<ForgotPassword />} />
@@ -90,7 +93,10 @@ function App() {
           <Route path="/absence" element={<Absence />} />
           <Route path="/discussions" element={<Chat />} />
           <Route path="/parametres" element={<Parametres />} />
-          <Route path="/profile-stagiaire/:stagiaire_id" element={<StagiaireProfile />} />
+          <Route
+            path="/profile-stagiaire/:stagiaire_id"
+            element={<StagiaireProfile />}
+          />
           <Route path="/projets" element={<Projet />} />
           <Route path="/send-email" element={<Contact />} />
           <Route path="/forgot-password/" element={<ForgotPassword />} />
@@ -111,11 +117,14 @@ function App() {
           <Route path="/stagiaire/login" element={<LoginPageStagiaire />} />
           <Route path="/stagiaire/accueil" element={<StagiaireHomepage />} />
           <Route path="/stagiaire/mon-profile" element={<MonProfile />} />
-          <Route path="stagiaire/absence" element={<Absence />} />
+          <Route path="/stagiaire/absence" element={<Absence />} />
           <Route path="/stagiaire/projet" element={<ProjetStagiaire />} />
           <Route path="/discussions" element={<Chat />} />
-          <Route path="/parametres" element={<Parametres />} />
-          <Route path="/profile-stagiaire/:stagiaire_id" element={<StagiaireProfile />} />
+          <Route path="/stagiaire/parametres" element={<Parametres />} />
+          <Route
+            path="/profile-stagiaire/:stagiaire_id"
+            element={<StagiaireProfile />}
+          />
           <Route path="/projets" element={<Projet />} />
           <Route path="/send-email" element={<Contact />} />
           <Route path="/forgot-password/" element={<ForgotPassword />} />

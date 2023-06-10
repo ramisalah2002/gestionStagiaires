@@ -246,7 +246,7 @@ function Homepage() {
                       <label className="today-abscence-day">Aujourd'hui</label>
                     </div>
                   </div>
-                  <Link to="/absence" className="see-more-abscence">
+                  <Link to="/admin/absence" className="see-more-abscence">
                     voir plus
                   </Link>
                 </div>

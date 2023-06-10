@@ -145,14 +145,6 @@ function StagiaireHomepage() {
     fetchStagiaireData();
   }, []);
 
-  const [projets, setProjets] = useState([]);
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/projets/details")
-      .then((response) => response.json())
-      .then((data) => setProjets(data))
-      .catch((error) => console.error("Erreur:", error));
-  }, []);
-
   return (
     <div className="app">
       <StagiaireSidebar />
