@@ -31,6 +31,7 @@ import AllTimeProgress from "../../charts/AllTimeProgress";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import exporting from "highcharts/modules/exporting";
+import axios from "axios";
 import exportData from "highcharts/modules/export-data";
 import { StagiaireContext } from "../../Contexts/StagiaireContext";
 
@@ -45,7 +46,6 @@ function StagiaireHomepage() {
   const [showLinks, setShowLinks] = useState(false);
   const containerRef = useRef(null);
   const [AllTimeProgressLink, setAllTimeLink] = useState("Tout le temps");
-  const [MonthProgressLink, setMonthProgressLink] = useState("Ce mois-ci");
   const [WeekProgressLink, setWeekProgressLink] = useState("Cette semaine");
   const [activeLink, setActiveLink] = useState(AllTimeProgressLink);
 
@@ -146,6 +146,398 @@ function StagiaireHomepage() {
       .catch((error) => console.error("Erreur:", error));
   }, []);
 
+  const [detailsEquipe, setDetailsEquipe] = useState({});
+
+  useEffect(() => {
+    const fetchEquipeDetails = async () => {
+      try {
+        const stagiaireData = localStorage.getItem("stagiaire");
+        const { equipe_id } = JSON.parse(stagiaireData);  // Use the id from the local storage
+        const response = await fetch(`http://127.0.0.1:8000/api/equipes/${equipe_id}`);
+        const data = await response.json();
+        setDetailsEquipe(data);
+      } catch (error) {
+        console.error('Failed to fetch equipe details:', error);
+      }
+    };
+    fetchEquipeDetails();
+  }, []);
+
+
+    const fetchAvData = async () => {
+      try {
+        // Check if stagiaire exists
+        if (stagiaire) {
+          const response = await axios.get(`http://127.0.0.1:8000/api/stagiaire/${stagiaire.id}/avancements`);
+          setAvancements(response.data);
+          fetchAvancement(response.data.projet_id);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+
+  const [chartData, setChartData] = useState([]);
+  const [allTimeChartData, setAllTimeChartData] = useState([]);
+
+  const [avancements, setAvancements] = useState([]);
+  const [avancementTypes, setAvancementTypes] = useState([]);
+  
+  const fetchAvancement = async (id) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/avancements/${id}`);
+      const data = await response.json();
+      setAvancementTypes(data);
+    } catch (error) {
+      console.error('Error fetching avancements:', error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Check if stagiaire exists
+        if (stagiaire) {
+          const response = await axios.get(`http://127.0.0.1:8000/api/stagiaire/${stagiaire.id}/avancements`);
+          setAvancements(response.data);
+          fetchAvancement(response.data.projet_id);
+          fetchWeekData(response.data.projet_id);
+          fetchAllTimeData(response.data.projet_id);
+          console.log(allTimeChartData);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [stagiaire]); // Add stagiaire as a dependency
+
+    const fetchWeekData = async (idProjet) => {
+      try {
+        const response = await axios.get(`http://127.0.0.1:8000/api/projet/${idProjet}/avancements/this-week`);
+        setChartData(response.data.avancementByTypeAndDay);
+      } catch (error) {
+        console.error('Error fetching avancements:', error);
+      }
+    }
+
+    const fetchAllTimeData = async (idProjet) => {
+      try {
+        const response = await axios.get(`http://127.0.0.1:8000/api/projet/${idProjet}/avancements/all-time`);
+        setAllTimeChartData(response.data.avancementByTypeAndDay);
+      } catch (error) {
+        console.error('Error fetching avancements:', error);
+      }
+    }
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////// WEEK PROGRESS CHART ////////////////////////////////////////////////
+
+  const categories = Object.keys(chartData); // Add a check for the existence of avancementByTypeAndDay
+  const days = Object.keys(chartData.avancementByTypeAndDay || {}); // Add a check for the existence of avancementByTypeAndDay
+  const allTimeCategories = Object.keys(allTimeChartData); // Add a check for the existence of avancementByTypeAndDay
+  const allDays = Object.keys(allTimeChartData.avancementByTypeAndDay || {}); // Add a check for the existence of avancementByTypeAndDay
+
+  const frontendData = [];
+  const backendData = [];
+  const conceptionData = [];
+  
+  const allTimeFrontendData = [];
+  const allTimeBackendData = [];
+  const allTimeConceptionData = [];
+
+  Object.entries(chartData).forEach(([date, types]) => {
+    frontendData.push(types.frontend.length > 0 ? types.frontend[0].valeur : 0);
+    backendData.push(types.backend.length > 0 ? types.backend[0].valeur : 0);
+    conceptionData.push(types.conception.length > 0 ? types.conception[0].valeur : 0);
+  });
+  
+  Object.entries(allTimeChartData).forEach(([date, types]) => {
+    allTimeFrontendData.push(types.frontend.length > 0 ? types.frontend[0].valeur : 0);
+    allTimeBackendData.push(types.backend.length > 0 ? types.backend[0].valeur : 0);
+    allTimeConceptionData.push(types.conception.length > 0 ? types.conception[0].valeur : 0);
+  });
+
+  
+
+
+  const series = Object.keys(chartData).map((day) => {
+    const data = Object.keys(chartData[day]).map((type) => ({
+      name: type,
+      y: chartData[day][type].length > 0 ? chartData[day][type][0].valeur : 0,
+    }));
+
+    return {
+      name: day,
+      data,
+      type: 'spline',
+      marker: {
+        symbol: 'circle',
+        radius: 4,
+      },
+    };
+  });
+  
+  const allTimeSeries = Object.keys(allTimeChartData).map((day) => {
+    const data = Object.keys(allTimeChartData[day]).map((type) => ({
+      name: type,
+      y: allTimeChartData[day][type].length > 0 ? allTimeChartData[day][type][0].valeur : 0,
+    }));
+
+    return {
+      name: day,
+      data,
+      type: 'spline',
+      marker: {
+        symbol: 'circle',
+        radius: 4,
+      },
+    };
+  });
+
+
+  const splineChartOptions = {
+    chart: {
+      type: 'spline',
+    },
+    title: {
+      text: '',
+    },
+    xAxis: {
+      categories: categories,
+      gridLineWidth: 0,
+      lineWidth: 0,
+      plotLines: categories.map((category, index) => ({
+        value: index,
+        color: '#ccc',
+        width: 1,
+        zIndex: 3,
+      })),
+      labels: {
+        style: {
+          fontWeight: '500',
+          fontSize: 14,
+          color: '#727b88',
+        },
+      },
+    },
+    yAxis: {
+      title: {
+        text: 'Progrès (%)',
+        enabled: false,
+      },
+      gridLineWidth: 0, // Hide y-axis grid lines
+      lineWidth: 0, // Hide y-axis line
+      labels: {
+        format: '{value}%', // Format the labels as percentages
+        style: {
+          fontWeight: '600', // Make the labels bolder
+          fontSize: 14,
+          color: "#727b88"
+        }
+      }
+    },
+    plotOptions: {
+      series: {
+        showInLegend: false,
+        lineWidth: 2, // Set the line width to 2px
+        marker: {
+          enabled: false, // Disable markers by default
+          states: {
+            hover: {
+              enabled: true, // Enable markers on hover
+              fillColor: '#000', // Marker color on hover
+              lineWidth: 2, // Marker border width on hover
+              lineColor: '#fff' // Marker border color on hover
+            }
+          }
+        }
+      }
+    },
+    tooltip: {
+      pointFormat: '<span style="color:{series.color};fontWeight:bold">{series.name}</span>: <b>{point.y}%</b><br/>', // Format tooltip with percentage value
+    },
+    series: [
+      {
+        name: 'Conception',
+        data: conceptionData,
+        type: 'spline',
+        color: '#2dad73', // Color for Conception line
+        marker: {
+          symbol: 'circle', // Rounded marker shape
+          radius: 4 // Adjust the radius for marker size
+        }
+      },
+      {
+        name: 'Frontend',
+        data: frontendData,
+        type: 'spline',
+        color: '#fcc93e', // Color for Frontend line
+        marker: {
+          symbol: 'circle', // Rounded marker shape
+          radius: 4 // Adjust the radius for marker size
+        }
+      },
+      {
+        name: 'Backend',
+        data: backendData,
+        type: 'spline',
+        color: '#3077ed', // Color for Backend line
+        marker: {
+          symbol: 'circle', // Rounded marker shape
+          radius: 4 // Adjust the radius for marker size
+        }
+      }
+    ],
+    lang: {
+      decimalPoint: ',',
+      thousandsSep: ' ',
+      loading: 'Chargement...',
+      noData: 'Aucune donnée à afficher',
+      contextButtonTitle: 'Menu',
+      downloadJPEG: 'Télécharger en JPEG',
+      downloadPDF: 'Télécharger en PDF',
+      downloadPNG: 'Télécharger en PNG',
+      downloadSVG: 'Télécharger en SVG',
+      printChart: 'Imprimer le graphique',
+      resetZoom: 'Réinitialiser le zoom',
+      resetZoomTitle: 'Réinitialiser le zoom à l\'échelle 1:1',
+      thousandsSep: ' ',
+      decimalPoint: ',',
+      viewFullscreen: 'Afficher en plein écran'
+    },
+    exporting: {
+      buttons: {
+        contextButton: {
+          menuItems: ['downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG', 'viewFullscreen']
+        }
+      }
+    }
+  };
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////// ALL TIME PROGRESS CHART ////////////////////////////////////////////////
+
+  const allTimeSplineChartOptions = {
+    chart: {
+      type: 'spline',
+    },
+    title: {
+      text: '',
+    },
+    xAxis: {
+      categories: allTimeCategories,
+      gridLineWidth: 0,
+      lineWidth: 0,
+      plotLines: allTimeCategories.map((category, index) => ({
+        value: index,
+        color: '#ccc',
+        width: 1,
+        zIndex: 3,
+      })),
+      labels: {
+        style: {
+          fontWeight: '500',
+          fontSize: 14,
+          color: '#727b88',
+        },
+      },
+    },
+    yAxis: {
+      title: {
+        text: 'Progrès (%)',
+        enabled: false,
+      },
+      gridLineWidth: 0, // Hide y-axis grid lines
+      lineWidth: 0, // Hide y-axis line
+      labels: {
+        format: '{value}%', // Format the labels as percentages
+        style: {
+          fontWeight: '600', // Make the labels bolder
+          fontSize: 14,
+          color: "#727b88"
+        }
+      }
+    },
+    plotOptions: {
+      series: {
+        showInLegend: false,
+        lineWidth: 2, // Set the line width to 2px
+        marker: {
+          enabled: false, // Disable markers by default
+          states: {
+            hover: {
+              enabled: true, // Enable markers on hover
+              fillColor: '#000', // Marker color on hover
+              lineWidth: 2, // Marker border width on hover
+              lineColor: '#fff' // Marker border color on hover
+            }
+          }
+        }
+      }
+    },
+    tooltip: {
+      pointFormat: '<span style="color:{series.color};fontWeight:bold">{series.name}</span>: <b>{point.y}%</b><br/>', // Format tooltip with percentage value
+    },
+    series: [
+      {
+        name: 'Conception',
+        data: allTimeConceptionData,
+        type: 'spline',
+        color: '#2dad73', // Color for Conception line
+        marker: {
+          symbol: 'circle', // Rounded marker shape
+          radius: 4 // Adjust the radius for marker size
+        }
+      },
+      {
+        name: 'Frontend',
+        data: allTimeFrontendData,
+        type: 'spline',
+        color: '#fcc93e', // Color for Frontend line
+        marker: {
+          symbol: 'circle', // Rounded marker shape
+          radius: 4 // Adjust the radius for marker size
+        }
+      },
+      {
+        name: 'Backend',
+        data: allTimeBackendData,
+        type: 'spline',
+        color: '#3077ed', // Color for Backend line
+        marker: {
+          symbol: 'circle', // Rounded marker shape
+          radius: 4 // Adjust the radius for marker size
+        }
+      }
+    ],
+    lang: {
+      decimalPoint: ',',
+      thousandsSep: ' ',
+      loading: 'Chargement...',
+      noData: 'Aucune donnée à afficher',
+      contextButtonTitle: 'Menu',
+      downloadJPEG: 'Télécharger en JPEG',
+      downloadPDF: 'Télécharger en PDF',
+      downloadPNG: 'Télécharger en PNG',
+      downloadSVG: 'Télécharger en SVG',
+      printChart: 'Imprimer le graphique',
+      resetZoom: 'Réinitialiser le zoom',
+      resetZoomTitle: 'Réinitialiser le zoom à l\'échelle 1:1',
+      thousandsSep: ' ',
+      decimalPoint: ',',
+      viewFullscreen: 'Afficher en plein écran'
+    },
+    exporting: {
+      buttons: {
+        contextButton: {
+          menuItems: ['downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG', 'viewFullscreen']
+        }
+      }
+    }
+  };
   return (
     <div className="app">
       <StagiaireSidebar />
@@ -340,12 +732,12 @@ function StagiaireHomepage() {
                       >
                         {AllTimeProgressLink}
                       </Link>
-                      <Link
+                      {/* <Link
                         className={`change-link`}
                         onClick={() => handleLinkClick(MonthProgressLink)}
                       >
                         {MonthProgressLink}
-                      </Link>
+                      </Link> */}
                       <Link
                         className={`change-link`}
                         onClick={() => handleLinkClick(WeekProgressLink)}
@@ -380,9 +772,8 @@ function StagiaireHomepage() {
                   <label>Backend</label>
                 </div>
               </div>
-              {activeLink === MonthProgressLink && <MonthProgress />}
-              {activeLink === WeekProgressLink && <WeekProgress />}
-              {activeLink === AllTimeProgressLink && <AllTimeProgress />}
+              {activeLink === WeekProgressLink && <HighchartsReact highcharts={Highcharts} options={splineChartOptions} containerProps={{ style: { width: '100%' } }}/>}
+              {activeLink === AllTimeProgressLink && <HighchartsReact highcharts={Highcharts} options={allTimeSplineChartOptions} containerProps={{ style: { width: '100%' } }}/>}
             </div>
             <div className="reunion-projet">
               <div className="projet">
@@ -452,7 +843,7 @@ function StagiaireHomepage() {
                             </Link>
                           </div>
                       </div>
-                    </div>
+
                   )}
                 </div>
               </div>

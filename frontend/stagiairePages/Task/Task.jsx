@@ -71,35 +71,35 @@ function Task() {
   };
 
   const [avancements, setAvancements] = useState([]);
-const [avancementTypes, setAvancementTypes] = useState([]);
-
-const fetchAvancement = async (id) => {
-  try {
-    const response = await fetch(`http://127.0.0.1:8000/api/avancements/${id}`);
-    const data = await response.json();
-    setAvancementTypes(data);
-  } catch (error) {
-    console.error('Error fetching avancements:', error);
-  }
-};
-
-useEffect(() => {
-  const fetchData = async () => {
+  const [avancementTypes, setAvancementTypes] = useState([]);
+  
+  const fetchAvancement = async (id) => {
     try {
-      // Check if stagiaire exists
-      if (stagiaire) {
-        const response = await axios.get(`http://127.0.0.1:8000/api/stagiaire/${stagiaire.id}/avancements`);
-        setAvancements(response.data);
-        console.log(response.data);
-        fetchAvancement(response.data.projet_id);
-      }
+      const response = await fetch(`http://127.0.0.1:8000/api/avancements/${id}`);
+      const data = await response.json();
+      setAvancementTypes(data);
     } catch (error) {
-      console.log(error);
+      console.error('Error fetching avancements:', error);
     }
   };
 
-  fetchData();
-}, [stagiaire]); // Add stagiaire as a dependency
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Check if stagiaire exists
+        if (stagiaire) {
+          const response = await axios.get(`http://127.0.0.1:8000/api/stagiaire/${stagiaire.id}/avancements`);
+          setAvancements(response.data);
+          console.log(response.data);
+          fetchAvancement(response.data.projet_id);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [stagiaire]); // Add stagiaire as a dependency
 
 useEffect(() => {
   if (avancementTypes.length > 0) {
