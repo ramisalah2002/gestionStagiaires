@@ -163,6 +163,8 @@ Route::get('/avancements/{projetId}', [AvancementController::class, 'getAvanceme
 
 Route::get('/projet/{projetId}/avancements/this-week', [AvancementController::class,'getAvancementByTypeAndDay']);
 
+Route::get('/projet/{projetId}/avancements/all-time', [AvancementController::class,'getAllTimeAvancement']);
+
 Route::get('projets/details', [\App\Http\Controllers\ProjetController::class, 'getProjetsDetails']);
 
 //getting today absences

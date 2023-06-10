@@ -124,4 +124,44 @@ class AvancementController extends Controller
     }
 
 
+    public function getAllTimeAvancement($projetId)
+    {
+        $avancementByTypeAndDay = [];
+
+        $types = ['backend', 'frontend', 'conception'];
+
+        // Get the first day of posting an avancement
+        $firstAvancementDate = Avancement::where('projet_id', $projetId)
+            ->orderBy('date', 'asc')
+            ->value('date');
+
+        $currentDate = Carbon::parse($firstAvancementDate)->startOfDay();
+        $today = Carbon::today();
+
+        while ($currentDate <= $today) {
+            $day = $currentDate->format('Y-m-d');
+            $avancementByTypeAndDay[$day] = [];
+
+            foreach ($types as $type) {
+                $avancements = Avancement::where('projet_id', $projetId)
+                    ->where('type', $type)
+                    ->whereDate('date', $day)
+                    ->get();
+
+                $avancementByTypeAndDay[$day][$type] = $avancements;
+            }
+
+            $currentDate->addDay();
+        }
+
+        $response = [
+            'projet_id' => $projetId,
+            'avancementByTypeAndDay' => $avancementByTypeAndDay
+        ];
+
+        return response()->json($response);
+    }
+
+
+
 }

@@ -203,8 +203,11 @@ function Sidebar() {
   const [couverture, setCouverture] = useState(null);
   const [status, setStatus] = useState("En cours");
 
+  
+
   const handleAjouterStagiaire = () => {
     const nouveauStagiaire = {
+      id: maxId+1,
       nom,
       prenom,
       email,
@@ -233,25 +236,43 @@ function Sidebar() {
       .then((data) => {
         // Traitez la réponse du backend (par exemple, affichez un message de succès ou d'erreur)
         console.log(data);
-        // setNom("");
-        // setPrenom("");
-        // setEmail("");
-        // setPassword("");
-        // setTelephone("");
-        // setGenre("");
-        // setCIN("");
-        // setCNE("");
-        // setDateNaissance("");
-        // setEtablissment_id("");
-        // setFormation("");
-        // setEquipe_id("");
-        // setImage("");
-        // setCouverture("");
-        // setStatus("");
+        navigateTo("/admin/accueil")
+        setNom("");
+        setPrenom("");
+        setEmail("");
+        setPassword("");
+        setTelephone("");
+        setGenre("");
+        setCIN("");
+        setCNE("");
+        setDateNaissance("");
+        setEtablissment_id("");
+        setFormation("");
+        setEquipe_id("");
+        setImage("");
+        setCouverture("");
+        setStatus("");
+        setShowStagiaireModal(false);
       })
       .catch((error) => {
         // Gérez les erreurs lors de la requête
         console.log(nouveauStagiaire);
+        navigateTo("/admin/accueil")
+        setNom("");
+        setPrenom("");
+        setEmail("");
+        setPassword("");
+        setTelephone("");
+        setGenre("");
+        setCIN("");
+        setCNE("");
+        setDateNaissance("");
+        setEtablissment_id("");
+        setFormation("");
+        setEquipe_id("");
+        setImage("");
+        setCouverture("");
+        setStatus("");
         console.error(error);
       });
   };
