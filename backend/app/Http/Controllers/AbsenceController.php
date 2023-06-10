@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Absence;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class AbsenceController extends Controller
 {
@@ -75,6 +76,19 @@ class AbsenceController extends Controller
         return response()->json('');
     }
 
+
+    //getting today absence
+    public function getAbsencesAujourdhui()
+    {
+        $dateAujourdhui = Carbon::today();
+
+        $absences = Absence::whereDate('date', $dateAujourdhui)
+            ->with('stagiaire:id,nom,prenom,justification')
+            ->join('stagiaire', 'absence.stagiaire_id', '=', 'stagiaire.id')
+            ->get(['stagiaire.nom', 'stagiaire.prenom', 'absence.justification']);
+
+        return response()->json($absences);
+    }
 
 
 }

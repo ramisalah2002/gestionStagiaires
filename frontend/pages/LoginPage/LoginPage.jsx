@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AdminContext } from "../../Contexts/AdminContext";
 
-
 import Homepage from "../Homepage/Homepage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
@@ -23,15 +22,14 @@ function LoginPage() {
   useEffect(() => {
     if (admin) {
       // User is already authenticated, redirect to the appropriate page
-      navigateTo("/encadrant/accueil");
+      navigateTo("/admin/accueil");
     }
   }, [admin, navigateTo]);
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://127.0.0.1:8000/api/admin/login", {
+    const response = await fetch("http://127.0.0.1:8000/api/encadrant/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +50,6 @@ function LoginPage() {
       console.log(data.message);
     }
   };
-  
 
   return (
     <div className="mainContainer">
@@ -85,8 +82,7 @@ function LoginPage() {
               <input type="checkbox" id="rememberMe" />
               <label htmlFor="rememberMe">Se souvenir de moi</label>
             </div>
-            <Link to='/forgot-password'>Mot de passe oublié</Link>
-
+            <Link to="/forgot-password">Mot de passe oublié</Link>
           </div>
           <button type="submit">Se connecter</button>
         </form>

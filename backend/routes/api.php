@@ -162,3 +162,9 @@ Route::get('stagiaire/{stagiaireId}/avancements', [StagiaireController::class, '
 Route::get('/avancements/{projetId}', [AvancementController::class, 'getAvancementSumByType']);
 
 Route::get('/projet/{projetId}/avancements/this-week', [AvancementController::class,'getAvancementByTypeAndDay']);
+
+Route::get('projets/details', [\App\Http\Controllers\ProjetController::class, 'getProjetsDetails']);
+
+//getting today absences
+Route::get('absences/aujourdhui', [\App\Http\Controllers\AbsenceController::class, 'getAbsencesAujourdhui']);
+

@@ -64,6 +64,9 @@ class StagiaireController extends Controller
         $stagiaire->equipe_id = $request->input('equipe_id');
 
         $stagiaire->save();
+
+        return response()->json(['message' => 'Stagiaire ajouté avec succès'], 200);
+
     }
 
 

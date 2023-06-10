@@ -41,6 +41,22 @@ function Homepage() {
       .catch((error) => console.error("Erreur:", error));
   }, []);
 
+  const [projets, setProjets] = useState([]);
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/projets/details")
+      .then((response) => response.json())
+      .then((data) => setProjets(data))
+      .catch((error) => console.error("Erreur:", error));
+  }, []);
+
+  const [absences, setAbsences] = useState([]);
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/absences/aujourdhui")
+      .then((response) => response.json())
+      .then((data) => setAbsences(data))
+      .catch((error) => console.error("Erreur:", error));
+  }, []);
+
   const navigateTo = useNavigate();
   const { admin, loading } = useContext(AdminContext);
   const adminContext = useContext(AdminContext);
@@ -185,43 +201,41 @@ function Homepage() {
                   <label className="stagiaires-title">Projets</label>
                   <Link to="/admin/projets" className="stagiaires-count">
                     <FontAwesomeIcon icon={faRectangleList} />{" "}
-                    {stagiaires.length}
+                    {projets.length < 10 && 0}
+                    {projets.length}
                   </Link>
                 </div>
                 <div className="stagiaires-content">
-                  <div className="stagiaire">
-                    <div className="project-info">
-                      <div className="stagiaire-nom-formation">
-                        <label className="stagiaire-nom">Theme projet 1</label>
-                        <label className="stagiaire-formation">
-                          équipe: Stagiaire1 et Stagiaire2
-                        </label>
+                  {projets.slice(0, 3).map((projet) => (
+                    <div className="stagiaire">
+                      <div className="project-info">
+                        <div className="stagiaire-nom-formation">
+                          <label className="stagiaire-nom">
+                            {projet.sujet}
+                          </label>
+                          <label className="stagiaire-formation">
+                            {projet.equipe.nom_equipe} :{" "}
+                            {projet.equipe.stagiaires.map((stagiaire) => (
+                              <>
+                                {" "}
+                                {stagiaire.nom} {stagiaire.prenom}
+                                {", "}
+                              </>
+                            ))}
+                          </label>
+                        </div>
+                      </div>
+                      <div
+                        className={
+                          projet.status === "En cours"
+                            ? "project-status-green"
+                            : "project-status-yellow"
+                        }
+                      >
+                        {projet.status}
                       </div>
                     </div>
-                    <div className="project-status-yellow">En cours</div>
-                  </div>
-                  <div className="stagiaire">
-                    <div className="project-info">
-                      <div className="stagiaire-nom-formation">
-                        <label className="stagiaire-nom">Theme projet 2</label>
-                        <label className="stagiaire-formation">
-                          équipe: Stagiaire3 et Stagiaire4
-                        </label>
-                      </div>
-                    </div>
-                    <div className="project-status-green">Terminé</div>
-                  </div>
-                  <div className="stagiaire">
-                    <div className="project-info">
-                      <div className="stagiaire-nom-formation">
-                        <label className="stagiaire-nom">Theme projet 2</label>
-                        <label className="stagiaire-formation">
-                          équipe: Stagiaire3 et Stagiaire4
-                        </label>
-                      </div>
-                    </div>
-                    <div className="project-status-green">Terminé</div>
-                  </div>
+                  ))}
                 </div>
               </div>
               <div className="abscence-container-a">
@@ -236,60 +250,23 @@ function Homepage() {
                     voir plus
                   </Link>
                 </div>
-                <div className="abscence-content-a">
-                  <div className="abscence">
-                    <div className="abscence-info">
-                      <div className="red-line"></div>
-                      <div className="stagiaire-nom-formation">
-                        <label className="stagiaire-nom">
-                          RAMI Salah-eddine
-                        </label>
-                        <label className="stagiaire-formation">
-                          justification: certificat medical
-                        </label>
+                {absences.map((abscence) => (
+                  <div className="abscence-content-a">
+                    <div className="abscence">
+                      <div className="abscence-info">
+                        <div className="red-line"></div>
+                        <div className="stagiaire-nom-formation">
+                          <label className="stagiaire-nom">
+                            {abscence.nom} {abscence.prenom}
+                          </label>
+                          <label className="stagiaire-formation">
+                            justification: {abscence.justification}
+                          </label>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div className="abscence">
-                    <div className="abscence-info">
-                      <div className="red-line"></div>
-                      <div className="stagiaire-nom-formation">
-                        <label className="stagiaire-nom">
-                          BOULAAJOUL Anass
-                        </label>
-                        <label className="stagiaire-formation">
-                          justification: certificat medical
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="abscence">
-                    <div className="abscence-info">
-                      <div className="red-line"></div>
-                      <div className="stagiaire-nom-formation">
-                        <label className="stagiaire-nom">
-                          BOULAAJOUL Anass
-                        </label>
-                        <label className="stagiaire-formation">
-                          justification: certificat medical
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="abscence">
-                    <div className="abscence-info">
-                      <div className="red-line"></div>
-                      <div className="stagiaire-nom-formation">
-                        <label className="stagiaire-nom">
-                          BOULAAJOUL Anass
-                        </label>
-                        <label className="stagiaire-formation">
-                          justification: certificat medical
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
