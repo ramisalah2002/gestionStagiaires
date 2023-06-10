@@ -6,6 +6,8 @@ use App\Models\Stagiaire;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Absence;
+use App\Models\Avancement;
+use App\Models\Projet;
 use Carbon\Carbon;
 
 class StagiaireController extends Controller
@@ -25,6 +27,7 @@ class StagiaireController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'id' => 'required|unique:stagiaire', // Ajoutez la validation pour l'ID unique
             'nom' => 'required',
             'prenom' => 'required',
             'email' => 'required|email|unique:stagiaire',
@@ -43,6 +46,7 @@ class StagiaireController extends Controller
         ]);
 
         $stagiaire = new Stagiaire;
+        $stagiaire->id = $request->input('id'); // Ajoutez l'ID manuellement
         $stagiaire->nom = $request->input('nom');
         $stagiaire->prenom = $request->input('prenom');
         $stagiaire->email = $request->input('email');
@@ -64,6 +68,7 @@ class StagiaireController extends Controller
         return response()->json(['message' => 'Stagiaire ajouté avec succès'], 200);
 
     }
+
 
     public function login(Request $request)
     {
@@ -97,10 +102,35 @@ class StagiaireController extends Controller
      */
     public function show($id)
     {
-        $stagiaire = Stagiaire::with(['etablissement', 'equipe', 'equipe.encadrant', 'equipe.projet'])->find($id);
+        $stagiaire = Stagiaire::with(['etablissement', 'equipe', 'equipe.encadrant', 'equipe.projets'])->find($id);
 
         return response()->json($stagiaire);
     }
+
+
+
+
+
+    public function getAvancements($stagiaireId)
+    {
+        $projetId = Projet::whereHas('equipe', function ($query) use ($stagiaireId) {
+            $query->whereHas('stagiaires', function ($query) use ($stagiaireId) {
+                $query->where('id', $stagiaireId);
+            });
+        })->value('id');
+
+        $avancements = Avancement::where('projet_id', $projetId)->get();
+
+        $response = [
+            'stagiaire_id' => $stagiaireId,
+            'projet_id' => $projetId,
+            'avancements' => $avancements
+        ];
+
+        return response()->json($response);
+    }
+
+
 
 
 
@@ -234,6 +264,18 @@ class StagiaireController extends Controller
         }
 
         return response()->json($results);
+    }
+
+
+    public function getProjetStagiaire($stagiaireId)
+    {
+        $projetId = Projet::whereHas('equipe', function ($query) use ($stagiaireId) {
+            $query->whereHas('stagiaires', function ($query) use ($stagiaireId) {
+                $query->where('id', $stagiaireId);
+            });
+        })->value('id');
+
+        return response()->json(['projet_id' => $projetId]);
     }
 
 

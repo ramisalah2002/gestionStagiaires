@@ -27,7 +27,28 @@ function Sidebar() {
   const [showEquipeModal, setShowEquipeModal] = useState(false);
   const [stagiaires, setStagiaires] = useState([]);
   const [technologies, setTechnologies] = useState([]);
+
+  ///getting the biggest id in the tables (equipe, stagiaire, encadrant, administrateur)
+  const [maxId, setMaxId] = useState(null);
+
+  useEffect(() => {
+    const fetchMaxId = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/api/max-id'); // Replace with your API endpoint
+        const data = await response.json();
+        setMaxId(data.max_id);
+        console.log(data.max_id);
+      } catch (error) {
+        console.error('Error fetching max ID:', error);
+      }
+    };
+
+    fetchMaxId();
+  }, []);
+
+
   const [generatedPassword, setGeneratedPassword] = useState("");
+
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/stagiaire")
       .then((response) => response.json())

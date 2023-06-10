@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Avancement;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class AvancementController extends Controller
 {
@@ -76,4 +77,51 @@ class AvancementController extends Controller
         $avancement->delete();
         return response()->json('');
     }
+
+    public function getAvancementSumByType($projetId)
+    {
+        $avancements = Avancement::where('projet_id', $projetId)
+            ->select('type', \DB::raw('SUM(valeur) as sum_valeur'))
+            ->groupBy('type')
+            ->get();
+
+        return response()->json($avancements);
+    }
+
+    public function getAvancementByTypeAndDay($projetId)
+    {
+        $avancementByTypeAndDay = [];
+
+        $types = ['backend', 'frontend', 'conception'];
+        $daysOfWeek = [];
+
+        $startDate = Carbon::now()->startOfWeek();
+        $endDate = Carbon::now()->endOfWeek();
+        $currentDate = $startDate->copy();
+
+        while ($currentDate->lte($endDate)) {
+            $daysOfWeek[] = $currentDate->format('Y-m-d');
+            $currentDate->addDay();
+        }
+
+        foreach ($types as $type) {
+            foreach ($daysOfWeek as $day) {
+                $avancements = Avancement::where('projet_id', $projetId)
+                    ->where('type', $type)
+                    ->whereDate('date', $day)
+                    ->get();
+
+                $avancementByTypeAndDay[$day][$type] = $avancements;
+            }
+        }
+
+        $response = [
+            'projet_id' => $projetId,
+            'avancementByTypeAndDay' => $avancementByTypeAndDay
+        ];
+
+        return response()->json($response);
+    }
+
+
 }

@@ -4,6 +4,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\StagiaireController;
+use App\Http\Controllers\AvancementController;
+use App\Models\Equipe;
+use App\Models\Stagiaire;
+use App\Models\Encadrant;
+use App\Models\Administrateur;
 
 /*
 |--------------------------------------------------------------------------
@@ -123,12 +128,43 @@ Route::post('/stagiaire/{id}/update-couverture', [\App\Http\Controllers\Stagiair
 
 //getting equipes details
 Route::get('equipes/details', [\App\Http\Controllers\EquipeController::class, 'getEquipesDetails']);
+Route::get('equipes/{equipeId}', [\App\Http\Controllers\EquipeController::class, 'getEquipeDetails']);
+//getting an Encadrant equipes
+Route::get('/equipes/details/{encadrant_id}', [\App\Http\Controllers\EquipeController::class, 'getEncadrantEquipesDetails']);
 
 //getting Stagiaires Absences
 Route::get('/stagiaires/absences', [\App\Http\Controllers\StagiaireController::class, 'getAbsenceStagiaires']);
 
 //getting projects details
+Route::get('projet/datails', [\App\Http\Controllers\ProjetController::class, 'getProjetDetails']);
+
+
+//getting the biggedt id from equipe, administrateur, encadrant, stagiaire
+
+
+Route::get('/max-id', function () {
+    $maxId = max(
+        Equipe::max('id'),
+        Stagiaire::max('id'),
+        Encadrant::max('id'),
+        Administrateur::max('id')
+    );
+
+    return response()->json(['max_id' => $maxId]);
+});
+
+
+
+Route::get('stagiaires/{stagiaireId}/projet', [StagiaireController::class, 'getProjetStagiaire']);
+
+Route::get('stagiaire/{stagiaireId}/avancements', [StagiaireController::class, 'getAvancements']);
+
+Route::get('/avancements/{projetId}', [AvancementController::class, 'getAvancementSumByType']);
+
+Route::get('/projet/{projetId}/avancements/this-week', [AvancementController::class,'getAvancementByTypeAndDay']);
+
 Route::get('projets/details', [\App\Http\Controllers\ProjetController::class, 'getProjetsDetails']);
 
 //getting today absences
 Route::get('absences/aujourdhui', [\App\Http\Controllers\AbsenceController::class, 'getAbsencesAujourdhui']);
+

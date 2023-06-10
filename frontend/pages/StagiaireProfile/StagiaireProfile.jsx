@@ -44,12 +44,8 @@ import 'jspdf-autotable';
 import readXlsxFile from 'read-excel-file';
 
 function StagiaireProfile() {
-  const navigateTo = useNavigate();
-  const { admin, loading } = useContext(AdminContext);
-  const adminContext = useContext(AdminContext);
   const { stagiaire_id } = useParams();
-
-
+  const navigateTo = useNavigate();
   const [stagiaires, setStagiaires] = useState([]);
 
   useEffect(() => {
@@ -59,11 +55,14 @@ function StagiaireProfile() {
       .catch((error) => console.error("Erreur:", error));
   }, []);
 
+  const { admin, loading } = useContext(AdminContext);
+  const adminContext = useContext(AdminContext);
+
   useEffect(() => {
     const adminData = localStorage.getItem("admin");
     if (!adminData && !loading) {
       // Admin data doesn't exist in localStorage, redirect to LoginPage
-      navigateTo("/encadrant/login");
+      navigateTo("/admin/login");
     } else if (adminData && !admin) {
       // Admin data exists in localStorage but not in context, set the admin context
       adminContext.setAdmin(JSON.parse(adminData));
@@ -86,64 +85,6 @@ function StagiaireProfile() {
 
   
   const [selectedImage, setSelectedImage] = useState(null);
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [isImageChosen, setIsImageChosen] = useState(false);
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-  
-    reader.onloadend = () => {
-      const base64Image = reader.result;
-      setSelectedImage(base64Image);
-      setSelectedFile(file);
-      setIsImageChosen(true);
-    };
-  
-    reader.readAsDataURL(file);
-  };
-  
-  const handleUpdateImage = () => {
-    if (selectedFile) {
-      const reader = new FileReader();
-  
-      reader.onloadend = () => {
-        const base64Image = reader.result;
-        const payload = {
-          couverture: base64Image,
-        };
-  
-        fetch(`http://127.0.0.1:8000/api/stagiaire/${stagiaire_id}/update-couverture`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(payload),
-        })
-          .then((response) => {
-            if (response.ok) {
-              const link = "/profile-stagiaire/"+stagiaire_id;
-              navigateTo(link);
-              console.log('Couverture image updated successfully');
-              // Handle any additional actions after updating the image
-            } else {
-              console.error('Failed to update couverture image');
-            }
-          })
-          .catch((error) => {
-            console.error('Error:', error);
-          });
-      };
-  
-      reader.readAsDataURL(selectedFile);
-    }
-  };
-  
-  
-  
-
-  
-  
 
   return (
     <div className="app">
@@ -151,16 +92,7 @@ function StagiaireProfile() {
       <main className="main-content">
       <div className='top-img-container'>
       <img src={selectedImage || stagiaires.couverture} alt='Cover Image' />
-      {isImageChosen ? (
-        <label className='change-cover-link' onClick={handleUpdateImage}>
-          Appliquer les modifications
-        </label>
-      ) : (
-        <label className='change-cover-link'>
-          Changer la photo de couverture
-          <input type='file' accept='image/*' onChange={handleImageChange} style={{ display: 'none' }} />
-        </label>
-      )}
+      
     </div>
         <div className='user-container'>
             <div className='user-content'>
@@ -170,7 +102,7 @@ function StagiaireProfile() {
                     <label className='user-formation'>{stagiaires.formation}</label>
                 </div>
             </div>
-            <Link className='message-link'>
+            <Link to="/admin/discussions" className='message-link'>
                 <FontAwesomeIcon className='message-icon' icon={faMessage} />
                 Message
             </Link>

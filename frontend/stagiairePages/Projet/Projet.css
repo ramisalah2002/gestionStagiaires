@@ -52,7 +52,9 @@
   position: relative;
   border: 2px solid rgb(237, 237, 237);
   padding: 1px;
+  object-fit: cover; /* Add this line */
 }
+
 .sideInformations {
   transform: rotate(-90deg);
   padding: auto;
@@ -80,6 +82,7 @@
   padding: auto;
   font-size: 14px;
   font-weight: 700;
+  white-space: nowrap;
 }
 .header-type {
   font-size: 12px;
@@ -107,6 +110,7 @@
   border-radius: 6px;
   width: fit-content;
   padding: 0px 6px;
+  white-space: nowrap;
 }
 .vertical-line {
   height: 65px;

@@ -20,7 +20,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./Sidebar.css";
 
-function StagiaireSidebar() {
+function EncadrantSidebar() {
   const [showSidebar, setShowSidebar] = useState(true);
   const [showStagiaireModal, setShowStagiaireModal] = useState(false);
   const [showEquipeModal, setShowEquipeModal] = useState(false);
@@ -29,7 +29,7 @@ function StagiaireSidebar() {
 
   const handleLogout = () => {
     // Remove user data from localStorage
-    localStorage.removeItem("stagiaire");
+    localStorage.removeItem("encadrant");
 
     // Navigate to LoginPage
     window.location.href = "/";
@@ -136,31 +136,41 @@ function StagiaireSidebar() {
         <div className="toggle-button" onClick={toggleSidebar}>
           <FontAwesomeIcon icon={faBars} />
         </div>
-        <Link to="/stagiaire/accueil" className="logo">
+        <Link to="/encadrant/accueil" className="logo">
           <div></div>
         </Link>
         <div className={`links-container`}>
           <ul className="links-list">
             <li className={activeLink === "link1" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link1")} to="/stagiaire/accueil">
+              <Link onClick={() => handleLinkClick("link1")} to="/encadrant/accueil">
                 <FontAwesomeIcon className="big-icons" icon={faHome} />
                 <label>{showSidebar ? "Accueil" : null}</label>
               </Link>
             </li>
+            <li className={activeLink === "link3" ? "active-link" : "link"}>
+              <Link onClick={() => handleLinkClick("link3")} to="/encadrant/equipes">
+                <FontAwesomeIcon
+                  className="big-icons"
+                  icon={faUsersRectangle}
+                />
+                <label>{showSidebar ? "Equipes" : null}</label>
+              </Link>
+              
+            </li>
             <li className={activeLink === "link5" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link5")} to="/stagiaire/absence">
+              <Link onClick={() => handleLinkClick("link5")} to="/encadrant/absence">
                 <FontAwesomeIcon className="small-icons" icon={faCalendarCheck}/>
                 <label>{showSidebar ? "Absence" : null}</label>
               </Link>
             </li>
             <li className={activeLink === "link6" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link6")} to="/stagiaire/discussions">
+              <Link onClick={() => handleLinkClick("link6")} to="/encadrant/discussions">
                 <FontAwesomeIcon className="small-icons" icon={faComment}/>
                 <label>{showSidebar ? "Discussions" : null}</label>
               </Link>
             </li>
             <li className={activeLink === "link7" ? "active-link" : "link"}>
-              <Link onClick={() => handleLinkClick("link7")} to="/stagiaire/parametres">
+              <Link onClick={() => handleLinkClick("link7")} to="/encadrant/parametres">
                 <FontAwesomeIcon className="small-icons" icon={faGear} />
                 <label>{showSidebar ? "Paramètres" : null}</label>
               </Link>
@@ -388,4 +398,4 @@ function StagiaireSidebar() {
   );
 }
 
-export default StagiaireSidebar;
+export default EncadrantSidebar;
