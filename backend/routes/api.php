@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\StagiaireController;
 use App\Http\Controllers\AvancementController;
+use App\Http\Controllers\UtilisationTechnologieController;
 use App\Models\Equipe;
 use App\Models\Stagiaire;
 use App\Models\Encadrant;
@@ -115,6 +116,7 @@ Route::apiResource('etablissement',\App\Http\Controllers\EtablissementController
 
 //UtilisationTechnologie
 Route::apiResource('utilisationTechnologie',\App\Http\Controllers\UtilisationTechnologieController::class);
+Route::post('/utilisation-technologie', [UtilisationTechnologieController::class, 'store']);
 
 /*
  * UseFull Requests
@@ -155,6 +157,9 @@ Route::get('/max-id', function () {
 
 
 
+
+
+
 Route::get('stagiaires/{stagiaireId}/projet', [StagiaireController::class, 'getProjetStagiaire']);
 
 Route::get('stagiaire/{stagiaireId}/avancements', [StagiaireController::class, 'getAvancements']);
@@ -170,3 +175,10 @@ Route::get('projets/details', [\App\Http\Controllers\ProjetController::class, 'g
 //getting today absences
 Route::get('absences/aujourdhui', [\App\Http\Controllers\AbsenceController::class, 'getAbsencesAujourdhui']);
 
+//Getting 4 last avancements for a specific projet_id
+Route::get('/projet/{projet_id}/avancements', [AvancementController::class,'getLastFourAvancements']);
+
+//update equipe id for a specific stagiaire
+Route::put('stagiaire/{id}/update-equipe-id', [StagiaireController::class, 'updateEquipeId']);
+
+Route::get('/projet/last-id', [ProjetController::class, 'getLastProjetId']);

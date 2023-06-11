@@ -131,13 +131,13 @@ console.log(equipes); // Move this outside the useEffect to avoid stale state
                       className={`profile-item ${activeProfileId === equipe.id ? 'active-profile-item' : ''}`}
                       onClick={() => handleProfileClick(equipe.id, equipe.nom_equipe)}
                     >
-                      <div className="profile-img-enc"> G </div>
+                      <div className="profile-img-enc-pr"> G </div>
                       <div className="profile-info">
                         <div className="profile-header">
                           <div className="profile-name">{equipe.nom_equipe}</div>
                           {/* <div className="profile-date">09:00</div> */}
                         </div>
-                        <label className="last-message">last message</label>
+                        <label className="last-message">salut ça va</label>
                       </div>
                       {/* <div className="messages-number">99</div> */}
                     </div>
@@ -148,7 +148,7 @@ console.log(equipes); // Move this outside the useEffect to avoid stale state
               {activeProfileId ? (
                 <>
                   <div className="second-profile-section">
-                    <div className="second-profile-img"></div>
+                  <div className="profile-img-enc"> G </div>
                     <label className="second-profile-name">{activeProfileNom}</label>
                   </div>
                   <div ref={parentRef} className="chat-content">
@@ -157,99 +157,25 @@ console.log(equipes); // Move this outside the useEffect to avoid stale state
                       <div className="sender-message-content">
                         <label>Rami salah-eddine</label>
                         <p >
-                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
+                         bonjour Mr bahae
                         </p>
                       </div>
-                    </div>
-                    <div className="chat-message-reciever">
-                      <div className="sender-message-content">
-                        <p >
-                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
-                        </p>
-                      </div>
-                      <div className='sender-img'></div>
                     </div>
                     <div className="chat-message-sender">
                       <div className='sender-img'></div>
                       <div className="sender-message-content">
-                        <label>Rami salah-eddine</label>
+                        <label>Boulaajoul anass</label>
                         <p >
-                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
+                         nous esperons que vous allez bien
                         </p>
                       </div>
                     </div>
+                    
+                    
                     <div className="chat-message-reciever">
                       <div className="sender-message-content">
                         <p >
-                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
-                        </p>
-                      </div>
-                      <div className='sender-img'></div>
-                    </div>
-                    <div className="chat-message-sender">
-                      <div className='sender-img'></div>
-                      <div className="sender-message-content">
-                        <label>Rami salah-eddine</label>
-                        <p >
-                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
-                        </p>
-                      </div>
-                    </div>
-                    <div className="chat-message-reciever">
-                      <div className="sender-message-content">
-                        <p >
-                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
-                        </p>
-                      </div>
-                      <div className='sender-img'></div>
-                    </div>
-                    <div className="chat-message-sender">
-                      <div className='sender-img'></div>
-                      <div className="sender-message-content">
-                        <label>Rami salah-eddine</label>
-                        <p >
-                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
-                        </p>
-                      </div>
-                    </div>
-                    <div className="chat-message-reciever">
-                      <div className="sender-message-content">
-                        <p >
-                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
-                        </p>
-                      </div>
-                      <div className='sender-img'></div>
-                    </div>
-                    <div className="chat-message-sender">
-                      <div className='sender-img'></div>
-                      <div className="sender-message-content">
-                        <label>Rami salah-eddine</label>
-                        <p >
-                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
-                        </p>
-                      </div>
-                    </div>
-                    <div className="chat-message-reciever">
-                      <div className="sender-message-content">
-                        <p >
-                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
-                        </p>
-                      </div>
-                      <div className='sender-img'></div>
-                    </div>
-                    <div className="chat-message-sender">
-                      <div className='sender-img'></div>
-                      <div className="sender-message-content">
-                        <label>Rami salah-eddine</label>
-                        <p >
-                         bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez bonjour salah eddine rami je pense que vous avez  
-                        </p>
-                      </div>
-                    </div>
-                    <div className="chat-message-reciever">
-                      <div className="sender-message-content">
-                        <p >
-                         {profiles[activeProfileId-1].lastMessage}
+                         salut ça va
                         </p>
                       </div>
                       <div className='sender-img'></div>

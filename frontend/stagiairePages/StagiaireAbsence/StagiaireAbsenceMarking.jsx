@@ -111,7 +111,7 @@ const StagiaireAbsenceMarking = () => {
                 " Absent"
               )}
             </label> */}
-            <div className="absence-section">
+            <div className="absence-section-a">
               <div className="absence-section-left">
                 <FontAwesomeIcon className="absence-section-icon" icon={faLocationDot} />
               </div>

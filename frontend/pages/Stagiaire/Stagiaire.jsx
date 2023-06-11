@@ -453,7 +453,7 @@ function Stagiaire() {
                           <FontAwesomeIcon icon={faEye} />
                           Voir
                         </Link>
-                        <Link className="delete-link">
+                        <Link className="delete-link"> 
                           <FontAwesomeIcon
                             className="delete-icon"
                             icon={faTrashAlt}

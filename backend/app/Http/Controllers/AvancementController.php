@@ -164,4 +164,24 @@ class AvancementController extends Controller
 
 
 
+    public function getLastFourAvancements($projet_id)
+    {
+        $avancements = Avancement::where('projet_id', $projet_id)
+            ->orderBy('date', 'desc')
+            ->take(4)
+            ->get()
+            ->map(function ($avancement) {
+                $day = date('j', strtotime($avancement->date));
+                $month = date('M', strtotime($avancement->date));
+                $avancement->month = $month;
+                $avancement->day = $day;
+                return $avancement;
+            });
+
+        return response()->json($avancements);
+    }
+
+
+
+
 }
