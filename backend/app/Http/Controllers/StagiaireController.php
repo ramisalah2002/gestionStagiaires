@@ -248,7 +248,7 @@ class StagiaireController extends Controller
             $lastAbsence = $stagiaire->absences()->orderBy('date', 'desc')->first();
 
             // Determine the status of today
-            $statusToday = $stagiaire->absences()->where('date', $now->toDateString())->exists() ? 'absent' : 'present';
+            $statusToday = $stagiaire->absences()->where('date', $now->toDateString())->exists() ? 'absent' : 'not-indicated';
 
             // Prepare the data
             $data = [

@@ -16,7 +16,7 @@ import {
   faCalendarDays,
 } from "@fortawesome/free-solid-svg-icons";
 import { faUser, faRectangleList } from "@fortawesome/free-regular-svg-icons";
-import '../../pages/Homepage/Homepage.css';
+import "../../pages/Homepage/Homepage.css";
 import EncadrantSidebar from "../../components/Sidebar/EncadrantSidebar";
 
 function HomepageEncadrant() {
@@ -42,7 +42,6 @@ function HomepageEncadrant() {
       .catch((error) => console.error("Erreur:", error));
   }, []);
 
-
   const navigateTo = useNavigate();
   const { encadrant } = useContext(EncadrantContext);
   const encadrantContext = useContext(EncadrantContext);
@@ -62,7 +61,6 @@ function HomepageEncadrant() {
     day: "numeric",
     month: "short",
   });
-
 
   return (
     <div className="app">
@@ -85,7 +83,7 @@ function HomepageEncadrant() {
                   <label className="admin-name">
                     {encadrant.nom} {encadrant.prenom}
                   </label>
-                  <label className="admin-post">Administrateur</label>
+                  <label className="admin-post">{encadrant.fonction}</label>
                 </>
               )}
             </div>
@@ -167,7 +165,9 @@ function HomepageEncadrant() {
                     </div>
                     <button
                       onClick={() =>
-                        navigateTo(`/encadrant/profile-stagiaire/${stagiaire.id}`)
+                        navigateTo(
+                          `/encadrant/profile-stagiaire/${stagiaire.id}`
+                        )
                       }
                       className="stagiaire-btn"
                     >

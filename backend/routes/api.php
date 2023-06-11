@@ -33,6 +33,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //Authentification
 Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
+Route::post('/loginAdministrateur', [\App\Http\Controllers\AuthController::class, 'loginAdministrateur']);
+Route::post('/loginEncadrant', [\App\Http\Controllers\AuthController::class, 'loginEncadrant']);
+Route::post('/loginStagiaire', [\App\Http\Controllers\AuthController::class, 'loginStagiaire']);
 Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 //Administrateur

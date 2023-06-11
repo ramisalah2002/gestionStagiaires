@@ -26,14 +26,14 @@ function LoginPageStagiaire() {
     } else if (stagiaireData && !stagiaire) {
       // Admin data exists in localStorage but not in context, set the admin context
       stagiaireContext.setStagiaire(JSON.parse(stagiaireData));
-      navigateTo('/stagiaire/accueil');
+      navigateTo("/stagiaire/accueil");
     }
   }, [stagiaire, loading, navigateTo, stagiaireContext]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://127.0.0.1:8000/api/stagiaire/login", {
+    const response = await fetch("http://127.0.0.1:8000/api/loginStagiaire", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

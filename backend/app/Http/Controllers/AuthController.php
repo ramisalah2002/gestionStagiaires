@@ -39,6 +39,64 @@ class AuthController extends Controller
         return response($response, 201);
     }
 
+    public function loginStagiaire(Request $request)
+    {
+        $fields = $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        // Check Email
+        $user = Stagiaire::where('email', $fields['email'])->first();
+
+        return $this->loginUser($user, $fields);
+    }
+
+    public function loginEncadrant(Request $request)
+    {
+        $fields = $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        // Check Email
+        $user = Encadrant::where('email', $fields['email'])->first();
+
+        return $this->loginUser($user, $fields);
+    }
+
+    public function loginAdministrateur(Request $request)
+    {
+        $fields = $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        // Check Email
+        $user = Administrateur::where('email', $fields['email'])->first();
+
+        return $this->loginUser($user, $fields);
+    }
+
+    private function loginUser($user, $fields)
+    {
+        //Check password
+        if (!$user || !Hash::check($fields['password'], $user->password)) {
+            return response([
+                'message' => 'Incorrect informations'
+            ], 401);
+        }
+
+        $token = $user->createToken($user->getTable().'Token')->plainTextToken;
+
+        $response = [
+            'user' => $user,
+            'token' => $token
+        ];
+
+        return response($response, 201);
+    }
+
     public function logout(Request $request) {
         $user = auth()->user();
         if ($user) {

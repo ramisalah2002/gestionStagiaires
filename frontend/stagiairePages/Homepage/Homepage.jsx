@@ -99,7 +99,7 @@ function StagiaireHomepage() {
       navigateTo("/stagiaire/login");
     } else if (stagiaireData && !stagiaire) {
       // Admin data exists in localStorage but not in context, set the admin context
-      stagiaireContext.setStagiaire(JSON.parse(stagiaireData));
+      // stagiaireContext.setStagiaire(JSON.parse(stagiaireData));
     }
   }, [stagiaire, navigateTo, stagiaireContext]);
 
