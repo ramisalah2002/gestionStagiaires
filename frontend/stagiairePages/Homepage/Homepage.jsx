@@ -1,9 +1,6 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import StagiaireSidebar from "../../components/Sidebar/StagiaireSidebar";
-import {
-  Link,
-  useNavigate,
-} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -123,7 +120,7 @@ function StagiaireHomepage() {
       navigateTo("/stagiaire/login");
     } else if (stagiaireData && !stagiaire) {
       // Admin data exists in localStorage but not in context, set the admin context
-      stagiaireContext.setStagiaire(JSON.parse(stagiaireData));
+      // stagiaireContext.setStagiaire(JSON.parse(stagiaireData));
     }
   }, [stagiaire, navigateTo, stagiaireContext]);
 
@@ -174,12 +171,14 @@ function StagiaireHomepage() {
     const fetchEquipeDetails = async () => {
       try {
         const stagiaireData = localStorage.getItem("stagiaire");
-        const { equipe_id } = JSON.parse(stagiaireData);  // Use the id from the local storage
-        const response = await fetch(`http://127.0.0.1:8000/api/equipes/${equipe_id}`);
+        const { equipe_id } = JSON.parse(stagiaireData); // Use the id from the local storage
+        const response = await fetch(
+          `http://127.0.0.1:8000/api/equipes/${equipe_id}`
+        );
         const data = await response.json();
         setDetailsEquipe(data);
       } catch (error) {
-        console.error('Failed to fetch equipe details:', error);
+        console.error("Failed to fetch equipe details:", error);
       }
     };
     fetchEquipeDetails();
@@ -200,20 +199,21 @@ function StagiaireHomepage() {
       }
     };
 
-
   const [chartData, setChartData] = useState([]);
   const [allTimeChartData, setAllTimeChartData] = useState([]);
 
   const [avancements, setAvancements] = useState([]);
   const [avancementTypes, setAvancementTypes] = useState([]);
-  
+
   const fetchAvancement = async (id) => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/avancements/${id}`);
+      const response = await fetch(
+        `http://127.0.0.1:8000/api/avancements/${id}`
+      );
       const data = await response.json();
       setAvancementTypes(data);
     } catch (error) {
-      console.error('Error fetching avancements:', error);
+      console.error("Error fetching avancements:", error);
     }
   };
 
@@ -222,7 +222,9 @@ function StagiaireHomepage() {
       try {
         // Check if stagiaire exists
         if (stagiaire) {
-          const response = await axios.get(`http://127.0.0.1:8000/api/stagiaire/${stagiaire.id}/avancements`);
+          const response = await axios.get(
+            `http://127.0.0.1:8000/api/stagiaire/${stagiaire.id}/avancements`
+          );
           setAvancements(response.data);
           fetchAvancement(response.data.projet_id);
           fetchWeekData(response.data.projet_id);
@@ -239,23 +241,27 @@ function StagiaireHomepage() {
     fetchData();
   }, [stagiaire]); // Add stagiaire as a dependency
 
-    const fetchWeekData = async (idProjet) => {
-      try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/projet/${idProjet}/avancements/this-week`);
-        setChartData(response.data.avancementByTypeAndDay);
-      } catch (error) {
-        console.error('Error fetching avancements:', error);
-      }
+  const fetchWeekData = async (idProjet) => {
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:8000/api/projet/${idProjet}/avancements/this-week`
+      );
+      setChartData(response.data.avancementByTypeAndDay);
+    } catch (error) {
+      console.error("Error fetching avancements:", error);
     }
+  };
 
-    const fetchAllTimeData = async (idProjet) => {
-      try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/projet/${idProjet}/avancements/all-time`);
-        setAllTimeChartData(response.data.avancementByTypeAndDay);
-      } catch (error) {
-        console.error('Error fetching avancements:', error);
-      }
+  const fetchAllTimeData = async (idProjet) => {
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:8000/api/projet/${idProjet}/avancements/all-time`
+      );
+      setAllTimeChartData(response.data.avancementByTypeAndDay);
+    } catch (error) {
+      console.error("Error fetching avancements:", error);
     }
+  };
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////// WEEK PROGRESS CHART ////////////////////////////////////////////////
@@ -268,7 +274,7 @@ function StagiaireHomepage() {
   const frontendData = [];
   const backendData = [];
   const conceptionData = [];
-  
+
   const allTimeFrontendData = [];
   const allTimeBackendData = [];
   const allTimeConceptionData = [];
@@ -276,17 +282,22 @@ function StagiaireHomepage() {
   Object.entries(chartData).forEach(([date, types]) => {
     frontendData.push(types.frontend.length > 0 ? types.frontend[0].valeur : 0);
     backendData.push(types.backend.length > 0 ? types.backend[0].valeur : 0);
-    conceptionData.push(types.conception.length > 0 ? types.conception[0].valeur : 0);
+    conceptionData.push(
+      types.conception.length > 0 ? types.conception[0].valeur : 0
+    );
   });
-  
+
   Object.entries(allTimeChartData).forEach(([date, types]) => {
-    allTimeFrontendData.push(types.frontend.length > 0 ? types.frontend[0].valeur : 0);
-    allTimeBackendData.push(types.backend.length > 0 ? types.backend[0].valeur : 0);
-    allTimeConceptionData.push(types.conception.length > 0 ? types.conception[0].valeur : 0);
+    allTimeFrontendData.push(
+      types.frontend.length > 0 ? types.frontend[0].valeur : 0
+    );
+    allTimeBackendData.push(
+      types.backend.length > 0 ? types.backend[0].valeur : 0
+    );
+    allTimeConceptionData.push(
+      types.conception.length > 0 ? types.conception[0].valeur : 0
+    );
   });
-
-  
-
 
   const series = Object.keys(chartData).map((day) => {
     const data = Object.keys(chartData[day]).map((type) => ({
@@ -297,38 +308,40 @@ function StagiaireHomepage() {
     return {
       name: day,
       data,
-      type: 'spline',
+      type: "spline",
       marker: {
-        symbol: 'circle',
+        symbol: "circle",
         radius: 4,
       },
     };
   });
-  
+
   const allTimeSeries = Object.keys(allTimeChartData).map((day) => {
     const data = Object.keys(allTimeChartData[day]).map((type) => ({
       name: type,
-      y: allTimeChartData[day][type].length > 0 ? allTimeChartData[day][type][0].valeur : 0,
+      y:
+        allTimeChartData[day][type].length > 0
+          ? allTimeChartData[day][type][0].valeur
+          : 0,
     }));
 
     return {
       name: day,
       data,
-      type: 'spline',
+      type: "spline",
       marker: {
-        symbol: 'circle',
+        symbol: "circle",
         radius: 4,
       },
     };
   });
 
-
   const splineChartOptions = {
     chart: {
-      type: 'spline',
+      type: "spline",
     },
     title: {
-      text: '',
+      text: "",
     },
     xAxis: {
       categories: categories,
@@ -336,33 +349,33 @@ function StagiaireHomepage() {
       lineWidth: 0,
       plotLines: categories.map((category, index) => ({
         value: index,
-        color: '#ccc',
+        color: "#ccc",
         width: 1,
         zIndex: 3,
       })),
       labels: {
         style: {
-          fontWeight: '500',
+          fontWeight: "500",
           fontSize: 14,
-          color: '#727b88',
+          color: "#727b88",
         },
       },
     },
     yAxis: {
       title: {
-        text: 'Progrès (%)',
+        text: "Progrès (%)",
         enabled: false,
       },
       gridLineWidth: 0, // Hide y-axis grid lines
       lineWidth: 0, // Hide y-axis line
       labels: {
-        format: '{value}%', // Format the labels as percentages
+        format: "{value}%", // Format the labels as percentages
         style: {
-          fontWeight: '600', // Make the labels bolder
+          fontWeight: "600", // Make the labels bolder
           fontSize: 14,
-          color: "#727b88"
-        }
-      }
+          color: "#727b88",
+        },
+      },
     },
     plotOptions: {
       series: {
@@ -373,73 +386,80 @@ function StagiaireHomepage() {
           states: {
             hover: {
               enabled: true, // Enable markers on hover
-              fillColor: '#000', // Marker color on hover
+              fillColor: "#000", // Marker color on hover
               lineWidth: 2, // Marker border width on hover
-              lineColor: '#fff' // Marker border color on hover
-            }
-          }
-        }
-      }
+              lineColor: "#fff", // Marker border color on hover
+            },
+          },
+        },
+      },
     },
     tooltip: {
-      pointFormat: '<span style="color:{series.color};fontWeight:bold">{series.name}</span>: <b>{point.y}%</b><br/>', // Format tooltip with percentage value
+      pointFormat:
+        '<span style="color:{series.color};fontWeight:bold">{series.name}</span>: <b>{point.y}%</b><br/>', // Format tooltip with percentage value
     },
     series: [
       {
-        name: 'Conception',
+        name: "Conception",
         data: conceptionData,
-        type: 'spline',
-        color: '#2dad73', // Color for Conception line
+        type: "spline",
+        color: "#2dad73", // Color for Conception line
         marker: {
-          symbol: 'circle', // Rounded marker shape
-          radius: 4 // Adjust the radius for marker size
-        }
+          symbol: "circle", // Rounded marker shape
+          radius: 4, // Adjust the radius for marker size
+        },
       },
       {
-        name: 'Frontend',
+        name: "Frontend",
         data: frontendData,
-        type: 'spline',
-        color: '#fcc93e', // Color for Frontend line
+        type: "spline",
+        color: "#fcc93e", // Color for Frontend line
         marker: {
-          symbol: 'circle', // Rounded marker shape
-          radius: 4 // Adjust the radius for marker size
-        }
+          symbol: "circle", // Rounded marker shape
+          radius: 4, // Adjust the radius for marker size
+        },
       },
       {
-        name: 'Backend',
+        name: "Backend",
         data: backendData,
-        type: 'spline',
-        color: '#3077ed', // Color for Backend line
+        type: "spline",
+        color: "#3077ed", // Color for Backend line
         marker: {
-          symbol: 'circle', // Rounded marker shape
-          radius: 4 // Adjust the radius for marker size
-        }
-      }
+          symbol: "circle", // Rounded marker shape
+          radius: 4, // Adjust the radius for marker size
+        },
+      },
     ],
     lang: {
-      decimalPoint: ',',
-      thousandsSep: ' ',
-      loading: 'Chargement...',
-      noData: 'Aucune donnée à afficher',
-      contextButtonTitle: 'Menu',
-      downloadJPEG: 'Télécharger en JPEG',
-      downloadPDF: 'Télécharger en PDF',
-      downloadPNG: 'Télécharger en PNG',
-      downloadSVG: 'Télécharger en SVG',
-      printChart: 'Imprimer le graphique',
-      resetZoom: 'Réinitialiser le zoom',
-      resetZoomTitle: 'Réinitialiser le zoom à l\'échelle 1:1',
-      thousandsSep: ' ',
-      decimalPoint: ',',
-      viewFullscreen: 'Afficher en plein écran'
+      decimalPoint: ",",
+      thousandsSep: " ",
+      loading: "Chargement...",
+      noData: "Aucune donnée à afficher",
+      contextButtonTitle: "Menu",
+      downloadJPEG: "Télécharger en JPEG",
+      downloadPDF: "Télécharger en PDF",
+      downloadPNG: "Télécharger en PNG",
+      downloadSVG: "Télécharger en SVG",
+      printChart: "Imprimer le graphique",
+      resetZoom: "Réinitialiser le zoom",
+      resetZoomTitle: "Réinitialiser le zoom à l'échelle 1:1",
+      thousandsSep: " ",
+      decimalPoint: ",",
+      viewFullscreen: "Afficher en plein écran",
     },
     exporting: {
       buttons: {
         contextButton: {
-          menuItems: ['downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG', 'viewFullscreen']
-        }
-      }
-    }
+          menuItems: [
+            "downloadPNG",
+            "downloadJPEG",
+            "downloadPDF",
+            "downloadSVG",
+            "viewFullscreen",
+          ],
+        },
+      },
+    },
   };
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -447,10 +467,10 @@ function StagiaireHomepage() {
 
   const allTimeSplineChartOptions = {
     chart: {
-      type: 'spline',
+      type: "spline",
     },
     title: {
-      text: '',
+      text: "",
     },
     xAxis: {
       categories: allTimeCategories,
@@ -458,33 +478,33 @@ function StagiaireHomepage() {
       lineWidth: 0,
       plotLines: allTimeCategories.map((category, index) => ({
         value: index,
-        color: '#ccc',
+        color: "#ccc",
         width: 1,
         zIndex: 3,
       })),
       labels: {
         style: {
-          fontWeight: '500',
+          fontWeight: "500",
           fontSize: 14,
-          color: '#727b88',
+          color: "#727b88",
         },
       },
     },
     yAxis: {
       title: {
-        text: 'Progrès (%)',
+        text: "Progrès (%)",
         enabled: false,
       },
       gridLineWidth: 0, // Hide y-axis grid lines
       lineWidth: 0, // Hide y-axis line
       labels: {
-        format: '{value}%', // Format the labels as percentages
+        format: "{value}%", // Format the labels as percentages
         style: {
-          fontWeight: '600', // Make the labels bolder
+          fontWeight: "600", // Make the labels bolder
           fontSize: 14,
-          color: "#727b88"
-        }
-      }
+          color: "#727b88",
+        },
+      },
     },
     plotOptions: {
       series: {
@@ -495,73 +515,80 @@ function StagiaireHomepage() {
           states: {
             hover: {
               enabled: true, // Enable markers on hover
-              fillColor: '#000', // Marker color on hover
+              fillColor: "#000", // Marker color on hover
               lineWidth: 2, // Marker border width on hover
-              lineColor: '#fff' // Marker border color on hover
-            }
-          }
-        }
-      }
+              lineColor: "#fff", // Marker border color on hover
+            },
+          },
+        },
+      },
     },
     tooltip: {
-      pointFormat: '<span style="color:{series.color};fontWeight:bold">{series.name}</span>: <b>{point.y}%</b><br/>', // Format tooltip with percentage value
+      pointFormat:
+        '<span style="color:{series.color};fontWeight:bold">{series.name}</span>: <b>{point.y}%</b><br/>', // Format tooltip with percentage value
     },
     series: [
       {
-        name: 'Conception',
+        name: "Conception",
         data: allTimeConceptionData,
-        type: 'spline',
-        color: '#2dad73', // Color for Conception line
+        type: "spline",
+        color: "#2dad73", // Color for Conception line
         marker: {
-          symbol: 'circle', // Rounded marker shape
-          radius: 4 // Adjust the radius for marker size
-        }
+          symbol: "circle", // Rounded marker shape
+          radius: 4, // Adjust the radius for marker size
+        },
       },
       {
-        name: 'Frontend',
+        name: "Frontend",
         data: allTimeFrontendData,
-        type: 'spline',
-        color: '#fcc93e', // Color for Frontend line
+        type: "spline",
+        color: "#fcc93e", // Color for Frontend line
         marker: {
-          symbol: 'circle', // Rounded marker shape
-          radius: 4 // Adjust the radius for marker size
-        }
+          symbol: "circle", // Rounded marker shape
+          radius: 4, // Adjust the radius for marker size
+        },
       },
       {
-        name: 'Backend',
+        name: "Backend",
         data: allTimeBackendData,
-        type: 'spline',
-        color: '#3077ed', // Color for Backend line
+        type: "spline",
+        color: "#3077ed", // Color for Backend line
         marker: {
-          symbol: 'circle', // Rounded marker shape
-          radius: 4 // Adjust the radius for marker size
-        }
-      }
+          symbol: "circle", // Rounded marker shape
+          radius: 4, // Adjust the radius for marker size
+        },
+      },
     ],
     lang: {
-      decimalPoint: ',',
-      thousandsSep: ' ',
-      loading: 'Chargement...',
-      noData: 'Aucune donnée à afficher',
-      contextButtonTitle: 'Menu',
-      downloadJPEG: 'Télécharger en JPEG',
-      downloadPDF: 'Télécharger en PDF',
-      downloadPNG: 'Télécharger en PNG',
-      downloadSVG: 'Télécharger en SVG',
-      printChart: 'Imprimer le graphique',
-      resetZoom: 'Réinitialiser le zoom',
-      resetZoomTitle: 'Réinitialiser le zoom à l\'échelle 1:1',
-      thousandsSep: ' ',
-      decimalPoint: ',',
-      viewFullscreen: 'Afficher en plein écran'
+      decimalPoint: ",",
+      thousandsSep: " ",
+      loading: "Chargement...",
+      noData: "Aucune donnée à afficher",
+      contextButtonTitle: "Menu",
+      downloadJPEG: "Télécharger en JPEG",
+      downloadPDF: "Télécharger en PDF",
+      downloadPNG: "Télécharger en PNG",
+      downloadSVG: "Télécharger en SVG",
+      printChart: "Imprimer le graphique",
+      resetZoom: "Réinitialiser le zoom",
+      resetZoomTitle: "Réinitialiser le zoom à l'échelle 1:1",
+      thousandsSep: " ",
+      decimalPoint: ",",
+      viewFullscreen: "Afficher en plein écran",
     },
     exporting: {
       buttons: {
         contextButton: {
-          menuItems: ['downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG', 'viewFullscreen']
-        }
-      }
-    }
+          menuItems: [
+            "downloadPNG",
+            "downloadJPEG",
+            "downloadPDF",
+            "downloadSVG",
+            "viewFullscreen",
+          ],
+        },
+      },
+    },
   };
   return (
     <div className="app">
@@ -638,30 +665,37 @@ function StagiaireHomepage() {
                 )}
 
                 <div className="bas-profile-droit">
-                {detailsEquipe && detailsEquipe.stagiaires && detailsEquipe.stagiaires.length > 0 && detailsEquipe.stagiaires[0].stage &&(
-                  <div className="bas-profile-droit-date">
-                    <div className="bas-profile-droit-dateDebut">
-                      <FontAwesomeIcon
-                        className="debutIcon"
-                        icon={faCalendarCheck}
-                      />
-                      <div className="bas-profile-droit-dateDebut-txt">
-                        <div className="top">Debut Stage</div>
-                        <div className="date">{detailsEquipe.stagiaires[0].stage.date_Debut}</div>
+                  {detailsEquipe &&
+                    detailsEquipe.stagiaires &&
+                    detailsEquipe.stagiaires.length > 0 &&
+                    detailsEquipe.stagiaires[0].stage && (
+                      <div className="bas-profile-droit-date">
+                        <div className="bas-profile-droit-dateDebut">
+                          <FontAwesomeIcon
+                            className="debutIcon"
+                            icon={faCalendarCheck}
+                          />
+                          <div className="bas-profile-droit-dateDebut-txt">
+                            <div className="top">Debut Stage</div>
+                            <div className="date">
+                              {detailsEquipe.stagiaires[0].stage.date_Debut}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="bas-profile-droit-dateFin">
+                          <FontAwesomeIcon
+                            className="finIcon"
+                            icon={faCalendarAlt}
+                          />
+                          <div className="bas-profile-droit-dateFin-txt">
+                            <div className="top">Fin Stage</div>
+                            <div className="date">
+                              {detailsEquipe.stagiaires[0].stage.date_Fin}
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div className="bas-profile-droit-dateFin">
-                      <FontAwesomeIcon
-                        className="finIcon"
-                        icon={faCalendarAlt}
-                      />
-                      <div className="bas-profile-droit-dateFin-txt">
-                        <div className="top">Fin Stage</div>
-                        <div className="date">{detailsEquipe.stagiaires[0].stage.date_Fin}</div>
-                      </div>
-                    </div>
-                  </div>
-                )}
+                    )}
                   <div className="bas-profile-droit-viewProfile">
                     <Link className="viewButton" to="/stagiaire/mon-profile">
                       <div className="txtViewPofile">voir profile</div>
@@ -797,8 +831,20 @@ function StagiaireHomepage() {
                   <label>Backend</label>
                 </div>
               </div>
-              {activeLink === WeekProgressLink && <HighchartsReact highcharts={Highcharts} options={splineChartOptions} containerProps={{ style: { width: '100%' } }}/>}
-              {activeLink === AllTimeProgressLink && <HighchartsReact highcharts={Highcharts} options={allTimeSplineChartOptions} containerProps={{ style: { width: '100%' } }}/>}
+              {activeLink === WeekProgressLink && (
+                <HighchartsReact
+                  highcharts={Highcharts}
+                  options={splineChartOptions}
+                  containerProps={{ style: { width: "100%" } }}
+                />
+              )}
+              {activeLink === AllTimeProgressLink && (
+                <HighchartsReact
+                  highcharts={Highcharts}
+                  options={allTimeSplineChartOptions}
+                  containerProps={{ style: { width: "100%" } }}
+                />
+              )}
             </div>
             <div className="reunion-projet">
               <div className="projet">
@@ -808,15 +854,14 @@ function StagiaireHomepage() {
                       <div className="projetBackGround-img" />
                     </div>
                   </div>
-                  {data && data.equipe && data.equipe.projets && (
-                    <div className="haut-projet-droit">
-                      <div className="nomApplication">{data.equipe.projets[0].sujet}</div>
-                      <div className="descriptionApplication">
-                        {data.equipe.projets[0].description}
-                      </div>
+                  {( data && data.equipe && data.equipe.projet &&
+                  <div className="haut-projet-droit">
+                    <div className="nomApplication">{data.equipe.projet.sujet}</div>
+                    <div className="descriptionApplication">
+                    {data.equipe.projet.description}
                     </div>
+                  </div>
                   )}
-
 
                 </div>
 
@@ -854,13 +899,13 @@ function StagiaireHomepage() {
                       />
                     </Link>
                   </div>
-                    {data && data.equipe && data.equipe.projets && (
+                    {stagiaire && data && data.equipe && data.equipe.projet && (
                       <div className="bas-projet-droit">
-                          <div style={{ backgroundImage: `url(${data.equipe.projets[0].image})` }} className="projet-img" />
+                          <div style={{ backgroundImage: `url(${data.equipe.projet.image})` }} className="projet-img" />
                           <div className="under-logo">
-                            <div className="nomProjet">{data.equipe.projets[0].sujet}</div>
-                            <div className="typeProjet">{data.equipe.projets[0].type}</div>
-                            <Link className="viewProjetButton" to="/stagiaire/projet">
+                            <div className="nomProjet">{data.equipe.projet.sujet}</div>
+                            <div className="typeProjet">{data.equipe.projet.type}</div>
+                            <Link className="viewProjetButton" to="#">
                               <div className="voirDetailsProjet">voir details</div>
                               <FontAwesomeIcon
                                 className="flecheDroit"

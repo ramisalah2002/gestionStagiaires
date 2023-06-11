@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
-
 import ChoicePage from "../pages/ChoicePage/ChoicePage";
-
 
 import Chat from "../pages/Chat/Chat";
 import Contact from "../pages/email-test/Contact";
@@ -19,7 +17,6 @@ import DisplayImages from "../tests/DisplayImages";
 import Reunion from "../pages/Reunion/Reunion";
 import SendMessagePage from "../pages/email-test/SendMessage";
 import ReceiveMessagePage from "../pages/email-test/ReceiveMessage";
-
 
 //Providers
 import { AdminProvider } from "../Contexts/AdminContext";
@@ -55,7 +52,6 @@ import StagiaireAbsenceMarking from "../stagiairePages/StagiaireAbsence/Stagiair
 import Task from "../stagiairePages/Task/Task";
 import MonProfile from "../stagiairePages/StagiaireProfile/MonProfile";
 
-
 function App() {
   useEffect(() => {
     document.title = "MENStage";
@@ -76,7 +72,10 @@ function App() {
           <Route path="/admin/absence" element={<Absence />} />
           <Route path="/admin/discussions" element={<Chat />} />
           <Route path="/admin/parametres" element={<Parametres />} />
-          <Route path="/admin/profile-stagiaire/:stagiaire_id" element={<StagiaireProfile />} />
+          <Route
+            path="/admin/profile-stagiaire/:stagiaire_id"
+            element={<StagiaireProfile />}
+          />
           <Route path="/admin/projets" element={<Projet />} />
           <Route path="/send-email" element={<Contact />} />
           <Route path="/forgot-password/" element={<ForgotPassword />} />
@@ -89,7 +88,6 @@ function App() {
           <Route path="/admin/reunion" element={<Reunion />} />
           <Route path="/send-message" element={<SendMessagePage />} />
           <Route path="/receive-message" element={<ReceiveMessagePage />} />
-
         </Routes>
       </AdminProvider>
       <EncadrantProvider>
@@ -101,8 +99,14 @@ function App() {
           <Route path="/encadrant/stagiaires" element={<Stagiaire />} />
           <Route path="/encadrant/absence" element={<EncadrantAbsence />} />
           <Route path="/encadrant/discussions" element={<ChatEncadrant />} />
-          <Route path="/encadrant/parametres" element={<EncadrantParametres />} />
-          <Route path="/encadrant/profile-stagiaire/:stagiaire_id" element={<StagiairePage />} />
+          <Route
+            path="/encadrant/parametres"
+            element={<EncadrantParametres />}
+          />
+          <Route
+            path="/encadrant/profile-stagiaire/:stagiaire_id"
+            element={<StagiairePage />}
+          />
           <Route path="/projets" element={<Projet />} />
           <Route path="/send-email" element={<Contact />} />
           <Route path="/forgot-password/" element={<ForgotPassword />} />
@@ -123,12 +127,18 @@ function App() {
           <Route path="/stagiaire/login" element={<LoginPageStagiaire />} />
           <Route path="/stagiaire/accueil" element={<StagiaireHomepage />} />
           <Route path="/stagiaire/mon-profile" element={<MonProfile />} />
-          <Route path="stagiaire/absence" element={<StagiaireAbsenceMarking />} />
+          <Route
+            path="stagiaire/absence"
+            element={<StagiaireAbsenceMarking />}
+          />
           <Route path="/stagiaire/projet" element={<ProjetStagiaire />} />
           <Route path="/stagiaire/discussions" element={<StagiaireChat />} />
           <Route path="/stagiaire/parametres" element={<Parametres />} />
           <Route path="/stagiaire/activités" element={<Task />} />
-          <Route path="/profile-stagiaire/:stagiaire_id" element={<StagiaireProfile />} />
+          <Route
+            path="/profile-stagiaire/:stagiaire_id"
+            element={<StagiaireProfile />}
+          />
           <Route path="/projets" element={<Projet />} />
           <Route path="/send-email" element={<Contact />} />
           <Route path="/forgot-password/" element={<ForgotPassword />} />
