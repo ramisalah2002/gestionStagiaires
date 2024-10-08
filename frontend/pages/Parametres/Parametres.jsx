@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
-import { AdminContext } from "../../Contexts/AdminContext";
+import { StagiaireContext } from "../../Contexts/StagiaireContext.jsx";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 import {
   BrowserRouter as Router,
@@ -29,19 +29,19 @@ function Parametres() {
   const [selectedImage, setSelectedImage] = useState(null);
 
   const navigateTo = useNavigate();
-  const { admin, loading } = useContext(AdminContext);
-  const adminContext = useContext(AdminContext);
+  const { stagiaire, loading } = useContext(StagiaireContext);
+  const stagiaireContext = useContext(StagiaireContext);
 
   useEffect(() => {
-    const adminData = localStorage.getItem("admin");
-    if (!adminData && !loading) {
+    const stagiaireData = localStorage.getItem("stagiaire");
+    if (!stagiaireData && !loading) {
       // Admin data doesn't exist in localStorage, redirect to LoginPage
       navigateTo("/encadrant/login");
-    } else if (adminData && !admin) {
+    } else if (stagiaireData && !stagiaire) {
       // Admin data exists in localStorage but not in context, set the admin context
-      adminContext.setAdmin(JSON.parse(adminData));
+      stagiaireContext.setStagiaire(JSON.parse(stagiaireData));
     }
-  }, [admin, loading, navigateTo, adminContext]);
+  }, [stagiaire, loading, navigateTo, stagiaireContext]);
 
   const currentDate = new Date().toLocaleString("fr-FR", {
     day: "numeric",
@@ -84,12 +84,12 @@ function Parametres() {
           <div className="admin-container">
             <FontAwesomeIcon className="admin-icon" icon={faCircleUser} />
             <div className="admin-info">
-              {admin && (
+              {stagiaire && (
                 <>
                   <label className="admin-name">
-                    {admin.nom} {admin.prenom}
+                    {stagiaire.nom} {stagiaire.prenom}
                   </label>
-                  <label className="admin-post">{admin.fonction}</label>
+                  <label className="admin-post">{stagiaire.fonction}</label>
                 </>
               )}
             </div>

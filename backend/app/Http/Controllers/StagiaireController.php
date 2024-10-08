@@ -278,7 +278,19 @@ class StagiaireController extends Controller
         return response()->json(['projet_id' => $projetId]);
     }
 
+    //update equipe id
+    public function updateEquipeId(Request $request, $id)
+    {
+        $request->validate([
+            'equipe_id' => 'required|exists:equipe,id',
+        ]);
 
+        $stagiaire = Stagiaire::findOrFail($id);
+        $stagiaire->equipe_id = $request->input('equipe_id');
+        $stagiaire->save();
+
+        return response()->json('Equipe ID updated successfully');
+    }
 
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Projet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProjetController extends Controller
 {
@@ -23,6 +24,20 @@ class ProjetController extends Controller
     {
         //
     }
+
+
+
+// ...
+
+    public function getLastProjetId()
+    {
+        $lastProjetId = DB::table('projet')->orderBy('created_at', 'desc')->value('id');
+        return response()->json(['last_projet_id' => $lastProjetId]);
+    }
+
+
+
+
 
     /**
      * Store a newly created resource in storage.

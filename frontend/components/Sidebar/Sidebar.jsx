@@ -52,9 +52,13 @@ function Sidebar() {
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/stagiaire")
       .then((response) => response.json())
-      .then((data) => setStagiaires(data))
+      .then((data) => {
+        const filteredStagiaires = data.filter((stagiaire) => stagiaire.equipe_id === null);
+        setStagiaires(filteredStagiaires);
+      })
       .catch((error) => console.error("Erreur:", error));
   }, []);
+  
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/technologie")
@@ -203,6 +207,13 @@ function Sidebar() {
   const [couverture, setCouverture] = useState(null);
   const [status, setStatus] = useState("En cours");
 
+  const [equipeName, setEquipeName] = useState('');
+const [sujetValue, setSujetValue] = useState('');
+const [selectedType, setSelectedType] = useState('');
+const [descriptionValue, setDescriptionValue] = useState('');
+const [selectedEncadrantId, setSelectedEncadrantId] = useState('');
+
+
   
 
   const handleAjouterStagiaire = () => {
@@ -276,6 +287,93 @@ function Sidebar() {
         console.error(error);
       });
   };
+
+
+  const createEquipe = async () => {
+    try {
+      //Fetch the max ID
+      const maxIdResponse = await fetch('http://127.0.0.1:8000/api/max-id');
+      const maxIdData = await maxIdResponse.json();
+      const maxId = maxIdData.max_id;
+  
+      // Store the equipe
+      const equipeResponse = await fetch('http://127.0.0.1:8000/api/equipe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: maxId + 1,
+          nom_equipe: equipeName, // Replace with the actual value from the input field
+          encadrant_id: selectedEncadrantId, // Replace with the actual selected encadrant ID
+        }),
+      });
+      const equipeData = await equipeResponse.json();
+      const equipeId = equipeData.id;
+  
+      // Store the projet
+      const projetResponse = await fetch('http://127.0.0.1:8000/api/projet', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          sujet: sujetValue, // Replace with the actual value from the input field
+          status: 'en cours',
+          type: selectedType, // Replace with the actual selected option from the select field
+          description: descriptionValue, // Replace with the actual value from the textarea field
+          image: "", // Replace with the desired default value
+          equipe_id: 1,
+        }),
+      });
+      const projetData = await projetResponse.json();
+      const projetId = projetData.id;
+  
+      // Update equipe_id of selectedStagiaires
+      for (const stagiaire of selectedStagiaires) {
+        await fetch(`http://127.0.0.1:8000/api/stagiaire/${stagiaire.id}/update-equipe-id`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            equipe_id: 1, // Replace with the desired equipe_id value
+          }),
+        });
+      }
+      
+  
+      const projectsResponse = await fetch('http://127.0.0.1:8000/api/projet');
+    const projectsData = await projectsResponse.json();
+
+    // Get the ID of the last project
+    const lastProjectId = projectsData[projectsData.length - 1].id;
+
+    // Store utilisation_technologie
+    for (const technology of selectedTechnologies) {
+      await fetch('http://127.0.0.1:8000/api/utilisation-technologie', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          projet_id: lastProjectId,
+          technologie_id: technology.value,
+        }),
+      });
+    }
+  
+      // Handle any further actions or notifications
+  
+      // Clear form values or redirect to another page if needed
+      navigateTo('/admin/equipes');
+  
+    } catch (error) {
+      console.error('Error creating equipe:', error);
+      // Handle error case
+    }
+  };
+  
 
   return (
     <>
@@ -582,20 +680,29 @@ function Sidebar() {
             <div className="form-group">
               <div className="nom-container">
                 <label>Nom de l'équipe</label>
-                <input placeholder="Entrez le nom de l'équipe" />
+                <input
+  placeholder="Entrez le nom de l'équipe"
+  value={equipeName}
+  onChange={(e) => setEquipeName(e.target.value)}
+/>
               </div>
               <div className="prenom-container">
                 <label>Sujet de stage</label>
-                <input placeholder="Entrez le sujet de stage" />
+                <input
+  placeholder="Entrez le sujet de stage"
+  value={sujetValue}
+  onChange={(e) => setSujetValue(e.target.value)}
+/>
               </div>
               <div className="prenom-container">
                 <label>Type du projet</label>
-                <select>
-                  <option>Web</option>
-                  <option>Mobile</option>
-                  <option>Desktop</option>
-                  <option>Autre</option>
-                </select>
+                <select value={selectedType} onChange={(e) => setSelectedType(e.target.value)}>
+  <option value="">Choisir...</option>
+  <option value="Web">Web</option>
+  <option value="Mobile">Mobile</option>
+  <option value="Desktop">Desktop</option>
+  <option value="Autre">Autre</option>
+</select>
               </div>
             </div>
             <div className="equipe-info-devider">
@@ -610,7 +717,20 @@ function Sidebar() {
                   onChange={handleSearchChange}
                 />
               </div>
+              <div className="nom-container">
+                <label>Définir la date de début</label>
+                <input
+                  type="date"
+                />
+              </div>
+              <div className="nom-container">
+                <label>Définir la date de fin</label>
+                <input
+                  type="date"
+                />
+              </div>
             </div>
+            
             <div className="equipe-stagiaire-liste">
               {filteredStagiaires.length > 0 && (
                 <div className="stagiaire-equipe">
@@ -674,14 +794,18 @@ function Sidebar() {
             <div className="form-group">
               <div className="nom-container">
                 <label>Affecter encadrant</label>
-                <select name="selectedEncadrant">
-                  <option value="">Choisir...</option>
-                  {encadrants.map((encadrant) => (
-                    <option key={encadrant.id} value={encadrant.id}>
-                      {encadrant.nom} {encadrant.prenom}
-                    </option>
-                  ))}
-                </select>
+                <select
+  name="selectedEncadrant"
+  value={selectedEncadrantId}
+  onChange={(e) => setSelectedEncadrantId(e.target.value)}
+>
+  <option value="">Choisir...</option>
+  {encadrants.map((encadrant) => (
+    <option key={encadrant.id} value={encadrant.id}>
+      {encadrant.nom} {encadrant.prenom}
+    </option>
+  ))}
+</select>
               </div>
             </div>
             <div className="form-group">
@@ -704,16 +828,18 @@ function Sidebar() {
               <div className="nom-container">
                 <label>Décrire le projet </label>
                 <textarea
-                  placeholder="Donner une description du sujet du projet"
-                  className="description-input"
-                ></textarea>
+  placeholder="Donner une description du sujet du projet"
+  className="description-input"
+  value={descriptionValue}
+  onChange={(e) => setDescriptionValue(e.target.value)}
+/>
               </div>
             </div>
             <div className="save-container">
               <Link onClick={closeEquipeModal} className="annuler-link">
                 Annuler
               </Link>
-              <Link className="ajouter-link">Créer</Link>
+              <button className="ajouter-link" onClick={createEquipe}>Créer</button>
             </div>
           </div>
         </div>

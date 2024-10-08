@@ -45,6 +45,8 @@ function StagiaireHomepage() {
   const [AllTimeProgressLink, setAllTimeLink] = useState("Tout le temps");
   const [WeekProgressLink, setWeekProgressLink] = useState("Cette semaine");
   const [activeLink, setActiveLink] = useState(AllTimeProgressLink);
+  const [lastFourAv, setLastFourAv] = useState([]);
+
 
   const absence_data = [
     { nom: "Absences justifiées", nbr_jours: 10, color: "#3176ed" },
@@ -88,6 +90,25 @@ function StagiaireHomepage() {
     setSearchingText(searchTerm !== "" ? "Résultat de la recherche" : "");
   };
 
+  //getting last 4 avancements
+
+  const fetchLastFourAvancements = (projetId) => {
+    fetch(`http://127.0.0.1:8000/api/projet/${projetId}/avancements`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            setLastFourAv(data);
+        })
+        .catch(error => {
+            console.error('Error:', error.message);
+        });
+  };
+
+
   const navigateTo = useNavigate();
   const { stagiaire } = useContext(StagiaireContext);
   const stagiaireContext = useContext(StagiaireContext);
@@ -125,6 +146,7 @@ function StagiaireHomepage() {
         }
         const data = await response.json();
         setData(data); // This will contain updated data from server
+        console.log(data);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -162,20 +184,20 @@ function StagiaireHomepage() {
     fetchEquipeDetails();
   }, []);
 
-  const fetchAvData = async () => {
-    try {
-      // Check if stagiaire exists
-      if (stagiaire) {
-        const response = await axios.get(
-          `http://127.0.0.1:8000/api/stagiaire/${stagiaire.id}/avancements`
-        );
-        setAvancements(response.data);
-        fetchAvancement(response.data.projet_id);
+
+    const fetchAvData = async () => {
+      try {
+        // Check if stagiaire exists
+        if (stagiaire) {
+          const response = await axios.get(`http://127.0.0.1:8000/api/stagiaire/${stagiaire.id}/avancements`);
+          setAvancements(response.data);
+          fetchAvancement(response.data.projet_id);
+          
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    };
 
   const [chartData, setChartData] = useState([]);
   const [allTimeChartData, setAllTimeChartData] = useState([]);
@@ -207,6 +229,8 @@ function StagiaireHomepage() {
           fetchAvancement(response.data.projet_id);
           fetchWeekData(response.data.projet_id);
           fetchAllTimeData(response.data.projet_id);
+          fetchLastFourAvancements(response.data.projet_id);
+          console.log(lastFourAv);
           console.log(allTimeChartData);
         }
       } catch (error) {
@@ -830,16 +854,15 @@ function StagiaireHomepage() {
                       <div className="projetBackGround-img" />
                     </div>
                   </div>
-                  {data && data.equipe && data.equipe.projet && (
-                    <div className="haut-projet-droit">
-                      <div className="nomApplication">
-                        {data.equipe.projet.sujet}
-                      </div>
-                      <div className="descriptionApplication">
-                        {data.equipe.projet.description}
-                      </div>
+                  {( data && data.equipe && data.equipe.projet &&
+                  <div className="haut-projet-droit">
+                    <div className="nomApplication">{data.equipe.projet.sujet}</div>
+                    <div className="descriptionApplication">
+                    {data.equipe.projet.description}
                     </div>
+                  </div>
                   )}
+
                 </div>
 
                 <div className="bas-projet">
@@ -876,30 +899,22 @@ function StagiaireHomepage() {
                       />
                     </Link>
                   </div>
-                  {stagiaire && data && data.equipe && data.equipe.projet && (
-                    <div className="bas-projet-droit">
-                      <div
-                        style={{
-                          backgroundImage: `url(${data.equipe.projet.image})`,
-                        }}
-                        className="projet-img"
-                      />
-                      <div className="under-logo">
-                        <div className="nomProjet">
-                          {data.equipe.projet.sujet}
-                        </div>
-                        <div className="typeProjet">
-                          {data.equipe.projet.type}
-                        </div>
-                        <Link className="viewProjetButton" to="#">
-                          <div className="voirDetailsProjet">voir details</div>
-                          <FontAwesomeIcon
-                            className="flecheDroit"
-                            icon={faArrowRight}
-                          />
-                        </Link>
+                    {stagiaire && data && data.equipe && data.equipe.projet && (
+                      <div className="bas-projet-droit">
+                          <div style={{ backgroundImage: `url(${data.equipe.projet.image})` }} className="projet-img" />
+                          <div className="under-logo">
+                            <div className="nomProjet">{data.equipe.projet.sujet}</div>
+                            <div className="typeProjet">{data.equipe.projet.type}</div>
+                            <Link className="viewProjetButton" to="#">
+                              <div className="voirDetailsProjet">voir details</div>
+                              <FontAwesomeIcon
+                                className="flecheDroit"
+                                icon={faArrowRight}
+                              />
+                            </Link>
+                          </div>
                       </div>
-                    </div>
+
                   )}
                 </div>
               </div>

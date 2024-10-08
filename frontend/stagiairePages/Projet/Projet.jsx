@@ -9,6 +9,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 import {
   faSearch,
   faCircleUser,
@@ -136,6 +137,43 @@ function ProjetStagiaire() {
 
     fetchEquipe();
   }, []);
+
+  ///fetch last 4 avancements : 
+
+  const [lastFourAv, setLastFourAv] = useState([]);
+  const fetchLastFourAvancements = (projetId) => {
+    fetch(`http://127.0.0.1:8000/api/projet/${projetId}/avancements`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            setLastFourAv(data);
+        })
+        .catch(error => {
+            console.error('Error:', error.message);
+        });
+  };
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Check if stagiaire exists
+        if (stagiaire) {
+          const response = await axios.get(`http://127.0.0.1:8000/api/stagiaire/${stagiaire.id}/avancements`);
+          fetchLastFourAvancements(response.data.projet_id);
+          console.log(lastFourAv);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [stagiaire]); // Add stagiaire as a dependency
 
 
 
@@ -313,58 +351,18 @@ function ProjetStagiaire() {
             <div className="progresGenerale-projet">
               <div className="entete">Activitées récentes</div>
               <div className="verticalLine-activityContainer">
-                <table className="activityContainer">
-                  <tr className="activity">
+              <table className="activityContainer">
+                {lastFourAv.map((avancement) => (
+                  <tr className="activity" key={avancement.id}>
                     <td>
-                      <FontAwesomeIcon
-                        className="flechRightIcon"
-                        icon={faArrowRight}
-                      />
+                      <FontAwesomeIcon className="flechRightIcon" icon={faArrowRight} />
                     </td>
-                    <td className="dateAtctivity">22 Nov</td>
-                    <td className="contenuActivity">
-                      Responded to need “Volunteer Activities
-                    </td>
+                    <td className="dateAtctivity">{`${avancement.day} ${avancement.month}`}</td>
+                    <td className="contenuActivity">{avancement.text}</td>
                   </tr>
-                  <tr className="activity">
-                    <td>
-                      <FontAwesomeIcon
-                        className="flechRightIcon"
-                        icon={faArrowRight}
-                      />
-                    </td>
-                    <td className="dateAtctivity">22 Nov</td>
-                    <td className="contenuActivity">
-                      Everyone realizes why a new common language would be
-                      desirable...Read More
-                    </td>
-                  </tr>
-                  <tr className="activity">
-                    <td>
-                      <FontAwesomeIcon
-                        className="flechRightIcon"
-                        icon={faArrowRight}
-                      />
-                    </td>
-                    <td className="dateAtctivity">22 Nov</td>
-                    <td className="contenuActivity">
-                      Responded to need “Volunteer Activities
-                    </td>
-                  </tr>
-                  <tr className="activity">
-                    <td>
-                      <FontAwesomeIcon
-                        className="flechRightIcon"
-                        icon={faArrowRight}
-                      />
-                    </td>
-                    <td className="dateAtctivity">22 Nov</td>
-                    <td className="contenuActivity">
-                      Everyone realizes why a new common language would be
-                      desirable...Read More
-                    </td>
-                  </tr>
-                </table>
+                ))}
+              </table>
+
               </div>
               <Link className="buttonVoirPlus" to="/stagiaire/activités">
                 <div className="button">
